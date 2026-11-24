@@ -39,3 +39,6 @@ dist-release-*/
 
 # 生产构建产物（用于发版）
 dist-prod/
+
+# Vite 临时文件
+*.timestamp-*.mjs
