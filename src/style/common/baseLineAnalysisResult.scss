@@ -1,0 +1,941 @@
+.baseLineAnalysisResult {
+  &.downloading {
+    .sectionDiv2 {
+      .sectionDiv2-content {
+        :deep(.resultTable) {
+          .mannWhitneyUTestTable3 {
+            .el-table__header {
+              tr:nth-child(3) {
+                th:nth-child(1)::before {
+                  transform: rotate(-82.2deg) !important;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .sectionDiv {
+    box-sizing: border-box;
+    padding: 16px 24px 24px;
+    border-radius: 8px;
+    background-color: var(--theme-card);
+    .title {
+      .node-name {
+        display: flex;
+        align-items: center;
+        font-weight: 600;
+        font-size: 16px;
+        color: #333;
+        i {
+          margin-right: 8px;
+          font-weight: 600;
+          font-size: 16px;
+          color: #3670f8;
+        }
+      }
+    }
+    :deep(.commonSubTitle) {
+      margin-top: 16px;
+      .commonSubTitleText {
+        font-size: 14px;
+      }
+      .line {
+        margin-right: 6px;
+      }
+    }
+    .coreNode {
+      display: flex;
+      align-items: center;
+      margin-top: 16px;
+      font-weight: 600;
+      color: #333;
+      :deep(.commonSubTitle) {
+        margin-top: 0;
+      }
+      i {
+        margin-left: 8px;
+        cursor: pointer;
+        font-size: 12px;
+        color: #3670f8;
+      }
+    }
+  }
+  .loading-div {
+    padding-left: 24px;
+  }
+  .sectionDiv2 {
+    box-sizing: border-box;
+    margin-top: 16px;
+    border-radius: 8px;
+    background-color: var(--theme-card);
+    .title {
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
+      height: 56px;
+      padding-left: 24px;
+      border-bottom: 1px solid #e8e8e8;
+      .node-name {
+        display: flex;
+        align-items: center;
+        font-weight: 600;
+        font-size: 16px;
+        color: #333;
+        i {
+          margin-right: 10px;
+          font-weight: 600;
+          font-size: 20px;
+          color: #36b58f;
+        }
+      }
+    }
+    .sectionDiv2-content {
+      box-sizing: border-box;
+      padding: 24px;
+      :deep(.commonSubTitleText) {
+        font-size: 14px;
+      }
+      :deep(.title3) {
+        margin-top: 16px;
+        color: #666;
+      }
+      :deep(.titleText3) {
+        margin-top: 8px;
+        color: #666;
+      }
+      :deep(.titleText4) {
+        margin-top: 8px;
+        color: #666;
+      }
+      :deep(.resultTitle) {
+        margin-top: 24px;
+        font-weight: 600;
+        color: #333;
+        .spanCopy {
+          cursor: pointer;
+          font-weight: 400;
+          color: #3670f8;
+          i {
+            margin-right: 7px;
+            font-size: 13px;
+          }
+        }
+      }
+      :deep(.resultTable) {
+        margin-top: 16px;
+        .el-table:not(:first-child) {
+          margin-top: 16px;
+        }
+        .el-table {
+          .el-table__header,
+          .el-table__body {
+            min-width: 100%;
+          }
+          .el-table__header {
+            height: auto;
+          }
+          .el-table__body tr>td.hover-cell {
+            background-color: inherit;
+          }
+          .el-table__body tr:hover > td {
+            background-color: inherit;
+          }
+          .el-table__body tr.hover-row>td.el-table__cell {
+            background-color: inherit;
+          }
+          .el-table__cell {
+            padding: 7px 0;
+            .cell {
+              min-height: 20px !important;
+              line-height: 20px !important;
+            }
+          }
+          th,
+          td {
+            color: #333;
+            white-space: nowrap;
+            .cell {
+              justify-content: center;
+              padding: 0;
+            }
+          }
+          thead {
+            tr th {
+              background-color: var(--theme-card) !important;
+              .cell {
+                font-weight: 600;
+              }
+            }
+
+            & > tr:nth-child(1) {
+              th {
+                background: rgba(54, 112, 248, 0.05) !important;
+                .cell {
+                  text-align: center;
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+          }
+
+          th,
+          td {
+            text-align: center;
+          }
+
+          tr {
+            color: #070707;
+          }
+
+          &::before {
+            bottom: initial;
+          }
+        }
+        .tTestTable1 {
+          .el-table__body {
+            tr {
+              td:nth-child(1) {
+                .cell {
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+          }
+        }
+        .tTestTable2 {
+          & .el-table__inner-wrapper::after {
+            display: none;
+          }
+          thead {
+            // & > tr:nth-child(1) {
+            //   // border-top: none;
+            // }
+            & > tr:nth-child(2) {
+              th {
+                .cell {
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+          }
+          .el-table__body {
+            tr {
+              td:nth-child(1) {
+                .cell {
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+          }
+        }
+        .tTestTable-independent1 {
+          .el-table__body {
+            tr {
+              td:nth-child(1) {
+                .cell {
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+          }
+        }
+        .tTestTable-independent2,
+        .tTestTable-independent3 {
+          .el-table__body {
+            tbody {
+              tr {
+                td:nth-child(1) {
+                  .cell {
+                    font-weight: 600;
+                    color: #3670f8;
+                  }
+                }
+              }
+            }
+          }
+        }
+        // T检验-配对样本检验
+        .tTestParingTable1,
+        .tTestParingTable2,
+        .independentKSTest2,
+        .doubleSampleTestTable2 {
+          .el-table__body {
+            tr {
+              td:nth-child(1) {
+                .cell {
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+          }
+        }
+        .tTestParingTable2 {
+          .el-table__header {
+            min-width: 100%;
+            .cell {
+              padding: 0;
+            }
+          }
+          .el-table__body {
+            min-width: 100%;
+            .cell {
+              padding: 0;
+            }
+          }
+        }
+        // 相关性分析
+        .tTestTable-pearson1 {
+          .el-table__header {
+            tr {
+              th {
+                .cell {
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+            tr:nth-child(2) {
+              th:nth-child(1) {
+                border-right: none;
+              }
+            }
+          }
+          .el-table__body {
+            tr:nth-child(3n + 1) {
+              td:nth-child(1) {
+                background-color: var(--theme-card);
+                .cell {
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+            tr:nth-child(3n),
+            tr:nth-child(3n + 2) {
+              td:nth-child(1) {
+                background-color: var(--theme-card);
+                font-weight: 600;
+              }
+            }
+            tr:nth-child(3n + 1) {
+              td:nth-child(2) {
+                background-color: var(--theme-card);
+                font-weight: 600;
+              }
+            }
+          }
+        }
+        // 拟合优度卡方检验
+        .goodnessChisquareTestTable1 {
+          .el-table__body {
+            tr:nth-child(1) {
+              td:nth-child(1) {
+                background-color: var(--theme-card);
+                .cell {
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+          }
+        }
+        .chisquareTestTable1 {
+          .el-table__body {
+            tr:nth-child(odd) {
+              td:nth-child(1) {
+                .cell {
+                  font-weight: 600;
+                }
+              }
+            }
+          }
+        }
+        // 单因素方差分析
+        .onewayAnovaTable1 {
+          .el-table__header {
+            tr:nth-child(2) {
+              th:nth-child(2) {
+                .cell {
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+          }
+        }
+        .onewayAnovaTable1,
+        .onewayAnovaTable2 {
+          .el-table__body {
+            tr:nth-child(1) {
+              td:nth-child(1) {
+                .cell {
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+          }
+        }
+        // 多分布检验
+        .multipleDistributionTable1 {
+          .el-table__body {
+            tr {
+              td:nth-child(1) {
+                .cell {
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+          }
+        }
+        .multipleDistributionTable2 {
+          .el-table__header {
+            tr:nth-child(2) {
+              display: none;
+            }
+          }
+          .el-table__body {
+            tr:nth-child(2n + 1) {
+              td:nth-child(1) {
+                background-color: var(--theme-card);
+                .cell {
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+            tr:nth-child(2n + 1) {
+              td:nth-child(2) {
+                background-color: var(--theme-card);
+              }
+            }
+            tr:nth-child(2n) {
+              td:nth-child(1) {
+                background-color: var(--theme-card);
+              }
+            }
+          }
+        }
+        // 独立性卡方检验
+        .independenceChisquareTestTable1 {
+          .el-table__header {
+            tr:nth-child(2) {
+              th:nth-child(3) {
+                .cell {
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+          }
+          .el-table__body {
+            tr:nth-child(1) {
+              td:nth-child(1) {
+                .cell {
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+          }
+        }
+        // 曼惠特尼U非参数检验
+        .mannWhitneyUTestTable2 {
+          .el-table__body {
+            tr:nth-child(2n + 1) {
+              td:nth-child(1),
+              td:nth-child(2) {
+                .cell {
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+            tr:nth-child(2n) {
+              td:nth-child(1) {
+                .cell {
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+          }
+        }
+        .mannWhitneyUTestTable3 {
+          &:nth-child(2) {
+            .el-table__inner-wrapper::after {
+              border-bottom: none;
+            }
+          }
+          .el-table__header {
+            th {
+              overflow: initial;
+            }
+            tr:nth-child(2) {
+              th:nth-child(2) {
+                .cell {
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+            tr:nth-child(2) {
+              th:nth-child(1) {
+                padding: 0;
+                border-bottom: none;
+                .cell {
+                  justify-content: flex-end;
+                  padding-right: 30px;
+                  text-align: right;
+                  color: #3670f8;
+                }
+              }
+            }
+            tr:nth-child(3) {
+              th:nth-child(1) {
+                padding: 0;
+                border-bottom: none;
+                .cell {
+                  justify-content: flex-start;
+                  padding-left: 30px;
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+
+            tr:nth-child(3) {
+              th:nth-child(1)::before {
+                display: block;
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                width: 0;
+                height: 350px;
+                border-left: var(--el-table-border);
+                background-color: #e8e8e8;
+                content: '';
+                transform: rotate(-81deg);
+                transform-origin: bottom;
+              }
+            }
+          }
+          .el-table__body {
+            tr:nth-child(1) {
+              td:nth-child(1) {
+                border-top: 1px solid #e8e8e8;
+              }
+            }
+          }
+        }
+        // 独立样本KW非参数检验
+        .independentKWTestTable2 {
+          .el-table__body {
+            tr:nth-child(1) {
+              td:nth-child(1) {
+                .cell {
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+          }
+        }
+        // 线性回归（最小二乘法）
+        .oneVariableLinearRegressionTable1 {
+          .el-table__header {
+            tr {
+              th {
+                .cell {
+                  padding: 0;
+                }
+              }
+            }
+            tr:nth-child(2) {
+              th {
+                .cell {
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+          }
+          .el-table__body {
+            tr {
+              td:nth-child(1) {
+                .cell {
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+            tr:nth-last-child(2) {
+              td:nth-child(1) {
+                .cell {
+                  font-weight: 400;
+                  color: #141414;
+                }
+              }
+            }
+          }
+        }
+        // 多元线性回归
+        .multipleLinearRegressionTable1 {
+          .el-table__header {
+            tr {
+              th {
+                .cell {
+                  padding: 0;
+                }
+              }
+            }
+            tr:nth-child(2) {
+              th {
+                .cell {
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+          }
+          .el-table__body {
+            tr {
+              td:nth-child(1) {
+                .cell {
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+            tr:nth-last-child(2) {
+              td:nth-child(1) {
+                .cell {
+                  font-weight: 400;
+                  color: #141414;
+                }
+              }
+            }
+          }
+        }
+        // 分层回归
+        .hierarchicalRegressionTable2 {
+          .el-table__body {
+            tr {
+              td:nth-child(1) {
+                .cell {
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+            tr:nth-child(1),
+            tr:nth-last-child(2),
+            tr:nth-last-child(3),
+            tr:nth-last-child(4),
+            tr:nth-last-child(5),
+            tr:nth-last-child(6) {
+              td:nth-child(1) {
+                font-weight: 400;
+                color: #141414;
+              }
+            }
+            tr:last-child {
+              position: relative;
+              height: 35px;
+              background-color: var(--theme-card);
+              td {
+                display: none;
+              }
+              td:nth-child(1) {
+                display: block;
+                position: absolute;
+                width: 100%;
+                .cell {
+                  justify-content: left;
+                  width: 100% !important;
+                  padding-left: 16px;
+                  font-weight: normal;
+                  color: #333;
+                }
+              }
+            }
+            tr:nth-last-child(2) {
+              position: relative;
+              height: 35px;
+              background-color: var(--theme-card);
+              td {
+                display: none;
+              }
+              td:nth-child(1) {
+                display: block;
+                position: absolute;
+                width: 100%;
+                .cell {
+                  width: 100% !important;
+                  text-align: center;
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+          }
+        }
+        // 逻辑回归
+        .logisticRegressionTable1 {
+          .el-table__body {
+            tr:nth-child(1) {
+              td:nth-child(1) {
+                .cell {
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+          }
+        }
+        .logisticRegressionTable3 {
+          .el-table__body {
+            tr {
+              td:nth-child(1) {
+                .cell {
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+            tr:nth-child(1) {
+              td:nth-child(1) {
+                .cell {
+                  font-weight: 400;
+                  color: #141414;
+                }
+              }
+            }
+            tr:last-child {
+              position: relative;
+              height: 34px;
+              background-color: var(--theme-card);
+              td {
+                display: none;
+              }
+              td:nth-child(1) {
+                display: block;
+                position: absolute;
+                width: 100%;
+                .cell {
+                  width: 100% !important;
+                  text-align: center;
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+          }
+        }
+        // Poisson回归
+        .poissonRegressionTable2 {
+          .el-table__body {
+            tr {
+              td:nth-child(1) {
+                .cell {
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+          }
+        }
+        .poissonRegressionTable4 {
+          .el-table__body {
+            tr {
+              td:nth-child(1) {
+                .cell {
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+          }
+        }
+        // .proportionalRiskCOXRegressionTable1 {
+        //   .el-table__body {
+        //     tr {
+        //     }
+        //   }
+        // }
+        .CMHstratifiedChisquareTestTable1 {
+          .el-table__body {
+            tr:nth-child(odd) {
+              td:nth-child(1) {
+                .cell {
+                  font-weight: 600;
+                }
+              }
+            }
+          }
+        }
+        .CMHstratifiedChisquareTestTable1:nth-child(2),
+        .CMHstratifiedChisquareTestTable3:nth-child(2) {
+          margin-top: 16px;
+          .el-table__header {
+            thead {
+              tr:nth-child(1) {
+                display: none;
+              }
+            }
+          }
+        }
+        .CMHstratifiedChisquareTestTable4 {
+          .el-table__header {
+            tr:nth-child(3) {
+              display: none;
+            }
+          }
+          .el-table__body {
+            tr {
+              td:nth-child(1) {
+                font-weight: 600;
+              }
+            }
+          }
+        }
+        .orderlyLogisticsRegressionTable1 {
+          .el-table__body {
+            tr {
+              td:nth-child(1) {
+                .cell {
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+          }
+        }
+        .orderlyLogisticsRegressionTable3 {
+          .el-table__body {
+            tr {
+              td:nth-child(1) {
+                .cell {
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+          }
+        }
+        .orderlyLogisticsRegressionTable4 {
+          .el-table__body {
+            tr:nth-child(1) {
+              td:nth-child(1) {
+                .cell {
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+          }
+        }
+        .ARIMAModelTable1 {
+          .el-table__body {
+            tr:nth-child(1) {
+              td:nth-child(1) {
+                .cell {
+                  font-weight: 600;
+                  color: #3670f8;
+                }
+              }
+            }
+          }
+        }
+        // 特殊处理决策树模型分类规则表
+        .decisionTable1 {
+          .el-table__body {
+            tr {
+              td:nth-child(2) {
+                .cell.el-tooltip {
+                  width: 96% !important;
+                  margin: 0 auto;
+                  text-align: left;
+                  white-space: wrap;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      :deep(.resultGraph) {
+        margin-top: 16px;
+        :deep(.graphDiv) {
+          text-align: center;
+          img {
+            width: 80%;
+            margin-top: 16px;
+          }
+          .plotlyBase64 {
+            width: 100%;
+            margin-top: 0;
+          }
+        }
+      }
+    }
+  }
+  .marginT16 {
+    margin-top: 16px !important;
+  }
+  .marginT24 {
+    margin-top: 24px !important;
+  }
+  :deep(.text) {
+    margin-top: 8px;
+    color: #666;
+    .explain:not(:first-child) {
+      margin-top: 6px;
+    }
+    .divTip {
+      display: flex;
+      div {
+        flex: 1;
+      }
+      .V-N {
+        color: #3670f8 !important;
+      }
+      .V-S {
+        color: #f5a316 !important;
+      }
+      .V-SN {
+        color: #04a273 !important;
+      }
+      .data-limit {
+        color: #999 !important;
+      }
+    }
+    .explain {
+      &.weight {
+        font-weight: 600;
+        color: #141414;
+      }
+    }
+  }
+  :deep(.cardBg) {
+    box-sizing: border-box;
+    padding: 16px;
+    border-radius: 4px;
+    background-color: var(--theme-bg) #fafafa;
+  }
+}
+:deep(.js-plotly-plot) {
+  .plotly .modebar {
+    right: 16px;
+    top: 16px;
+  }
+}

@@ -1,0 +1,23 @@
+
+@mixin scrollBarStyle($scrollBarColor: #e8e8e8) {
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: $scrollBarColor;
+  }
+}
+
+@mixin childrenCenter() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin childrenBetween() {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

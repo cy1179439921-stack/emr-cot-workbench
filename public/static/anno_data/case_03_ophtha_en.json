@@ -1,0 +1,258 @@
+{
+  "specialty_context": {
+    "specialty_category": "OTHER",
+    "subspecialty_note": "Ophthalmology"
+  },
+  "patient_global_context": {
+    "patient_ref": "15005",
+    "age": 76,
+    "sex": "MALE",
+    "baseline_comorbidities_icd10": ["I10"],
+    "functional_baseline": "INDEPENDENT",
+    "economic_pressure_indicator": "NOT_OBSERVABLE",
+    "insurance_type": null
+  },
+  "clinical_loop_network": [
+    {
+      "loop_meta": {
+        "loop_id": "doc15005_L01",
+        "loop_name": "Right Eye Cataract Perioperative Management",
+        "loop_type": "ELECTIVE_PROCEDURE",
+        "loop_status": "CLOSED",
+        "trigger_event": "Progressive painless vision loss in the right eye for 2 years, diagnosed with cataract at outpatient clinic and admitted for surgery",
+        "trigger_time": null,
+        "trigger_time_source_path": "basic_information.enter_time",
+        "close_time": "2012-02-23 08:00:00",
+        "guideline_era": "PRE_2015",
+        "treatment_phase": "INITIAL",
+        "disease_status_milestone": "PERIOPERATIVE"
+      },
+      "loop_relationship_edges": [
+        {
+          "target_loop_id": "doc15005_L02",
+          "relation_type": "SAFETY_CONSTRAINT",
+          "relation_description": "History of hypertension increases anesthesia and intraoperative hemodynamic instability risks; requires continuous perioperative BP monitoring and maintenance of baseline antihypertensives"
+        }
+      ],
+      "nodes_annotation": {
+        "node_1_initial_presentation": {
+          "node_temporal_anchor": {
+            "anchor_path": "basic_information.enter_time",
+            "anchor_timestamp": null
+          },
+          "template_type": "ACUTE_OR_FIRST_DIAGNOSIS",
+          "n1_primary_impressions": ["H26.900"],
+          "n1_differential_list": ["Corneal opacity", "Macular degeneration", "Glaucoma"],
+          "n1_baseline_status_assessment": null,
+          "n1_chronic_complications_screening": null,
+          "n1_procedural_indication": null,
+          "n1_urgency_level": "ELECTIVE",
+          "n1_diagnostic_logic_cot": "The patient is a 76-year-old male presenting with a 2-year history of progressive, painless vision loss in the right eye. Ophthalmic examination reveals a grayish-white, unevenly opaque lens in the right eye with a normal IOP of 13 mmHg. The fundus shows clear optic disc margins. The left eye status post phacoemulsification with IOL implantation 2 years ago is noted. Based on the classic history and slit-lamp findings, the initial impression is age-related cataract of the right eye. Differential diagnoses including corneal opacity, macular pathology, and glaucoma must be ruled out. Preoperative systemic evaluation is required to assess surgical tolerance.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "enter_record.complain", "evidence_text": "Progressive painless vision loss in the right eye for 2 years.", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false},
+              {"evidence_path": "enter_record.body_examination", "evidence_text": "Right eye lens: grayish-white, unevenly opaque. IOP: 13 mmHg.", "evidence_scope": "CURRENT_SECTION_CONTEXT", "window_violation_flag": false}
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_2_investigation_interpretation": {
+          "node_temporal_anchor": {
+            "anchor_path_list": ["image_reports[0].time", "inspections[0].time"],
+            "anchor_timestamp": null
+          },
+          "n2_clinical_questions": ["Rule out macular pathology and fundus contraindications", "Evaluate systemic organ function and coagulation status to confirm surgical tolerance"],
+          "n2_intended_test_orders": {"Ocular OCT": "Evaluate macular architecture to exclude macular degeneration", "Coagulation panel": "Assess intraoperative bleeding risk", "CMP/CBC": "Evaluate baseline systemic status and infection markers"},
+          "n2_actual_test_orders": {"Ocular OCT": "Completed", "Coagulation panel": "Completed", "CMP": "Completed", "CBC": "Completed", "ECG": "Completed"},
+          "n2_missed_or_delayed_tests": null,
+          "n2_critical_values": {"image_reports[0].findings": "No significant abnormalities noted on bilateral macular OCT", "inspections[3].content": "PT and aPTT within normal reference ranges"},
+          "n2_decision_cot": {
+            "step_1_clinical_question": "Core preoperative screening: Is vision loss secondary to macular pathology? Do systemic parameters support elective surgery?",
+            "step_2_test_choice_logic": "Standard preoperative workup for elderly cataract patients includes OCT to rule out macular disease, plus coagulation, CMP, and CBC to establish perioperative safety thresholds.",
+            "step_3_actual_vs_planned_gap": "No discrepancy. All planned investigations were ordered and completed on admission day.",
+            "step_4_result_reshapes_downstream": "OCT confirms normal macular structure, excluding retinal causes of vision loss. Coagulation and biochemical panels are within normal limits. Results comprehensively support surgical safety, solidifying the indication for elective phacoemulsification."
+          },
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "image_reports[0].findings", "evidence_text": "No significant abnormalities noted on bilateral macular OCT", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false},
+              {"evidence_path": "inspections[3].content", "evidence_text": "Prothrombin time 11.2s, aPTT 27.6s, both within normal limits", "evidence_scope": "CURRENT_SECTION_CONTEXT", "window_violation_flag": false}
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_3_status_anchor": {
+          "node_temporal_anchor": {
+            "anchor_path": "course_record.ward_records[0].time",
+            "anchor_timestamp": null
+          },
+          "n3_severity_staging": {"clinical_grading": "Mature"},
+          "n3_treatment_strategy": "SURGICAL_DEFINITIVE",
+          "n3_strategy_logic_cot": "Integrating N1 examination and N2 ancillary studies, the right eye cataract diagnosis is confirmed with mature lens opacification meeting surgical criteria. Despite advanced age and comorbid hypertension, cardiopulmonary, renal, and coagulation evaluations show no acute abnormalities, indicating adequate tolerance for local anesthesia microsurgery. The strategic plan is definitive surgical intervention: right eye phacoemulsification with IOL implantation, preceded by standard topical antibiotic prophylaxis.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "course_record.ward_records[0].content", "evidence_text": "Chief physician ward round: Diagnosis and treatment plan approved. Instructed to complete preoperative workup and prepare for right eye phacoemulsification with IOL implantation.", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false}
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_4_tailored_treatment": {
+          "node_temporal_anchor": {
+            "anchor_path": "advices.short_advices.items[17].time",
+            "anchor_timestamp": null
+          },
+          "n4_standard_regimen": ["Phacoemulsification with IOL implantation under local anesthesia", "Preoperative topical antibiotic conjunctival preparation", "Perioperative systemic antibiotic prophylaxis"],
+          "n4_actual_regimen": ["Scheduled for right eye phacoemulsification + IOL implantation under local anesthesia at 09:00 tomorrow", "Tropicamide ophthalmic solution for mydriasis", "Ofloxacin ophthalmic solution instillation", "IV cefradine 1g for infection prophylaxis"],
+          "n4_deviation_nature": "ALIGNED_WITH_STANDARD",
+          "n4_patient_constraints": ["NONE"],
+          "n4_tradeoff_logic_cot": {
+            "step_1_standard_baseline": "Current guidelines recommend phacoemulsification with IOL under local anesthesia, supplemented by broad-spectrum topical antibiotics and perioperative systemic prophylaxis.",
+            "step_2_constraint_interception": "No drug allergies, financial constraints, surgical contraindications, or resource shortages identified.",
+            "step_3_clinical_balancing": "Actual orders fully cover standard protocols: explicit surgery scheduling, tropicamide for optimal surgical exposure, ofloxacin for local antimicrobial coverage, and IV cefradine for systemic prophylaxis.",
+            "step_4_safety_guarantee": "The regimen strictly adheres to perioperative infection control standards and ophthalmic surgical conventions, with no overtreatment or omission of critical steps, ensuring optimal safety and efficacy."
+          },
+          "n4_forbidden_regimens_list": [],
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "advices.short_advices.items[17].name", "evidence_text": "Scheduled for right eye phacoemulsification + IOL implantation under local anesthesia at 09:00 tomorrow", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false},
+              {"evidence_path": "advices.long_advices.items[3].name", "evidence_text": "Ofloxacin ophthalmic solution", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false}
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_5_longitudinal_adaptation": {
+          "node_temporal_anchor": {
+            "anchor_path": "basic_information.exit_time",
+            "anchor_timestamp": null
+          },
+          "n5_outcome_observable_within_admission": true,
+          "n5_outcome_dimension": "PROCEDURAL_OR_SURGICAL",
+          "n5_outcome_value": "PROCEDURE_SUCCESS_NO_COMPLICATION",
+          "n5_followup_outcome": null,
+          "n5_adverse_events_list": [],
+          "n5_emergency_actions": null,
+          "n5_adaptation_logic_cot": "Post-op day 1: Visual acuity improved to 0.8 OD, IOP stable at 12 mmHg. Mild anterior chamber flare (+) is consistent with normal postoperative inflammatory response. IOL is well-centered in the capsular bag without wound leak or infection signs. Ward notes confirm absence of ocular hypertension or endophthalmitis. No core protocol adjustments were required. Continued topical antibiotics and steroids巩固 anti-inflammatory therapy. Symptoms significantly improved, meeting clinical cure criteria. Discharged with outpatient follow-up instructions.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "course_record.ward_records[2].content", "evidence_text": "Post-op day 1: VA OD 0.8... AC medium depth, flare (+)... IOL in situ", "evidence_scope": "CURRENT_SECTION_CONTEXT", "window_violation_flag": false},
+              {"evidence_path": "exit_record.out_description", "evidence_text": "Ophthalmic condition stable, discharged", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false}
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        }
+      }
+    },
+    {
+      "loop_meta": {
+        "loop_id": "doc15005_L02",
+        "loop_name": "Essential Hypertension Maintenance Management",
+        "loop_type": "CHRONIC_COMORBIDITY_MAINTAIN",
+        "loop_status": "CLOSED",
+        "trigger_event": "History of hypertension for >10 years, routine BP monitoring upon admission",
+        "trigger_time": null,
+        "trigger_time_source_path": "basic_information.enter_time",
+        "close_time": "2012-02-23 08:00:00",
+        "guideline_era": "PRE_2015",
+        "treatment_phase": "MAINTENANCE",
+        "disease_status_milestone": "STABLE_MAINTENANCE"
+      },
+      "loop_relationship_edges": [],
+      "nodes_annotation": {
+        "node_1_initial_presentation": {
+          "node_temporal_anchor": {"anchor_path": "basic_information.enter_time", "anchor_timestamp": null},
+          "template_type": "CHRONIC_MAINTENANCE_ASSESSMENT",
+          "n1_primary_impressions": null,
+          "n1_differential_list": null,
+          "n1_baseline_status_assessment": "Patient has a >10-year history of hypertension, previously managed with valsartan (Diovan) 80mg PO daily. Admission BP 173/93 mmHg indicates elevated control. Cardiovascular exam shows normal heart size and regular rhythm without acute target organ damage signs.",
+          "n1_chronic_complications_screening": "No history of diabetes. Denies acute cardiovascular, cerebrovascular, or renal symptoms. Requires inpatient continuous BP monitoring.",
+          "n1_procedural_indication": null,
+          "n1_urgency_level": "ROUTINE_MONITORING",
+          "n1_diagnostic_logic_cot": "Based on past medical history and admission vitals, essential hypertension is confirmed. Current BP 173/93 mmHg corresponds to Stage 2 hypertension, but absence of acute target organ dysfunction places the patient in a chronic maintenance phase. Inpatient strategy focuses on continuing baseline antihypertensive therapy with enhanced perioperative monitoring to prevent hemodynamic volatility.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "enter_record.past", "evidence_text": "History of hypertension for >10 years, currently self-administering valsartan (Diovan) PO", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false},
+              {"evidence_path": "enter_record.bp", "evidence_text": "173/93", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false}
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_2_investigation_interpretation": {
+          "node_temporal_anchor": {"anchor_path_list": ["inspections[1].time"], "anchor_timestamp": null},
+          "n2_clinical_questions": ["Assess baseline status of hypertension-related target organs (heart, kidneys)"],
+          "n2_intended_test_orders": {"CMP (Renal/Hepatic)": "Evaluate potential renal impairment from long-standing hypertension", "ECG": "Screen for LVH or ischemic changes"},
+          "n2_actual_test_orders": {"CMP": "Completed", "ECG": "Completed"},
+          "n2_missed_or_delayed_tests": null,
+          "n2_critical_values": {"inspections[1].content": "BUN 3.9 mmol/L, Creatinine 70.0 umol/L, both within normal limits"},
+          "n2_decision_cot": {
+            "step_1_clinical_question": "Has chronic hypertension caused subclinical renal impairment or myocardial remodeling?",
+            "step_2_test_choice_logic": "Standard admission CMP includes renal function markers. ECG is utilized to screen for cardiac structural or electrophysiological abnormalities.",
+            "step_3_actual_vs_planned_gap": "No discrepancy. All tests completed as ordered.",
+            "step_4_result_reshapes_downstream": "Normal BUN and creatinine indicate preserved renal function. ECG automated analysis shows no critical abnormalities. Target organ compensation is adequate, supporting safe continuation of baseline antihypertensive dosing."
+          },
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "inspections[1].content", "evidence_text": "BUN 3.9 mmol/L, Creatinine 70.0 umol/L (normal)", "evidence_scope": "CURRENT_SECTION_CONTEXT", "window_violation_flag": false}
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_3_status_anchor": {
+          "node_temporal_anchor": {"anchor_path": "course_record.ward_records[0].time", "anchor_timestamp": null},
+          "n3_severity_staging": {"clinical_grading": "Stage 2 Hypertension"},
+          "n3_treatment_strategy": "ROUTINE_MAINTENANCE",
+          "n3_strategy_logic_cot": "Target organ evaluations reveal no significant damage. Despite elevated BP readings, there is no acute end-organ dysfunction. Aligning with ophthalmic surgical stress requirements, the strategic plan is maintenance of current antihypertensive regimen, avoiding perioperative abrupt discontinuation or dose escalation that could induce hemodynamic instability.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "course_record.ward_records[0].content", "evidence_text": "Patient in good general condition. Laboratory studies reveal no surgical contraindications.", "evidence_scope": "CURRENT_SECTION_CONTEXT", "window_violation_flag": false}
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_4_tailored_treatment": {
+          "node_temporal_anchor": {"anchor_path": "advices.long_advices.items[7].start_time", "anchor_timestamp": null},
+          "n4_standard_regimen": ["Continue baseline antihypertensive (valsartan) PO", "Routine BP monitoring"],
+          "n4_actual_regimen": ["Valsartan capsule 80mg PO daily"],
+          "n4_deviation_nature": "ALIGNED_WITH_STANDARD",
+          "n4_patient_constraints": ["NONE"],
+          "n4_tradeoff_logic_cot": {
+            "step_1_standard_baseline": "Perioperative hypertension management guidelines recommend continuing baseline antihypertensives up to the morning of surgery to prevent rebound hypertension.",
+            "step_2_constraint_interception": "No contraindications or resource limitations identified.",
+            "step_3_clinical_balancing": "Orders explicitly prescribe Valsartan 80mg PO daily, perfectly matching the patient's pre-admission home regimen.",
+            "step_4_safety_guarantee": "Maintaining the established regimen ensures hemodynamic stability, aligning with perioperative cardiovascular risk management consensus."
+          },
+          "n4_forbidden_regimens_list": [],
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "advices.long_advices.items[7].name", "evidence_text": "Valsartan capsule", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false}
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_5_longitudinal_adaptation": {
+          "node_temporal_anchor": {"anchor_path": "basic_information.exit_time", "anchor_timestamp": null},
+          "n5_outcome_observable_within_admission": true,
+          "n5_outcome_dimension": "PHYSIOLOGICAL_OR_LAB",
+          "n5_outcome_value": "STABLE",
+          "n5_followup_outcome": null,
+          "n5_adverse_events_list": [],
+          "n5_emergency_actions": null,
+          "n5_adaptation_logic_cot": "Inpatient BP monitoring remained stable with no recorded episodes of malignant hypertension or hypotension. Valsartan was continued through the postoperative recovery period with stable vital signs. Discharge medications extended the baseline antihypertensive regimen, with instructions for routine cardiology follow-up. No medication adjustments or emergency interventions were required throughout the admission, achieving successful chronic disease maintenance.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "course_record.ward_records[3].content", "evidence_text": "Ophthalmic condition stable, discharged", "evidence_scope": "CURRENT_LINE_CONTEXT", "window_violation_flag": false},
+              {"evidence_path": "exit_record.out_advice", "evidence_text": "Routine ophthalmology outpatient follow-up in 1 week.", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false}
+            ],
+            "evidence_quality": "INFERRED_REASONABLE"
+          }
+        }
+      }
+    }
+  ],
+  "cross_loop_joint_reasoning": [
+    {
+      "involved_loop_ids": ["doc15005_L01", "doc15005_L02"],
+      "materiality_threshold": false,
+      "clinical_conflict_type": null,
+      "joint_tradeoff_logic_cot": null
+    }
+  ]
+}

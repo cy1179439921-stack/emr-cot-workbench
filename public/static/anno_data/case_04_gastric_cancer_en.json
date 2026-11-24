@@ -1,0 +1,265 @@
+{
+  "specialty_context": {
+    "specialty_category": "GENERAL_SURGERY",
+    "subspecialty_note": "Gastrointestinal Oncology / Minimally Invasive Surgery"
+  },
+  "patient_global_context": {
+    "patient_ref": "0001092202",
+    "age": 70,
+    "sex": "MALE",
+    "baseline_comorbidities_icd10": ["I10", "I25.1"],
+    "functional_baseline": "INDEPENDENT",
+    "economic_pressure_indicator": "NOT_OBSERVABLE",
+    "insurance_type": "UNKNOWN"
+  },
+  "clinical_loop_network": [
+    {
+      "loop_meta": {
+        "loop_id": "doc0001092202_L01",
+        "loop_name": "Gastric Malignancy and GI Bleeding/Anemia",
+        "loop_type": "PRIMARY_DISEASE_MANAGEMENT",
+        "loop_status": "ACTIVE",
+        "trigger_event": "Admission with melena and anemia; confirmed Gastric Adenocarcinoma via endoscopy",
+        "trigger_time": null,
+        "trigger_time_source_path": "basic_information.enter_time",
+        "close_time": "2025-08-06 13:41:00",
+        "guideline_era": "2021_2024",
+        "treatment_phase": "INITIAL",
+        "disease_status_milestone": "NEWLY_DIAGNOSED"
+      },
+      "loop_relationship_edges": [
+        {
+          "target_loop_id": "doc0001092202_L02",
+          "relation_type": "SAFETY_CONSTRAINT",
+          "relation_description": "Surgical fluid management is constrained by cardiovascular comorbidities (diastolic dysfunction)."
+        }
+      ],
+      "nodes_annotation": {
+        "node_1_initial_presentation": {
+          "node_temporal_anchor": {
+            "anchor_path": "basic_information.enter_time",
+            "anchor_timestamp": null
+          },
+          "template_type": "ACUTE_OR_FIRST_DIAGNOSIS",
+          "n1_primary_impressions": ["Melena", "Suspected Gastric Neoplasm", "Suspected Peptic Ulcer", "Moderate Anemia"],
+          "n1_differential_list": ["Gastric Cancer", "Peptic Ulcer Disease", "Colorectal Carcinoma", "Inflammatory Bowel Disease"],
+          "n1_baseline_status_assessment": null,
+          "n1_chronic_complications_screening": null,
+          "n1_procedural_indication": null,
+          "n1_urgency_level": "URGENT_TREATMENT",
+          "n1_diagnostic_logic_cot": "Elderly male presents with a history of 'melena for over 1 month' accompanied by epigastric pain. Physical examination reveals significant pallor and conjunctival anemia. No prior history of peptic ulcer disease. Given the patient's age, symptoms of chronic blood loss, and abdominal tenderness, Gastric Cancer or Peptic Ulcer Disease are top priorities in the differential diagnosis. Immediate assessment of hemodynamic stability is required, along with a complete blood count to grade the anemia. An Esophagogastroduodenoscopy (EGD) and colonoscopy are indicated to localize the bleeding source and obtain biopsies to rule out malignancy.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "enter_record.complain", "evidence_text": "Melena for over 1 month.", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false},
+              {"evidence_path": "enter_record.body_examination", "evidence_text": "Anemic appearance, pale conjunctiva... Abdomen soft, mild tenderness in the middle and lower abdomen.", "evidence_scope": "CURRENT_SECTION_CONTEXT", "window_violation_flag": false}
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_2_investigation_interpretation": {
+          "node_temporal_anchor": {
+            "anchor_path_list": ["image_reports[0].time", "pathologies[0].time"],
+            "anchor_timestamp": null
+          },
+          "n2_clinical_questions": ["Confirm the etiology of melena and precise bleeding site?", "Assess tumor pathology type and molecular profile?", "Quantify anemia and nutritional status?"],
+          "n2_intended_test_orders": {"EGD with Biopsy": "Visualize gastric angulus/antrum lesions, obtain histology for diagnosis.", "Colonoscopy": "Rule out lower GI source; resect concurrent polyps.", "Labs (CBC, Iron Studies, Tumor Markers)": "Quantify anemia severity, screen CEA/CA19-9."},
+          "n2_actual_test_orders": {"EGD": "1.0cm deep ulcer at gastric angle with nodular elevation; multiple biopsies.", "Colonoscopy": "9 polyps found (ascending colon to rectum), resected via EMR/CSP.", "Pathology/Labs": "Gastric Angle: Adenocarcinoma (Mod-Poor Diff); Polyps: Tubular adenoma; Hb 98g/L, Ferritin 9.68ng/mL."},
+          "n2_missed_or_delayed_tests": null,
+          "n2_critical_values": {"Hemoglobin": "98g/L (Moderate Anemia)", "Gastric Biopsy": "Adenocarcinoma", "Claudin_18.2": "+(approx 80%)", "HER2": "2+"},
+          "n2_decision_cot": {
+            "step_1_clinical_question": "Definitive diagnosis of the malignancy and staging.",
+            "step_2_test_choice_logic": "EGD and Colonoscopy with biopsy are the gold standards for GI bleeding etiology and staging. Concurrent resection of polyps prevents future complications.",
+            "step_3_actual_vs_planned_gap": "Execution aligned with plan. Successful resection of 9 polyps avoided the need for a second procedure.",
+            "step_4_result_reshapes_downstream": "Pathology confirms Gastric Adenocarcinoma with high Claudin 18.2 expression. This dictates the plan for限期 (scheduled) radical surgery and potential future targeted therapy. Anemia is confirmed as secondary to chronic GI blood loss from the tumor."
+          },
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "pathologies[0].diagnosis", "evidence_text": "(Gastric Angle) Adenocarcinoma (Mod-Poor Diff). IHC: HER2(2+), Claudin 18.2(+, approx 80%)", "evidence_scope": "CURRENT_SECTION_CONTEXT", "window_violation_flag": false},
+              {"evidence_path": "inspections[1].content", "evidence_text": "Hemoglobin 120.0g/L (Post-op improvement)", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false}
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_3_status_anchor": {
+          "node_temporal_anchor": {
+            "anchor_path": "course_record.first_record.course_time",
+            "anchor_timestamp": null
+          },
+          "n3_severity_staging": {"Clinical TNM": "cT2N0M0 (Initial Estimate)", "Anemia Grade": "Moderate", "Nutritional Risk": "NRS-2002: 1 point"},
+          "n3_treatment_strategy": "SURGICAL_DEFINITIVE",
+          "n3_strategy_logic_cot": "Following the return of pathology, the strategy upgrades to definitive surgical resection. The patient is 70 years old with stable HTN/CAD but maintains good functional status and cardiopulmonary compensation. No absolute contraindications to surgery exist. The tumor appears localized without distant metastases on imaging. The surgical strategy is set for a scheduled Laparoscopic Radical Gastrectomy. Pre-operative optimization focuses on correcting anemia, nutritional support, and finalizing cardiopulmonary risk assessment.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "course_record.first_record.preliminary_diagnosis", "evidence_text": "Melena cause unknown, Peptic Ulcer?, GI Tumor?", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false},
+              {"evidence_path": "consultation_record[0].consultation_advice", "evidence_text": "Gastric cancer diagnosis confirmed. Surgical indication exists. Transfer to Colorectal Surgery for evaluation.", "evidence_scope": "CURRENT_LINE_CONTEXT", "window_violation_flag": false}
+            ],
+            "evidence_quality": "INFERRED_REASONABLE"
+          }
+        },
+        "node_4_tailored_treatment": {
+          "node_temporal_anchor": {
+            "anchor_path": "operations[0].start_time",
+            "anchor_timestamp": null
+          },
+          "n4_standard_regimen": ["Radical Gastrectomy (D2 Lymphadenectomy)", "Perioperative Antibiotic Prophylaxis & PPI", "Sequential Enteral/Parenteral Nutrition"],
+          "n4_actual_regimen": ["Laparoscopic Distal Gastrectomy with Gastrojejunostomy + Braun Anastomosis", "Perioperative PPI, Ceftriaxone prophylaxis, IV Iron", "Early Enteral Nutrition (TPF-T) post-op"],
+          "n4_deviation_nature": "ALIGNED_WITH_STANDARD",
+          "n4_patient_constraints": ["NONE"],
+          "n4_tradeoff_logic_cot": {
+            "step_1_standard_baseline": "Standard of care for localized gastric cancer is D2 radical gastrectomy. Laparoscopy is the preferred approach for suitable candidates.",
+            "step_2_constraint_interception": "Patient is elderly with cardiovascular comorbidities but has no organ failure or contraindications.",
+            "step_3_clinical_balancing": "Balance achieved by selecting Laparoscopic Gastrectomy to minimize surgical trauma (blood loss, pain) compared to open surgery, thereby facilitating faster recovery and reducing cardiopulmonary stress.",
+            "step_4_safety_guarantee": "Comprehensive pre-op prep includes cross-matching 4U RBCs. Intraoperative prophylactic antibiotics and VTE prophylaxis (Low Molecular Weight Heparin) are standard. Post-op management follows ERAS protocols."
+          },
+          "n4_forbidden_regimens_list": null,
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "operations[0].op_name", "evidence_text": "Laparoscopic Distal Gastrectomy with Gastrojejunostomy + Braun Anastomosis", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false},
+              {"evidence_path": "advices.long_advices.items[9].name", "evidence_text": "Esomeprazole Sodium for Injection 40mg v.drip", "evidence_scope": "CURRENT_LINE_CONTEXT", "window_violation_flag": false}
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_5_longitudinal_adaptation": {
+          "node_temporal_anchor": {
+            "anchor_path": "basic_information.exit_time",
+            "anchor_timestamp": null
+          },
+          "n5_outcome_observable_within_admission": true,
+          "n5_outcome_dimension": "PROCEDURAL_OR_SURGICAL",
+          "n5_outcome_value": "PROCEDURE_SUCCESS_NO_COMPLICATION",
+          "n5_followup_outcome": null,
+          "n5_adverse_events_list": [
+            {"ae_name": "Post-operative mild inflammatory response", "ae_grade": "Mild", "ae_attribution": "PROCEDURE_RELATED"}
+          ],
+          "n5_emergency_actions": {"Anti-inflammatory": "Ceftriaxone continued, PCT/CRP monitoring normalized by day 3; Nebulization for airway clearance to prevent pneumonia."},
+          "n5_adaptation_logic_cot": "Post-operative pathology confirms pT1aN0Mx with negative margins, indicating excellent prognosis. Perioperative transient elevation in PCT/CRP and BNP was managed with anti-infectives, nebulization, and fluid restriction/diuretics, successfully preventing anastomotic leak and heart failure. Nutrition transitioned smoothly from parenteral to enteral/liquid diet per ERAS. The patient was discharged safely with stable vitals.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "pathologies[2].diagnosis", "evidence_text": "pTNM: pT1a N0 Mx. IHC: Claudin 18.2(2+~3+), HER2(1+)", "evidence_scope": "CURRENT_SECTION_CONTEXT", "window_violation_flag": false},
+              {"evidence_path": "exit_record.out_description", "evidence_text": "Recovered well, no fever, no pain/distension, tolerating liquid diet, bowel movements resumed.", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false}
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        }
+      }
+    },
+    {
+      "loop_meta": {
+        "loop_id": "doc0001092202_L02",
+        "loop_name": "Hypertension Grade 2 (Very High Risk) / Coronary Artery Disease",
+        "loop_type": "CHRONIC_COMORBIDITY_MAINTAIN",
+        "loop_status": "ACTIVE",
+        "trigger_event": "Existing upon admission, previously controlled on medication",
+        "trigger_time": null,
+        "trigger_time_source_path": "basic_information.enter_time",
+        "close_time": "2025-08-06 13:41:00",
+        "guideline_era": "2021_2024",
+        "treatment_phase": "MAINTENANCE",
+        "disease_status_milestone": "STABLE_MAINTENANCE"
+      },
+      "loop_relationship_edges": [],
+      "nodes_annotation": {
+        "node_1_initial_presentation": {
+          "node_temporal_anchor": {"anchor_path": "basic_information.enter_time", "anchor_timestamp": null},
+          "template_type": "CHRONIC_MAINTENANCE_ASSESSMENT",
+          "n1_primary_impressions": null,
+          "n1_differential_list": null,
+          "n1_baseline_status_assessment": "History of HTN (3 years, max 160/95mmHg) and CAD (1 year). Regularly taking Sacubitril/Valsartan, Amlodipine, Isosorbide Mononitrate, Nicorandil. Admission BP 189/107mmHg indicates poor control.",
+          "n1_chronic_complications_screening": "Monitor for perioperative hypertensive crisis or myocardial ischemia. Assess cardiac reserve.",
+          "n1_procedural_indication": null,
+          "n1_urgency_level": "ROUTINE_MONITORING",
+          "n1_diagnostic_logic_cot": "Patient presents with established cardiovascular comorbidities. Admission BP is significantly elevated, suggesting recent suboptimal control or stress response. Current strategy is to continue baseline anti-ischemic and antihypertensive medications. Close monitoring of vital signs is mandated to prevent acute cardiovascular events during the perioperative period.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "enter_record.past", "evidence_text": "History of Hypertension 3 years... History of CAD 1 year, regular medications...", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false},
+              {"evidence_path": "enter_record.bp", "evidence_text": "189/107", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false}
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_2_investigation_interpretation": {
+          "node_temporal_anchor": {"anchor_path_list": ["image_reports[4].time"], "anchor_timestamp": null},
+          "n2_clinical_questions": ["Assess cardiac structure and systolic/diastolic function?", "Rule out acute myocardial injury?"],
+          "n2_intended_test_orders": {"ECG": "Screen for ischemic ST-T changes or arrhythmia.", "Echocardiography": "Evaluate ventricular wall thickness, valve function, and ejection fraction.", "Troponin": "Rule out perioperative MI."},
+          "n2_actual_test_orders": {"ECG": "Sinus rhythm, Counter-clockwise rotation, T-wave changes (improved after breath-holding).", "Echo": "Left atrial enlargement, basal septal hypertrophy, mild aortic/tricuspid regurgitation. Normal resting wall motion.", "Troponin": "Negative."},
+          "n2_missed_or_delayed_tests": null,
+          "n2_critical_values": {"ECG": "T-wave changes (stress-related).", "Echo": "Left atrial enlargement, septal hypertrophy, Diastolic dysfunction (E/A < 1)."},
+          "n2_decision_cot": {
+            "step_1_clinical_question": "Can the cardiovascular system tolerate general anesthesia and abdominal surgery stress?",
+            "step_2_test_choice_logic": "ECG and Echo are the foundational non-invasive assessments for structural heart disease.",
+            "step_3_actual_vs_planned_gap": "Completed as planned. Results show LV hypertrophy and diastolic dysfunction due to chronic HTN/CAD, but resting systolic function is preserved.",
+            "step_4_result_reshapes_downstream": "No absolute contraindication to anesthesia. Focus shifts to strict perioperative fluid restriction and heart rate control to prevent decompensated heart failure."
+          },
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "image_reports[4].diagnosis", "evidence_text": "Left atrial enlargement, basal septal thickening... Mild tricuspid regurgitation.", "evidence_scope": "CURRENT_SECTION_CONTEXT", "window_violation_flag": false}
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_3_status_anchor": {
+          "node_temporal_anchor": {"anchor_path": "course_record.first_record.course_time", "anchor_timestamp": null},
+          "n3_severity_staging": {"HTN Grade": "Grade 2, Very High Risk", "NYHA Class": "Class II", "CV Risk": "ASCVD High Risk"},
+          "n3_treatment_strategy": "ROUTINE_MAINTENANCE",
+          "n3_strategy_logic_cot": "Cardiovascular status is compensated. Strategy is routine maintenance to provide a stable hemodynamic environment during the gastric cancer surgery. Continue baseline vasodilators and ARNI. Avoid sudden withdrawal of meds. Strict control of fluid administration rate and volume is required due to diastolic dysfunction.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "course_record.first_record.plan", "evidence_text": "Treatment: PPI, improve GI function, nourish myocardium, etc.", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false}
+            ],
+            "evidence_quality": "INFERRED_REASONABLE"
+          }
+        },
+        "node_4_tailored_treatment": {
+          "node_temporal_anchor": {"anchor_path": "advices.long_advices.items[4].start_time", "anchor_timestamp": null},
+          "n4_standard_regimen": ["Continue ARNI + CCB combination", "Maintain nitrates for anti-ischemia", "Strict perioperative hemodynamic monitoring"],
+          "n4_actual_regimen": ["Sacubitril/Valsartan 100mg QD", "Isosorbide Mononitrate 30mg QD", "Nicorandil 5mg TID", "Continuous post-op ECG/BP/SpO2 monitoring"],
+          "n4_deviation_nature": "ALIGNED_WITH_STANDARD",
+          "n4_patient_constraints": ["NONE"],
+          "n4_tradeoff_logic_cot": {
+            "step_1_standard_baseline": "Standard perioperative management: 'Do not stop stable meds unless necessary; maintain hemodynamics'.",
+            "step_2_constraint_interception": "Patient has no drug contraindications or financial barriers. Good adherence.",
+            "step_3_clinical_balancing": "Balance maintained by continuing ARNI + Nitrates, providing dual myocardial protection without causing intraoperative hypotension.",
+            "step_4_safety_guarantee": "Upgrade to Level I nursing, continuous telemetry. Daily electrolytes/renal function monitoring to balance diuresis and fluids. Complies with consensus guidelines for non-cardiac surgery in cardiac patients."
+          },
+          "n4_forbidden_regimens_list": null,
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "advices.long_advices.items[4].name", "evidence_text": "Sacubitril/Valsartan Sodium Tablets 100mg", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false},
+              {"evidence_path": "advices.long_advices.items[6].name", "evidence_text": "Isosorbide Mononitrate Sustained-Release Tablets 30mg", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false}
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_5_longitudinal_adaptation": {
+          "node_temporal_anchor": {"anchor_path": "basic_information.exit_time", "anchor_timestamp": null},
+          "n5_outcome_observable_within_admission": true,
+          "n5_outcome_dimension": "SYMPTOMATIC",
+          "n5_outcome_value": "STABLE",
+          "n5_followup_outcome": null,
+          "n5_adverse_events_list": [],
+          "n5_emergency_actions": null,
+          "n5_adaptation_logic_cot": "Cardiovascular status remained stable throughout. Post-operative BNP spike (253.95 pg/mL) was managed proactively via fluid restriction, nebulization, and early mobilization, returning to normal (72.91 pg/mL). No MI, heart failure, or arrhythmia occurred. Oral cardiac medications were resumed seamlessly upon discharge.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "inspections[1].content", "evidence_text": "BNP 253.95 pg/mL (High)", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false},
+              {"evidence_path": "inspections[7].content", "evidence_text": "BNP 72.91 pg/mL (Normal)", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false}
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        }
+      }
+    }
+  ],
+  "cross_loop_joint_reasoning": [
+    {
+      "involved_loop_ids": ["doc0001092202_L01", "doc0001092202_L02"],
+      "materiality_threshold": true,
+      "clinical_conflict_type": "PATHOPHYSIOLOGICAL_CONTRAINDICATION",
+      "joint_tradeoff_logic_cot": {
+        "conflict_paradox_analysis": "Gastric cancer surgery and post-op nutrition require adequate volume resuscitation and positive nitrogen balance (L01 requirement), while the patient's Left Atrial enlargement and Diastolic Dysfunction impose strict volume restrictions to prevent pulmonary edema/heart failure (L02 constraint). Direct conflict in perioperative fluid management.",
+        "holistic_resource_scheduling": "Resolution via 'Restrictive Fluid Resuscitation + Goal-Directed Therapy'. Intraoperative crystalloids/colloids strictly controlled; reliance on vasopressors to maintain MAP rather than blind volume expansion. Post-op monitoring of CVP/BNP trends; infusion pump control of rates; early enteral nutrition utilized to reduce IV fluid volume. This balances anastomotic perfusion needs with cardiac safety."
+      }
+    }
+  ]
+}

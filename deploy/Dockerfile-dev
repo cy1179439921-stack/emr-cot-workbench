@@ -1,0 +1,11 @@
+FROM xcgd/nginx-vts:1.16.1-0.1.18
+
+RUN rm -rf /usr/share/nginx/html/*
+
+COPY deploy/nginx-hospital-dev.conf /etc/nginx/nginx.conf
+COPY dist /usr/share/nginx/html/
+
+RUN chmod -R 777 /usr/share/nginx/html/
+
+CMD ["nginx", "-g", "daemon off;"]
+

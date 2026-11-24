@@ -1,0 +1,406 @@
+{
+  "specialty_context": {
+    "specialty_category": "ONCOLOGY",
+    "subspecialty_note": "胸部肿瘤内科"
+  },
+  "patient_global_context": {
+    "patient_ref": "0001243986",
+    "age": 61,
+    "sex": "MALE",
+    "baseline_comorbidities_icd10": [],
+    "functional_baseline": "INDEPENDENT",
+    "economic_pressure_indicator": "NOT_OBSERVABLE",
+    "insurance_type": "UNKNOWN"
+  },
+  "clinical_loop_network": [
+    {
+      "loop_meta": {
+        "loop_id": "doc0001243986_L01",
+        "loop_name": "右肺鳞癌IV期诊断与一线系统抗肿瘤治疗",
+        "loop_type": "PRIMARY_DISEASE_MANAGEMENT",
+        "loop_status": "ACTIVE",
+        "trigger_event": "咳嗽伴血痰1月余，外院CT提示右肺上叶占位",
+        "trigger_time_source_path": "basic_information.enter_time",
+        "guideline_era": "2025_PRESENT",
+        "treatment_phase": "INITIAL",
+        "disease_status_milestone": "NEWLY_DIAGNOSED"
+      },
+      "loop_relationship_edges": [
+        {
+          "target_loop_id": "doc0001243986_L02",
+          "relation_type": "SEQUENTIAL_NEXT",
+          "relation_description": "化疗需长期中心静脉通路，触发Loop 2（静脉输液港植入术）。"
+        }
+      ],
+      "nodes_annotation": {
+        "node_1_initial_presentation": {
+          "node_temporal_anchor": {
+            "anchor_path": "basic_information.enter_time",
+            "anchor_timestamp": null
+          },
+          "template_type": "ACUTE_OR_FIRST_DIAGNOSIS",
+          "n1_primary_impressions": [
+            "肺恶性肿瘤",
+            "肺炎"
+          ],
+          "n1_differential_list": [
+            "炎性假瘤",
+            "结核瘤"
+          ],
+          "n1_urgency_level": "ROUTINE_DIAGNOSIS",
+          "n1_diagnostic_logic_cot": "患者61岁老年男性，重度吸烟史（50余年，3包/天），因“咳嗽伴血痰1月余”入院。外院胸部CT提示“右肺上叶占位、纵隔肺门淋巴结肿大”。结合高龄及重度吸烟史，高度怀疑原发性支气管肺癌。需与炎性假瘤、结核瘤鉴别，但患者无发热、盗汗等结核中毒症状，且CT示占位伴淋巴结肿大，恶性肿瘤可能性最大。当务之急是完善院内增强CT、支气管镜及病理活检以明确组织学类型，并进行全身分期。",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "enter_record.complain",
+                "evidence_text": "咳嗽伴血痰1月余。",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": null
+              },
+              {
+                "evidence_path": "enter_record.ancillary_tests[0].content",
+                "evidence_text": "胸部CT示：右肺上叶占位、纵隔肺门淋巴结肿大、肺内慢性炎症表现",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": null
+              },
+              {
+                "evidence_path": "enter_record.personal",
+                "evidence_text": "吸烟50余年，3包/天左右；饮酒40余年",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": null
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_2_investigation_interpretation": {
+          "node_temporal_anchor": {
+            "anchor_path_list": [
+              "pathologies[0].time",
+              "image_reports[0].time"
+            ],
+            "anchor_timestamp": null
+          },
+          "n2_clinical_questions": [
+            "明确病理类型及免疫组化特征",
+            "完成全身分期排查远处转移"
+          ],
+          "n2_intended_test_orders": {
+            "支气管镜活检": "获取组织病理学及分子标志物",
+            "颅脑MRI": "排查脑转移",
+            "全身骨显像": "排查骨转移",
+            "颈部超声": "排查锁骨上淋巴结转移"
+          },
+          "n2_actual_test_orders": {
+            "支气管镜活检": "已完成",
+            "颅脑MRI": "已完成",
+            "全身骨显像": "已完成",
+            "颈部超声": "已完成"
+          },
+          "n2_missed_or_delayed_tests": null,
+          "n2_critical_values": {
+            "病理": "(左/右肺)鳞状细胞癌，P40(+), TTF-1(-), Ki-67(70%)",
+            "颅脑MRI": "无脑转移，仅多发缺血灶",
+            "骨显像": "未见骨转移",
+            "颈部超声": "无锁骨上淋巴结转移"
+          },
+          "n2_decision_cot": {
+            "step_1_clinical_question": "需明确肺部占位的病理类型及全身分期，以决定后续治疗策略。",
+            "step_2_test_choice_logic": "首选支气管镜活检获取组织，因CT提示中央型占位伴支气管狭窄。同时开具颅脑MRI、骨扫描及颈部超声进行全面分期。",
+            "step_3_actual_vs_planned_gap": "实际检查与计划完全一致，各项分期检查均顺利完成，无遗漏。",
+            "step_4_result_reshapes_downstream": "病理确诊为鳞癌，免疫组化提示增殖指数高。分期检查未见脑、骨及锁骨上转移，但结合支气管镜病理证实双肺受累及纵隔淋巴结肿大，临床分期考虑为晚期（IV期），失去根治性手术机会，需转向全身系统性姑息治疗。"
+          },
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "pathologies[0].diagnosis",
+                "evidence_text": "（左肺上叶）符合鳞状细胞癌...（右肺上叶）鳞状细胞癌（中分化）。免疫组化结果:P40(+)",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": null
+              },
+              {
+                "evidence_path": "image_reports[0].diagnosis",
+                "evidence_text": "脑内多发缺血梗死灶",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": null
+              },
+              {
+                "evidence_path": "pathologies[0].gross_description",
+                "evidence_text": "左肺上叶...可见新生物。右肺上叶...可见新生物阻塞",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": null
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_3_status_anchor": {
+          "node_temporal_anchor": {
+            "anchor_path": "course_record.first_record.course_time",
+            "anchor_timestamp": null
+          },
+          "n3_severity_staging": {
+            "clinical_grading": "占位待查，疑似恶性"
+          },
+          "n3_treatment_strategy": "DIAGNOSTIC_WORKUP",
+          "n3_strategy_logic_cot": "患者入院时初步考虑肺部恶性肿瘤可能大，但缺乏病理金标准及全身分期资料。当前首要战略为诊断性探索，即完善气管镜及全身分期检查以明确组织学类型及TNM分期。因影像学提示占位，初步计划积极术前准备并争取择期手术切除，同时予以抗炎、化痰等对症支持治疗，为后续可能的手术或全身治疗做准备。",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "course_record.first_record.diagnostic_basis",
+                "evidence_text": "辅助检查：胸部CT示：右肺上叶占位、纵隔肺门淋巴结肿大",
+                "evidence_scope": "CURRENT_SECTION_CONTEXT",
+                "window_violation_flag": null
+              },
+              {
+                "evidence_path": "course_record.first_record.plan",
+                "evidence_text": "1.完善各项相关检查，明确占位性质；2.积极术前准备，择期手术治疗",
+                "evidence_scope": "CURRENT_SECTION_CONTEXT",
+                "window_violation_flag": null
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_4_tailored_treatment": {
+          "node_temporal_anchor": {
+            "anchor_path": "advices.short_advices.items[39].time",
+            "anchor_timestamp": null
+          },
+          "n4_standard_regimen": [
+            "吉西他滨+顺铂/卡铂",
+            "PD-1抑制剂（如帕博利珠单抗/信迪利单抗）"
+          ],
+          "n4_actual_regimen": [
+            "吉西他滨 1.2g d1,d5",
+            "顺铂 40mg d1-3",
+            "信迪利单抗 200mg"
+          ],
+          "n4_deviation_nature": "ALIGNED_WITH_STANDARD",
+          "n4_patient_constraints": [],
+          "n4_tradeoff_logic_cot": {
+            "step_1_standard_baseline": "晚期肺鳞癌一线标准治疗为含铂双药联合PD-1免疫治疗。",
+            "step_2_constraint_interception": "患者经全面分期确诊为晚期（双肺受累、包绕肺动脉），无手术指征。但一般情况可，肝肾功正常，无免疫治疗禁忌。",
+            "step_3_clinical_balancing": "放弃初始的手术意图，转为姑息性全身化疗。选择吉西他滨+顺铂联合信迪利单抗，兼顾疗效与药物可及性。",
+            "step_4_safety_guarantee": "提前建立静脉输液港，并开具强效三联止吐及水化医嘱，保障化疗安全落地。"
+          },
+          "n4_forbidden_regimens_list": [],
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "advices.short_advices.items[39].name",
+                "evidence_text": "注射用顺铂 40mg",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": null
+              },
+              {
+                "evidence_path": "advices.short_advices.items[45].name",
+                "evidence_text": "注射用盐酸吉西他滨（齐鲁）1",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": null
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_5_longitudinal_adaptation": {
+          "node_temporal_anchor": {
+            "anchor_path": "basic_information.exit_time",
+            "anchor_timestamp": null
+          },
+          "n5_outcome_observable_within_admission": true,
+          "n5_outcome_dimension": "SYMPTOMATIC",
+          "n5_outcome_value": "STABLE",
+          "n5_followup_outcome": null,
+          "n5_adverse_events_list": [],
+          "n5_emergency_actions": null,
+          "n5_adaptation_logic_cot": "患者顺利完成第一周期吉西他滨+顺铂+信迪利单抗治疗。住院期间密切监测血常规及肝肾功能，未见IV度骨髓抑制或严重肝肾功能损害。恶心呕吐症状经三联止吐方案有效控制。出院时一般情况可，咳嗽咳痰症状较前减轻，无咯血。嘱出院后7天复查血常规，必要时给予G-CSF升白治疗，并预约下一周期化疗。",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "exit_record.out_description",
+                "evidence_text": "患者无恶心、呕吐，无胸闷、胸痛...准予出院",
+                "evidence_scope": "CURRENT_SECTION_CONTEXT",
+                "window_violation_flag": null
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        }
+      }
+    },
+    {
+      "loop_meta": {
+        "loop_id": "doc0001243986_L02",
+        "loop_name": "为化疗建立静脉通路的输液港植入术",
+        "loop_type": "ELECTIVE_PROCEDURE",
+        "loop_status": "CLOSED",
+        "trigger_event": "发疱性化疗药物需长期中心静脉通路",
+        "trigger_time_source_path": "course_record.first_record.course_time",
+        "guideline_era": "2025_PRESENT",
+        "treatment_phase": "INITIAL",
+        "disease_status_milestone": "PERIOPERATIVE"
+      },
+      "loop_relationship_edges": [],
+      "nodes_annotation": {
+        "node_1_initial_presentation": {
+          "node_temporal_anchor": {
+            "anchor_path": "basic_information.enter_time",
+            "anchor_timestamp": null
+          },
+          "template_type": "PROCEDURAL_INDICATION_REVIEW",
+          "n1_procedural_indication": "患者拟行长期含铂双药化疗，顺铂属强刺激性药物，外周静脉输注易致严重静脉炎及组织坏死。且患者长期输液外周静脉条件差，有植入完全植入式静脉输液港的绝对指征。无凝血功能障碍及局部感染等禁忌症。",
+          "n1_urgency_level": "ELECTIVE",
+          "n1_diagnostic_logic_cot": "评估患者血管条件及治疗方案需求。顺铂等化疗药物对血管内皮刺激性大，外周静脉给药风险高。患者需多周期化疗，建立长期、安全的中心静脉通道是保障抗肿瘤治疗顺利进行的先决条件。术前评估凝血功能正常，无手术禁忌。",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "enter_record.preliminary_diagnosis",
+                "evidence_text": "右肺上叶占位",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": null
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_2_investigation_interpretation": {
+          "node_temporal_anchor": {
+            "anchor_path_list": [
+              "inspections[10].time"
+            ],
+            "anchor_timestamp": null
+          },
+          "n2_clinical_questions": [
+            "排查手术禁忌症（凝血功能、感染）"
+          ],
+          "n2_intended_test_orders": {
+            "凝血常规": "评估出血风险",
+            "感染八项": "排查血源性传染病"
+          },
+          "n2_actual_test_orders": {
+            "凝血常规": "已完成",
+            "感染八项": "已完成"
+          },
+          "n2_missed_or_delayed_tests": null,
+          "n2_critical_values": {
+            "凝血": "APTT稍长但无临床出血倾向，PT正常",
+            "感染": "全阴性"
+          },
+          "n2_decision_cot": {
+            "step_1_clinical_question": "确认患者是否具备静脉输液港植入术的安全条件。",
+            "step_2_test_choice_logic": "常规开具凝血功能及传染病筛查，确保术中无大出血风险及交叉感染隐患。",
+            "step_3_actual_vs_planned_gap": "检查按计划完成，无遗漏。",
+            "step_4_result_reshapes_downstream": "凝血及感染指标均符合手术要求，确认可以按期进行局麻下输液港植入术。"
+          },
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "inspections[10].type",
+                "evidence_text": "凝血常规",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": null
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_3_status_anchor": {
+          "node_temporal_anchor": {
+            "anchor_path": "course_record.first_record.course_time",
+            "anchor_timestamp": null
+          },
+          "n3_severity_staging": {
+            "clinical_grading": "择期清洁手术"
+          },
+          "n3_treatment_strategy": "ROUTINE_MAINTENANCE",
+          "n3_strategy_logic_cot": "静脉输液港植入为择期I类切口手术。基于患者确诊恶性肿瘤需长期化疗的基线需求，战略定为建立长期中心静脉通道。术前需依赖N2节点确认的凝血及感染指标正常，以排除手术禁忌，确保围手术期安全。",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "course_record.first_record.description",
+                "evidence_text": "完善各项相关检查",
+                "evidence_scope": "CURRENT_SECTION_CONTEXT",
+                "window_violation_flag": null
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_4_tailored_treatment": {
+          "node_temporal_anchor": {
+            "anchor_path": "operations[0].start_time",
+            "anchor_timestamp": null
+          },
+          "n4_standard_regimen": [
+            "完全植入式静脉输液港植入术（经皮穿刺）"
+          ],
+          "n4_actual_regimen": [
+            "静脉输液港植入术"
+          ],
+          "n4_deviation_nature": "ALIGNED_WITH_STANDARD",
+          "n4_patient_constraints": [],
+          "n4_tradeoff_logic_cot": {
+            "step_1_standard_baseline": "标准术式为完全植入式静脉输液港植入术。",
+            "step_2_constraint_interception": "患者无局麻药过敏史及凝血绝对禁忌，具备手术条件。",
+            "step_3_clinical_balancing": "决定在局麻下行静脉输液港植入术，以建立中心静脉通道，满足后续发疱性化疗药物的输注需求。",
+            "step_4_safety_guarantee": "术前已完善评估，拟术中严格无菌操作并确认导管位置，以保障后续治疗安全。"
+          },
+          "n4_forbidden_regimens_list": [],
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "operations[0].op_name",
+                "evidence_text": "静脉输液港植入术",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": null
+              },
+              {
+                "evidence_path": "operations[0].anesthesia",
+                "evidence_text": "局麻",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": null
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_5_longitudinal_adaptation": {
+          "node_temporal_anchor": {
+            "anchor_path": "basic_information.exit_time",
+            "anchor_timestamp": null
+          },
+          "n5_outcome_observable_within_admission": true,
+          "n5_outcome_dimension": "PROCEDURAL_OR_SURGICAL",
+          "n5_outcome_value": "PROCEDURE_SUCCESS_NO_COMPLICATION",
+          "n5_followup_outcome": null,
+          "n5_adverse_events_list": [],
+          "n5_emergency_actions": null,
+          "n5_adaptation_logic_cot": "手术过程顺利，术中超声引导穿刺右侧腋静脉，DSA定位导管末端于上腔静脉与右心房交界处，回抽冲管通畅。术后无血肿、气胸等并发症。输液港随即成功用于后续的顺铂及吉西他滨化疗，无外渗，达到预期目标。",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "operations[0].process",
+                "evidence_text": "术中患者取平卧位...手术经过顺利",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": null
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        }
+      }
+    }
+  ],
+  "cross_loop_joint_reasoning": [
+    {
+      "involved_loop_ids": [
+        "doc0001243986_L01",
+        "doc0001243986_L02"
+      ],
+      "materiality_threshold": false,
+      "clinical_conflict_type": null,
+      "joint_tradeoff_logic_cot": null
+    }
+  ]
+}

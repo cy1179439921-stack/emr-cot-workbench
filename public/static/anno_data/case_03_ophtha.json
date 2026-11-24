@@ -1,0 +1,258 @@
+{
+  "specialty_context": {
+    "specialty_category": "OTHER",
+    "subspecialty_note": "眼科"
+  },
+  "patient_global_context": {
+    "patient_ref": "15005",
+    "age": 76,
+    "sex": "MALE",
+    "baseline_comorbidities_icd10": ["I10"],
+    "functional_baseline": "INDEPENDENT",
+    "economic_pressure_indicator": "NOT_OBSERVABLE",
+    "insurance_type": null
+  },
+  "clinical_loop_network": [
+    {
+      "loop_meta": {
+        "loop_id": "doc15005_L01",
+        "loop_name": "右眼白内障围手术期管理",
+        "loop_type": "ELECTIVE_PROCEDURE",
+        "loop_status": "CLOSED",
+        "trigger_event": "右眼视力渐进性下降2年，门诊确诊白内障收治入院",
+        "trigger_time": null,
+        "trigger_time_source_path": "basic_information.enter_time",
+        "close_time": "2012-02-23 08:00:00",
+        "guideline_era": "PRE_2015",
+        "treatment_phase": "INITIAL",
+        "disease_status_milestone": "PERIOPERATIVE"
+      },
+      "loop_relationship_edges": [
+        {
+          "target_loop_id": "doc15005_L02",
+          "relation_type": "SAFETY_CONSTRAINT",
+          "relation_description": "高血压病史增加麻醉及术中血压波动风险，围手术期需持续监测并维持原降压方案"
+        }
+      ],
+      "nodes_annotation": {
+        "node_1_initial_presentation": {
+          "node_temporal_anchor": {
+            "anchor_path": "basic_information.enter_time",
+            "anchor_timestamp": null
+          },
+          "template_type": "ACUTE_OR_FIRST_DIAGNOSIS",
+          "n1_primary_impressions": ["H26.900"],
+          "n1_differential_list": ["角膜混浊", "黄斑病变", "青光眼"],
+          "n1_baseline_status_assessment": null,
+          "n1_chronic_complications_screening": null,
+          "n1_procedural_indication": null,
+          "n1_urgency_level": "ELECTIVE",
+          "n1_diagnostic_logic_cot": "患者老年男性，主诉右眼无痛性视力渐进下降2年。专科查体示右眼晶状体灰白色不均匀混浊，眼压13mmHg正常，眼底视盘界清；左眼为2年前行超声乳化术后的人工晶体眼。结合典型病史与裂隙灯体征，初步诊断为右眼年龄相关性白内障。需排除黄斑区病变导致的视力下降，并评估全身基础疾病对手术的耐受性。",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "enter_record.complain", "evidence_text": "右眼视物不清并逐渐加重2年。", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false},
+              {"evidence_path": "enter_record.body_examination", "evidence_text": "右眼晶状体灰白色不均匀混浊，眼压13mmHg。", "evidence_scope": "CURRENT_SECTION_CONTEXT", "window_violation_flag": false}
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_2_investigation_interpretation": {
+          "node_temporal_anchor": {
+            "anchor_path_list": ["image_reports[0].time", "inspections[0].time"],
+            "anchor_timestamp": null
+          },
+          "n2_clinical_questions": ["排除黄斑病变及眼底禁忌症", "评估全身脏器功能及凝血状态以确认手术耐受性"],
+          "n2_intended_test_orders": {"眼部OCT": "明确黄斑区结构，排除黄斑变性导致的视力障碍", "凝血四项": "评估术中出血风险", "肝肾功/血常规": "评估全身基础状况及感染指标"},
+          "n2_actual_test_orders": {"眼部OCT": "已执行", "凝血四项": "已执行", "肝肾功": "已执行", "血常规": "已执行", "心电图": "已执行"},
+          "n2_missed_or_delayed_tests": null,
+          "n2_critical_values": {"image_reports[0].findings": "双眼黄斑OCT未见明显异常", "inspections[3].content": "凝血酶原时间及活化部分凝血活酶时间均在正常范围"},
+          "n2_decision_cot": {
+            "step_1_clinical_question": "术前核心排查：视力下降是否源于黄斑病变？全身指标是否支持择期手术？",
+            "step_2_test_choice_logic": "针对老年白内障患者，常规开具OCT排查黄斑区，同时完善凝血、肝肾功能及血常规以评估围手术期安全阈值。",
+            "step_3_actual_vs_planned_gap": "实际执行与计划完全一致，所有关键检查均于入院当日完成并按时回报。",
+            "step_4_result_reshapes_downstream": "OCT提示黄斑结构正常，排除眼底器质性病变；凝血及生化指标均在参考范围内。检查结果全面支持手术安全性，锁定择期手术指征。"
+          },
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "image_reports[0].findings", "evidence_text": "双眼黄斑OCT未见明显异常", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false},
+              {"evidence_path": "inspections[3].content", "evidence_text": "血浆凝血酶原时间11.2s，活化部分凝血活酶时间27.6s，均在正常范围", "evidence_scope": "CURRENT_SECTION_CONTEXT", "window_violation_flag": false}
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_3_status_anchor": {
+          "node_temporal_anchor": {
+            "anchor_path": "course_record.ward_records[0].time",
+            "anchor_timestamp": null
+          },
+          "n3_severity_staging": {"clinical_grading": "成熟期"},
+          "n3_treatment_strategy": "SURGICAL_DEFINITIVE",
+          "n3_strategy_logic_cot": "结合N1查体与N2辅助检查，右眼白内障诊断明确且晶体已呈灰白色混浊，符合手术干预指征。患者虽高龄合并高血压，但心肾功能、凝血指标及心肺查体均无异常，全身状况可耐受局部麻醉下的显微手术。因此确立“手术根治”战略，计划行右眼超声乳化联合人工晶体植入，术前给予常规抗感染准备。",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "course_record.ward_records[0].content", "evidence_text": "主任医师查房，同意目前诊断及治疗，嘱完善相关检查，准备行右眼白内障超声乳化加人工晶体植入术。", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false}
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_4_tailored_treatment": {
+          "node_temporal_anchor": {
+            "anchor_path": "advices.short_advices.items[17].time",
+            "anchor_timestamp": null
+          },
+          "n4_standard_regimen": ["局麻下白内障超声乳化吸除术联合人工晶体植入术", "术前抗生素滴眼液结膜囊准备", "围手术期预防性全身抗生素"],
+          "n4_actual_regimen": ["拟明日上午9：00在局麻下行右眼白内障超声乳化加人工晶体植入术", "复方托吡卡胺滴眼液散瞳", "氧氟沙星滴眼液点眼", "静脉滴注头孢拉定1g预防感染"],
+          "n4_deviation_nature": "ALIGNED_WITH_STANDARD",
+          "n4_patient_constraints": ["NONE"],
+          "n4_tradeoff_logic_cot": {
+            "step_1_standard_baseline": "当前指南推荐的标准方案为局麻下超声乳化联合IOL植入，术前常规使用广谱抗生素滴眼液及全身预防用药。",
+            "step_2_constraint_interception": "患者无药物过敏史、无经济限制、无手术禁忌症，医疗资源与药品库存充足。",
+            "step_3_clinical_balancing": "实际医嘱完整覆盖标准流程：明确手术时间与麻醉方式，使用托吡卡胺充分散瞳暴露手术视野，氧氟沙星局部抗感染，头孢拉定静滴覆盖全身预防。",
+            "step_4_safety_guarantee": "方案严格遵循围手术期感染防控规范与眼科操作常规，无过度医疗或遗漏关键步骤，安全性与有效性均获保障。"
+          },
+          "n4_forbidden_regimens_list": [],
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "advices.short_advices.items[17].name", "evidence_text": "拟明日上午9：00在局麻下行右眼白内障超声乳化加人工晶体植入术", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false},
+              {"evidence_path": "advices.long_advices.items[3].name", "evidence_text": "氧氟沙星滴眼液", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false}
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_5_longitudinal_adaptation": {
+          "node_temporal_anchor": {
+            "anchor_path": "basic_information.exit_time",
+            "anchor_timestamp": null
+          },
+          "n5_outcome_observable_within_admission": true,
+          "n5_outcome_dimension": "PROCEDURAL_OR_SURGICAL",
+          "n5_outcome_value": "PROCEDURE_SUCCESS_NO_COMPLICATION",
+          "n5_followup_outcome": null,
+          "n5_adverse_events_list": [],
+          "n5_emergency_actions": null,
+          "n5_adaptation_logic_cot": "术后第1天复查视力提升至0.8，眼压12mmHg平稳，前房中深伴轻微房水闪辉(+)属正常术后炎症反应。人工晶体囊袋内位置正，无切口渗漏或感染征象。结合病程记录，未出现高眼压、眼内炎等并发症。治疗全程未调整核心方案，按常规予抗生素及激素眼药水巩固抗炎，患者症状显著改善，达到临床治愈标准，准予出院并预约门诊复查。",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "course_record.ward_records[2].content", "evidence_text": "患者今日术后第1天...视力：右眼0.8...前房中深，房水闪辉(+)...人工晶体在位", "evidence_scope": "CURRENT_SECTION_CONTEXT", "window_violation_flag": false},
+              {"evidence_path": "exit_record.out_description", "evidence_text": "眼科情况稳定，准予出院", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false}
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        }
+      }
+    },
+    {
+      "loop_meta": {
+        "loop_id": "doc15005_L02",
+        "loop_name": "高血压病维持管理",
+        "loop_type": "CHRONIC_COMORBIDITY_MAINTAIN",
+        "loop_status": "CLOSED",
+        "trigger_event": "既往高血压病史10余年，入院常规监测血压",
+        "trigger_time": null,
+        "trigger_time_source_path": "basic_information.enter_time",
+        "close_time": "2012-02-23 08:00:00",
+        "guideline_era": "PRE_2015",
+        "treatment_phase": "MAINTENANCE",
+        "disease_status_milestone": "STABLE_MAINTENANCE"
+      },
+      "loop_relationship_edges": [],
+      "nodes_annotation": {
+        "node_1_initial_presentation": {
+          "node_temporal_anchor": {"anchor_path": "basic_information.enter_time", "anchor_timestamp": null},
+          "template_type": "CHRONIC_MAINTENANCE_ASSESSMENT",
+          "n1_primary_impressions": null,
+          "n1_differential_list": null,
+          "n1_baseline_status_assessment": "患者高血压病史10余年，规律自服缬沙坦（代文）80mg qd。入院查体BP 173/93mmHg，处于偏高状态，心界不大，律齐，无靶器官损害急性表现。",
+          "n1_chronic_complications_screening": "否认糖尿病史，否认心脑肾并发症主诉，需住院期间持续监测血压波动。",
+          "n1_procedural_indication": null,
+          "n1_urgency_level": "ROUTINE_MONITORING",
+          "n1_diagnostic_logic_cot": "基于既往史与入院血压测量，明确高血压病史。当前血压173/93mmHg属2级高血压水平，但患者无急性心脑肾症状，处于慢性维持阶段。住院期间主要策略为延续原降压方案并加强围手术期监测，防止血压剧烈波动。",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "enter_record.past", "evidence_text": "有高血压病病史10余年,现自服代文口服", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false},
+              {"evidence_path": "enter_record.bp", "evidence_text": "173/93", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false}
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_2_investigation_interpretation": {
+          "node_temporal_anchor": {"anchor_path_list": ["inspections[1].time"], "anchor_timestamp": null},
+          "n2_clinical_questions": ["评估高血压相关靶器官（心、肾）基线状态"],
+          "n2_intended_test_orders": {"肝肾功能": "评估长期高血压对肾脏的潜在影响", "心电图": "排查左室肥厚或缺血改变"},
+          "n2_actual_test_orders": {"肝肾功能": "已执行", "心电图": "已执行"},
+          "n2_missed_or_delayed_tests": null,
+          "n2_critical_values": {"inspections[1].content": "尿素3.9mmol/L, 肌酐70.0umol/L, 均在正常范围"},
+          "n2_decision_cot": {
+            "step_1_clinical_question": "长期高血压是否已造成隐匿性肾功能损害或心肌改变？",
+            "step_2_test_choice_logic": "常规入院生化包含肾功能，心电图用于筛查心脏结构/电生理异常。",
+            "step_3_actual_vs_planned_gap": "无差异，均按计划完成。",
+            "step_4_result_reshapes_downstream": "肌酐及尿素正常，心电图提示“常规心电图检查（自动分析）”未见危急值描述。提示靶器官代偿良好，维持原降压药剂量安全。"
+          },
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "inspections[1].content", "evidence_text": "尿素3.9mmol/L，肌酐70.0umol/L（正常）", "evidence_scope": "CURRENT_SECTION_CONTEXT", "window_violation_flag": false}
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_3_status_anchor": {
+          "node_temporal_anchor": {"anchor_path": "course_record.ward_records[0].time", "anchor_timestamp": null},
+          "n3_severity_staging": {"clinical_grading": "2级高血压"},
+          "n3_treatment_strategy": "ROUTINE_MAINTENANCE",
+          "n3_strategy_logic_cot": "患者靶器官检查未见明显损害，血压虽偏高但无急性靶器官功能障碍。结合眼科手术应激需求，战略定为维持现有降压方案，避免围手术期突然停药或加药导致血压波动。",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "course_record.ward_records[0].content", "evidence_text": "患者一般状态良好，各项化验检查未见手术禁忌", "evidence_scope": "CURRENT_SECTION_CONTEXT", "window_violation_flag": false}
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_4_tailored_treatment": {
+          "node_temporal_anchor": {"anchor_path": "advices.long_advices.items[7].start_time", "anchor_timestamp": null},
+          "n4_standard_regimen": ["继续原降压药物（缬沙坦）口服", "定期监测血压"],
+          "n4_actual_regimen": ["缬沙坦胶囊 80mg qd 口服"],
+          "n4_deviation_nature": "ALIGNED_WITH_STANDARD",
+          "n4_patient_constraints": ["NONE"],
+          "n4_tradeoff_logic_cot": {
+            "step_1_standard_baseline": "慢性高血压围手术期管理推荐维持原降压药至手术当日晨，避免血压反跳。",
+            "step_2_constraint_interception": "无禁忌或资源限制。",
+            "step_3_clinical_balancing": "医嘱明确开立缬沙坦胶囊80mg qd口服，与患者既往居家方案完全一致。",
+            "step_4_safety_guarantee": "维持原方案保障血流动力学稳定，符合围手术期心血管风险管理共识。"
+          },
+          "n4_forbidden_regimens_list": [],
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "advices.long_advices.items[7].name", "evidence_text": "缬沙坦胶囊（进）", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false}
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_5_longitudinal_adaptation": {
+          "node_temporal_anchor": {"anchor_path": "basic_information.exit_time", "anchor_timestamp": null},
+          "n5_outcome_observable_within_admission": true,
+          "n5_outcome_dimension": "PHYSIOLOGICAL_OR_LAB",
+          "n5_outcome_value": "STABLE",
+          "n5_followup_outcome": null,
+          "n5_adverse_events_list": [],
+          "n5_emergency_actions": null,
+          "n5_adaptation_logic_cot": "住院期间血压监测平稳，未记录到恶性高血压或低血压事件。术后恢复期继续口服缬沙坦，生命体征平稳。出院带药延续原降压方案，嘱定期心内科门诊随访。全程无需调整药物或启动急救干预，慢性病管理达标。",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "course_record.ward_records[3].content", "evidence_text": "眼科情况稳定，准予出院", "evidence_scope": "CURRENT_LINE_CONTEXT", "window_violation_flag": false},
+              {"evidence_path": "exit_record.out_advice", "evidence_text": "1周眼科门诊定期复查随诊。", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false}
+            ],
+            "evidence_quality": "INFERRED_REASONABLE"
+          }
+        }
+      }
+    }
+  ],
+  "cross_loop_joint_reasoning": [
+    {
+      "involved_loop_ids": ["doc15005_L01", "doc15005_L02"],
+      "materiality_threshold": false,
+      "clinical_conflict_type": null,
+      "joint_tradeoff_logic_cot": null
+    }
+  ]
+}

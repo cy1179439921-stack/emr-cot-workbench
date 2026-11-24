@@ -1,0 +1,535 @@
+// COT 模块公共样式 — 精确还原蓝湖设计稿
+// 设计稿色板（来自 N1/N2/N3/N4/N5 schema）:
+//   主色:       #3670f8  (rgba 54,112,248)
+//   标题文字:   #333333  (rgba 51,51,51)
+//   普通文字:   #666666  (rgba 102,102,102)
+//   次要文字:   #999999  (rgba 153,153,153)
+//   卡片背景:   #ffffff
+//   页面背景:   #f0f3f8  (rgba 240,243,248)
+//   输入框:     #ffffff + border #d8d8d8 (rgba 216,216,216)
+//   section区块: #fafbfc (rgba 250,251,252) + border #dbdbdb (rgba 219,219,219)
+//   浅蓝色边线: #dce6ff  (rgba 220,230,255)
+
+// ==================== 模块顶层容器 ====================
+.cot-module {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  flex-direction: column;
+  flex: 1;
+  background: var(--theme-card);
+
+  // 顶部 COT 编号 + 标题栏
+  .cot-module-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 66px;
+    margin-bottom: 24px;
+    padding: 0 24px;
+    border-bottom: 1px solid #ebebeb;
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      .module-badge {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        height: 32px;
+        padding: 0 20px;
+        border: 1px solid #3670f8;
+        border-radius: 4px 4px 4px 4px;
+        background: rgba(54, 112, 248, 0.1);
+        font-weight: 500;
+        font-size: 16px;
+        color: #3670f8;
+      }
+
+      .module-title {
+        margin: 0;
+        font-weight: 600;
+        font-size: 18px;
+        color: #333;
+        letter-spacing: 0;
+      }
+    }
+
+    .header-right {
+      .anchor-time {
+        font-size: 16px;
+        color: #999;
+      }
+    }
+  }
+
+  // 主体内容区：左右留白（header 除外所有直接子元素）
+  > :not(.cot-module-header) {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  :deep(.el-textarea) {
+    .el-input__count {
+      background: transparent;
+      line-height: 20px;
+      font-size: 14px;
+    }
+  }
+}
+
+// ==================== 锚定路径区 ====================
+// 独立区块，带浅底色
+.cot-anchor-section {
+  margin-bottom: 12px;
+  padding: 8px 12px;
+  border-radius: 2px;
+  background: var(--theme-primary-soft);
+
+  .anchor-label {
+    display: inline-block;
+    margin-right: 8px;
+    font-weight: 500;
+    font-size: 16px;
+    color: #333;
+  }
+
+  // 查看态：路径是蓝色可点击链接
+  .anchor-path-view {
+    display: inline;
+    cursor: default;
+    font-size: 16px;
+    color: #3670f8;
+
+    .anchor-path-item {
+      display: inline;
+
+      &::after {
+        margin: 0 4px;
+        color: #ccc;
+        content: '·';
+      }
+
+      &:last-child::after {
+        content: '';
+      }
+    }
+  }
+}
+
+// ==================== Section 分组 ====================
+.cot-section {
+  margin-bottom: 24px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+    font-weight: 500;
+    font-size: 18px;
+    color: #333;
+
+    &::before {
+      flex-shrink: 0;
+      width: 3px;
+      height: 16px;
+      margin-right: 8px;
+      background: #3670f8;
+      content: '';
+    }
+  }
+}
+
+// ==================== 字段行（标签 + 值） ====================
+// 设计稿：双列网格。标签右对齐，值左对齐
+.cot-field-row {
+  display: flex;
+  align-items: flex-start;
+  min-height: 30px;
+  margin-bottom: 10px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  // 多列 flex 布局（用于 N1 模板类型+紧急度 这种双列场景）
+  &.two-col {
+    display: flex;
+    flex-wrap: wrap;
+
+    .cot-field-cell {
+      display: flex;
+      align-items: center;
+      width: 50%;
+      min-height: 30px;
+    }
+  }
+}
+
+.cot-field-label {
+  flex-shrink: 0;
+  min-width: 80px;
+  padding-right: 12px;
+  line-height: 20px;
+  text-align: right;
+  font-weight: 400;
+  font-size: 16px;
+  color: #333;
+}
+
+.cot-field-value {
+  flex: 1;
+  min-width: 0;
+  // padding: 16px 22px;
+  // background: rgba(240, 243, 248, 0.3);
+  line-height: 30px;
+  font-size: 16px;
+  color: #666;
+
+  // ---- 查看态纯文本 ----
+  .view-text {
+    display: block;
+    line-height: 30px;
+    font-size: 16px;
+    color: #666;
+  }
+
+  // ---- 查看态：思维链大段文本 ----
+  .view-thinking {
+    display: block;
+    padding: 8px 0;
+    line-height: 1.7;
+    font-size: 16px;
+    color: #666;
+    word-break: break-all;
+    white-space: pre-wrap;
+  }
+
+  // ---- 字段提示 ----
+  .field-hint {
+    display: block;
+    margin-top: 3px;
+    line-height: 1.4;
+    font-size: 12px;
+    color: #999;
+  }
+}
+
+// ==================== 思维链区块 ====================
+// 查看态：在 section 内直接显示多段文字
+.cot-thinking-view {
+  padding: 8px 0 4px;
+  line-height: 1.7;
+  font-size: 16px;
+  color: #666;
+}
+
+// 思维链多步骤（N2/N4 有步骤标题）
+.cot-thinking-steps {
+  .thinking-step {
+    margin-bottom: 12px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .step-title {
+      margin-bottom: 6px;
+      font-weight: 500;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .step-textarea {
+      width: 100%;
+    }
+
+    .step-view-text {
+      display: block;
+      padding: 4px 0;
+      line-height: 1.65;
+      font-size: 16px;
+      color: #666;
+    }
+  }
+}
+
+// ==================== 组合列表（下拉+输入 N2/N4 锚定路径） ====================
+.combo-list {
+  width: 100%;
+
+  .combo-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+    :deep(.el-cascader) {
+      overflow: unset;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .combo-select {
+      flex: 0 0 140px;
+    }
+    .combo-input {
+      flex: 1;
+    }
+  }
+}
+
+// 查看模式：组合展示（路径+文本）
+.view-combo-list {
+  .view-combo-row {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 4px;
+    font-size: 16px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .view-combo-path {
+      flex-shrink: 0;
+      margin-right: 6px;
+      font-size: 12px;
+      color: #3670f8;
+    }
+
+    .view-combo-text {
+      color: #666;
+      word-break: break-all;
+    }
+  }
+}
+
+// ==================== 单行输入列表（N2 临床问题） ====================
+.inline-list {
+  width: 100%;
+
+  .inline-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .inline-input {
+      flex: 1;
+
+      :deep(.el-input__wrapper) {
+        // height: 30px;
+        border-radius: 2px;
+        background: var(--theme-card);
+      }
+    }
+  }
+}
+
+// 查看模式：单行列表
+.view-inline-list {
+  .view-inline-row {
+    margin-bottom: 4px;
+    line-height: 1.5;
+    font-size: 16px;
+    color: #666;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// ==================== 全宽 select（N5 结局值等） ====================
+.full-width-select {
+  width: 100%;
+
+  :deep(.el-select__wrapper) {
+    height: 30px;
+    min-height: 30px;
+    border-radius: 2px;
+  }
+}
+
+// ==================== +/− 操作按钮 ====================
+.row-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  line-height: 1;
+  font-weight: 500;
+  font-size: 15px;
+  transition: opacity 0.15s;
+}
+
+.icon-tianjiayihang {
+  margin: 0 16px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #3670f8;
+}
+.icon-shanchu-1 {
+  cursor: pointer;
+  font-size: 16px;
+  color: #f56c6c;
+}
+
+// ==================== 字段行：块级布局（N2/N3/N4 核心字段区） ====================
+// 将 label 与 value 上下堆叠，适用于 key-value editor 等占满行场景
+.cot-field-row.block-layout {
+  display: block;
+
+  .cot-field-label {
+    display: block;
+    margin-bottom: 6px;
+    text-align: left;
+  }
+
+  .cot-field-value {
+    width: 100%;
+  }
+}
+
+// ==================== 灰底卡片容器（N2/N3 核心区域、N1 双列网格） ====================
+.cot-main-area {
+  box-sizing: border-box;
+  padding: 16px 24px;
+  border-radius: 6px;
+  background: rgba(240, 243, 248, 0.3);
+}
+
+// ==================== 编辑态思维链 textarea（N1/N3） ====================
+.cot-thinking-textarea {
+  :deep(.el-textarea__inner) {
+    box-sizing: border-box;
+    padding: 16px 24px;
+    border: 1px solid #dbdbdb;
+    border-radius: 6px;
+    background: var(--theme-fill);
+    box-shadow: unset;
+    line-height: 20px;
+    font-size: 14px;
+    color: #666;
+  }
+}
+
+// ==================== 思维链纯文本区（N1/N3/N5） ====================
+.thinking-chain-area {
+  padding: 24px;
+  border-radius: 4px;
+  background: var(--theme-fill);
+}
+
+// ==================== 思维链步骤行（N2/N4） ====================
+.thinking-step-row {
+  margin-bottom: 14px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .step-title {
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 16px;
+    color: #333;
+  }
+
+  .step-content {
+    padding: 8px 12px;
+    border-radius: 4px;
+    background: var(--theme-fill);
+  }
+}
+
+// ==================== 锚定路径蓝底卡片行（N1/N5） ====================
+.cot-anchor-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+  padding: 16px 24px;
+  border: 1px solid rgba(219, 219, 219, 0);
+  border-radius: 4px;
+  background: rgba(240, 243, 248, 0.3);
+
+  .anchor-tag {
+    display: inline-flex;
+    align-items: center;
+    font-weight: 500;
+    font-size: 12px;
+    color: #3670f8;
+    .anchor-icon {
+      font-size: 12px;
+      color: #3670f8;
+    }
+  }
+}
+
+// ==================== 查看模式：卡片式锚定路径列表（N2/N4） ====================
+// 路径在上、文本在下，带独立卡片背景
+.cot-view-combo-cards {
+  .view-combo-row {
+    margin-bottom: 8px;
+    padding: 10px 24px;
+    border-radius: 4px;
+    background: var(--theme-fill);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .view-combo-path {
+      margin-bottom: 4px;
+      font-weight: 500;
+      font-size: 16px;
+      color: #3670f8;
+    }
+
+    .view-combo-text {
+      font-size: 16px;
+      color: #666;
+      word-break: break-all;
+    }
+  }
+}
+// :deep(.el-textarea__inner) {
+//   min-height: 32px !important;
+// }
+:deep(.el-textarea.text-input) {
+  min-height: 40px !important;
+}
+:deep(.el-textarea__inner) {
+  min-height: 40px !important;
+  padding: 8px 16px !important;
+  font-size: 16px !important;
+}
+:deep(.el-input__wrapper),
+:deep(.el-select__wrapper) {
+  box-sizing: border-box;
+  height: 40px !important;
+  padding: 0 16px !important;
+  border-radius: 2px !important;
+  font-size: 16px !important;
+  .el-input__inner {
+    font-size: 16px !important;
+  }
+  .el-input__count-inner {
+    font-size: 14px !important;
+  }
+}

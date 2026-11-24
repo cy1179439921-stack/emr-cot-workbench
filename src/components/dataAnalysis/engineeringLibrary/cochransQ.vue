@@ -1,0 +1,192 @@
+<template>
+  <div class="variable-selection-area">
+    <div class="mainTop">
+      <div class="topLeft">
+        <header class="header">全部变量</header>
+        <div class="searchBox">
+          <commonInput v-model="allSearch" placeholder="输入关键词，如姓名或工号" class="searchText" clearable @input="searchAll"/>
+        </div>
+        <el-scrollbar>
+          <div class="ul" :class="rightData1.length === MULTICOUNT ? 'disabledUl' : ''">
+            <variableDraggable :list="leftData" :group="groupLeft" :activeObj="leftActiveObj" @handleChange="changeLeftData" @handleClick="clickCustomLeft"/>
+          </div>
+        </el-scrollbar>
+      </div>
+      <div class="topCenter">
+        <transferButton :leftActive="leftActiveObj" :rightActive="rightActiveObj" @handleToRight="toCustomMultiRight(1)" @handleToLeft="toMultiLeft(1)" />
+      </div>
+      <div class="topRight">
+        <div class="right1">
+          <header class="header">
+            <span>二分类变量(≥3)</span>
+            <SvgIcon iconName="icon-zimu"></SvgIcon>
+          </header>
+          <el-scrollbar>
+            <div class="ul ul-row-1">
+              <variableDraggable :list="rightData1" :group="groupRight1" :activeObj="rightActiveObj" @handleClick="clickMultiRight"/>
+            </div>
+          </el-scrollbar>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<script setup>
+defineOptions({
+  name: 'CochransQ',
+  inheritAttrs: false
+})
+import { ref, watch } from 'vue'
+import { groupLeft, useData } from '@/components/dataAnalysis/hooks/analysisViewHooks'
+import { ElMessage } from 'element-plus'
+import { MULTICOUNT } from '@/components/dataAnalysis/utils/commonData'
+import { batchCheckBinaryVariable } from '@/api/api_dataAnalysis.js'
+import transferButton from '@/components/dataAnalysis/engineeringLibrary/common/transferButton.vue'
+import variableDraggable from '@/components/dataAnalysis/engineeringLibrary/common/variableDraggable.vue'
+const props = defineProps({
+  engineeringInfo: {
+    type: Object,
+    required: true
+  },
+  currentNode: {
+    type: Object,
+    required: true
+  },
+  isAntdSix: {
+    // 是否为流程管理
+    type: Boolean,
+    default: false
+  },
+  dataOperateId: {
+    type: String,
+    default: ''
+  },
+  jumpData: {
+    type: Object
+  }
+})
+const newDataOperateId = ref(props.dataOperateId)
+const emits = defineEmits(['showLoading', 'getResultData', 'saveData'])
+const allSearch = ref('')
+const leftAllData = ref([])
+const leftData = ref([])
+
+const rightData1 = ref([])
+const leftActiveObj = ref([])
+const rightActiveObj = ref([])
+// 若回调成功，一定是跳转的
+const handleJumpParams = () => {
+  if (props.jumpData && props.jumpData.smallGroup === props.currentNode.name) {
+    const inputConditions = JSON.parse(JSON.parse(props.jumpData.params).input_conditions)
+    console.log('inputConditions', inputConditions)
+    inputConditions.righData1V.forEach(label => {
+      const objIndex = leftAllData.value.findIndex(obj => obj.label === label)
+      leftActiveObj.value.push(leftAllData.value[objIndex])
+    })
+    console.log('leftActiveObj.value', leftActiveObj.value)
+    toMultiRight(rightData1)
+  }
+}
+const { init, changeLeftData, searchAll, clickMultiLeft, clickMultiRight, toMultiRight, toCommonMultiLeft, sendRequest } = useData(leftAllData, leftData, allSearch, leftActiveObj, rightActiveObj)
+
+init('定性', newDataOperateId.value, props.jumpData, handleJumpParams)
+
+const groupRight1 = ref({
+  name: 'groupA',
+  put: () => {
+    return rightData1.value.length < MULTICOUNT
+  }
+})
+watch(() => JSON.parse(JSON.stringify(rightData1.value)), async (nVal, oVal) => {
+  console.log('rightData1变化了')
+  // 找到新增的项
+  if (nVal.length > oVal.length) {
+    if (nVal.length > oVal.length) {
+      const addedItems = nVal.filter(newItem => !oVal.some(oldItem => oldItem.label === newItem.label))
+      console.log('新增:', addedItems)
+      const labelsArray = addedItems.map(item => item.label)
+      console.log('labelsArray:', labelsArray)
+      const { code, data } = await batchCheckBinaryVariable({
+        dataOperateId: newDataOperateId.value,
+        fieldNameList: labelsArray
+      })
+      if (code === 10000) {
+        if (data.fieldNameList.length > 0) {
+          const fieldNameList = data.fieldNameList.join('、')
+          ElMessage.warning(fieldNameList + '不符合二分类变量')
+          data.fieldNameList.forEach(name => {
+            const findObj = nVal.find(i => i.label === name)
+            if (findObj) {
+              rightActiveObj.value.push(findObj)
+            }
+          })
+          toCommonMultiLeft(1, '', rightData1, rightActiveObj)
+          return false
+        }
+      }
+    }
+  }
+  if (nVal.length === MULTICOUNT) {
+    leftActiveObj.value = []
+  }
+  // 处理拖拽后的rightActiveObj
+  if (rightActiveObj.value.length > 0) {
+    rightActiveObj.value = rightActiveObj.value.filter(item => nVal.some(d => d.label === item.label))
+  }
+}, { deep: true })
+
+const clickCustomLeft = (item) => {
+  if (rightData1.value.length < MULTICOUNT) {
+    clickMultiLeft(item)
+  }
+}
+
+const toCustomMultiRight = (value) => {
+  if (leftActiveObj.value.length + rightData1.value.length < MULTICOUNT + 1) {
+    toMultiRight(rightData1)
+  } else {
+    ElMessage.warning(`输入变量最多不能超过${MULTICOUNT}`)
+  }
+}
+
+const toMultiLeft = (value) => {
+  toCommonMultiLeft(value, '', rightData1, rightActiveObj)
+}
+// 开始分析
+const beginAnalysis = async (outParams) => {
+  const metric = []
+  const field = []
+  if (!outParams) {
+    if (rightData1.value.length < 3) {
+      ElMessage.warning(`请选择3至${MULTICOUNT}个变量`)
+      return false
+    }
+    rightData1.value.forEach(item => {
+      metric.push(item.label)
+      field.push({
+        metric: item.label,
+        metric_type: item.dataProperty
+      })
+    })
+  }
+
+  const params = outParams || {
+    metrics_list: metric,
+    project_id: props.engineeringInfo.id,
+    field,
+    input_conditions: JSON.stringify({
+      righData1V: metric
+    })
+  }
+  sendRequest(props.isAntdSix, props.currentNode, newDataOperateId, params, emits)
+}
+defineExpose({
+  beginAnalysis
+})
+</script>
+<style scoped lang="scss">
+@use '@/style/common/variableSelection.scss';
+:deep(.el-form-item__label) {
+  padding-right: 0;
+}
+</style>

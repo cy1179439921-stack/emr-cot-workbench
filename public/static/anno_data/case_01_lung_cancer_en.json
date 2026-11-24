@@ -1,0 +1,406 @@
+{
+  "specialty_context": {
+    "specialty_category": "ONCOLOGY",
+    "subspecialty_note": "Thoracic Oncology / Medical Oncology"
+  },
+  "patient_global_context": {
+    "patient_ref": "0001243986",
+    "age": 61,
+    "sex": "MALE",
+    "baseline_comorbidities_icd10": [],
+    "functional_baseline": "INDEPENDENT",
+    "economic_pressure_indicator": "NOT_OBSERVABLE",
+    "insurance_type": "UNKNOWN"
+  },
+  "clinical_loop_network": [
+    {
+      "loop_meta": {
+        "loop_id": "doc0001243986_L01",
+        "loop_name": "Diagnosis and First-Line Systemic Antineoplastic Therapy for Stage IV Right Lung Squamous Cell Carcinoma",
+        "loop_type": "PRIMARY_DISEASE_MANAGEMENT",
+        "loop_status": "ACTIVE",
+        "trigger_event": "Cough with blood-tinged sputum for >1 month, outside CT showing right upper lobe mass",
+        "trigger_time_source_path": "basic_information.enter_time",
+        "guideline_era": "2025_PRESENT",
+        "treatment_phase": "INITIAL",
+        "disease_status_milestone": "NEWLY_DIAGNOSED"
+      },
+      "loop_relationship_edges": [
+        {
+          "target_loop_id": "doc0001243986_L02",
+          "relation_type": "SEQUENTIAL_NEXT",
+          "relation_description": "Chemotherapy requires long-term central venous access, triggering Loop 2 (Totally Implantable Venous Access Port Placement)."
+        }
+      ],
+      "nodes_annotation": {
+        "node_1_initial_presentation": {
+          "node_temporal_anchor": {
+            "anchor_path": "basic_information.enter_time",
+            "anchor_timestamp": null
+          },
+          "template_type": "ACUTE_OR_FIRST_DIAGNOSIS",
+          "n1_primary_impressions": [
+            "Lung malignant neoplasm",
+            "Pneumonia"
+          ],
+          "n1_differential_list": [
+            "Inflammatory pseudotumor",
+            "Tuberculoma"
+          ],
+          "n1_urgency_level": "ROUTINE_DIAGNOSIS",
+          "n1_diagnostic_logic_cot": "The patient is a 61-year-old male with a heavy smoking history (50+ years, 3 packs/day) admitted for 'cough with blood-tinged sputum for >1 month'. An outside chest CT revealed a 'right upper lobe mass with mediastinal and hilar lymphadenopathy'. Given his advanced age and heavy smoking history, primary bronchogenic carcinoma is highly suspected. Inflammatory pseudotumor and tuberculoma are on the differential; however, the absence of constitutional symptoms like fever or night sweats, combined with a mass and lymphadenopathy on CT, strongly favors malignancy. The immediate priority is to perform an inpatient contrast-enhanced CT, bronchoscopy with biopsy for histological subtyping, and comprehensive systemic staging.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "enter_record.complain",
+                "evidence_text": "Cough accompanied by blood-tinged sputum for over 1 month.",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": null
+              },
+              {
+                "evidence_path": "enter_record.ancillary_tests[0].content",
+                "evidence_text": "Chest CT showed: right upper lobe mass, mediastinal and hilar lymphadenopathy, and chronic pulmonary inflammation.",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": null
+              },
+              {
+                "evidence_path": "enter_record.personal",
+                "evidence_text": "Smoking history of over 50 years, approx. 3 packs/day; alcohol consumption for over 40 years.",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": null
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_2_investigation_interpretation": {
+          "node_temporal_anchor": {
+            "anchor_path_list": [
+              "pathologies[0].time",
+              "image_reports[0].time"
+            ],
+            "anchor_timestamp": null
+          },
+          "n2_clinical_questions": [
+            "Determine histological subtype and immunohistochemical profile",
+            "Complete systemic staging to rule out distant metastasis"
+          ],
+          "n2_intended_test_orders": {
+            "Bronchoscopy with biopsy": "Obtain tissue for histopathology and molecular markers",
+            "Brain MRI": "Rule out brain metastasis",
+            "Whole-body bone scan": "Rule out bone metastasis",
+            "Neck ultrasound": "Rule out supraclavicular lymph node metastasis"
+          },
+          "n2_actual_test_orders": {
+            "Bronchoscopy with biopsy": "Completed",
+            "Brain MRI": "Completed",
+            "Whole-body bone scan": "Completed",
+            "Neck ultrasound": "Completed"
+          },
+          "n2_missed_or_delayed_tests": null,
+          "n2_critical_values": {
+            "Pathology": "(Left/Right lung) Squamous cell carcinoma, P40(+), TTF-1(-), Ki-67(70%)",
+            "Brain MRI": "No brain metastasis, only multiple ischemic foci",
+            "Bone scan": "No bone metastasis",
+            "Neck US": "No supraclavicular lymphadenopathy"
+          },
+          "n2_decision_cot": {
+            "step_1_clinical_question": "Need to determine the pathology and systemic staging of the lung mass to guide subsequent treatment strategy.",
+            "step_2_test_choice_logic": "Bronchoscopy with biopsy is preferred for tissue acquisition as CT suggests a central mass with bronchial narrowing. Concurrently, brain MRI, bone scan, and neck ultrasound are ordered for comprehensive staging.",
+            "step_3_actual_vs_planned_gap": "Actual workup perfectly aligned with the plan; all staging modalities were completed smoothly without omission.",
+            "step_4_result_reshapes_downstream": "Pathology confirmed squamous cell carcinoma with a high proliferative index. Staging showed no brain, bone, or supraclavicular metastasis. However, bronchoscopy confirmed bilateral lung involvement and CT showed mediastinal lymphadenopathy and pulmonary artery encasement, upstaging the disease to Stage IV. The patient is no longer a surgical candidate, necessitating a pivot to systemic palliative therapy."
+          },
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "pathologies[0].diagnosis",
+                "evidence_text": "(Left upper lobe) consistent with squamous cell carcinoma... (Right upper lobe) squamous cell carcinoma (moderately differentiated). IHC: P40(+)",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": null
+              },
+              {
+                "evidence_path": "image_reports[0].diagnosis",
+                "evidence_text": "Multiple ischemic and infarct foci in the brain",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": null
+              },
+              {
+                "evidence_path": "pathologies[0].gross_description",
+                "evidence_text": "Left upper lobe... neoplasm visible. Right upper lobe... neoplasm causing obstruction",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": null
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_3_status_anchor": {
+          "node_temporal_anchor": {
+            "anchor_path": "course_record.first_record.course_time",
+            "anchor_timestamp": null
+          },
+          "n3_severity_staging": {
+            "clinical_grading": "Lung mass, suspected malignancy"
+          },
+          "n3_treatment_strategy": "DIAGNOSTIC_WORKUP",
+          "n3_strategy_logic_cot": "Upon admission, a malignant pulmonary neoplasm was highly suspected, but lacking the gold-standard pathology and systemic staging. The primary strategic objective is diagnostic exploration: completing bronchoscopy and systemic staging to establish histology and TNM stage. Initial plans included active preoperative preparation for potential elective resection, alongside symptomatic support (anti-inflammatories, mucolytics) to optimize the patient for either surgery or systemic therapy.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "course_record.first_record.diagnostic_basis",
+                "evidence_text": "Ancillary tests: Chest CT showed right upper lobe mass, mediastinal and hilar lymphadenopathy",
+                "evidence_scope": "CURRENT_SECTION_CONTEXT",
+                "window_violation_flag": null
+              },
+              {
+                "evidence_path": "course_record.first_record.plan",
+                "evidence_text": "1. Complete relevant workup to determine the nature of the mass; 2. Active preoperative preparation for elective surgery",
+                "evidence_scope": "CURRENT_SECTION_CONTEXT",
+                "window_violation_flag": null
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_4_tailored_treatment": {
+          "node_temporal_anchor": {
+            "anchor_path": "advices.short_advices.items[39].time",
+            "anchor_timestamp": null
+          },
+          "n4_standard_regimen": [
+            "Gemcitabine + Cisplatin/Carboplatin",
+            "PD-1 inhibitor (e.g., Pembrolizumab/Sintilimab)"
+          ],
+          "n4_actual_regimen": [
+            "Gemcitabine 1.2g d1, d5",
+            "Cisplatin 40mg d1-3",
+            "Sintilimab 200mg"
+          ],
+          "n4_deviation_nature": "ALIGNED_WITH_STANDARD",
+          "n4_patient_constraints": [],
+          "n4_tradeoff_logic_cot": {
+            "step_1_standard_baseline": "The standard first-line treatment for advanced lung squamous cell carcinoma is a platinum-based doublet combined with a PD-1 inhibitor.",
+            "step_2_constraint_interception": "Following comprehensive staging, the patient is confirmed to have Stage IV disease (bilateral involvement, pulmonary artery encasement) and is unresectable. However, his performance status is good, with normal hepatic/renal function and no contraindications to immunotherapy.",
+            "step_3_clinical_balancing": "The initial surgical intent is abandoned in favor of palliative systemic chemotherapy. Gemcitabine plus cisplatin combined with sintilimab is selected, balancing efficacy, standard of care, and drug accessibility.",
+            "step_4_safety_guarantee": "A totally implantable venous access port (TIVAP) is placed beforehand, and a robust triple-antiemetic and hydration protocol is ordered to ensure the safe administration of the emetogenic chemotherapy."
+          },
+          "n4_forbidden_regimens_list": [],
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "advices.short_advices.items[39].name",
+                "evidence_text": "Cisplatin for injection 40mg",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": null
+              },
+              {
+                "evidence_path": "advices.short_advices.items[45].name",
+                "evidence_text": "Gemcitabine hydrochloride for injection 1.2g",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": null
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_5_longitudinal_adaptation": {
+          "node_temporal_anchor": {
+            "anchor_path": "basic_information.exit_time",
+            "anchor_timestamp": null
+          },
+          "n5_outcome_observable_within_admission": true,
+          "n5_outcome_dimension": "SYMPTOMATIC",
+          "n5_outcome_value": "STABLE",
+          "n5_followup_outcome": null,
+          "n5_adverse_events_list": [],
+          "n5_emergency_actions": null,
+          "n5_adaptation_logic_cot": "The patient successfully completed the first cycle of Gemcitabine, Cisplatin, and Sintilimab. During hospitalization, CBC and hepatic/renal panels were closely monitored, revealing no Grade IV myelosuppression or severe organ toxicity. Nausea and vomiting were effectively controlled by the triple-antiemetic regimen. At discharge, his performance status remained good, with alleviated cough and sputum production, and no hemoptysis. He was instructed to repeat CBC in 7 days, with PRN G-CSF support if neutropenic, and to schedule the next cycle.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "exit_record.out_description",
+                "evidence_text": "The patient has no nausea, vomiting, chest tightness, or chest pain... cleared for discharge.",
+                "evidence_scope": "CURRENT_SECTION_CONTEXT",
+                "window_violation_flag": null
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        }
+      }
+    },
+    {
+      "loop_meta": {
+        "loop_id": "doc0001243986_L02",
+        "loop_name": "Totally Implantable Venous Access Port (TIVAP) Placement for Chemotherapy Access",
+        "loop_type": "ELECTIVE_PROCEDURE",
+        "loop_status": "CLOSED",
+        "trigger_event": "Need for long-term central venous access for vesicant chemotherapy",
+        "trigger_time_source_path": "course_record.first_record.course_time",
+        "guideline_era": "2025_PRESENT",
+        "treatment_phase": "INITIAL",
+        "disease_status_milestone": "PERIOPERATIVE"
+      },
+      "loop_relationship_edges": [],
+      "nodes_annotation": {
+        "node_1_initial_presentation": {
+          "node_temporal_anchor": {
+            "anchor_path": "basic_information.enter_time",
+            "anchor_timestamp": null
+          },
+          "template_type": "PROCEDURAL_INDICATION_REVIEW",
+          "n1_procedural_indication": "The patient is scheduled for long-term platinum-based doublet chemotherapy. Cisplatin is a highly vesicant agent, and peripheral administration carries a high risk of severe phlebitis and tissue necrosis. Given his poor peripheral venous access and the need for multiple cycles, there is an absolute indication for a TIVAP. There are no contraindications such as coagulopathy or local infection.",
+          "n1_urgency_level": "ELECTIVE",
+          "n1_diagnostic_logic_cot": "Assessing the patient's vascular access needs against the treatment regimen. Cisplatin is highly irritating to the vascular endothelium, making peripheral administration unsafe. As the patient requires multi-cycle chemotherapy, establishing a secure, long-term central venous catheter is a prerequisite for the safe delivery of antineoplastic therapy. Preoperative assessment confirms normal coagulation and no surgical contraindications.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "enter_record.preliminary_diagnosis",
+                "evidence_text": "Right upper lobe mass",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": null
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_2_investigation_interpretation": {
+          "node_temporal_anchor": {
+            "anchor_path_list": [
+              "inspections[10].time"
+            ],
+            "anchor_timestamp": null
+          },
+          "n2_clinical_questions": [
+            "Rule out surgical contraindications (coagulation profile, infectious diseases)"
+          ],
+          "n2_intended_test_orders": {
+            "Coagulation profile": "Assess bleeding risk",
+            "Infectious disease panel (Hepatitis, HIV, Syphilis)": "Rule out bloodborne pathogens"
+          },
+          "n2_actual_test_orders": {
+            "Coagulation profile": "Completed",
+            "Infectious disease panel": "Completed"
+          },
+          "n2_missed_or_delayed_tests": null,
+          "n2_critical_values": {
+            "Coagulation": "Slightly prolonged APTT but no clinical bleeding diathesis; PT normal",
+            "Infectious": "All negative"
+          },
+          "n2_decision_cot": {
+            "step_1_clinical_question": "Confirm if the patient meets the safety criteria for TIVAP implantation.",
+            "step_2_test_choice_logic": "Routine preoperative coagulation and infectious disease screening are ordered to mitigate intraoperative hemorrhage risk and prevent cross-infection.",
+            "step_3_actual_vs_planned_gap": "Workup completed as planned without omissions.",
+            "step_4_result_reshapes_downstream": "Coagulation and infectious markers are within acceptable limits for surgery, confirming the patient can proceed with TIVAP placement under local anesthesia as scheduled."
+          },
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "inspections[10].type",
+                "evidence_text": "Coagulation profile",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": null
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_3_status_anchor": {
+          "node_temporal_anchor": {
+            "anchor_path": "course_record.first_record.course_time",
+            "anchor_timestamp": null
+          },
+          "n3_severity_staging": {
+            "clinical_grading": "Elective clean procedure"
+          },
+          "n3_treatment_strategy": "ROUTINE_MAINTENANCE",
+          "n3_strategy_logic_cot": "TIVAP placement is an elective Class I (clean) procedure. Based on the baseline requirement for long-term chemotherapy for a confirmed malignancy, the strategy is to establish a central venous access. Preoperative clearance relies on the normal coagulation and infectious panels confirmed in Node 2 to rule out contraindications and ensure perioperative safety.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "course_record.first_record.description",
+                "evidence_text": "Complete relevant ancillary tests",
+                "evidence_scope": "CURRENT_SECTION_CONTEXT",
+                "window_violation_flag": null
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_4_tailored_treatment": {
+          "node_temporal_anchor": {
+            "anchor_path": "operations[0].start_time",
+            "anchor_timestamp": null
+          },
+          "n4_standard_regimen": [
+            "Totally Implantable Venous Access Port (TIVAP) Placement (Percutaneous)"
+          ],
+          "n4_actual_regimen": [
+            "Venous access port implantation"
+          ],
+          "n4_deviation_nature": "ALIGNED_WITH_STANDARD",
+          "n4_patient_constraints": [],
+          "n4_tradeoff_logic_cot": {
+            "step_1_standard_baseline": "The standard procedure is percutaneous TIVAP placement.",
+            "step_2_constraint_interception": "The patient has no history of local anesthetic allergy or absolute coagulation contraindications, making him a suitable surgical candidate.",
+            "step_3_clinical_balancing": "The decision is made to perform TIVAP placement under local anesthesia to establish central venous access, fulfilling the requirement for subsequent vesicant chemotherapy infusion.",
+            "step_4_safety_guarantee": "Preoperative assessment is complete. The plan includes strict aseptic technique and intraoperative imaging confirmation of catheter tip placement to ensure safety for subsequent therapies."
+          },
+          "n4_forbidden_regimens_list": [],
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "operations[0].op_name",
+                "evidence_text": "Venous access port implantation",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": null
+              },
+              {
+                "evidence_path": "operations[0].anesthesia",
+                "evidence_text": "Local anesthesia",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": null
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_5_longitudinal_adaptation": {
+          "node_temporal_anchor": {
+            "anchor_path": "basic_information.exit_time",
+            "anchor_timestamp": null
+          },
+          "n5_outcome_observable_within_admission": true,
+          "n5_outcome_dimension": "PROCEDURAL_OR_SURGICAL",
+          "n5_outcome_value": "PROCEDURE_SUCCESS_NO_COMPLICATION",
+          "n5_followup_outcome": null,
+          "n5_adverse_events_list": [],
+          "n5_emergency_actions": null,
+          "n5_adaptation_logic_cot": "The procedure was uneventful. Under ultrasound guidance, the right axillary vein was punctured, and fluoroscopy (DSA) was used to position the catheter tip at the cavoatrial junction. Aspiration and flushing were patent. No postoperative complications such as hematoma or pneumothorax occurred. The port was immediately and successfully utilized for the subsequent cisplatin and gemcitabine chemotherapy without extravasation, achieving the intended clinical goal.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "operations[0].process",
+                "evidence_text": "The patient was placed in the supine position... the surgical procedure was uneventful.",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": null
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        }
+      }
+    }
+  ],
+  "cross_loop_joint_reasoning": [
+    {
+      "involved_loop_ids": [
+        "doc0001243986_L01",
+        "doc0001243986_L02"
+      ],
+      "materiality_threshold": false,
+      "clinical_conflict_type": null,
+      "joint_tradeoff_logic_cot": null
+    }
+  ]
+}

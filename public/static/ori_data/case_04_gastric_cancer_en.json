@@ -1,0 +1,2312 @@
+{
+  "advices": {
+    "long_advices": {
+      "items": [
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2025-07-24 08:28:00",
+          "frequency": "QD",
+          "is_drug": "No",
+          "name": "Internal Medicine Nursing Routine QD",
+          "start_time": "2025-07-19 09:06:00",
+          "type": "Nursing"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2025-07-24 08:28:00",
+          "frequency": "QD",
+          "is_drug": "No",
+          "name": "Level I Nursing Care QD",
+          "start_time": "2025-07-19 09:06:00",
+          "type": "Nursing"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2025-07-24 08:28:00",
+          "frequency": "QD",
+          "is_drug": "No",
+          "name": "Caregiver Presence QD",
+          "start_time": "2025-07-19 09:06:00",
+          "type": "Instruction"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2025-07-21 18:25:00",
+          "frequency": "QD",
+          "is_drug": "No",
+          "name": "Low-Sodium Low-Fat Diet QD",
+          "start_time": "2025-07-19 09:06:00",
+          "type": "Diet"
+        },
+        {
+          "administration": "Oral",
+          "dose_unit": "30mg",
+          "end_time": "2025-07-24 08:28:00",
+          "frequency": "QD",
+          "is_drug": "Yes",
+          "name": "Isosorbide Mononitrate Extended-Release Tablets 30mg",
+          "start_time": "2025-07-19 09:06:00",
+          "type": "Medication"
+        },
+        {
+          "administration": "Oral",
+          "dose_unit": "100mg",
+          "end_time": "2025-07-24 08:28:00",
+          "frequency": "QD",
+          "is_drug": "Yes",
+          "name": "Sacubitril/Valsartan Sodium Tablets 100mg",
+          "start_time": "2025-07-19 09:06:00",
+          "type": "Medication"
+        },
+        {
+          "administration": "Oral",
+          "dose_unit": "5mg",
+          "end_time": "2025-07-24 08:28:00",
+          "frequency": "TID",
+          "is_drug": "Yes",
+          "name": "Nicorandil Tablets 5mg",
+          "start_time": "2025-07-19 09:06:00",
+          "type": "Medication"
+        },
+        {
+          "administration": "Oral",
+          "dose_unit": "10mg",
+          "end_time": "2025-07-24 08:28:00",
+          "frequency": "QN",
+          "is_drug": "Yes",
+          "name": "Rosuvastatin Calcium Tablets 10mg",
+          "start_time": "2025-07-19 09:06:00",
+          "type": "Medication"
+        },
+        {
+          "administration": "IV Infusion",
+          "dose_unit": "100ml",
+          "end_time": "2025-07-24 08:28:00",
+          "frequency": "QD",
+          "is_drug": "Yes",
+          "name": "0.9% Sodium Chloride Injection 100ml",
+          "start_time": "2025-07-19 09:07:00",
+          "type": "Medication"
+        },
+        {
+          "administration": "IV Infusion",
+          "dose_unit": "40mg",
+          "end_time": "2025-07-24 08:28:00",
+          "frequency": "QD",
+          "is_drug": "Yes",
+          "name": "Esomeprazole Sodium for Injection 40mg IV",
+          "start_time": "2025-07-19 09:07:00",
+          "type": "Medication"
+        },
+        {
+          "administration": "IV Infusion",
+          "dose_unit": "250ml",
+          "end_time": "2025-07-24 08:28:00",
+          "frequency": "QD",
+          "is_drug": "Yes",
+          "name": "5% Dextrose Injection 250ml",
+          "start_time": "2025-07-19 09:07:00",
+          "type": "Medication"
+        },
+        {
+          "administration": "IV Infusion",
+          "dose_unit": "180mg",
+          "end_time": "2025-07-24 08:28:00",
+          "frequency": "QD",
+          "is_drug": "Yes",
+          "name": "Meglumine Adenosine Cyclophosphate Injection 180mg",
+          "start_time": "2025-07-19 09:07:00",
+          "type": "Medication"
+        },
+        {
+          "administration": "Oral",
+          "dose_unit": "0.1g",
+          "end_time": "2025-07-21 18:30:00",
+          "frequency": "TID",
+          "is_drug": "Yes",
+          "name": "Rebamipide Tablets 0.1g",
+          "start_time": "2025-07-19 09:07:00",
+          "type": "Medication"
+        },
+        {
+          "administration": "Subcutaneous Injection",
+          "dose_unit": "40mg",
+          "end_time": "2025-07-21 18:30:00",
+          "frequency": "QD",
+          "is_drug": "Yes",
+          "name": "Enoxaparin Sodium Injection 40mg",
+          "start_time": "2025-07-19 12:14:00",
+          "type": "Medication"
+        },
+        {
+          "administration": "IV Infusion",
+          "dose_unit": "200mg",
+          "end_time": "2025-07-24 08:28:00",
+          "frequency": "QD",
+          "is_drug": "Yes",
+          "name": "Iron Dextran Injection",
+          "start_time": "2025-07-20 10:07:00",
+          "type": "Medication"
+        },
+        {
+          "administration": "IV Infusion",
+          "dose_unit": "300mg",
+          "end_time": "2025-07-22 08:10:00",
+          "frequency": "QD",
+          "is_drug": "Yes",
+          "name": "Etimicin Sulfate Injection 300mg",
+          "start_time": "2025-07-21 18:27:00",
+          "type": "Medication"
+        },
+        {
+          "administration": "Oral",
+          "dose_unit": "1g",
+          "end_time": "2025-07-24 08:28:00",
+          "frequency": "BID",
+          "is_drug": "Yes",
+          "name": "Sucralfate Suspension Gel 1g",
+          "start_time": "2025-07-21 18:27:00",
+          "type": "Medication"
+        },
+        {
+          "administration": "Oral",
+          "dose_unit": "0.67g",
+          "end_time": "2025-07-24 08:28:00",
+          "frequency": "TID",
+          "is_drug": "Yes",
+          "name": "L-Glutamine Gualenate Granules 0.67g",
+          "start_time": "2025-07-21 18:27:00",
+          "type": "Medication"
+        },
+        {
+          "administration": "IV Infusion",
+          "dose_unit": "250ml",
+          "end_time": "2025-07-24 08:28:00",
+          "frequency": "QD",
+          "is_drug": "Yes",
+          "name": "Compound Amino Acid Injection (14AA-SF) 250ml",
+          "start_time": "2025-07-21 18:29:00",
+          "type": "Medication"
+        },
+        {
+          "administration": "IV Infusion",
+          "dose_unit": "250ml",
+          "end_time": "2025-07-24 08:28:00",
+          "frequency": "QD",
+          "is_drug": "Yes",
+          "name": "Multiple Oil Emulsion Injection 250ml",
+          "start_time": "2025-07-21 18:29:00",
+          "type": "Medication"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2025-07-24 08:28:00",
+          "frequency": "QD",
+          "is_drug": "No",
+          "name": "Parenteral Nutrition Therapy QD",
+          "start_time": "2025-07-21 18:29:00",
+          "type": "Treatment"
+        },
+        {
+          "administration": "IV Infusion",
+          "dose_unit": "2g",
+          "end_time": "2025-08-03 07:47:00",
+          "frequency": "QD",
+          "is_drug": "Yes",
+          "name": "Ceftriaxone Sodium for Injection 2g",
+          "start_time": "2025-07-28 15:45:00",
+          "type": "Medication"
+        },
+        {
+          "administration": "Nebulization",
+          "dose_unit": "1mg",
+          "end_time": "2025-08-03 07:47:00",
+          "frequency": "BID",
+          "is_drug": "Yes",
+          "name": "Budesonide Suspension for Nebulization 1mg",
+          "start_time": "2025-07-28 15:45:00",
+          "type": "Medication"
+        },
+        {
+          "administration": "Nebulization",
+          "dose_unit": "0.5mg",
+          "end_time": "2025-08-03 07:47:00",
+          "frequency": "BID",
+          "is_drug": "Yes",
+          "name": "Ipratropium Bromide Solution for Nebulization 0.5mg",
+          "start_time": "2025-07-28 15:45:00",
+          "type": "Medication"
+        },
+        {
+          "administration": "IV Infusion",
+          "dose_unit": "15mg",
+          "end_time": "2025-08-05 08:53:00",
+          "frequency": "BID",
+          "is_drug": "Yes",
+          "name": "Ambroxol Hydrochloride Injection 15mg",
+          "start_time": "2025-08-02 04:42:00",
+          "type": "Medication"
+        },
+        {
+          "administration": "Nasogastric",
+          "dose_unit": "200ml",
+          "end_time": "2025-08-05 08:53:00",
+          "frequency": "QD",
+          "is_drug": "Yes",
+          "name": "Enteral Nutrition Emulsion (TPF-T) 200ml via NG tube",
+          "start_time": "2025-08-03 07:48:00",
+          "type": "Medication"
+        },
+        {
+          "administration": "IV Infusion",
+          "dose_unit": "1440ml",
+          "end_time": "2025-08-03 07:47:00",
+          "frequency": "QD",
+          "is_drug": "Yes",
+          "name": "Fat Emulsion/Amino Acids (17)/Glucose (11%) Injection 1440ml",
+          "start_time": "2025-07-28 15:45:00",
+          "type": "Medication"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2025-08-06 08:40:00",
+          "frequency": "QD",
+          "is_drug": "No",
+          "name": "Liquid Diet QD",
+          "start_time": "2025-08-04 08:59:00",
+          "type": "Diet"
+        }
+      ]
+    },
+    "short_advices": {
+      "items": [
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2025-07-19 08:59:00",
+          "is_drug": "No",
+          "name": "Complete Blood Count with Differential (5-part)",
+          "time": "2025-07-19 08:59:00",
+          "type": "Laboratory"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2025-07-19 08:59:00",
+          "is_drug": "No",
+          "name": "Reticulocyte Count (Automated)",
+          "time": "2025-07-19 08:59:00",
+          "type": "Laboratory"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2025-07-19 08:59:00",
+          "is_drug": "No",
+          "name": "Serum Folate Assay (Chemiluminescence)",
+          "time": "2025-07-19 08:59:00",
+          "type": "Laboratory"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2025-07-19 08:59:00",
+          "is_drug": "No",
+          "name": "Serum Vitamin B12 Assay (Chemiluminescence)",
+          "time": "2025-07-19 08:59:00",
+          "type": "Laboratory"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2025-07-19 08:59:00",
+          "is_drug": "No",
+          "name": "Serum Cardiac Troponin I",
+          "time": "2025-07-19 08:59:00",
+          "type": "Laboratory"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2025-07-19 08:59:00",
+          "is_drug": "No",
+          "name": "Serum Iron Assay (Colorimetric)",
+          "time": "2025-07-19 08:59:00",
+          "type": "Laboratory"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2025-07-19 08:59:00",
+          "is_drug": "No",
+          "name": "Serum Ferritin",
+          "time": "2025-07-19 08:59:00",
+          "type": "Laboratory"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2025-07-19 08:59:00",
+          "is_drug": "No",
+          "name": "GI Tumor Marker Panel (CEA, CA19-9)",
+          "time": "2025-07-19 08:59:00",
+          "type": "Laboratory"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2025-07-19 08:59:00",
+          "is_drug": "No",
+          "name": "Helicobacter pylori Antibody Typing",
+          "time": "2025-07-19 08:59:00",
+          "type": "Laboratory"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2025-07-19 08:59:00",
+          "is_drug": "No",
+          "name": "Coagulation Panel (PT/PTT/INR/Fibrinogen)",
+          "time": "2025-07-19 08:59:00",
+          "type": "Laboratory"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2025-07-19 09:03:00",
+          "is_drug": "No",
+          "name": "12-Lead Electrocardiogram (Automated Analysis)",
+          "time": "2025-07-19 09:00:00",
+          "type": "Diagnostic Study"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2025-07-19 09:03:00",
+          "is_drug": "No",
+          "name": "Esophagogastroduodenoscopy (EGD)",
+          "time": "2025-07-19 09:02:00",
+          "type": "Diagnostic Study"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2025-07-19 09:03:00",
+          "is_drug": "No",
+          "name": "Colonoscopy",
+          "time": "2025-07-19 09:02:00",
+          "type": "Diagnostic Study"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2025-07-22 11:08:00",
+          "is_drug": "No",
+          "name": "Chest CT without contrast + Thin-slice reconstruction",
+          "time": "2025-07-22 11:07:00",
+          "type": "Diagnostic Study"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2025-07-22 11:08:00",
+          "is_drug": "No",
+          "name": "Abdominal/Pelvic CT with contrast + Thin-slice reconstruction",
+          "time": "2025-07-22 11:07:00",
+          "type": "Diagnostic Study"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2025-07-24 08:26:00",
+          "is_drug": "No",
+          "name": "Consultation Request: Colorectal Surgery Service",
+          "time": "2025-07-24 08:23:00",
+          "type": "Consultation"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2025-07-24 08:30:00",
+          "is_drug": "No",
+          "name": "Transfer to Colorectal Surgery Service",
+          "time": "2025-07-24 08:28:00",
+          "type": "Instruction"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2025-07-24 15:43:00",
+          "is_drug": "No",
+          "name": "Comprehensive Metabolic Panel + Cardiac Biomarkers",
+          "time": "2025-07-24 15:42:00",
+          "type": "Laboratory"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2025-07-24 15:43:00",
+          "is_drug": "No",
+          "name": "Blood Type and Screen",
+          "time": "2025-07-24 15:42:00",
+          "type": "Laboratory"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2025-07-24 15:43:00",
+          "is_drug": "No",
+          "name": "Transthoracic Echocardiogram",
+          "time": "2025-07-24 15:42:00",
+          "type": "Diagnostic Study"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2025-07-24 15:43:00",
+          "is_drug": "No",
+          "name": "Pulmonary Function Test (Complete)",
+          "time": "2025-07-24 15:42:00",
+          "type": "Diagnostic Study"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2025-07-24 15:43:00",
+          "is_drug": "No",
+          "name": "Bilateral Lower Extremity Venous/Arterial Doppler Ultrasound",
+          "time": "2025-07-24 15:42:00",
+          "type": "Diagnostic Study"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2025-07-27 09:41:00",
+          "is_drug": "No",
+          "name": "Ultrasound-Guided Right Subclavian Central Venous Catheter Placement",
+          "time": "2025-07-27 09:39:00",
+          "type": "Procedure"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2025-07-27 10:18:00",
+          "is_drug": "No",
+          "name": "Nasogastric Tube Placement",
+          "time": "2025-07-27 09:58:00",
+          "type": "Procedure"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2025-07-27 14:26:00",
+          "is_drug": "No",
+          "name": "Type and Crossmatch: B RhD-positive, 4 units PRBCs + 200ml FFP",
+          "time": "2025-07-27 12:53:00",
+          "type": "Blood Bank"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2025-07-28 15:47:00",
+          "is_drug": "No",
+          "name": "Post-Anesthesia Care Unit (PACU) Protocol",
+          "time": "2025-07-28 15:45:00",
+          "type": "Nursing"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2025-07-28 15:47:00",
+          "is_drug": "No",
+          "name": "Supine Position x 6 hours post-op",
+          "time": "2025-07-28 15:45:00",
+          "type": "Nursing"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2025-07-28 15:47:00",
+          "is_drug": "No",
+          "name": "Pain Assessment Protocol",
+          "time": "2025-07-28 15:45:00",
+          "type": "Assessment"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2025-07-28 15:47:00",
+          "is_drug": "No",
+          "name": "Post-op Labs: CBC, CMP, BNP, D-Dimer, PCT, CRP",
+          "time": "2025-07-28 15:45:00",
+          "type": "Laboratory"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2025-08-01 08:58:00",
+          "is_drug": "No",
+          "name": "Foley Catheter Removal",
+          "time": "2025-08-01 08:41:00",
+          "type": "Procedure"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2025-08-01 08:58:00",
+          "is_drug": "No",
+          "name": "Nasogastric Tube Removal",
+          "time": "2025-08-01 08:41:00",
+          "type": "Procedure"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2025-08-06 08:49:00",
+          "is_drug": "No",
+          "name": "Discharge Order",
+          "time": "2025-08-06 08:40:00",
+          "type": "Instruction"
+        }
+      ]
+    }
+  },
+  "basic_information": {
+    "age": "70",
+    "birthday": "1954-12-20",
+    "career": "Other",
+    "clinic_diagnosis_icd10": "K92.100x001",
+    "clinic_diagnosis_name": "Melena, etiology unknown",
+    "document_id": "0001092202",
+    "enter_time": "2025-07-19 08:39:00",
+    "enter_way": "Outpatient referral",
+    "exit_time": "2025-08-06 13:41:00",
+    "in_department": "Department of Gastroenterology",
+    "inhospital_days": 18,
+    "inhospital_number": "5",
+    "main_diagnosis_icd10": "C16.9",
+    "main_diagnosis_name": "Gastric Malignancy",
+    "marital": "Married",
+    "operations_code": ["43.7", "45.43", "45.13"],
+    "operations_name": [
+      "Laparoscopic Distal Gastrectomy with Gastrojejunostomy and Braun Anastomosis",
+      "Colonoscopic Polypectomy (EMR/CSP)",
+      "Esophagogastroduodenoscopy (EGD)"
+    ],
+    "operations_time": ["2025-07-28", "2025-07-21", "2025-07-21"],
+    "other_diagnosis_icd10": [
+      "K63.5", "K76.1", "N28.1", "N20.0", "I10", "I25.10", "R91.8", "K29.40", "D64.9"
+    ],
+    "other_diagnosis_name": [
+      "Colonic Polyps",
+      "Hepatic Cyst",
+      "Renal Cyst",
+      "Right Renal Calculus",
+      "Essential Hypertension, Stage 2, Very High Risk",
+      "Coronary Artery Disease",
+      "Bilateral Pulmonary Nodules",
+      "Chronic Atrophic Gastritis",
+      "Anemia, unspecified"
+    ],
+    "out_department": "Department of Colorectal Surgery",
+    "sex": "Male"
+  },
+  "consultation_record": [
+    {
+      "consultation_abstract": "Elderly male admitted with 'melena for over 1 month.' EGD findings: 1. Gastric cancer; 2. Chronic atrophic gastritis (Kimura-Takemoto C-2). Pathology: (Gastric angle) Adenocarcinoma, moderately to poorly differentiated. (Gastric antrum) Consistent with intramucosal adenocarcinoma, moderately differentiated. H. pylori staining: Negative (-). IHC: HER2 (2+), Claudin 18.2 (+, 2+~3+ in ~80% of cells). Colonoscopy: Endoscopic resection of colorectal polyps (EMR/CSP). Pathology: (Ascending colon 1-2, hepatic flexure 1-3, splenic flexure, descending colon, rectum 1-2) Low-grade tubular adenomas (9 total). Requesting consultation for further management.",
+      "consultation_advice": "History reviewed. Physical examination: No significant positive findings. Assessment: 1. Gastric adenocarcinoma; 2. Other diagnoses as per referring service. Recommendation: Gastric cancer diagnosis confirmed with surgical indication. Transfer to Colorectal Surgery Service for preoperative evaluation and definitive surgical management.",
+      "consultation_department": "Colorectal Surgery Service",
+      "consultation_time": "2025-07-24 09:10:00",
+      "consultation_type": "Routine Consultation",
+      "request_department": "Department of Gastroenterology"
+    }
+  ],
+  "course_record": {
+    "first_record": {
+      "course_time": "2025-07-19 11:58:00",
+      "description": "1. Elderly male presenting with melena for over 1 month, formed stools, frequency 1-2/day, associated with mid-lower abdominal pain and retrosternal chest pain, non-radiating. Admitted for systematic evaluation. 2. Past medical history: Hypertension x3 years (max BP 160/95 mmHg), on Sacubitril/Valsartan and Amlodipine; Coronary Artery Disease x1 year, on Isosorbide Mononitrate and Nicorandil. Denies COPD, hyperlipidemia, chronic infectious diseases, major trauma, surgery, transfusion, or drug/food allergies. Immunization history unknown. 3. Physical exam: Anemic appearance, pale conjunctiva. Lungs clear to auscultation bilaterally. Regular heart rhythm, no murmurs. Abdomen soft, mild tenderness in mid-lower quadrants, no rebound. 4. Ancillary studies: Chest CT (outside): Bilateral pulmonary nodules, larger nodule in left upper lobe warrants short-interval follow-up or further evaluation; bilateral pulmonary fibrosis, focal emphysema in right upper lobe.",
+      "diagnostic_basis": "1. Elderly male with chief complaint of melena >1 month. 2. PMH: Hypertension, CAD on guideline-directed medical therapy. 3. Physical: Anemic appearance, mild mid-lower abdominal tenderness. 4. Imaging: Bilateral pulmonary nodules, fibrotic changes, focal emphysema.",
+      "differential_diagnosis": "1. Peptic Ulcer Disease: Typically presents with chronic, episodic, rhythmic epigastric pain relieved by food or antacids. EGD indicated for definitive diagnosis. 2. Gastric Cancer: Elderly male with melena raises concern for malignancy; may present with abdominal pain, weight loss, elevated tumor markers. EGD with biopsy is diagnostic gold standard.",
+      "plan": "1. Internal medicine nursing protocol, Level I nursing care, low-sodium low-fat diet. 2. Order labs: CBC with differential, reticulocyte count, folate, vitamin B12, cardiac troponin I, serum iron, ferritin, GI tumor markers (CEA/CA19-9), H. pylori serology, coagulation panel; diagnostic studies: EGD, colonoscopy. 3. Initiate medical therapy: PPI for gastric protection, GI motility agents, cardioprotective medications. 4. Request attending physician guidance for next steps.",
+      "preliminary_diagnosis": [
+        "Melena, etiology unknown: Peptic ulcer disease vs. GI malignancy?",
+        "Essential Hypertension, Stage 2, Very High Risk",
+        "Coronary Artery Disease",
+        "Bilateral Pulmonary Nodules"
+      ]
+    },
+    "other_records": [
+      {
+        "record_content": "Elderly male admitted with melena >1 month. EGD: 1. Gastric cancer; 2. Chronic atrophic gastritis (C-2). Pathology: (Gastric angle) Adenocarcinoma, mod-poor diff; (Gastric antrum) Intramucosal adenocarcinoma, mod diff. H. pylori: Negative. IHC: HER2 (2+), Claudin 18.2 (+, 2+~3+ ~80%). Colonoscopy: Endoscopic polypectomy (EMR/CSP) of 9 polyps. Pathology: Low-grade tubular adenomas. Colorectal Surgery consult: Diagnosis confirmed, surgical indication present. Recommendation: Transfer to Colorectal Surgery for operative evaluation. Plan executed after discussion with patient/family.",
+        "record_time": "2025-07-24 09:10:00",
+        "record_type": "Consultation Note"
+      },
+      {
+        "record_content": "Transfer Note: Patient admitted 07-19 to Gastroenterology, now transferring to Colorectal Surgery. Admission: Elderly male, melena >1 month. PMH: HTN, CAD on GDMT. Physical: Anemic appearance, soft abdomen, mild mid-lower tenderness. Labs: Hb 98 g/L, ferritin 9.68 ng/mL, iron 5.46 μmol/L, CEA 5.47 ng/mL. ECG: Sinus rhythm, counterclockwise rotation, T-wave changes. EGD/Colonoscopy performed with polypectomy. Pathology: Gastric adenocarcinoma (mod-poor diff), Claudin 18.2 high expression. CT chest/abdomen/pelvis: Pulmonary nodules, hepatic/renal cysts, right renal calculus. Current: No abdominal pain, no hematemesis/melena, tolerating diet. Physical stable. Assessment: 1. Gastric cancer 2. Colonic polyps (s/p resection) 3. Hepatic/renal cysts 4. Right renal calculus 5. HTN Stage 2 6. CAD 7. Pulmonary nodules 8. Chronic atrophic gastritis 9. Anemia. Reason for transfer: Definitive surgical management of gastric cancer. Precautions: 1. Monitor cardiac function 2. Continue anemia correction.",
+        "record_time": "2025-07-24 09:28:00",
+        "record_type": "Transfer-Out Note"
+      },
+      {
+        "record_content": "Transfer-In Note: Reviewed transfer documentation, history, and physical. Current status: No abdominal pain, no GI bleeding symptoms, no dysphagia. Physical: Anemic appearance, cardiopulmonary exam unremarkable, abdomen soft/nontender, no hepatosplenomegaly, normal bowel sounds, no edema. Assessment consistent with transfer note. Plan: Proceed with surgical management of gastric malignancy.",
+        "record_time": "2025-07-24 10:25:00",
+        "record_type": "Transfer-In Note"
+      },
+      {
+        "record_content": "Preoperative Discussion Summary: Patient: 70M, admitted for melena. Workup: EGD/colonoscopy with pathology-confirmed gastric adenocarcinoma (mod-poor diff), Claudin 18.2 (+80%), HER2 (2+). CT: No distant metastases. Cardiac evaluation: Stable CAD, diastolic dysfunction on echo, no acute ischemia. Surgical indication: Confirmed gastric cancer, resectable, no absolute contraindications. Planned procedure: Laparoscopic radical gastrectomy with D2 lymphadenectomy. Anesthesia: General endotracheal. Risks discussed: Anastomotic leak, bleeding, infection, DVT/PE, cardiac events, mortality. Patient/family consented. Preoperative preparation: NPO, antibiotic prophylaxis, blood products crossmatched (4U PRBCs), VTE prophylaxis. Special considerations: 1. Cardiac monitoring 2. Continued anemia management. Surgeon pre-op assessment: Patient evaluated, indications confirmed, proceeding with surgery.",
+        "record_time": "2025-07-27 07:23:00",
+        "record_type": "Preoperative Discussion/Summary"
+      },
+      {
+        "record_content": "Postoperative Note (POD#0): Procedure completed 2025-07-28 16:15. Intraoperative findings: No ascites, liver/peritoneum/small bowel/spleen unremarkable. Tumor located at gastric angle, not penetrating serosa, no palpable lymphadenopathy. Procedure performed: Laparoscopic distal gastrectomy with gastrojejunostomy and Braun anastomosis. Postoperative plan: Cardiac monitoring, supplemental oxygen, nebulizer therapy, PPI, nutritional support, monitor surgical drains. Family notified of procedure details. Morning labs: Inflammatory markers, metabolic panel.",
+        "record_time": "2025-07-28 16:23:00",
+        "record_type": "Immediate Postoperative Note"
+      }
+    ],
+    "ward_records": [
+      {
+        "content": "Patient reports no melena, abdominal pain, distension, reflux, nausea, vomiting, or dysphagia. Physical: Anemic appearance, cardiopulmonary exam unremarkable, abdomen soft/nontender, no hepatosplenomegaly, normal bowel sounds, no edema. Labs: Hb 98 g/L, ferritin low, iron low, CEA elevated. Attending assessment: Melena/anemia workup suggests GI malignancy. EGD/colonoscopy scheduled. Continue PPI, iron supplementation, cardioprotective meds. Monitor for changes.",
+        "doctor": "",
+        "time": "2025-07-21 08:23:00"
+      },
+      {
+        "content": "Patient stable, no acute symptoms. CT chest/abdomen/pelvis reviewed: Pulmonary nodules (follow-up recommended), hepatic/renal cysts, right renal calculus. Pathology returned: Gastric adenocarcinoma (mod-poor diff), Claudin 18.2 high expression, HER2 (2+); 9 colonic tubular adenomas (low-grade). Attending assessment: Gastric cancer diagnosis confirmed. Colorectal Surgery consulted. Continue current therapy, monitor.",
+        "doctor": "",
+        "time": "2025-07-24 08:20:00"
+      },
+      {
+        "content": "Patient stable, afebrile, no abdominal complaints. Physical: Abdomen soft, no peritoneal signs. Attending assessment: Patient appropriate candidate for surgery. Complete preoperative workup, schedule procedure.",
+        "doctor": "",
+        "time": "2025-07-25 08:24:00"
+      },
+      {
+        "content": "Patient alert, stable vitals. Physical unchanged. Attending assessment: Continue IV fluids, PPI, antibiotic prophylaxis. Diagnosis confirmed, patient preparing for surgery. Procedure scheduled for near term.",
+        "doctor": "",
+        "time": "2025-07-26 08:25:00"
+      },
+      {
+        "content": "POD#1: Patient alert, post-op vitals stable, Foley patent with clear urine, no flatus yet, no acute complaints. Physical: Lungs coarse breath sounds, no rales; regular rhythm; abdomen soft, dressing with minimal serous drainage, no peritoneal signs, bowel sounds absent. Attending assessment: Post-op day 1, stable. Continue antibiotics, nutritional support, PPI. Morning labs: CBC, CMP. Monitor closely.",
+        "doctor": "",
+        "time": "2025-07-29 08:47:00"
+      },
+      {
+        "content": "POD#2: Patient alert, stable vitals, Foley patent, no bowel movement, no flatus. Physical: Lungs coarse, no rales; regular rhythm; abdomen soft, minimal dressing drainage, no peritoneal signs. Labs: PCT 0.477 ng/mL↑, BNP 253.95 pg/mL↑, Hb 120 g/L↓, CRP 42.3 mg/L↑. Attending assessment: Stable post-op course. Prevent anastomotic leak/infection with early ambulation, VTE prophylaxis. Continue current therapy, monitor closely.",
+        "doctor": "",
+        "time": "2025-07-30 08:48:00"
+      },
+      {
+        "content": "POD#3: Patient stable, alert, sleeping well, no flatus yet, vitals stable, afebrile, Foley patent with pale yellow urine. Physical: Incision clean/dry, no erythema/drainage. Attending assessment: Good post-op recovery. Continue current therapy. Patient NPO: Optimize parenteral nutrition, monitor albumin/prealbumin. Continue close monitoring.",
+        "doctor": "",
+        "time": "2025-07-31 07:50:00"
+      },
+      {
+        "content": "POD#6: Patient stable, normal urination, flatus present, no bowel movement yet. Physical: Abdomen soft, no peritoneal signs, incision clean/dry. Attending assessment: Good recovery. Monitor for nausea/vomiting, bowel function. Morning labs tomorrow. Continue close monitoring.",
+        "doctor": "",
+        "time": "2025-08-03 07:51:00"
+      },
+      {
+        "content": "Patient alert, stable, no abdominal pain/distension, afebrile, tolerating liquid diet, flatus present. Physical: Abdomen soft, nontender, incision clean. Attending assessment: Post laparoscopic distal gastrectomy with gastrojejunostomy, recovering well. Sutures removed today. Criteria for discharge met. Discharge instructions: Rest, optimize nutrition, balanced diet, maintain regular bowel habits, follow-up as scheduled, return for concerning symptoms.",
+        "doctor": "",
+        "time": "2025-08-06 07:52:00"
+      }
+    ]
+  },
+  "enter_record": {
+    "allergy": "None reported",
+    "ancillary_tests": [
+      {
+        "content": "Chest CT (outside facility): Bilateral pulmonary nodules; larger nodule in left upper lobe warrants short-interval follow-up or further evaluation; bilateral pulmonary fibrosis, focal emphysema in right upper lobe.",
+        "time": "2025-06-14"
+      }
+    ],
+    "body_examination": "Vitals: T 36.2°C, P 69 bpm, R 22/min, BP 189/107 mmHg, Ht 176 cm, Wt 90 kg. Risk assessments: VTE risk: Low; Nutritional risk (NRS-2002): 1 point. General: Elderly male, anemic appearance, well-developed, well-nourished, alert, spontaneous position, cooperative. Skin: No jaundice, petechiae, or ecchymoses. Lymph nodes: No palpable adenopathy. HEENT: Normocephalic, normochromic conjunctiva with pallor, sclera anicteric, PERRLA, EOMI, no nasal/oral abnormalities, no cyanosis, no pharyngeal erythema, tonsils not enlarged. Neck: Supple, no JVD, trachea midline, thyroid not enlarged. Chest: Symmetric, no deformity. Lungs: Clear to auscultation bilaterally, no rhonchi/rales. Cardiac: No heaves/lifts, normal heart size, regular rhythm, no murmurs/gallops/rubs. Abdomen: Flat, soft, mild tenderness mid-lower quadrants, no rebound, no hepatosplenomegaly, Murphy's sign negative, no CVA tenderness, normal bowel sounds, no shifting dullness. Extremities: No deformities, no edema, dorsalis pedis pulses 2+ bilaterally. Neuro: Normal DTRs, abdominal reflexes present, Babinski negative, Brudzinski negative.",
+    "body_height": "176",
+    "body_weight": "90",
+    "bp": "189/107",
+    "complain": "Melena for over 1 month.",
+    "family": "Parents deceased, cause unknown. One elder sister and one elder brother, both healthy. Denies family history of hereditary or infectious diseases.",
+    "marriage": "Married at age 24, three sons and one daughter, spouse and children healthy.",
+    "menstruation": "N/A",
+    "past": "Hypertension x3 years (max BP 160/95 mmHg), on Sacubitril/Valsartan and Amlodipine. Coronary Artery Disease x1 year, on Isosorbide Mononitrate and Nicorandil. Denies COPD, hyperlipidemia, chronic infectious diseases (hepatitis, TB), major trauma, surgery, transfusion, or drug/food allergies. Immunization history unknown.",
+    "personal": "Born and raised locally, no prolonged residence in endemic areas, no known exposure to industrial toxins/dust/radiation. Never smoked, occasional minimal alcohol use. Denies significant psychological trauma, denies high-risk sexual behavior.",
+    "preliminary_diagnosis": [
+      "Melena, etiology unknown: Peptic ulcer disease vs. GI malignancy?",
+      "Essential Hypertension, Stage 2, Very High Risk",
+      "Coronary Artery Disease",
+      "Bilateral Pulmonary Nodules"
+    ],
+    "present": "Patient reports onset of melena >1 month ago without obvious precipitant. Stools formed, quantity unknown, frequency 1-2/day. Associated with mid-lower abdominal pain and retrosternal chest pain, non-radiating. No reflux, heartburn, nausea, vomiting, abdominal distension, obstipation, diarrhea, palpitations, fatigue, fever, chills, dyspnea, syncope, or altered mental status. Presented to outpatient clinic for evaluation; admitted with diagnosis of 'melena, etiology unknown.' Since onset: alert, fair mental status, poor sleep, bowel pattern as described, normal urination, no significant weight change.",
+    "pulse": "69",
+    "respiratory": "22",
+    "specialist_examination": "None",
+    "temperature": "36.2"
+  },
+  "exit_record": {
+    "enter_description": "Elderly male admitted with 'melena for over 1 month.' PMH: Hypertension x3 years (max 160/95 mmHg) on Sacubitril/Valsartan/Amlodipine; CAD x1 year on Isosorbide Mononitrate/Nicorandil. Denies COPD, hyperlipidemia, chronic infections, major trauma/surgery/transfusion, allergies. Physical: Abdomen soft, mild mid-lower tenderness, no rebound. Ancillary: Chest CT (2025-06-14): Bilateral pulmonary nodules, fibrotic changes, focal emphysema.",
+    "enter_diagnosis": [
+      "Melena, etiology unknown: Peptic ulcer vs. GI malignancy?",
+      "Essential Hypertension, Stage 2, Very High Risk",
+      "Coronary Artery Disease",
+      "Bilateral Pulmonary Nodules"
+    ],
+    "out_advice": [
+      "Monitor diet and bowel habits. Follow-up in 2 weeks. Return to clinic as scheduled. Seek immediate care for concerning symptoms."
+    ],
+    "out_description": "Patient recovering well, afebrile, no abdominal pain/distension, tolerating liquid diet without discomfort, bowel movements resumed, no hematochezia. Physical: Abdomen soft, no tenderness/rebound, normal bowel sounds.",
+    "out_diagnosis": [
+      "Gastric Malignancy",
+      "Colonic Polyps",
+      "Hepatic Cyst",
+      "Renal Cyst",
+      "Right Renal Calculus",
+      "Essential Hypertension, Stage 2, Very High Risk",
+      "Coronary Artery Disease",
+      "Bilateral Pulmonary Nodules",
+      "Chronic Atrophic Gastritis",
+      "Anemia"
+    ],
+    "treatment": "Admission workup: CT chest/abdomen/pelvis (2025-07-22): Pulmonary nodules (follow-up recommended), fibrotic changes, focal emphysema, pleural thickening, hepatic/renal cysts, right renal calculus, pelvic fluid, intraluminal densities (clinical correlation advised). EGD: 1. Gastric cancer; 2. Chronic atrophic gastritis (C-2). Colonoscopy with endoscopic polypectomy (EMR/CSP). After preoperative optimization, underwent laparoscopic distal gastrectomy with gastrojejunostomy and Braun anastomosis (2025-07-28). Final pathology: Tumor location: Gastric antrum, lesser curvature. Size: Two lesions; larger 2.2x1.4 cm, thickness 0.4 cm; smaller 0.8x0.5 cm, thickness 0.2 cm. Morphology: Localized ulcerative type. Histology: Tubular adenocarcinoma, moderately to poorly differentiated. Depth of invasion: Both T1a (larger: muscularis mucosae; smaller: lamina propria). No perforation, no obstruction. No definite lymphovascular invasion. No perineural invasion. Tumor budding: Grade 3. Margins: Negative; larger lesion: proximal 3.2 cm, distal 5.7 cm; smaller: proximal 4.3 cm, distal 3.1 cm. Lymph nodes: Groups 3 (8), 4 (7), 5 (3), 6 (4), 12A (2) – all negative for metastasis. Omentum: Fibroadipose tissue, no tumor. pTNM stage: pT1a N0 Mx. IHC: Claudin 18.2 (2+~3+, ~80%), Syn (-), HER2 (1+), BRAF (-); MMR proteins intact (MLH1/MSH6/PMS2/MSH2 +). Postoperative course: IV fluids, antibiotics, nutritional support. Recovery uncomplicated. Discharged in stable condition."
+  },
+  "image_reports": [
+    {
+      "department": "Gastroenterology Inpatient Unit 1",
+      "diagnosis": "1. Gastric adenocarcinoma;\n2. Chronic atrophic gastritis (Kimura-Takemoto classification C-2).",
+      "findings": "EGD findings: Esophagus: Mucosa smooth, pink, vascular pattern visible, good peristalsis, no abnormalities on NBI. GE junction: Z-line at 40 cm from incisors, well-defined, mucosa smooth, no stricture, normal opening/closure. Gastric fundus/body: Turbid mucus pool, moderate volume. Mucosa smooth, regular arrangement of collecting venules (RAC) pattern lost, rugal folds intact, no ulceration/erosion. Gastric angle/antrum: Arcuate configuration, mucosal erythema, no ulceration/erosion. Gastric angle: ~1.0 cm deep ulcer with nodular raised margins, yellow-white exudate, friable with contact bleeding, ill-defined borders on NBI; 3 biopsies obtained. Gastric antrum (lesser curvature, anterior wall): Rough, erythematous mucosa; 2 biopsies obtained from anterior wall. Pylorus: Round, smooth, normal opening/closure. Duodenum: Bulb, descending portion, and ampulla unremarkable.",
+      "part": "A: Gastric angle x3; B: Gastric antrum x2",
+      "project": "Sedated Esophagogastroduodenoscopy",
+      "time": "2025-07-21 00:00:00"
+    },
+    {
+      "department": "Gastroenterology Inpatient Unit 1",
+      "diagnosis": "Bowel preparation: Boston Bowel Preparation Scale = 8\nEndoscopic resection of colorectal polyps (EMR/CSP technique).",
+      "findings": "Colonoscopy findings: Standard prep, left lateral decubitus position. Scope advanced to terminal ileum (70 cm), mucosa smooth. Withdrawal examination: Significant fecal residue in lumen. Findings: Ascending colon, hepatic flexure, splenic flexure, descending colon, rectum: 9 flat/pedunculated polyps, 0.4-0.8 cm diameter, erythematous surface with visible microvasculature. Larger polyps: Submucosal injection with 1:20,000 epinephrine/methylene blue/glycerol-fructose solution, positive lift sign, snare polypectomy with electrocautery, endoclips applied to resection sites. Smaller polyps: Snare polypectomy, endoclips applied. No active bleeding at resection sites. Remainder of colon: Mucosa smooth, vascular pattern intact.",
+      "part": "A. Ascending colon 1x1; B. Ascending colon 2x1; C. Hepatic flexure 1x1; D. Hepatic flexure 2x1; E. Hepatic flexure 3x1; F. Splenic flexure x1; G. Descending colon x1; H. Rectum 1x1; I. Rectum 2x1",
+      "project": "Sedated Colonoscopy",
+      "time": "2025-07-21 00:00:00"
+    },
+    {
+      "department": "Interventional Radiology",
+      "diagnosis": "Ultrasound-guided right subclavian central venous catheter placement",
+      "findings": "Indication: Central venous access for perioperative management. Procedure: Patient supine. Ultrasound guidance for site selection. Standard sterile prep and draping. Local anesthesia with 2% lidocaine. Under real-time color Doppler guidance, needle advanced into right subclavian vein avoiding vascular structures. Guidewire inserted, tract dilated, dual-lumen central venous catheter advanced to 16 cm depth. Guidewire removed, catheter secured and dressed.",
+      "part": "N/A",
+      "project": "Ultrasound-Guided Procedure",
+      "time": "2025-07-27 14:32:46"
+    },
+    {
+      "department": "Heart Failure Service",
+      "diagnosis": "Bilateral lower extremity arterial intima-media thickening with scattered granular plaques\nMild dilation of right small saphenous vein",
+      "findings": "Arterial Doppler (bilateral): Common femoral, superficial femoral, profunda femoris, popliteal, anterior/posterior tibial, peroneal arteries: Normal course, heterogeneous intima-media thickening, anechoic lumen, scattered hyperechoic granular plaques along vessel walls. Color flow: Patent lumens with focal filling defects at plaque sites, normal spectral waveforms, no significant velocity abnormalities. Venous Doppler (bilateral): Common femoral, superficial femoral, profunda femoris, popliteal, posterior tibial, peroneal veins: Normal course, smooth walls, anechoic lumen, compressible, color flow with respiratory phasicity, no reflux on Valsalva. Right small saphenous vein: Mild dilation, max diameter ~3.6 mm, anechoic lumen. Bilateral great saphenous veins and left small saphenous vein: Normal course, smooth walls, non-dilated lumen, compressible, color flow intact, no reflux at saphenofemoral junction on Valsalva.",
+      "part": "Bilateral lower extremity arteries + deep veins + superficial veins",
+      "project": "Vascular Ultrasound",
+      "time": "2025-06-15 14:10:56"
+    },
+    {
+      "department": "Heart Failure Service",
+      "diagnosis": "Left atrial enlargement\nBasal interventricular septal thickening\nAortic root and ascending aortic dilation\nAortic valve degenerative changes\nMild tricuspid regurgitation",
+      "findings": "2D/M-Mode Echocardiography: Left atrial enlargement; remaining chambers normal size. Interatrial/interventricular septa intact. Basal interventricular septal thickening; left ventricular free wall thickness normal, normal motion and thickening, no resting regional wall motion abnormalities. Aortic valve thickened with increased echogenicity; remaining valves structurally unremarkable. Aortic root and ascending aorta dilated. Aortic arch/descending aorta intact. No pericardial effusion. Spectral/Color Doppler: Mild tricuspid regurgitation. Trace mitral regurgitation. Diastolic mitral inflow: E/A ratio <1 (impaired relaxation pattern).",
+      "part": "Transthoracic Echocardiogram",
+      "project": "Cardiac Ultrasound",
+      "time": "2025-06-14 16:24:30"
+    }
+  ],
+  "inspections": [
+    {
+      "content": [
+        {
+          "name": "Procalcitonin",
+          "range": "0–0.05",
+          "state": "High",
+          "unit": "ng/mL",
+          "value": "0.477"
+        }
+      ],
+      "department": "Colorectal Surgery",
+      "diagnosis": "Melena",
+      "inspection_number": "1214131558802395136",
+      "specimen_type": "Blood",
+      "time": "2025-07-29 09:25:32",
+      "type": "Procalcitonin Assay"
+    },
+    {
+      "content": [
+        {
+          "name": "B-type Natriuretic Peptide (BNP)",
+          "range": "0–100",
+          "state": "High",
+          "unit": "pg/mL",
+          "value": "253.95"
+        }
+      ],
+      "department": "Colorectal Surgery",
+      "diagnosis": "Melena",
+      "inspection_number": "1214131558802395137",
+      "specimen_type": "Blood",
+      "time": "2025-07-29 09:43:10",
+      "type": "BNP Assay"
+    },
+    {
+      "content": [
+        {
+          "name": "D-Dimer",
+          "range": "0–0.55",
+          "state": "High",
+          "unit": "mg/L",
+          "value": "1.54"
+        }
+      ],
+      "department": "Colorectal Surgery",
+      "diagnosis": "Melena",
+      "inspection_number": "1214131558802395138",
+      "specimen_type": "Blood",
+      "time": "2025-07-29 10:07:33",
+      "type": "D-Dimer Assay (Immunoturbidimetric)"
+    },
+    {
+      "content": [
+        {
+          "name": "Procalcitonin",
+          "range": "0–0.05",
+          "state": "High",
+          "unit": "ng/mL",
+          "value": "0.176"
+        }
+      ],
+      "department": "Colorectal Surgery",
+      "diagnosis": "Gastric Malignancy",
+      "inspection_number": "1214131558802395139",
+      "specimen_type": "Blood",
+      "time": "2025-08-02 09:15:27",
+      "type": "Procalcitonin Assay"
+    },
+    {
+      "content": [
+        {
+          "name": "C-Reactive Protein (Nephelometry)",
+          "range": "0–3.48",
+          "state": "High",
+          "unit": "mg/L",
+          "value": "50.3"
+        }
+      ],
+      "department": "Colorectal Surgery",
+      "diagnosis": "Gastric Malignancy",
+      "inspection_number": "1214131558802395140",
+      "specimen_type": "Serum",
+      "time": "2025-08-02 11:33:23",
+      "type": "CRP Assay"
+    },
+    {
+      "content": [
+        {
+          "name": "ABO Blood Group (Column Agglutination)",
+          "range": "",
+          "state": "-",
+          "unit": "",
+          "value": "Type B"
+        },
+        {
+          "name": "Rh(D) Blood Group (Column Agglutination)",
+          "range": "",
+          "state": "-",
+          "unit": "",
+          "value": "Positive"
+        },
+        {
+          "name": "Antibody Screen (I/II/III)",
+          "range": "",
+          "state": "-",
+          "unit": "",
+          "value": "Negative"
+        }
+      ],
+      "department": "Colorectal Surgery",
+      "diagnosis": "Melena",
+      "inspection_number": "1214131558802395141",
+      "specimen_type": "Blood",
+      "time": "2025-07-25 09:39:30",
+      "type": "Blood Type and Screen"
+    },
+    {
+      "content": [
+        {
+          "name": "Alanine Aminotransferase (ALT)",
+          "range": "<50",
+          "state": "Normal",
+          "unit": "U/L",
+          "value": "21.00"
+        },
+        {
+          "name": "Total Bile Acids",
+          "range": "0.0–12.0",
+          "state": "Normal",
+          "unit": "μmol/L",
+          "value": "4.60"
+        },
+        {
+          "name": "Aspartate Aminotransferase (AST)",
+          "range": "<40",
+          "state": "Normal",
+          "unit": "U/L",
+          "value": "21.20"
+        },
+        {
+          "name": "Sialic Acid",
+          "range": "45.6–75.4",
+          "state": "Normal",
+          "unit": "mg/dL",
+          "value": "53.30"
+        },
+        {
+          "name": "AST/ALT Ratio",
+          "range": "0.74–3.45",
+          "state": "Normal",
+          "unit": "Ratio",
+          "value": "1.01"
+        },
+        {
+          "name": "Superoxide Dismutase (SOD)",
+          "range": "129–216",
+          "state": "Normal",
+          "unit": "U/mL",
+          "value": "139.00"
+        },
+        {
+          "name": "Gamma-Glutamyl Transferase (GGT)",
+          "range": "<60",
+          "state": "Normal",
+          "unit": "U/L",
+          "value": "19.00"
+        },
+        {
+          "name": "Glycocholic Acid",
+          "range": "<2.70",
+          "state": "Normal",
+          "unit": "μg/mL",
+          "value": "2.13"
+        },
+        {
+          "name": "Alkaline Phosphatase (ALP)",
+          "range": "45–125",
+          "state": "Normal",
+          "unit": "U/L",
+          "value": "69.00"
+        },
+        {
+          "name": "Blood Urea Nitrogen (BUN)",
+          "range": "2.86–8.20",
+          "state": "Normal",
+          "unit": "mmol/L",
+          "value": "4.30"
+        },
+        {
+          "name": "Total Bilirubin",
+          "range": "5.0–24.0",
+          "state": "Normal",
+          "unit": "μmol/L",
+          "value": "6.10"
+        },
+        {
+          "name": "Creatinine (Enzymatic)",
+          "range": "59–104",
+          "state": "Normal",
+          "unit": "μmol/L",
+          "value": "100.00"
+        },
+        {
+          "name": "Indirect Bilirubin",
+          "range": "2.8–23.8",
+          "state": "Low",
+          "unit": "μmol/L",
+          "value": "2.60"
+        },
+        {
+          "name": "Estimated Glomerular Filtration Rate (eGFR)",
+          "range": "0.03–0.15",
+          "state": "High",
+          "unit": "Ratio",
+          "value": "69.10"
+        },
+        {
+          "name": "BUN:Creatinine Ratio",
+          "range": "202.3–416.5",
+          "state": "Low",
+          "unit": "",
+          "value": "0.043"
+        },
+        {
+          "name": "Total Protein",
+          "range": "65–85",
+          "state": "Low",
+          "unit": "g/L",
+          "value": "59.80"
+        },
+        {
+          "name": "Uric Acid",
+          "range": "0.57–1.30",
+          "state": "High",
+          "unit": "mg/dL",
+          "value": "415.0"
+        },
+        {
+          "name": "Cystatin C",
+          "range": "1.0–3.0",
+          "state": "Normal",
+          "unit": "mg/L",
+          "value": "1.25"
+        },
+        {
+          "name": "Beta-2 Microglobulin",
+          "range": "25.0–70.0",
+          "state": "Low",
+          "unit": "mg/L",
+          "value": "1.91"
+        },
+        {
+          "name": "Retinol-Binding Protein",
+          "range": "3.5–5.3",
+          "state": "High",
+          "unit": "mmol/L",
+          "value": "35.90"
+        },
+        {
+          "name": "Potassium",
+          "range": "3.5–5.3",
+          "state": "Low",
+          "unit": "mmol/L",
+          "value": "3.32"
+        },
+        {
+          "name": "Sodium",
+          "range": "137–147",
+          "state": "Normal",
+          "unit": "mmol/L",
+          "value": "143.00"
+        },
+        {
+          "name": "Chloride",
+          "range": "99–110",
+          "state": "Normal",
+          "unit": "mmol/L",
+          "value": "102.90"
+        },
+        {
+          "name": "Cholinesterase",
+          "range": "5320–12920",
+          "state": "Normal",
+          "unit": "U/L",
+          "value": "5731.0"
+        },
+        {
+          "name": "Adenosine Deaminase (ADA)",
+          "range": "0.0–25.0",
+          "state": "Normal",
+          "unit": "U/L",
+          "value": "5.80"
+        },
+        {
+          "name": "Calcium",
+          "range": "2.19–2.54",
+          "state": "Normal",
+          "unit": "mmol/L",
+          "value": "2.21"
+        },
+        {
+          "name": "Inorganic Phosphate",
+          "range": "0.87–1.45",
+          "state": "Normal",
+          "unit": "mmol/L",
+          "value": "1.01"
+        },
+        {
+          "name": "Calcium-Phosphate Product",
+          "range": "2.0–3.70",
+          "state": "Normal",
+          "unit": "mmol²/L²",
+          "value": "2.23"
+        },
+        {
+          "name": "Magnesium",
+          "range": "0.70–1.10",
+          "state": "Normal",
+          "unit": "mmol/L",
+          "value": "0.87"
+        },
+        {
+          "name": "Total CO2 (Bicarbonate)",
+          "range": "22.0–34.0",
+          "state": "Normal",
+          "unit": "mmol/L",
+          "value": "25.50"
+        },
+        {
+          "name": "Anion Gap",
+          "range": "8.00–16.00",
+          "state": "Normal",
+          "unit": "mmol/L",
+          "value": "14.60"
+        },
+        {
+          "name": "Albumin-Adjusted Calcium",
+          "range": "2.19–2.54",
+          "state": "Normal",
+          "unit": "mmol/L",
+          "value": "2.28"
+        },
+        {
+          "name": "Complement C1q",
+          "range": "15.7–23.7",
+          "state": "Normal",
+          "unit": "mg/dL",
+          "value": "17.10"
+        },
+        {
+          "name": "Direct Bilirubin",
+          "range": "0.24–7.10",
+          "state": "Normal",
+          "unit": "μmol/L",
+          "value": "3.50"
+        },
+        {
+          "name": "Albumin",
+          "range": "40–55",
+          "state": "Low",
+          "unit": "g/L",
+          "value": "36.40"
+        },
+        {
+          "name": "Globulin",
+          "range": "20–40",
+          "state": "Normal",
+          "unit": "g/L",
+          "value": "23.40"
+        },
+        {
+          "name": "Albumin/Globulin Ratio",
+          "range": "1.2–2.4",
+          "state": "Normal",
+          "unit": "Ratio",
+          "value": "1.56"
+        },
+        {
+          "name": "Prealbumin (Transthyretin)",
+          "range": "200–400",
+          "state": "Low",
+          "unit": "mg/L",
+          "value": "187.90"
+        }
+      ],
+      "department": "Colorectal Surgery",
+      "diagnosis": "Melena",
+      "inspection_number": "1214131558802395142",
+      "specimen_type": "Serum",
+      "time": "2025-07-25 10:28:49",
+      "type": "Comprehensive Metabolic Panel (Liver/Kidney/Electrolytes)"
+    },
+    {
+      "content": [
+        {
+          "name": "HBsAg (CMIA)",
+          "range": "<0.05",
+          "state": "Normal",
+          "unit": "IU/mL",
+          "value": "<0.01"
+        },
+        {
+          "name": "HBsAb (CMIA)",
+          "range": "<10.0",
+          "state": "Normal",
+          "unit": "mIU/mL",
+          "value": "<0.90"
+        },
+        {
+          "name": "HBeAg (CMIA)",
+          "range": "<1.0",
+          "state": "Normal",
+          "unit": "S/CO",
+          "value": "0.40"
+        },
+        {
+          "name": "HBeAb (CMIA)",
+          "range": ">1.0",
+          "state": "Normal",
+          "unit": "S/CO",
+          "value": "1.97"
+        },
+        {
+          "name": "HBcAb (CMIA)",
+          "range": "<1.0",
+          "state": "Normal",
+          "unit": "S/CO",
+          "value": "0.17"
+        },
+        {
+          "name": "HCV-Ab (CMIA)",
+          "range": "<1.0",
+          "state": "Normal",
+          "unit": "S/CO",
+          "value": "0.09"
+        },
+        {
+          "name": "TP-Ab (Syphilis, CMIA)",
+          "range": "<1.0",
+          "state": "Normal",
+          "unit": "S/CO",
+          "value": "0.09"
+        },
+        {
+          "name": "HIV Ag/Ab Combo (CMIA)",
+          "range": "<1.0",
+          "state": "Normal",
+          "unit": "S/CO",
+          "value": "0.08"
+        },
+        {
+          "name": "HBV Pre-S1 Ag (CLIA)",
+          "range": "<1.0",
+          "state": "Normal",
+          "unit": "S/CO",
+          "value": "0.223"
+        },
+        {
+          "name": "HCV Core Ag (CLIA)",
+          "range": "<1.0",
+          "state": "Normal",
+          "unit": "S/CO",
+          "value": "0.245"
+        }
+      ],
+      "department": "Colorectal Surgery",
+      "diagnosis": "Melena",
+      "inspection_number": "1214131558802395143",
+      "specimen_type": "Serum",
+      "time": "2025-07-25 13:04:35",
+      "type": "Infectious Disease Serology Panel (10-item)"
+    },
+    {
+      "content": [
+        {
+          "name": "ABO Blood Group (Recipient Sample Confirmation)",
+          "range": "",
+          "state": "-",
+          "unit": "",
+          "value": "Type B"
+        },
+        {
+          "name": "Rh(D) Blood Group (Recipient Sample Confirmation)",
+          "range": "",
+          "state": "-",
+          "unit": "",
+          "value": "Positive"
+        }
+      ],
+      "department": "Colorectal Surgery",
+      "diagnosis": "Melena",
+      "inspection_number": "1214131558802395144",
+      "specimen_type": "Blood",
+      "time": "2025-07-28 09:24:57",
+      "type": "Special Media Crossmatch (Blood Type Reconfirmation)"
+    },
+    {
+      "content": [
+        {
+          "name": "White Blood Cell Count",
+          "range": "3.5–9.5",
+          "state": "Normal",
+          "unit": "10^9/L",
+          "value": "8.20"
+        },
+        {
+          "name": "Mean Corpuscular Hemoglobin Concentration (MCHC)",
+          "range": "316–354",
+          "state": "Low",
+          "unit": "g/L",
+          "value": "311"
+        },
+        {
+          "name": "Neutrophil Percentage",
+          "range": "0.40–0.75",
+          "state": "High",
+          "unit": "",
+          "value": "0.807"
+        },
+        {
+          "name": "Red Cell Distribution Width-CV",
+          "range": "11.5–14.5",
+          "state": "High",
+          "unit": "%",
+          "value": "15.60"
+        },
+        {
+          "name": "Lymphocyte Percentage",
+          "range": "0.20–0.50",
+          "state": "Low",
+          "unit": "",
+          "value": "0.098"
+        },
+        {
+          "name": "Red Cell Distribution Width-SD",
+          "range": "37.0–54.0",
+          "state": "Normal",
+          "unit": "fL",
+          "value": "49.00"
+        },
+        {
+          "name": "Basophil Percentage",
+          "range": "0–0.010",
+          "state": "Normal",
+          "unit": "",
+          "value": "0.001"
+        },
+        {
+          "name": "Platelet Count",
+          "range": "125–350",
+          "state": "Normal",
+          "unit": "10^9/L",
+          "value": "202"
+        },
+        {
+          "name": "Eosinophil Percentage",
+          "range": "0.004–0.08",
+          "state": "Low",
+          "unit": "",
+          "value": "0.000"
+        },
+        {
+          "name": "Mean Platelet Volume (MPV)",
+          "range": "9.6–15.2",
+          "state": "Normal",
+          "unit": "fL",
+          "value": "10.70"
+        },
+        {
+          "name": "Monocyte Percentage",
+          "range": "0.03–0.10",
+          "state": "Normal",
+          "unit": "",
+          "value": "0.094"
+        },
+        {
+          "name": "Platelet Distribution Width",
+          "range": "0.19–0.39",
+          "state": "High",
+          "unit": "%",
+          "value": "12.20"
+        },
+        {
+          "name": "Absolute Neutrophil Count",
+          "range": "1.8–6.30",
+          "state": "High",
+          "unit": "10^9/L",
+          "value": "6.62"
+        },
+        {
+          "name": "Absolute Lymphocyte Count",
+          "range": "1.10–3.20",
+          "state": "Low",
+          "unit": "10^9/L",
+          "value": "0.80"
+        },
+        {
+          "name": "Absolute Monocyte Count",
+          "range": "0.10–0.60",
+          "state": "High",
+          "unit": "10^9/L",
+          "value": "0.80"
+        },
+        {
+          "name": "Red Blood Cell Count",
+          "range": "4.3–5.8",
+          "state": "Low",
+          "unit": "10^12/L",
+          "value": "4.20"
+        },
+        {
+          "name": "Hemoglobin",
+          "range": "130–175",
+          "state": "Low",
+          "unit": "g/L",
+          "value": "120.0"
+        },
+        {
+          "name": "Hematocrit",
+          "range": "0.40–0.50",
+          "state": "Low",
+          "unit": "%",
+          "value": "0.386"
+        },
+        {
+          "name": "Mean Corpuscular Volume (MCV)",
+          "range": "82–100",
+          "state": "Normal",
+          "unit": "fL",
+          "value": "91.90"
+        },
+        {
+          "name": "Mean Corpuscular Hemoglobin (MCH)",
+          "range": "27–34",
+          "state": "Normal",
+          "unit": "pg",
+          "value": "28.60"
+        },
+        {
+          "name": "Absolute Basophil Count",
+          "range": "0.00–0.06",
+          "state": "Normal",
+          "unit": "10^9/L",
+          "value": "0.01"
+        },
+        {
+          "name": "Absolute Eosinophil Count",
+          "range": "0.02–0.52",
+          "state": "Low",
+          "unit": "10^9/L",
+          "value": "0.00"
+        },
+        {
+          "name": "Plateletcrit",
+          "range": "0.19–0.39",
+          "state": "Normal",
+          "unit": "%",
+          "value": "0.220"
+        },
+        {
+          "name": "Large Platelet Ratio",
+          "range": "19.7–42.4",
+          "state": "Normal",
+          "unit": "%",
+          "value": "30.6"
+        }
+      ],
+      "department": "Colorectal Surgery",
+      "diagnosis": "Melena",
+      "inspection_number": "1214131558802395145",
+      "specimen_type": "Blood",
+      "time": "2025-07-29 10:00:36",
+      "type": "Complete Blood Count with 5-Part Differential"
+    },
+    {
+      "content": [
+        {
+          "name": "C-Reactive Protein (Nephelometry)",
+          "range": "0–3.48",
+          "state": "High",
+          "unit": "mg/L",
+          "value": "42.3"
+        }
+      ],
+      "department": "Colorectal Surgery",
+      "diagnosis": "Melena",
+      "inspection_number": "1214131558806589440",
+      "specimen_type": "Blood",
+      "time": "2025-07-29 12:39:23",
+      "type": "CRP Assay (Immunonephelometric)"
+    },
+    {
+      "content": [
+        {
+          "name": "Alanine Aminotransferase (ALT)",
+          "range": "<50",
+          "state": "Normal",
+          "unit": "U/L",
+          "value": "42.30"
+        },
+        {
+          "name": "Total Bile Acids",
+          "range": "0.0–12.0",
+          "state": "Normal",
+          "unit": "μmol/L",
+          "value": "0.40"
+        },
+        {
+          "name": "Aspartate Aminotransferase (AST)",
+          "range": "<40",
+          "state": "High",
+          "unit": "U/L",
+          "value": "41.60"
+        },
+        {
+          "name": "Sialic Acid",
+          "range": "45.6–75.4",
+          "state": "Normal",
+          "unit": "mg/dL",
+          "value": "51.70"
+        },
+        {
+          "name": "AST/ALT Ratio",
+          "range": "0.74–3.45",
+          "state": "Normal",
+          "unit": "Ratio",
+          "value": "0.98"
+        },
+        {
+          "name": "Superoxide Dismutase (SOD)",
+          "range": "129–216",
+          "state": "Normal",
+          "unit": "U/mL",
+          "value": "137.00"
+        },
+        {
+          "name": "Gamma-Glutamyl Transferase (GGT)",
+          "range": "<60",
+          "state": "Normal",
+          "unit": "U/L",
+          "value": "21.30"
+        },
+        {
+          "name": "Glycocholic Acid",
+          "range": "<2.70",
+          "state": "Normal",
+          "unit": "μg/mL",
+          "value": "1.33"
+        },
+        {
+          "name": "Alkaline Phosphatase (ALP)",
+          "range": "45–125",
+          "state": "Normal",
+          "unit": "U/L",
+          "value": "79.00"
+        },
+        {
+          "name": "Blood Urea Nitrogen (BUN)",
+          "range": "2.86–8.20",
+          "state": "Low",
+          "unit": "mmol/L",
+          "value": "2.60"
+        },
+        {
+          "name": "Total Bilirubin",
+          "range": "5.0–24.0",
+          "state": "Normal",
+          "unit": "μmol/L",
+          "value": "15.30"
+        },
+        {
+          "name": "Creatinine (Enzymatic)",
+          "range": "59–104",
+          "state": "Normal",
+          "unit": "μmol/L",
+          "value": "86.00"
+        },
+        {
+          "name": "Direct Bilirubin",
+          "range": "0.24–7.10",
+          "state": "Normal",
+          "unit": "μmol/L",
+          "value": "7.10"
+        },
+        {
+          "name": "Estimated Glomerular Filtration Rate (eGFR)",
+          "range": "",
+          "state": "-",
+          "unit": "",
+          "value": "82.93"
+        },
+        {
+          "name": "Indirect Bilirubin",
+          "range": "2.8–23.8",
+          "state": "Normal",
+          "unit": "μmol/L",
+          "value": "8.20"
+        },
+        {
+          "name": "BUN:Creatinine Ratio",
+          "range": "0.03–0.15",
+          "state": "Normal",
+          "unit": "Ratio",
+          "value": "0.030"
+        },
+        {
+          "name": "Total Protein",
+          "range": "65–85",
+          "state": "Low",
+          "unit": "g/L",
+          "value": "63.40"
+        },
+        {
+          "name": "Uric Acid",
+          "range": "202.3–416.5",
+          "state": "Normal",
+          "unit": "μmol/L",
+          "value": "222.0"
+        },
+        {
+          "name": "Albumin (Bromocresol Green)",
+          "range": "40–55",
+          "state": "Low",
+          "unit": "g/L",
+          "value": "38.80"
+        },
+        {
+          "name": "Cystatin C",
+          "range": "0.57–1.30",
+          "state": "Normal",
+          "unit": "mg/L",
+          "value": "1.10"
+        },
+        {
+          "name": "Globulin",
+          "range": "20–40",
+          "state": "Normal",
+          "unit": "g/L",
+          "value": "24.60"
+        },
+        {
+          "name": "Beta-2 Microglobulin",
+          "range": "1.0–3.0",
+          "state": "Normal",
+          "unit": "mg/L",
+          "value": "1.78"
+        },
+        {
+          "name": "Albumin/Globulin Ratio",
+          "range": "1.2–2.4",
+          "state": "Normal",
+          "unit": "Ratio",
+          "value": "1.58"
+        },
+        {
+          "name": "Retinol-Binding Protein",
+          "range": "25.0–70.0",
+          "state": "Normal",
+          "unit": "mg/L",
+          "value": "25.40"
+        },
+        {
+          "name": "Prealbumin (Transthyretin)",
+          "range": "200–400",
+          "state": "Low",
+          "unit": "mg/L",
+          "value": "197.20"
+        },
+        {
+          "name": "Potassium",
+          "range": "3.5–5.3",
+          "state": "Normal",
+          "unit": "mmol/L",
+          "value": "3.62"
+        },
+        {
+          "name": "Cholinesterase",
+          "range": "5320–12920",
+          "state": "Normal",
+          "unit": "U/L",
+          "value": "5941.0"
+        },
+        {
+          "name": "Sodium",
+          "range": "137–147",
+          "state": "Normal",
+          "unit": "mmol/L",
+          "value": "141.10"
+        },
+        {
+          "name": "Adenosine Deaminase (ADA)",
+          "range": "0.0–25.0",
+          "state": "Normal",
+          "unit": "U/L",
+          "value": "6.70"
+        },
+        {
+          "name": "Chloride",
+          "range": "99–110",
+          "state": "Normal",
+          "unit": "mmol/L",
+          "value": "105.70"
+        },
+        {
+          "name": "Calcium",
+          "range": "2.19–2.64",
+          "state": "Low",
+          "unit": "mmol/L",
+          "value": "2.10"
+        },
+        {
+          "name": "Inorganic Phosphate",
+          "range": "0.87–1.45",
+          "state": "Low",
+          "unit": "mmol/L",
+          "value": "0.64"
+        },
+        {
+          "name": "Calcium-Phosphate Product",
+          "range": "2.0–3.70",
+          "state": "Low",
+          "unit": "mmol²/L²",
+          "value": "1.34"
+        },
+        {
+          "name": "Magnesium",
+          "range": "0.70–1.10",
+          "state": "Normal",
+          "unit": "mmol/L",
+          "value": "0.96"
+        },
+        {
+          "name": "Total CO2 (Bicarbonate)",
+          "range": "22.0–34.0",
+          "state": "Low",
+          "unit": "mmol/L",
+          "value": "21.80"
+        },
+        {
+          "name": "Anion Gap",
+          "range": "8.00–16.00",
+          "state": "Normal",
+          "unit": "mmol/L",
+          "value": "13.60"
+        },
+        {
+          "name": "Albumin-Adjusted Calcium",
+          "range": "2.19–2.54",
+          "state": "Low",
+          "unit": "mmol/L",
+          "value": "2.12"
+        },
+        {
+          "name": "Complement C1q",
+          "range": "15.7–23.7",
+          "state": "Normal",
+          "unit": "mg/dL",
+          "value": "17.10"
+        }
+      ],
+      "department": "Colorectal Surgery",
+      "diagnosis": "Melena",
+      "inspection_number": "1214131558806589441",
+      "specimen_type": "Serum",
+      "time": "2025-07-29 12:57:37",
+      "type": "Electrolytes, Renal Function, Liver Function Panel"
+    },
+    {
+      "content": [
+        {
+          "name": "White Blood Cell Count",
+          "range": "3.5–9.5",
+          "state": "Normal",
+          "unit": "10^9/L",
+          "value": "5.61"
+        },
+        {
+          "name": "Mean Corpuscular Hemoglobin Concentration (MCHC)",
+          "range": "316–354",
+          "state": "Normal",
+          "unit": "g/L",
+          "value": "329"
+        },
+        {
+          "name": "Neutrophil Percentage",
+          "range": "0.40–0.75",
+          "state": "Normal",
+          "unit": "",
+          "value": "0.707"
+        },
+        {
+          "name": "Red Cell Distribution Width-CV",
+          "range": "11.5–14.5",
+          "state": "High",
+          "unit": "%",
+          "value": "15.90"
+        },
+        {
+          "name": "Lymphocyte Percentage",
+          "range": "0.20–0.50",
+          "state": "Low",
+          "unit": "",
+          "value": "0.148"
+        },
+        {
+          "name": "Red Cell Distribution Width-SD",
+          "range": "37.0–54.0",
+          "state": "Normal",
+          "unit": "fL",
+          "value": "50.20"
+        },
+        {
+          "name": "Basophil Percentage",
+          "range": "0–0.010",
+          "state": "Normal",
+          "unit": "",
+          "value": "0.004"
+        },
+        {
+          "name": "Platelet Count",
+          "range": "125–350",
+          "state": "Normal",
+          "unit": "10^9/L",
+          "value": "196"
+        },
+        {
+          "name": "Eosinophil Percentage",
+          "range": "0.004–0.08",
+          "state": "Normal",
+          "unit": "",
+          "value": "0.034"
+        },
+        {
+          "name": "Mean Platelet Volume (MPV)",
+          "range": "9.2–12.0",
+          "state": "Normal",
+          "unit": "fL",
+          "value": "11.00"
+        },
+        {
+          "name": "Monocyte Percentage",
+          "range": "0.03–0.10",
+          "state": "High",
+          "unit": "",
+          "value": "0.107"
+        },
+        {
+          "name": "Platelet Distribution Width",
+          "range": "9.6–15.2",
+          "state": "Normal",
+          "unit": "%",
+          "value": "12.50"
+        },
+        {
+          "name": "Absolute Neutrophil Count",
+          "range": "1.8–6.30",
+          "state": "Normal",
+          "unit": "10^9/L",
+          "value": "3.97"
+        },
+        {
+          "name": "Plateletcrit",
+          "range": "0.19–0.39",
+          "state": "Normal",
+          "unit": "%",
+          "value": "0.220"
+        },
+        {
+          "name": "Absolute Lymphocyte Count",
+          "range": "1.10–3.20",
+          "state": "Low",
+          "unit": "10^9/L",
+          "value": "0.83"
+        },
+        {
+          "name": "Large Platelet Ratio",
+          "range": "19.7–42.4",
+          "state": "Normal",
+          "unit": "%",
+          "value": "32.2"
+        },
+        {
+          "name": "Absolute Basophil Count",
+          "range": "0.00–0.06",
+          "state": "Normal",
+          "unit": "10^9/L",
+          "value": "0.02"
+        },
+        {
+          "name": "Absolute Eosinophil Count",
+          "range": "0.02–0.52",
+          "state": "Normal",
+          "unit": "10^9/L",
+          "value": "0.19"
+        },
+        {
+          "name": "Absolute Monocyte Count",
+          "range": "0.10–0.60",
+          "state": "Normal",
+          "unit": "10^9/L",
+          "value": "0.60"
+        },
+        {
+          "name": "Red Blood Cell Count",
+          "range": "4.3–5.8",
+          "state": "Low",
+          "unit": "10^12/L",
+          "value": "4.06"
+        },
+        {
+          "name": "Hemoglobin",
+          "range": "130–175",
+          "state": "Low",
+          "unit": "g/L",
+          "value": "116.0"
+        },
+        {
+          "name": "Hematocrit",
+          "range": "0.40–0.50",
+          "state": "Low",
+          "unit": "%",
+          "value": "0.353"
+        },
+        {
+          "name": "Mean Corpuscular Volume (MCV)",
+          "range": "82–100",
+          "state": "Normal",
+          "unit": "fL",
+          "value": "86.90"
+        },
+        {
+          "name": "Mean Corpuscular Hemoglobin (MCH)",
+          "range": "27–34",
+          "state": "Normal",
+          "unit": "pg",
+          "value": "28.60"
+        }
+      ],
+      "department": "Colorectal Surgery",
+      "diagnosis": "Gastric Malignancy",
+      "inspection_number": "1214131558806589442",
+      "specimen_type": "Blood",
+      "time": "2025-08-02 08:31:45",
+      "type": "Complete Blood Count with 5-Part Differential"
+    },
+    {
+      "content": [
+        {
+          "name": "B-type Natriuretic Peptide (BNP)",
+          "range": "0–100",
+          "state": "Normal",
+          "unit": "pg/mL",
+          "value": "72.91"
+        }
+      ],
+      "department": "Colorectal Surgery",
+      "diagnosis": "Gastric Malignancy",
+      "inspection_number": "1214131558806589443",
+      "specimen_type": "Blood",
+      "time": "2025-08-02 08:43:57",
+      "type": "BNP Assay"
+    },
+    {
+      "content": [
+        {
+          "name": "Alanine Aminotransferase (ALT)",
+          "range": "7–50",
+          "state": "Normal",
+          "unit": "U/L",
+          "value": "31.00"
+        },
+        {
+          "name": "Total Bile Acids",
+          "range": "0.0–12.0",
+          "state": "Normal",
+          "unit": "μmol/L",
+          "value": "4.40"
+        },
+        {
+          "name": "Aspartate Aminotransferase (AST)",
+          "range": "<40",
+          "state": "Normal",
+          "unit": "U/L",
+          "value": "33.60"
+        },
+        {
+          "name": "AST/ALT Ratio",
+          "range": "0.74–3.45",
+          "state": "Normal",
+          "unit": "Ratio",
+          "value": "1.08"
+        },
+        {
+          "name": "Gamma-Glutamyl Transferase (GGT)",
+          "range": "<60",
+          "state": "High",
+          "unit": "U/L",
+          "value": "124.00"
+        },
+        {
+          "name": "Glycocholic Acid",
+          "range": "<2.70",
+          "state": "High",
+          "unit": "μg/mL",
+          "value": "3.50"
+        },
+        {
+          "name": "Alkaline Phosphatase (ALP)",
+          "range": "45–125",
+          "state": "Normal",
+          "unit": "U/L",
+          "value": "100.00"
+        },
+        {
+          "name": "Blood Urea Nitrogen (BUN)",
+          "range": "2.86–8.20",
+          "state": "Normal",
+          "unit": "mmol/L",
+          "value": "5.80"
+        },
+        {
+          "name": "Direct Bilirubin",
+          "range": "0.24–7.10",
+          "state": "Normal",
+          "unit": "μmol/L",
+          "value": "6.80"
+        },
+        {
+          "name": "Creatinine (Enzymatic)",
+          "range": "59–104",
+          "state": "Normal",
+          "unit": "μmol/L",
+          "value": "81.00"
+        },
+        {
+          "name": "Indirect Bilirubin",
+          "range": "2.8–23.8",
+          "state": "Normal",
+          "unit": "μmol/L",
+          "value": "5.50"
+        },
+        {
+          "name": "Total Protein",
+          "range": "65–85",
+          "state": "Low",
+          "unit": "g/L",
+          "value": "58.00"
+        },
+        {
+          "name": "Albumin (Bromocresol Green)",
+          "range": "40–55",
+          "state": "High",
+          "unit": "g/L",
+          "value": "33.40"
+        },
+        {
+          "name": "Globulin",
+          "range": "20–40",
+          "state": "Normal",
+          "unit": "g/L",
+          "value": "24.00"
+        },
+        {
+          "name": "Albumin/Globulin Ratio",
+          "range": "1.2–2.4",
+          "state": "Normal",
+          "unit": "Ratio",
+          "value": "1.42"
+        },
+        {
+          "name": "Prealbumin (Transthyretin)",
+          "range": "200–400",
+          "state": "Low",
+          "unit": "mg/L",
+          "value": "158.80"
+        },
+        {
+          "name": "Cholinesterase",
+          "range": "5320–12920",
+          "state": "Low",
+          "unit": "U/L",
+          "value": "4992.04"
+        },
+        {
+          "name": "Adenosine Deaminase (ADA)",
+          "range": "0.0–25.0",
+          "state": "Normal",
+          "unit": "U/L",
+          "value": "4.90"
+        },
+        {
+          "name": "Calcium",
+          "range": "2.19–2.54",
+          "state": "Low",
+          "unit": "mmol/L",
+          "value": "2.10"
+        },
+        {
+          "name": "Inorganic Phosphate",
+          "range": "0.87–1.45",
+          "state": "Normal",
+          "unit": "mmol/L",
+          "value": "1.08"
+        },
+        {
+          "name": "Calcium-Phosphate Product",
+          "range": "2.0–3.70",
+          "state": "Normal",
+          "unit": "mmol²/L²",
+          "value": "2.27"
+        },
+        {
+          "name": "Magnesium",
+          "range": "0.70–1.10",
+          "state": "Normal",
+          "unit": "mmol/L",
+          "value": "0.85"
+        },
+        {
+          "name": "Total CO2 (Bicarbonate)",
+          "range": "22.0–34.0",
+          "state": "Normal",
+          "unit": "mmol/L",
+          "value": "22.90"
+        },
+        {
+          "name": "Anion Gap",
+          "range": "8.00–16.00",
+          "state": "Normal",
+          "unit": "mmol/L",
+          "value": "14.10"
+        },
+        {
+          "name": "Albumin-Adjusted Calcium",
+          "range": "2.19–2.54",
+          "state": "Normal",
+          "unit": "mmol/L",
+          "value": "2.22"
+        },
+        {
+          "name": "Complement C1q",
+          "range": "15.7–23.7",
+          "state": "Normal",
+          "unit": "mg/dL",
+          "value": "16.90"
+        },
+        {
+          "name": "Sialic Acid",
+          "range": "45.6–75.4",
+          "state": "High",
+          "unit": "mg/dL",
+          "value": "75.60"
+        },
+        {
+          "name": "Superoxide Dismutase (SOD)",
+          "range": "129–216",
+          "state": "Low",
+          "unit": "U/mL",
+          "value": "116.00"
+        },
+        {
+          "name": "Estimated Glomerular Filtration Rate (eGFR)",
+          "range": "",
+          "state": "-",
+          "unit": "",
+          "value": "89.17"
+        },
+        {
+          "name": "BUN:Creatinine Ratio",
+          "range": "0.03–0.15",
+          "state": "Normal",
+          "unit": "Ratio",
+          "value": "0.072"
+        },
+        {
+          "name": "Uric Acid",
+          "range": "202.3–416.5",
+          "state": "Low",
+          "unit": "μmol/L",
+          "value": "176.0"
+        },
+        {
+          "name": "Cystatin C",
+          "range": "0.57–1.30",
+          "state": "Normal",
+          "unit": "mg/L",
+          "value": "1.16"
+        },
+        {
+          "name": "Beta-2 Microglobulin",
+          "range": "1.0–3.0",
+          "state": "Normal",
+          "unit": "mg/L",
+          "value": "1.90"
+        },
+        {
+          "name": "Retinol-Binding Protein",
+          "range": "25.0–70.0",
+          "state": "Normal",
+          "unit": "mg/L",
+          "value": "31.00"
+        },
+        {
+          "name": "Potassium",
+          "range": "3.5–5.3",
+          "state": "Normal",
+          "unit": "mmol/L",
+          "value": "4.22"
+        },
+        {
+          "name": "Sodium",
+          "range": "137–147",
+          "state": "Normal",
+          "unit": "mmol/L",
+          "value": "142.00"
+        },
+        {
+          "name": "Chloride",
+          "range": "99–110",
+          "state": "Normal",
+          "unit": "mmol/L",
+          "value": "105.00"
+        }
+      ],
+      "department": "Colorectal Surgery",
+      "diagnosis": "Gastric Malignancy",
+      "inspection_number": "1214131558806589444",
+      "specimen_type": "Serum",
+      "time": "2025-08-02 09:35:41",
+      "type": "Liver Function, Renal Function, Electrolytes Panel"
+    },
+    {
+      "content": [
+        {
+          "name": "D-Dimer",
+          "range": "0–0.55",
+          "state": "High",
+          "unit": "mg/L",
+          "value": "7.02"
+        }
+      ],
+      "department": "Colorectal Surgery",
+      "diagnosis": "Gastric Malignancy",
+      "inspection_number": "1214131558806589445",
+      "specimen_type": "Blood",
+      "time": "2025-08-02 10:15:17",
+      "type": "D-Dimer Assay"
+    }
+  ],
+  "operations": [
+    {
+      "anesthesia": "General Endotracheal Anesthesia",
+      "bleeding_volume": "Minimal",
+      "duration": "255 minutes",
+      "end_time": "2025-07-28 16:15:00",
+      "incision_type": "Class II (Clean-Contaminated)",
+      "intra_diagnosis": "1. Gastric Malignancy 2. Essential Hypertension, Stage 2, Very High Risk 3. Coronary Artery Disease 4. Bilateral Pulmonary Nodules",
+      "op_name": "Laparoscopic Distal Gastrectomy with Gastrojejunostomy and Braun Anastomosis",
+      "pre_diagnosis": "1. Gastric Malignancy 2. Essential Hypertension, Stage 2, Very High Risk 3. Coronary Artery Disease 4. Bilateral Pulmonary Nodules",
+      "process": "After induction of general endotracheal anesthesia, patient positioned supine with legs split. Standard sterile prep and draping. Foley catheter placed. Pneumoperitoneum established. Five-port laparoscopic technique: Observation port and operating ports placed. Exploration: No ascites. Liver, peritoneum, small bowel, spleen unremarkable. Tumor identified at gastric angle, not penetrating serosa, no palpable perigastric lymphadenopathy. Decision: Proceed with laparoscopic distal gastrectomy with gastrojejunostomy and Braun anastomosis. Greater omentum mobilized: Flipped cephalad, divided from transverse colon (left-sided start) using ultrasonic shears, entering lesser sac, extended to splenic and hepatic flexures. Greater curvature dissection: Extended to splenic flexure, left gastroepiploic vessels skeletonized at pancreatic tail, ligated at origin, station 4sb lymphadenectomy performed, distal dissection to planned resection margin. Lesser curvature dissection: Right gastroepiploic vessels skeletonized below pylorus, ligated at origin, station 6 lymphadenectomy. Common hepatic artery identified above pancreas, station 8 lymphadenectomy. Right gastric vessels identified along common hepatic artery, ligated at origin, stations 5 and 12a lymphadenectomy. Duodenal bulb mobilized, divided with laparoscopic linear stapler. Anterior pancreatic capsule dissected; left gastric vessels identified along superior pancreatic border, ligated at origin. Gastric lesser curvature: Ultrasonic shears used for layered division, stations 1 and 3 lymphadenectomy performed. Reconstruction: Anvil of circular stapler (29mm) placed ~15cm distal to ligament of Treitz; side-to-side gastrojejunostomy performed ~5cm proximal to tumor. Gastric transection ~4cm proximal to tumor with linear stapler; staple lines and anastomosis reinforced with absorbable sutures. Braun enteroenterostomy: Side-to-side anastomosis between afferent and efferent jejunal limbs ~30cm and ~10cm from gastrojejunostomy, respectively; anastomosis and staple lines reinforced with seromuscular sutures. Irrigation and hemostasis: Surgical field irrigated, meticulous hemostasis confirmed, instrument/sponge count correct. Drains placed: One drain below liver/adjacent to duodenal stump, one drain in splenic bed. Procedure uneventful, minimal blood loss. Transfused: 4 units PRBCs, 200ml FFP. Anesthesia: Adequate. Patient transferred to PACU. Specimens sent to pathology.",
+      "property": "Elective",
+      "start_time": "2025-07-28 12:00:00"
+    }
+  ],
+  "pathologies": [
+    {
+      "department": "Endoscopy Center",
+      "diagnosis": "(Gastric angle) Adenocarcinoma, moderately to poorly differentiated.\n(Gastric antrum) Consistent with intramucosal adenocarcinoma, moderately differentiated.\nHelicobacter pylori staining: Negative (-).\nImmunohistochemistry: HER2 (2+), Claudin 18.2 (+, 2+~3+ in approximately 80% of tumor cells).",
+      "gross_description": "(Gastric angle) Three tissue fragments, largest measuring 0.3 x 0.2 x 0.2 cm, others ~0.2 cm in greatest dimension, gray-white, soft consistency.\n(Gastric antrum) Two tissue fragments, largest 0.4 x 0.3 x 0.2 cm, smaller ~0.3 cm, gray-white, soft consistency.",
+      "specimen": "A: Gastric angle x3; B: Gastric antrum x2",
+      "time": "2025-07-21 00:00:00"
+    },
+    {
+      "department": "Endoscopy Center",
+      "diagnosis": "(Ascending colon 1-2, hepatic flexure 1-3, splenic flexure, descending colon, rectum 1-2) Low-grade tubular adenomas (9 total).",
+      "gross_description": "(Ascending colon 1) One tissue fragment, 0.4 x 0.3 x 0.2 cm, gray-white, soft.\n(Ascending colon 2) One tissue fragment, 0.8 x 0.6 x 0.3 cm, gray-white, soft.\n(Hepatic flexure 1) One tissue fragment, 0.7 x 0.4 x 0.2 cm, gray-white, soft.\n(Hepatic flexure 2) One tissue fragment, 0.4 x 0.3 x 0.3 cm, gray-white, soft.\n(Hepatic flexure 3) One tissue fragment, 0.8 x 0.7 x 0.2 cm, gray-white, soft.\n(Splenic flexure) One tissue fragment, 0.3 x 0.3 x 0.2 cm, gray-white, soft.\n(Descending colon) One tissue fragment, 0.6 x 0.3 x 0.3 cm, gray-white, soft.\n(Rectum 1) One tissue fragment, 0.5 x 0.4 x 0.3 cm, smooth surface, gray-white homogeneous cut surface, soft.\n(Rectum 2) One tissue fragment, 0.6 x 0.5 x 0.3 cm, gray-white, soft.",
+      "specimen": "A: Ascending colon 1x1; B: Ascending colon 2x1; C: Hepatic flexure 1x1; D: Hepatic flexure 2x1; E: Hepatic flexure 3x1; F: Splenic flexure x1; G: Descending colon x1; H: Rectum 1x1; I: Rectum 2x1",
+      "time": "2025-07-21 00:00:00"
+    },
+    {
+      "department": "Colorectal Surgery Service",
+      "diagnosis": "Tumor location: Gastric antrum, lesser curvature.\nSize: Two lesions.\nLarger lesion: Area 2.2 x 1.4 cm, thickness 0.4 cm.\nSmaller lesion: Area 0.8 x 0.5 cm, thickness 0.2 cm.\nGross morphology: Both localized ulcerative type.\nHistologic type: Tubular adenocarcinoma.\nDifferentiation: Moderately to poorly differentiated.\nDepth of invasion:\n  - Larger lesion: pT1a (invades muscularis mucosae)\n  - Smaller lesion: pT1a (invades lamina propria)\nPerforation: Absent.\nObstruction: Absent.\nLymphovascular invasion: No definite tumor emboli identified.\nPerineural invasion: Absent.\nTumor budding grade: Grade 3.\nMargins: Negative.\n  - Larger lesion: Proximal margin 3.2 cm, distal margin 5.7 cm.\n  - Smaller lesion: Proximal margin 4.3 cm, distal margin 3.1 cm.\nLymph node metastasis:\n  - Station 3 (8 nodes), Station 4 (7 nodes), Station 5 (3 nodes), Station 6 (4 nodes), Station 12A (2 nodes): All negative for metastatic carcinoma.\nGreater omentum: Fibroadipose tissue, no tumor identified.\npTNM Stage: pT1a N0 Mx.\nImmunohistochemistry:\n  - Claudin 18.2: 2+~3+ intensity, ~80% of tumor cells positive\n  - Synaptophysin: Negative\n  - HER2: 1+\n  - BRAF V600E: Negative\n  - MMR proteins: Intact expression (MLH1+, MSH6+, PMS2+, MSH2+)",
+      "gross_description": "Specimen: Distal gastrectomy specimen with attached duodenal cuff. Greater curvature length 10.5 cm, lesser curvature 8.0 cm, duodenal cuff 1.7 cm, maximum circumference 4.2 cm. Serosal surface smooth. Opened along greater curvature: Gastric antrum, lesser curvature, 3.2 cm from proximal margin and 5.7 cm from distal margin: One ulcerative lesion measuring 2.2 x 1.4 cm, gray-white firm cut surface, invading to muscularis mucosae, maximum thickness 0.4 cm, ill-defined margins. Remaining mucosa smooth with intact areae gastricae. Second lesion: 4.3 cm from proximal margin, 3.1 cm from distal margin, measuring 0.8 x 0.5 cm, gray-white firm cut surface, maximum thickness 0.2 cm, confined to mucosal layer; lesions separated by 1 cm. Attached greater omentum: 30 x 22 cm, thickness 0.3-0.7 cm, yellow-gray, soft, no palpable nodules or lymph nodes.\nLymph node dissection:\n  - Station 3 (lesser curvature): 8 nodes, largest 1.6 cm, gray-white, soft.\n  - Station 4 (greater curvature): 7 nodes, largest 1.1 cm, gray-white, soft.\n  - Station 5 (suprapyloric): 3 nodes, largest 1.3 cm, gray-white, soft.\n  - Station 6 (infrapyloric): 4 nodes, largest 0.5 cm, gray-white, soft.\n  - Station 12A (hepatic artery): 2 nodes, largest 0.8 cm, gray-white, soft.",
+      "specimen": "Station 12A lymph nodes, gastric tumor specimens",
+      "time": "2025-07-28 00:00:00"
+    },
+    {
+      "department": "Endoscopy Center",
+      "diagnosis": "(Gastric angle) Adenocarcinoma, moderately to poorly differentiated.\n(Gastric antrum) Consistent with intramucosal adenocarcinoma, moderately differentiated.\nHelicobacter pylori staining: Negative (-).\nImmunohistochemistry: HER2 (2+), Claudin 18.2 (+, 2+~3+ in approximately 80% of tumor cells).",
+      "gross_description": "(Gastric angle) Three tissue fragments, largest measuring 0.3 x 0.2 x 0.2 cm, others ~0.2 cm in greatest dimension, gray-white, soft consistency.\n(Gastric antrum) Two tissue fragments, largest 0.4 x 0.3 x 0.2 cm, smaller ~0.3 cm, gray-white, soft consistency.",
+      "specimen": "A: Gastric angle x3; B: Gastric antrum x2",
+      "time": "2025-07-21 00:00:00"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  labels:
+    app: __appname_worker__
+    app.kubernetes.io/name: __appname_project__
+    app.image.version: __image_id__
+  annotations:
+    fluentbit.io/exclude: "true"
+  name: __appname_worker__
+  namespace: __namespace__
+spec:
+  replicas: __replicas__
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: __appname_worker__
+      app.kubernetes.io/name: __appname_project__
+      app.image.version: __image_id__
+  template:
+    metadata:
+      labels:
+        app: __appname_worker__
+        app.kubernetes.io/name: __appname_project__
+        app.image.version: __image_id__
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: "k8s-node03"
+      imagePullSecrets:
+        - name: pull-harbor-images
+      containers:
+        - name: __appname_worker__
+          image: __imagename__
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+              name: web
+              protocol: TCP
+          env:
+            - name: TZ
+              value: Asia/Shanghai 
+          readinessProbe:
+             tcpSocket:
+               port: 80
+             initialDelaySeconds: 5
+             periodSeconds: 5
+          livenessProbe: 
+            httpGet: 
+              path: /
+              port: 80
+              scheme: HTTP
+            initialDelaySeconds: 5
+            timeoutSeconds: 2
+            periodSeconds: 5
+          volumeMounts:
+            - name: __configmapname__
+              mountPath: /etc/nginx/nginx.conf
+              subPath: __volumename__
+      volumes:
+        - name: __configmapname__
+          configMap:
+            name: __configmapname__
+            items:
+              - key: __volumename__
+                path: __volumename__
+---
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    app: __appname_worker__
+    app.kubernetes.io/name: __appname_project__
+    app.image.version: __image_id__
+  name: __appname_worker__
+  namespace: __namespace__
+spec:
+  type: NodePort
+  ports:
+    - name: web
+      port: 80
+      targetPort: 80
+      nodePort: __nodeport__
+  selector:
+    app: __appname_worker__
+    app.kubernetes.io/name: __appname_project__
+    app.image.version: __image_id__

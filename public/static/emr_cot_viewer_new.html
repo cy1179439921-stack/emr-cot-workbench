@@ -1,0 +1,2295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EMR 标注审阅工作台 · CoT Annotation Reviewer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;600;700&family=Noto+Sans+SC:wght@300;400;500;600&family=Source+Serif+Pro:wght@500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --c-bg: #ffffff;
+    --c-bg-soft: #fafbfc;
+    --c-bg-sunken: #f4f6f8;
+    --c-line: #e5e7eb;
+    --c-line-strong: #d1d5db;
+    --c-text: #1a1a1a;
+    --c-text-2: #4b5563;
+    --c-text-3: #6b7280;
+    --c-text-mute: #9ca3af;
+
+    --c-primary: #1f4e78;
+    --c-primary-hover: #163a5a;
+    --c-primary-soft: #e8eff5;
+    --c-primary-line: #c4d5e3;
+
+    /* deviation_nature 五档 */
+    --c-dev-aligned: #047857;
+    --c-dev-aligned-bg: #d1fae5;
+    --c-dev-justified: #b45309;
+    --c-dev-justified-bg: #fef3c7;
+    --c-dev-alternative: #92400e;
+    --c-dev-alternative-bg: #fde68a;
+    --c-dev-questionable: #c2410c;
+    --c-dev-questionable-bg: #fed7aa;
+    --c-dev-error: #b91c1c;
+    --c-dev-error-bg: #fecaca;
+
+    --c-violation: #c53030;
+    --c-violation-bg: #fef2f2;
+
+    --font-sans: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', 'Menlo', monospace;
+
+    --topbar-h: 56px;
+    --tabbar-h: 44px;
+  }
+
+  html[lang="en"] {
+    --font-sans: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; overflow: hidden; }
+  body {
+    background: var(--c-bg);
+    color: var(--c-text);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+
+  /* ─────────── 顶部条 ─────────── */
+  .topbar {
+    height: var(--topbar-h);
+    background: var(--c-bg);
+    border-bottom: 1px solid var(--c-line);
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    gap: 24px;
+    position: relative;
+    z-index: 10;
+  }
+  .topbar .brand {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--c-primary);
+    letter-spacing: 0.02em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .topbar .brand::before {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 18px;
+    background: var(--c-primary);
+  }
+  .topbar .brand-sub {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    color: var(--c-text-mute);
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-left: 8px;
+  }
+
+  .topbar .actions { display: flex; gap: 12px; }
+  .btn {
+    padding: 7px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 4px;
+    transition: all 0.15s;
+    border: 1px solid var(--c-line-strong);
+    color: var(--c-text-2);
+    background: var(--c-bg);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn:hover { border-color: var(--c-primary); color: var(--c-primary); }
+  .btn-primary {
+    background: var(--c-primary);
+    color: white;
+    border-color: var(--c-primary);
+  }
+  .btn-primary:hover {
+    background: var(--c-primary-hover);
+    border-color: var(--c-primary-hover);
+    color: white;
+  }
+
+  /* 语言切换器 */
+  .lang-switch {
+    display: inline-flex;
+    border: 1px solid var(--c-line-strong);
+    border-radius: 4px;
+    overflow: hidden;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    height: 30px;
+  }
+  .lang-switch button {
+    padding: 0 10px;
+    color: var(--c-text-3);
+    background: var(--c-bg);
+    border: none;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  .lang-switch button:hover { color: var(--c-primary); }
+  .lang-switch button.active {
+    background: var(--c-primary);
+    color: white;
+  }
+  .lang-switch button + button { border-left: 1px solid var(--c-line-strong); }
+  .lang-switch button.active + button,
+  .lang-switch button + button.active { border-left-color: var(--c-primary); }
+
+  .patient-pills {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    margin-left: auto;
+    font-size: 12px;
+    margin-right: 60px;
+  }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 0;
+  }
+  .pill-label {
+    color: var(--c-text-mute);
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .pill-value {
+    color: var(--c-text);
+    font-weight: 500;
+  }
+  .pill + .pill { padding-left: 14px; border-left: 1px solid var(--c-line); }
+
+  /* ─────────── Loop Tab 条 ─────────── */
+  .tabbar {
+    height: var(--tabbar-h);
+    background: var(--c-bg-soft);
+    border-bottom: 1px solid var(--c-line);
+    display: flex;
+    align-items: stretch;
+    padding: 0 24px;
+    gap: 0;
+    overflow-x: auto;
+  }
+  .tab {
+    padding: 0 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--c-text-3);
+    border-bottom: 2px solid transparent;
+    transition: all 0.15s;
+    white-space: nowrap;
+    position: relative;
+  }
+  .tab:hover { color: var(--c-text); }
+  .tab.active {
+    color: var(--c-primary);
+    border-bottom-color: var(--c-primary);
+    font-weight: 500;
+  }
+  .tab-id {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--c-text-mute);
+    background: var(--c-bg);
+    padding: 1px 6px;
+    border-radius: 2px;
+    border: 1px solid var(--c-line);
+  }
+  .tab.active .tab-id { color: var(--c-primary); border-color: var(--c-primary-line); background: var(--c-primary-soft); }
+
+  /* ─────────── 主体双面板 ─────────── */
+  .main {
+    height: calc(100vh - var(--topbar-h) - var(--tabbar-h));
+    display: grid;
+    grid-template-columns: 55fr 45fr;
+  }
+
+  .panel {
+    overflow-y: auto;
+    height: 100%;
+    background: var(--c-bg);
+  }
+  .panel-left { border-right: 1px solid var(--c-line); }
+  .panel-right { background: var(--c-bg-soft); }
+
+  /* ─────────── 节点时间轴 ─────────── */
+  .node-timeline {
+    background: var(--c-bg);
+    border-bottom: 1px solid var(--c-line);
+    padding: 18px 28px 12px;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+  }
+  .node-timeline-label {
+    font-size: 10px;
+    color: var(--c-text-mute);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .node-track {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    position: relative;
+  }
+  .node-track::before {
+    content: "";
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    top: 50%;
+    height: 1px;
+    background: var(--c-line-strong);
+    z-index: 0;
+  }
+  .node-step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    z-index: 1;
+    background: var(--c-bg);
+    padding: 0 4px;
+    transition: all 0.15s;
+  }
+  .node-step-dot {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--c-bg);
+    border: 1.5px solid var(--c-line-strong);
+    color: var(--c-text-mute);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .node-step-label {
+    font-size: 10.5px;
+    color: var(--c-text-3);
+    font-weight: 400;
+    white-space: nowrap;
+  }
+  .node-step:hover .node-step-dot {
+    border-color: var(--c-primary);
+    color: var(--c-primary);
+  }
+  .node-step.active .node-step-dot {
+    background: var(--c-primary);
+    border-color: var(--c-primary);
+    color: white;
+  }
+  .node-step.active .node-step-label {
+    color: var(--c-primary);
+    font-weight: 500;
+  }
+
+  /* ─────────── 节点内容区 ─────────── */
+  .node-content { padding: 24px 28px 40px; }
+
+  .node-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--c-line);
+  }
+  .node-title {
+    font-family: var(--font-sans);
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--c-primary);
+    letter-spacing: 0.01em;
+  }
+  .node-title .node-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--c-text-mute);
+    background: var(--c-bg-sunken);
+    padding: 2px 7px;
+    border-radius: 3px;
+    vertical-align: middle;
+    margin-right: 10px;
+    font-weight: 500;
+  }
+
+  .anchor-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    font-size: 11px;
+  }
+  .anchor-bar-label { color: var(--c-text-mute); letter-spacing: 0.05em; text-transform: uppercase; font-size: 9.5px; }
+  .anchor-bar-time { font-family: var(--font-mono); color: var(--c-primary); font-weight: 500; }
+
+  /* ─────────── 字段区块 ─────────── */
+  .section {
+    margin-bottom: 22px;
+  }
+  .section-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--c-text-3);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title::before {
+    content: "";
+    width: 3px;
+    height: 11px;
+    background: var(--c-primary);
+    display: inline-block;
+  }
+
+  .anchor-row {
+    background: var(--c-bg-sunken);
+    border-left: 2px solid var(--c-primary);
+    padding: 10px 14px;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--c-text-2);
+    margin-bottom: 4px;
+    border-radius: 0 3px 3px 0;
+  }
+  .anchor-row .path { color: var(--c-primary); font-weight: 500; }
+  .anchor-row .preview { color: var(--c-text-3); font-size: 11px; margin-top: 4px; padding-left: 14px; border-left: 1px dotted var(--c-line-strong); }
+
+  .kv-grid { display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; }
+  .kv-grid .k {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--c-text-3);
+    padding-top: 1px;
+  }
+  .kv-grid .v {
+    color: var(--c-text);
+    font-size: 13px;
+  }
+  .kv-grid .v.muted { color: var(--c-text-mute); font-style: italic; }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 500;
+    font-family: var(--font-mono);
+    letter-spacing: 0.02em;
+  }
+  .badge-aligned { background: var(--c-dev-aligned-bg); color: var(--c-dev-aligned); }
+  .badge-justified { background: var(--c-dev-justified-bg); color: var(--c-dev-justified); }
+  .badge-alternative { background: var(--c-dev-alternative-bg); color: var(--c-dev-alternative); }
+  .badge-questionable { background: var(--c-dev-questionable-bg); color: var(--c-dev-questionable); }
+  .badge-error { background: var(--c-dev-error-bg); color: var(--c-dev-error); }
+  .badge-neutral { background: var(--c-bg-sunken); color: var(--c-text-2); }
+
+  /* ─────────── 思维链 CoT 主视觉 ─────────── */
+  .cot-block {
+    background: var(--c-bg-soft);
+    border: 1px solid var(--c-line);
+    border-left: 3px solid var(--c-primary);
+    padding: 18px 22px;
+    border-radius: 0 4px 4px 0;
+    margin-bottom: 12px;
+  }
+  .cot-text {
+    font-family: var(--font-sans);
+    font-size: 14.5px;
+    line-height: 1.85;
+    color: var(--c-text);
+    letter-spacing: 0.005em;
+  }
+  .cot-step {
+    margin-bottom: 14px;
+    padding-left: 0;
+  }
+  .cot-step:last-child { margin-bottom: 0; }
+  .cot-step-label {
+    font-family: var(--font-sans);
+    font-size: 10.5px;
+    color: var(--c-primary);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .cot-step-label::before {
+    content: "";
+    width: 18px;
+    height: 1px;
+    background: var(--c-primary);
+  }
+  .cot-step-text {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--c-text);
+  }
+
+  /* ─────────── 证据列表 ─────────── */
+  .evidence-list { display: flex; flex-direction: column; gap: 6px; }
+  .evidence-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 9px 12px;
+    background: var(--c-bg);
+    border: 1px solid var(--c-line);
+    border-radius: 3px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.12s;
+  }
+  .evidence-item:hover {
+    border-color: var(--c-primary);
+    background: var(--c-primary-soft);
+  }
+  .evidence-item.violation {
+    border-color: var(--c-violation);
+    background: var(--c-violation-bg);
+  }
+  .evidence-path {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--c-primary);
+    font-weight: 500;
+    flex-shrink: 0;
+    min-width: 0;
+  }
+  .evidence-text {
+    color: var(--c-text-2);
+    flex: 1;
+  }
+  .evidence-flag {
+    flex-shrink: 0;
+    font-size: 10px;
+    color: var(--c-violation);
+    font-weight: 600;
+  }
+
+  /* ─────────── 右侧 EMR 面板 ─────────── */
+  .emr-header {
+    padding: 18px 24px 14px;
+    background: var(--c-bg-soft);
+    border-bottom: 1px solid var(--c-line);
+    position: sticky;
+    top: 0;
+    z-index: 5;
+  }
+  .emr-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .emr-title {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--c-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .emr-meta {
+    font-size: 11px;
+    color: var(--c-text-3);
+    display: flex;
+    gap: 14px;
+  }
+  .emr-meta strong { color: var(--c-primary); font-weight: 500; font-family: var(--font-mono); }
+
+  .emr-content { padding: 16px 24px 40px; }
+
+  .emr-section {
+    margin-bottom: 18px;
+  }
+  .emr-section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--c-line);
+    margin-bottom: 8px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .emr-section-head:hover .emr-section-title { color: var(--c-primary); }
+  .emr-section-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--c-text-2);
+    letter-spacing: 0.03em;
+    transition: color 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .emr-section-title .caret {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform 0.2s;
+    margin-right: 2px;
+    margin-top: -2px;
+  }
+  .emr-section.collapsed .emr-section-title .caret { transform: rotate(-45deg); }
+  .emr-section.collapsed .emr-section-body { display: none; }
+  .emr-section.outside-window .emr-section-title { color: var(--c-text-mute); }
+  .emr-section.outside-window .emr-section-head::after {
+    content: attr(data-label-outside);
+    font-size: 9.5px;
+    color: var(--c-text-mute);
+    padding: 1px 6px;
+    border: 1px solid var(--c-line);
+    border-radius: 2px;
+    letter-spacing: 0.04em;
+  }
+
+  .emr-section-count { color: var(--c-text-mute); font-size: 10px; }
+
+  .emr-kv {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 5px 14px;
+    font-size: 12px;
+    padding: 4px 0;
+  }
+  .emr-kv .k {
+    color: var(--c-text-3);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding-top: 1px;
+  }
+  .emr-kv .v { color: var(--c-text); word-break: break-word; }
+
+  .emr-item-card {
+    background: var(--c-bg);
+    border: 1px solid var(--c-line);
+    border-radius: 3px;
+    padding: 10px 14px;
+    margin-bottom: 6px;
+    transition: all 0.15s;
+    position: relative;
+  }
+  .emr-item-card.anchored {
+    border-color: var(--c-primary);
+    border-width: 1.5px;
+    background: var(--c-primary-soft);
+  }
+  .emr-item-card.anchored::before {
+    content: attr(data-label-anchored);
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    font-size: 9.5px;
+    color: var(--c-primary);
+    background: var(--c-bg);
+    padding: 1px 6px;
+    border-radius: 2px;
+    border: 1px solid var(--c-primary-line);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  .emr-item-card.cited {
+    border-color: var(--c-primary-line);
+    background: linear-gradient(to right, var(--c-primary-soft) 0%, var(--c-bg) 100%);
+  }
+  .emr-item-card.out-of-time {
+    opacity: 0.4;
+    background: repeating-linear-gradient(45deg, var(--c-bg-sunken), var(--c-bg-sunken) 6px, transparent 6px, transparent 12px);
+  }
+  .emr-item-card.out-of-time::after {
+    content: attr(data-label-masked);
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    font-size: 9.5px;
+    color: var(--c-text-mute);
+    font-style: italic;
+  }
+  .emr-item-card.collapsed-detail .emr-item-detail { display: none; }
+  .emr-item-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .emr-item-summary-text {
+    font-size: 12px;
+    color: var(--c-text);
+    flex: 1;
+    min-width: 0;
+  }
+  .emr-item-summary-time {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    color: var(--c-text-3);
+    flex-shrink: 0;
+  }
+  .emr-item-detail {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--c-line);
+  }
+
+  /* 高亮:被左侧证据引用的字段 */
+  .field-highlight {
+    background: linear-gradient(transparent 50%, #FEF3C7 50%);
+    padding: 0 2px;
+    border-radius: 2px;
+  }
+  .emr-item-card.cited-flash { animation: flash 1.5s ease-out; }
+  @keyframes flash {
+    0% { box-shadow: 0 0 0 3px var(--c-primary), 0 0 0 6px var(--c-primary-soft); }
+    100% { box-shadow: 0 0 0 0 transparent; }
+  }
+
+  /* ─────────── 空状态 / 上传 ─────────── */
+  .empty-state {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    background: var(--c-bg);
+    padding: 40px;
+  }
+  .empty-icon {
+    width: 80px;
+    height: 80px;
+    border: 1.5px solid var(--c-primary-line);
+    color: var(--c-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-sans);
+    font-size: 36px;
+    border-radius: 4px;
+    background: var(--c-primary-soft);
+  }
+  .empty-title {
+    font-family: var(--font-sans);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--c-primary);
+    letter-spacing: 0.01em;
+  }
+  .empty-sub {
+    font-size: 13px;
+    color: var(--c-text-3);
+    text-align: center;
+    max-width: 460px;
+    line-height: 1.7;
+  }
+  .empty-uploaders {
+    display: flex;
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .uploader {
+    border: 1.5px dashed var(--c-line-strong);
+    background: var(--c-bg-soft);
+    border-radius: 6px;
+    padding: 24px 32px;
+    width: 240px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .uploader:hover { border-color: var(--c-primary); background: var(--c-primary-soft); }
+  .uploader-title { font-family: var(--font-sans); font-size: 15px; font-weight: 600; color: var(--c-primary); margin-bottom: 4px; }
+  .uploader-sub { font-size: 11px; color: var(--c-text-3); }
+  .uploader-state { font-size: 10.5px; color: var(--c-text-mute); margin-top: 8px; font-family: var(--font-mono); }
+  .uploader.loaded { border-style: solid; border-color: var(--c-primary); background: var(--c-primary-soft); }
+  .uploader.loaded .uploader-state { color: var(--c-primary); }
+
+  .sample-cases {
+    width: min(560px, 100%);
+    border-top: 1px solid var(--c-line);
+    padding-top: 18px;
+  }
+  .sample-cases-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--c-text-3);
+    letter-spacing: 0.08em;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .sample-case-list {
+    display: grid;
+    gap: 6px;
+  }
+  .sample-case {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--c-line);
+    border-radius: 4px;
+    background: var(--c-bg-soft);
+    color: var(--c-text-2);
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    text-align: left;
+    transition: all 0.15s;
+  }
+  .sample-case:hover {
+    border-color: #8fb3cf;
+    background: var(--c-primary-soft);
+    color: var(--c-primary);
+  }
+  .sample-case-index {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    border-radius: 3px;
+    background: var(--c-bg);
+    border: 1px solid var(--c-line-strong);
+    font-size: 10px;
+    color: var(--c-text-3);
+  }
+
+  .global-cross {
+    margin: 20px 28px;
+    padding: 14px 18px;
+    background: linear-gradient(to right, var(--c-primary-soft), transparent);
+    border-left: 3px solid var(--c-primary);
+    border-radius: 0 4px 4px 0;
+  }
+  .global-cross-title {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--c-primary);
+    margin-bottom: 6px;
+  }
+  .global-cross-body { font-size: 12px; line-height: 1.7; color: var(--c-text-2); }
+  .global-cross-body strong { color: var(--c-text); font-weight: 500; }
+
+  .footnote {
+    padding: 10px 24px;
+    font-size: 10.5px;
+    color: var(--c-text-mute);
+    text-align: center;
+    background: var(--c-bg);
+    border-top: 1px solid var(--c-line);
+  }
+
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<div class="topbar" id="topbar">
+  <div class="brand" id="brand-text">
+    <span data-i18n="brand">EMR · CoT 标注审阅工作台</span>
+    <span class="brand-sub">v5.1 schema</span>
+  </div>
+  <div class="actions">
+    <div class="lang-switch">
+      <button id="lang-zh" class="active" onclick="setLang('zh')">中</button>
+      <button id="lang-en" onclick="setLang('en')">EN</button>
+    </div>
+    <button class="btn" onclick="document.getElementById('file-emr').click()" data-i18n="btn_import_emr">导入 EMR JSON</button>
+    <input type="file" id="file-emr" accept=".json" hidden>
+    <button class="btn btn-primary" onclick="document.getElementById('file-anno').click()" data-i18n="btn_import_anno">导入标注 JSON</button>
+    <input type="file" id="file-anno" accept=".json" hidden>
+    <button class="btn" id="btn-reset" onclick="resetAll()" style="display:none" data-i18n="btn_reset">重置</button>
+  </div>
+  <div class="patient-pills" id="patient-pills"></div>
+</div>
+
+<div class="tabbar" id="tabbar"></div>
+
+<div class="main">
+  <div class="panel panel-left" id="panel-left"></div>
+  <div class="panel panel-right" id="panel-right"></div>
+</div>
+
+<div class="footnote" id="footnote" style="display:none" data-i18n="footnote">
+  渐进式披露遵循 schema v5.1 white-list 规则:右侧 EMR 字段会按当前节点的白名单与锚定时间自动遮罩。
+</div>
+
+<!-- 空状态(初始) -->
+<template id="tmpl-empty">
+  <div class="empty-state">
+    <div class="empty-icon" data-i18n="empty_icon">医</div>
+    <!-- <div class="empty-title" data-i18n="empty_title">EMR 标注审阅工作台</div>
+    <div class="empty-sub" data-i18n="empty_sub">
+      导入一份原始电子病历 JSON 与对应的思维链标注 JSON,
+      系统将按 schema v5.1 的渐进式披露规则进行对照可视化:左侧逐节点呈现 CoT 推理,
+      右侧 EMR 按当前节点白名单自动遮罩,锚定路径与证据双向高亮。
+    </div>
+    <div class="empty-uploaders">
+      <div class="uploader" id="up-emr" onclick="document.getElementById('file-emr').click()">
+        <div class="uploader-title" data-i18n="up_emr_title">1. EMR JSON</div>
+        <div class="uploader-sub" data-i18n="up_emr_sub">原始电子病历(emr_template 结构)</div>
+        <div class="uploader-state" id="up-emr-state" data-i18n="up_state_initial">点击选择文件</div>
+      </div>
+      <div class="uploader" id="up-anno" onclick="document.getElementById('file-anno').click()">
+        <div class="uploader-title" data-i18n="up_anno_title">2. 标注 JSON</div>
+        <div class="uploader-sub" data-i18n="up_anno_sub">标注规约 v5.1 输出</div>
+        <div class="uploader-state" id="up-anno-state" data-i18n="up_state_initial">点击选择文件</div>
+      </div>
+    </div> -->
+    <div class="sample-cases">
+      <div class="sample-cases-title" data-i18n="sample_cases_title">示例病历快速加载</div>
+      <div class="sample-case-list">
+        <button class="sample-case" onclick="loadDemoCaseByBase('case_01_lung_cancer.json')">
+          <span class="sample-case-index">1</span>
+          <span data-sample-case-name data-case-base="case_01_lung_cancer.json">case_01_lung_cancer.json</span>
+        </button>
+        <button class="sample-case" onclick="loadDemoCaseByBase('case_02_colon_cancer.json')">
+          <span class="sample-case-index">2</span>
+          <span data-sample-case-name data-case-base="case_02_colon_cancer.json">case_02_colon_cancer.json</span>
+        </button>
+        <button class="sample-case" onclick="loadDemoCaseByBase('case_03_ophtha.json')">
+          <span class="sample-case-index">3</span>
+          <span data-sample-case-name data-case-base="case_03_ophtha.json">case_03_ophtha.json</span>
+        </button>
+        <button class="sample-case" onclick="loadDemoCaseByBase('case_04_gastric_cancer.json')">
+          <span class="sample-case-index">4</span>
+          <span data-sample-case-name data-case-base="case_04_gastric_cancer.json">case_04_gastric_cancer.json</span>
+        </button>
+        <button class="sample-case" onclick="loadDemoCaseByBase('case_05_sleep_disorder.json')">
+          <span class="sample-case-index">5</span>
+          <span data-sample-case-name data-case-base="case_05_sleep_disorder.json">case_05_sleep_disorder.json</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+/* ──────────────────────────────────────────────────────────
+   国际化字典
+   ────────────────────────────────────────────────────────── */
+const I18N = {
+  zh: {
+    // 顶部 & 按钮
+    brand: 'EMR · CoT 标注审阅工作台',
+    btn_import_emr: '导入EMR JSON',
+    btn_import_anno: '导入CoT JSON',
+    btn_reset: '重置',
+
+    // 空状态
+    empty_icon: '医',
+    empty_title: 'EMR 标注审阅工作台',
+    empty_sub: '导入一份原始电子病历 JSON 与对应的思维链标注 JSON,系统将按 schema v5.1 的渐进式披露规则进行对照可视化:左侧逐节点呈现 CoT 推理,右侧 EMR 按当前节点白名单自动遮罩,锚定路径与证据双向高亮。',
+    up_emr_title: '1. EMR JSON',
+    up_emr_sub: '原始电子病历(emr_template 结构)',
+    up_anno_title: '2. CoT JSON',
+    up_anno_sub: '标注规约 v5.1 输出',
+    up_state_initial: '点击选择文件',
+    up_state_loaded: '✓ 已加载',
+    sample_cases_title: '示例病历快速加载',
+    right_waiting: '待数据导入...',
+    lang_reload_failed: '切换语言数据加载失败',
+
+    // 患者基线 pill
+    pill_patient_id: '病历 ID',
+    pill_age_sex: '年龄/性别',
+    pill_specialty: '科室',
+    pill_loop_count: 'Loop 数',
+
+    // 节点
+    timeline_label: '思维链节点 · 渐进式披露',
+    node_N1: '初始呈象',
+    node_N2: '检查策略',
+    node_N3: '病情锚定',
+    node_N4: '方案抉择',
+    node_N5: '长程应变',
+    node_CROSS: '跨圈协同推理',
+    anchor_label: '锚定时间',
+    anchor_pending: '[待派生]',
+
+    // 区块标题
+    sec_anchor_path: '锚定路径',
+    sec_structured: '核心结构化字段',
+    sec_cot: '思维链(Chain-of-Thought)',
+    sec_evidence: '引用证据',
+    evidence_count: '条 · 质量',
+    evidence_empty: '未引用证据',
+    cot_empty: '— 无 CoT 内容 —',
+    anchor_not_declared: '未声明',
+
+    // 跨圈
+    cross_tab_label: '跨圈',
+    cross_tab_full: 'Cross-Loop Reasoning',
+    cross_section_title: '跨圈',
+    cross_conflict_type: '类型',
+    cross_no_type: '未声明类型',
+    cross_involved_loops: '涉及 Loop:',
+    cross_materiality: '实质影响:',
+    yes: '是',
+    no: '否',
+    cross_paradox: '冲突悖论分析',
+    cross_resource: '整体资源调度',
+    cross_no_single_view: '跨圈推理无单一节点视图。请切回各 Loop 查看具体证据。',
+
+    // 节点结构化字段(N1~N5)
+    f_template_type: 'template_type',
+    f_urgency: '紧急度',
+    f_primary_impressions: '初步印象',
+    f_differential: '鉴别诊断',
+    f_baseline_status: '基线状态评估',
+    f_complications_screen: '并发症筛查',
+    f_procedural_indication: '操作指征',
+    f_clinical_questions: '临床问题',
+    f_intended_orders: '计划检查',
+    f_actual_orders: '实际检查',
+    f_missed_delayed: '漏检/延迟',
+    f_critical_values: '关键值',
+    f_severity_staging: '严重度分级',
+    f_treatment_strategy: '治疗战略',
+    f_standard_regimen: '标准方案',
+    f_actual_regimen: '实际方案',
+    f_deviation_nature: '偏离性质',
+    f_patient_constraints: '现实约束',
+    f_forbidden_regimens: '禁忌方案',
+    f_outcome_observable: '结局是否住院内可观测',
+    f_outcome_dimension: '结局维度',
+    f_outcome_value: '结局值',
+    f_followup_outcome: '随访结局',
+    f_adverse_events: '不良事件',
+    f_emergency_actions: '紧急处置',
+
+    // EMR 面板
+    emr_view_suffix: '视图',
+    emr_section_outside: '白名单外',
+    emr_section_anchored: '锚定',
+    emr_section_time_masked: '时序遮罩',
+    emr_anchor_time: '锚定时间',
+    emr_whitelist: '白名单',
+    emr_whitelist_unit: '段',
+    emr_cited_count: '引用',
+    emr_empty_array: '空数组',
+    emr_out_of_window_hint: '该段在当前节点',
+    emr_out_of_window_hint_2: '白名单外。schema v5.1 规定标注思维链不得引用此段;点击展开仅用于审阅核查。',
+    emr_record_count_suffix: '条',
+    emr_cited_marker: '引用',
+    violation_label: '⚠ 越界',
+
+    // EMR 顶层段中文名(关键修复:之前 hard-coded 在 SECTIONS 里)
+    section_basic_information: '基本信息',
+    section_enter_record: '入院记录',
+    section_inspections: '检验报告',
+    section_image_reports: '影像报告',
+    section_pathologies: '病理报告',
+    section_course_record: '病程记录',
+    section_consultation_record: '会诊记录',
+    section_advices: '医嘱',
+    section_operations: '手术记录',
+    section_exit_record: '出院记录',
+
+    // 底部
+    footnote: '渐进式披露遵循 schema v5.1 white-list 规则:右侧 EMR 字段会按当前节点的白名单与锚定时间自动遮罩。',
+  },
+  en: {
+    // Top & buttons
+    brand: 'EMR · CoT Annotation Review Workbench',
+    btn_import_emr: 'Import EMR JSON',
+    btn_import_anno: 'Import CoT JSON',
+    btn_reset: 'Reset',
+
+    // Empty state
+    empty_icon: 'M',
+    empty_title: 'EMR · CoT Annotation Review Workbench',
+    empty_sub: 'Import a raw EMR JSON file together with its chain-of-thought annotation JSON. The viewer renders side-by-side per schema v5.1 progressive-disclosure rules: each node\'s CoT is displayed on the left, while the EMR on the right is masked according to the active node\'s whitelist and temporal anchor, with bidirectional highlighting between anchor paths and evidence.',
+    up_emr_title: '1. EMR JSON',
+    up_emr_sub: 'Raw EMR (emr_template structure)',
+    up_anno_title: '2. CoT JSON',
+    up_anno_sub: 'Output of annotation schema v5.1',
+    up_state_initial: 'Click to select a file',
+    up_state_loaded: '✓ Loaded',
+    sample_cases_title: 'Load Sample Cases',
+    right_waiting: 'Awaiting data import...',
+    lang_reload_failed: 'Failed to load data for the selected language',
+
+    // Patient pills
+    pill_patient_id: 'Patient ID',
+    pill_age_sex: 'Age / Sex',
+    pill_specialty: 'Specialty',
+    pill_loop_count: 'Loops',
+
+    // Nodes
+    timeline_label: 'CoT Nodes · Progressive Disclosure',
+    node_N1: 'Initial Presentation',
+    node_N2: 'Investigation',
+    node_N3: 'Status Anchor',
+    node_N4: 'Treatment Choice',
+    node_N5: 'Longitudinal',
+    node_CROSS: 'Cross-Loop Reasoning',
+    anchor_label: 'Anchor Time',
+    anchor_pending: '[pending]',
+
+    // Sections
+    sec_anchor_path: 'Anchor Path',
+    sec_structured: 'Core Structured Fields',
+    sec_cot: 'Chain-of-Thought',
+    sec_evidence: 'Cited Evidence',
+    evidence_count: 'items · quality',
+    evidence_empty: 'No evidence cited',
+    cot_empty: '— No CoT content —',
+    anchor_not_declared: 'Not declared',
+
+    // Cross-loop
+    cross_tab_label: 'Cross',
+    cross_tab_full: 'Cross-Loop Reasoning',
+    cross_section_title: 'Cross-Loop',
+    cross_conflict_type: 'type',
+    cross_no_type: 'Unspecified type',
+    cross_involved_loops: 'Involved loops:',
+    cross_materiality: 'Material impact:',
+    yes: 'Yes',
+    no: 'No',
+    cross_paradox: 'Conflict & Paradox Analysis',
+    cross_resource: 'Holistic Resource Scheduling',
+    cross_no_single_view: 'Cross-loop reasoning has no single-node view. Switch back to individual loops to inspect their evidence.',
+
+    // Structured fields
+    f_template_type: 'Template Type',
+    f_urgency: 'Urgency',
+    f_primary_impressions: 'Primary Impressions',
+    f_differential: 'Differential Diagnosis',
+    f_baseline_status: 'Baseline Status',
+    f_complications_screen: 'Complication Screening',
+    f_procedural_indication: 'Procedural Indication',
+    f_clinical_questions: 'Clinical Questions',
+    f_intended_orders: 'Intended Tests',
+    f_actual_orders: 'Actual Tests',
+    f_missed_delayed: 'Missed / Delayed',
+    f_critical_values: 'Critical Values',
+    f_severity_staging: 'Severity Staging',
+    f_treatment_strategy: 'Treatment Strategy',
+    f_standard_regimen: 'Standard Regimen',
+    f_actual_regimen: 'Actual Regimen',
+    f_deviation_nature: 'Deviation Nature',
+    f_patient_constraints: 'Real-World Constraints',
+    f_forbidden_regimens: 'Forbidden Regimens',
+    f_outcome_observable: 'Outcome Observable In-Hospital',
+    f_outcome_dimension: 'Outcome Dimension',
+    f_outcome_value: 'Outcome Value',
+    f_followup_outcome: 'Follow-up Outcome',
+    f_adverse_events: 'Adverse Events',
+    f_emergency_actions: 'Emergency Actions',
+
+    // EMR panel
+    emr_view_suffix: 'View',
+    emr_section_outside: 'Outside Whitelist',
+    emr_section_anchored: 'Anchored',
+    emr_section_time_masked: 'Temporally Masked',
+    emr_anchor_time: 'anchor',
+    emr_whitelist: 'whitelist',
+    emr_whitelist_unit: 'sections',
+    emr_cited_count: 'cited',
+    emr_empty_array: 'Empty array',
+    emr_out_of_window_hint: 'This section is outside the whitelist for node',
+    emr_out_of_window_hint_2: '. Per schema v5.1, the CoT must not cite this section; expansion is for audit only.',
+    emr_record_count_suffix: ' records',
+    emr_cited_marker: 'cited',
+    violation_label: '⚠ Violation',
+
+    // EMR section names
+    section_basic_information: 'Basic Information',
+    section_enter_record: 'Admission Record',
+    section_inspections: 'Lab Reports',
+    section_image_reports: 'Imaging Reports',
+    section_pathologies: 'Pathology Reports',
+    section_course_record: 'Progress Notes',
+    section_consultation_record: 'Consultations',
+    section_advices: 'Orders',
+    section_operations: 'Operations',
+    section_exit_record: 'Discharge Record',
+
+    // Footer
+    footnote: 'Progressive disclosure follows schema v5.1 whitelist rules: EMR fields on the right are automatically masked by the active node\'s whitelist and anchor timestamp.',
+  },
+};
+
+let currentLang = 'zh';
+function t(key) {
+  return (I18N[currentLang] && I18N[currentLang][key]) || I18N.zh[key] || key;
+}
+
+async function setLang(lang) {
+  if (!I18N[lang]) return;
+  currentLang = lang;
+  document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
+  document.getElementById('lang-zh').classList.toggle('active', lang === 'zh');
+  document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+  // 应用 data-i18n 标记的静态文字
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (key) el.textContent = t(key);
+  });
+  updateSampleCaseNames();
+  if (state.emr && state.anno) {
+    try {
+      const switched = await reloadLoadedFilesForLang(lang);
+      if (switched) return;
+    } catch (err) {
+      alert(`${t('lang_reload_failed')}: ${err.message}`);
+    }
+  }
+  // 触发动态内容重渲染
+  tryRender();
+}
+
+/* ──────────────────────────────────────────────────────────
+   状态
+   ────────────────────────────────────────────────────────── */
+const state = {
+  emr: null,
+  anno: null,
+  emrFileName: '',
+  annoFileName: '',
+  activeLoopIdx: 0,
+  activeNode: 'N1',   // N1/N2/N3/N4/N5/CROSS
+  nodeMap: null,      // 当前 Loop 的五节点 + 锚点解析结果
+};
+
+const NODE_KEYS = ['N1','N2','N3','N4','N5'];
+function nodeLabel(nk) { return t('node_' + nk); }
+const NODE_JSON_KEY = {
+  N1: 'node_1_initial_presentation',
+  N2: 'node_2_investigation_interpretation',
+  N3: 'node_3_status_anchor',
+  N4: 'node_4_tailored_treatment',
+  N5: 'node_5_longitudinal_adaptation',
+};
+
+const TIME_FIELDS = new Set([
+  'time','start_time','end_time','excute_time',
+  'course_time','record_time','consultation_time',
+  'enter_time','exit_time',
+]);
+
+/* ──────────────────────────────────────────────────────────
+   白名单(对应 schema v5.1 evidence_window_whitelist)
+   每个节点声明本节点可见的 EMR 顶层段
+   ────────────────────────────────────────────────────────── */
+const NODE_WHITELIST = {
+  N1: new Set(['basic_information','enter_record']),
+  N2: new Set(['basic_information','enter_record','inspections','image_reports','pathologies','course_record']),
+  N3: new Set(['basic_information','enter_record','inspections','image_reports','pathologies','course_record','consultation_record']),
+  N4: new Set(['basic_information','enter_record','inspections','image_reports','pathologies','course_record','consultation_record','advices','operations']),
+  N5: new Set(['basic_information','enter_record','inspections','image_reports','pathologies','course_record','consultation_record','advices','operations','exit_record']),
+};
+
+/* N1 锁定 enter_record 全部,但禁止 course_record/consultation_record 等。
+   N3 限制 first_record 的 plan(留到 N4),实现层不做该粒度细分,以 schema 字段级注释告知审阅者。 */
+
+/* 时序遮罩控制:每节点对哪些段做 time<=anchor 过滤 */
+const NODE_TIME_FILTER = {
+  N1: new Set(),
+  N2: new Set(['inspections','image_reports','pathologies']),
+  N3: new Set(['inspections','image_reports','pathologies','consultation_record']),
+  N4: new Set(['inspections','image_reports','pathologies','consultation_record','advices.long_advices.items','advices.short_advices.items','operations']),
+  N5: new Set(),  // 终局,无遮罩
+};
+
+/* ──────────────────────────────────────────────────────────
+   工具函数
+   ────────────────────────────────────────────────────────── */
+function $(sel) { return document.querySelector(sel); }
+function $$(sel) { return Array.from(document.querySelectorAll(sel)); }
+function el(tag, attrs = {}, ...children) {
+  const e = document.createElement(tag);
+  for (const [k,v] of Object.entries(attrs)) {
+    if (k === 'class') e.className = v;
+    else if (k === 'style') e.style.cssText = v;
+    else if (k.startsWith('on')) e.addEventListener(k.slice(2), v);
+    else if (v !== null && v !== undefined) e.setAttribute(k, v);
+  }
+  for (const c of children) {
+    if (c == null) continue;
+    e.append(typeof c === 'string' ? document.createTextNode(c) : c);
+  }
+  return e;
+}
+function escapeHtml(s) {
+  if (s == null) return '';
+  return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+
+function parsePath(path) {
+  if (!path || typeof path !== 'string') return [];
+  const tokens = [];
+  const re = /([^.\[\]]+)|\[(\d+)\]/g;
+  let m;
+  while ((m = re.exec(path)) !== null) {
+    if (m[1] !== undefined) tokens.push({k: m[1]});
+    else tokens.push({i: parseInt(m[2], 10)});
+  }
+  return tokens;
+}
+
+/* 通用值渲染:递归处理任意 value(标量/数组/对象/对象数组),返回 DOM 节点 */
+function renderValue(value, opts = {}) {
+  const depth = opts.depth || 0;
+  const wrap = el('span', {});
+
+  if (value == null || value === '') {
+    wrap.textContent = '—';
+    wrap.style.color = 'var(--c-text-mute)';
+    return wrap;
+  }
+
+  if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
+    wrap.textContent = String(value);
+    return wrap;
+  }
+
+  if (Array.isArray(value)) {
+    if (value.length === 0) {
+      wrap.textContent = '—';
+      wrap.style.color = 'var(--c-text-mute)';
+      return wrap;
+    }
+    // 元素是否全为标量?
+    const allScalar = value.every(item => item == null || typeof item !== 'object');
+    if (allScalar) {
+      wrap.textContent = value.filter(x => x != null && x !== '').join(currentLang === 'en' ? '; ' : '、');
+      return wrap;
+    }
+    // 对象数组:渲染为竖直列表,每个对象一个浅卡片
+    const list = el('div', {style:`display:flex;flex-direction:column;gap:6px;${depth === 0 ? '' : 'padding-left:8px;border-left:1px dotted var(--c-line);margin-top:4px;'}`});
+    value.forEach((item, idx) => {
+      const itemBox = el('div', {style:'padding:6px 10px;background:var(--c-bg-sunken);border-radius:3px;border-left:2px solid var(--c-primary-line);'});
+      // 数组下标提示
+      itemBox.appendChild(el('div', {style:'font-family:var(--font-mono);font-size:10px;color:var(--c-text-mute);margin-bottom:3px;'}, `[${idx}]`));
+      if (item != null && typeof item === 'object' && !Array.isArray(item)) {
+        itemBox.appendChild(renderObjectInline(item, depth + 1));
+      } else {
+        itemBox.appendChild(renderValue(item, {depth: depth + 1}));
+      }
+      list.appendChild(itemBox);
+    });
+    wrap.appendChild(list);
+    return wrap;
+  }
+
+  if (typeof value === 'object') {
+    wrap.appendChild(renderObjectInline(value, depth));
+    return wrap;
+  }
+
+  wrap.textContent = String(value);
+  return wrap;
+}
+
+/* 内联对象渲染:平铺 k: v 多行 */
+function renderObjectInline(obj, depth = 0) {
+  const wrap = el('div', {style:'display:flex;flex-direction:column;gap:2px;'});
+  const entries = Object.entries(obj).filter(([_,v]) => v != null && v !== '' && !(Array.isArray(v) && !v.length));
+  if (entries.length === 0) {
+    wrap.appendChild(el('span', {style:'color:var(--c-text-mute);font-style:italic;'}, '—'));
+    return wrap;
+  }
+  entries.forEach(([k, v]) => {
+    const row = el('div', {style:'display:flex;gap:8px;align-items:baseline;line-height:1.6;'});
+    row.appendChild(el('span', {style:'font-family:var(--font-mono);font-size:11px;color:var(--c-text-3);flex-shrink:0;'}, k + ':'));
+    const vBox = el('span', {style:'color:var(--c-text);word-break:break-word;flex:1;min-width:0;'});
+    if (v != null && (typeof v === 'object' || Array.isArray(v))) {
+      vBox.appendChild(renderValue(v, {depth: depth + 1}));
+    } else {
+      vBox.textContent = String(v);
+    }
+    row.appendChild(vBox);
+    wrap.appendChild(row);
+  });
+  return wrap;
+}
+
+function resolvePath(obj, path) {
+  if (!obj || !path) return undefined;
+  const tokens = parsePath(path);
+  let cur = obj;
+  for (const t of tokens) {
+    if (cur == null) return undefined;
+    if (t.k !== undefined) {
+      if (typeof cur !== 'object' || Array.isArray(cur)) return undefined;
+      cur = cur[t.k];
+    } else {
+      if (!Array.isArray(cur)) return undefined;
+      cur = cur[t.i];
+    }
+  }
+  return cur;
+}
+
+function parentPathOfTime(path) {
+  const tokens = parsePath(path);
+  if (!tokens.length) return null;
+  const last = tokens[tokens.length - 1];
+  if (last.k && TIME_FIELDS.has(last.k)) {
+    return { parentTokens: tokens.slice(0,-1), timeKey: last.k };
+  }
+  return { parentTokens: tokens, timeKey: null };
+}
+
+function resolveAnchorTimestamp(anchor, multi = false) {
+  if (!anchor) return null;
+  if (anchor.anchor_timestamp) return anchor.anchor_timestamp;
+  if (!state.emr) return null;
+  if (multi) {
+    const paths = anchor.anchor_path_list || [];
+    const times = paths.map(p => resolvePath(state.emr, p)).filter(Boolean);
+    if (!times.length) return null;
+    return times.sort().slice(-1)[0];
+  }
+  const v = resolvePath(state.emr, anchor.anchor_path);
+  return v || null;
+}
+
+function previewRecord(emr, path) {
+  const { parentTokens, timeKey } = parentPathOfTime(path) || {};
+  if (!parentTokens) return '';
+  let cur = emr;
+  for (const t of parentTokens) {
+    if (cur == null) return '';
+    if (t.k !== undefined) cur = cur[t.k];
+    else cur = Array.isArray(cur) ? cur[t.i] : undefined;
+  }
+  if (!cur || typeof cur !== 'object') return '';
+  const previewKeys = ['name','type','project','part','specimen','department','op_name','consultation_type','diagnosis'];
+  const frags = [];
+  for (const k of previewKeys) {
+    if (cur[k]) {
+      frags.push(`${k}=${cur[k]}`);
+      if (frags.length >= 2) break;
+    }
+  }
+  if (timeKey && cur[timeKey]) frags.push(`${timeKey}=${cur[timeKey]}`);
+  return frags.join(', ');
+}
+
+function getNodeData(loop, nodeKey) {
+  return (loop.nodes_annotation || {})[NODE_JSON_KEY[nodeKey]] || {};
+}
+
+function getAnchor(node, nodeKey) {
+  const anchor = node.node_temporal_anchor || {};
+  const multi = nodeKey === 'N2';
+  const ts = resolveAnchorTimestamp(anchor, multi);
+  return { anchor, multi, timestamp: ts };
+}
+
+function devClass(devName) {
+  return {
+    ALIGNED_WITH_STANDARD: 'badge-aligned',
+    JUSTIFIED_TRADEOFF: 'badge-justified',
+    ACCEPTABLE_ALTERNATIVE: 'badge-alternative',
+    QUESTIONABLE_DEVIATION: 'badge-questionable',
+    DOCUMENTED_ERROR_OR_OMISSION: 'badge-error',
+  }[devName] || 'badge-neutral';
+}
+
+/* ──────────────────────────────────────────────────────────
+   文件加载
+   ────────────────────────────────────────────────────────── */
+document.getElementById('file-emr').addEventListener('change', e => loadFile(e.target.files[0], 'emr'));
+document.getElementById('file-anno').addEventListener('change', e => loadFile(e.target.files[0], 'anno'));
+
+function loadFile(file, kind) {
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    try {
+      const data = JSON.parse(ev.target.result);
+      state[kind] = data;
+      state[`${kind}FileName`] = file.name;
+      const upState = document.getElementById(`up-${kind}-state`);
+      if (upState) {
+        upState.textContent = `✓ ${file.name}`;
+        document.getElementById(`up-${kind}`).classList.add('loaded');
+      }
+      tryRender();
+    } catch (err) {
+      alert(`解析 ${file.name} 失败: ${err.message}`);
+    }
+  };
+  reader.readAsText(file);
+}
+
+function normalizeBaseFileName(fileName) {
+  return String(fileName || '').replace(/_en(?=\.json$)/, '');
+}
+
+function getDemoCaseFileName(baseName) {
+  const zhFileName = normalizeBaseFileName(baseName);
+  return currentLang === 'en' ? zhFileName.replace(/\.json$/, '_en.json') : zhFileName;
+}
+
+function getFileNameForLang(fileName, lang) {
+  const zhFileName = normalizeBaseFileName(fileName);
+  return lang === 'en' ? zhFileName.replace(/\.json$/, '_en.json') : zhFileName;
+}
+
+async function fetchJsonFile(dir, fileName, label) {
+  const res = await fetch(`${dir}/${fileName}`);
+  if (!res.ok) throw new Error(`${label} JSON 加载失败: ${fileName}`);
+  return res.json();
+}
+
+async function reloadLoadedFilesForLang(lang) {
+  if (!state.emrFileName || !state.annoFileName) return false;
+  const nextEmrFileName = getFileNameForLang(state.emrFileName, lang);
+  const nextAnnoFileName = getFileNameForLang(state.annoFileName, lang);
+  const prevLoopIdx = state.activeLoopIdx;
+  const prevNode = state.activeNode;
+  const [emr, anno] = await Promise.all([
+    fetchJsonFile('ori_data', nextEmrFileName, 'EMR'),
+    fetchJsonFile('anno_data', nextAnnoFileName, 'CoT'),
+  ]);
+  state.emr = emr;
+  state.anno = anno;
+  state.emrFileName = nextEmrFileName;
+  state.annoFileName = nextAnnoFileName;
+  const loops = state.anno.clinical_loop_network || [];
+  state.activeLoopIdx = Math.min(prevLoopIdx, Math.max(loops.length - 1, 0));
+  state.activeNode = prevNode || 'N1';
+  document.getElementById('file-emr').value = '';
+  document.getElementById('file-anno').value = '';
+  tryRender();
+  return true;
+}
+
+function updateSampleCaseNames() {
+  document.querySelectorAll('[data-sample-case-name]').forEach(el => {
+    const baseName = el.getAttribute('data-case-base');
+    if (baseName) el.textContent = getDemoCaseFileName(baseName);
+  });
+}
+
+function loadDemoCaseByBase(baseName) {
+  loadDemoCase(getDemoCaseFileName(baseName));
+}
+
+async function loadDemoCase(fileName) {
+  try {
+    const [emrRes, annoRes] = await Promise.all([
+      fetch(`ori_data/${fileName}`),
+      fetch(`anno_data/${fileName}`),
+    ]);
+    if (!emrRes.ok) throw new Error(`EMR JSON 加载失败: ${fileName}`);
+    if (!annoRes.ok) throw new Error(`CoT JSON 加载失败: ${fileName}`);
+
+    state.emr = await emrRes.json();
+    state.anno = await annoRes.json();
+    state.emrFileName = fileName;
+    state.annoFileName = fileName;
+    state.activeLoopIdx = 0;
+    state.activeNode = 'N1';
+    document.getElementById('file-emr').value = '';
+    document.getElementById('file-anno').value = '';
+    tryRender();
+  } catch (err) {
+    alert(`示例病历加载失败: ${err.message}`);
+  }
+}
+
+function resetAll() {
+  state.emr = null;
+  state.anno = null;
+  state.emrFileName = '';
+  state.annoFileName = '';
+  state.activeLoopIdx = 0;
+  state.activeNode = 'N1';
+  document.getElementById('file-emr').value = '';
+  document.getElementById('file-anno').value = '';
+  tryRender();
+}
+
+/* ──────────────────────────────────────────────────────────
+   主渲染
+   ────────────────────────────────────────────────────────── */
+function tryRender() {
+  const left = document.getElementById('panel-left');
+  const right = document.getElementById('panel-right');
+  const tabbar = document.getElementById('tabbar');
+  const pills = document.getElementById('patient-pills');
+  const footnote = document.getElementById('footnote');
+  const btnReset = document.getElementById('btn-reset');
+
+  // 未上传:空状态
+  if (!state.emr || !state.anno) {
+    left.innerHTML = '';
+    right.innerHTML = '';
+    tabbar.innerHTML = '';
+    pills.innerHTML = '';
+    footnote.style.display = 'none';
+    btnReset.style.display = 'none';
+    const tmpl = document.getElementById('tmpl-empty').content.cloneNode(true);
+    // 应用 i18n 到 clone
+    tmpl.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (key) el.textContent = t(key);
+    });
+    left.appendChild(tmpl);
+    updateSampleCaseNames();
+    right.innerHTML = `<div class="empty-state" style="background:var(--c-bg-soft)"><div style="color:var(--c-text-mute);font-size:13px">${t('right_waiting')}</div></div>`;
+
+    // 还原 uploader 状态
+    if (state.emr) document.getElementById('up-emr-state').textContent = t('up_state_loaded');
+    if (state.anno) document.getElementById('up-anno-state').textContent = t('up_state_loaded');
+    return;
+  }
+
+  btnReset.style.display = 'inline-flex';
+  footnote.style.display = 'block';
+
+  renderPatientPills();
+  renderTabbar();
+  renderLeftPanel();
+  renderRightPanel();
+}
+
+function renderPatientPills() {
+  const pills = document.getElementById('patient-pills');
+  const pg = state.anno.patient_global_context || {};
+  const sp = state.anno.specialty_context || {};
+  const loops = state.anno.clinical_loop_network || [];
+
+  const items = [
+    [t('pill_patient_id'), pg.patient_ref || '—'],
+    [t('pill_age_sex'), `${pg.age ?? '—'} · ${pg.sex || '—'}`],
+    [t('pill_specialty'), sp.specialty_category || '—'],
+    [t('pill_loop_count'), loops.length],
+  ];
+  pills.innerHTML = '';
+  items.forEach(([k,v]) => {
+    pills.appendChild(el('div', {class:'pill'},
+      el('span', {class:'pill-label'}, k),
+      el('span', {class:'pill-value'}, String(v))
+    ));
+  });
+}
+
+function renderTabbar() {
+  const tabbar = document.getElementById('tabbar');
+  tabbar.innerHTML = '';
+  const loops = state.anno.clinical_loop_network || [];
+  loops.forEach((loop, idx) => {
+    const meta = loop.loop_meta || {};
+    const t = el('div', {
+      class: 'tab' + (idx === state.activeLoopIdx ? ' active' : ''),
+      onclick: () => { state.activeLoopIdx = idx; state.activeNode = 'N1'; renderTabbar(); renderLeftPanel(); renderRightPanel(); },
+    },
+      el('span', {class:'tab-id'}, meta.loop_id || `L${idx+1}`),
+      el('span', {}, meta.loop_name || '未命名 Loop'),
+    );
+    tabbar.appendChild(t);
+  });
+
+  // 跨圈 tab
+  const cross = state.anno.cross_loop_joint_reasoning || [];
+  if (cross.length) {
+    tabbar.appendChild(el('div', {
+      class: 'tab' + (state.activeNode === 'CROSS' ? ' active' : ''),
+      onclick: () => { state.activeNode = 'CROSS'; renderTabbar(); renderLeftPanel(); renderRightPanel(); },
+      style: 'margin-left:auto;font-style:italic;',
+    },
+      el('span', {class:'tab-id'}, t('cross_tab_label')),
+      el('span', {}, `${t('cross_tab_full')} (${cross.length})`),
+    ));
+  }
+}
+
+/* ──────────────────────────────────────────────────────────
+   左侧标注面板
+   ────────────────────────────────────────────────────────── */
+function renderLeftPanel() {
+  const left = document.getElementById('panel-left');
+  left.innerHTML = '';
+
+  if (state.activeNode === 'CROSS') {
+    renderCrossLoop(left);
+    return;
+  }
+
+  const loop = state.anno.clinical_loop_network[state.activeLoopIdx];
+  if (!loop) return;
+
+  // 节点时间轴
+  const timeline = el('div', {class:'node-timeline'});
+  timeline.appendChild(el('div', {class:'node-timeline-label'}, t('timeline_label')));
+  const track = el('div', {class:'node-track'});
+  NODE_KEYS.forEach(nk => {
+    const step = el('div', {
+      class: 'node-step' + (nk === state.activeNode ? ' active' : ''),
+      onclick: () => { state.activeNode = nk; renderLeftPanel(); renderRightPanel(); },
+    },
+      el('div', {class:'node-step-dot'}, nk),
+      el('div', {class:'node-step-label'}, nodeLabel(nk)),
+    );
+    track.appendChild(step);
+  });
+  timeline.appendChild(track);
+  left.appendChild(timeline);
+
+  // 当前节点内容
+  const node = getNodeData(loop, state.activeNode);
+  const anchorInfo = getAnchor(node, state.activeNode);
+
+  const content = el('div', {class:'node-content'});
+  const header = el('div', {class:'node-header'},
+    el('div', {class:'node-title'},
+      el('span', {class:'node-num'}, state.activeNode),
+      nodeLabel(state.activeNode),
+    ),
+    el('div', {class:'anchor-bar'},
+      el('div', {class:'anchor-bar-label'}, t('anchor_label')),
+      el('div', {class:'anchor-bar-time'}, anchorInfo.timestamp || t('anchor_pending')),
+    ),
+  );
+  content.appendChild(header);
+
+  // 锚定路径展示
+  content.appendChild(renderAnchorSection(anchorInfo));
+
+  // 节点特有结构化字段
+  content.appendChild(renderNodeStructuredFields(node, state.activeNode));
+
+  // 思维链 CoT 主视觉
+  content.appendChild(renderCotSection(node, state.activeNode));
+
+  // 证据列表
+  content.appendChild(renderEvidenceSection(node));
+
+  left.appendChild(content);
+}
+
+function renderAnchorSection(anchorInfo) {
+  const sec = el('div', {class:'section'});
+  sec.appendChild(el('div', {class:'section-title'}, t('sec_anchor_path')));
+  const { anchor, multi } = anchorInfo;
+  if (multi) {
+    const paths = anchor.anchor_path_list || [];
+    if (!paths.length) {
+      sec.appendChild(el('div', {class:'anchor-row', style:'color:var(--c-text-mute);font-style:italic'}, t('anchor_not_declared')));
+    } else {
+      paths.forEach(p => {
+        const row = el('div', {class:'anchor-row'});
+        row.appendChild(el('div', {class:'path'}, p));
+        const pv = state.emr ? previewRecord(state.emr, p) : '';
+        if (pv) row.appendChild(el('div', {class:'preview'}, '→ ' + pv));
+        sec.appendChild(row);
+      });
+    }
+  } else {
+    const p = anchor.anchor_path;
+    if (!p) {
+      sec.appendChild(el('div', {class:'anchor-row', style:'color:var(--c-text-mute);font-style:italic'}, t('anchor_not_declared')));
+    } else {
+      const row = el('div', {class:'anchor-row'});
+      row.appendChild(el('div', {class:'path'}, p));
+      const pv = state.emr ? previewRecord(state.emr, p) : '';
+      if (pv) row.appendChild(el('div', {class:'preview'}, '→ ' + pv));
+      sec.appendChild(row);
+    }
+  }
+  return sec;
+}
+
+function renderNodeStructuredFields(node, nodeKey) {
+  const sec = el('div', {class:'section'});
+  sec.appendChild(el('div', {class:'section-title'}, t('sec_structured')));
+  const grid = el('div', {class:'kv-grid'});
+
+  const addKV = (k, v, opt = {}) => {
+    if (v == null || v === '' || (Array.isArray(v) && !v.length)) {
+      if (!opt.showEmpty) return;
+      grid.appendChild(el('div', {class:'k'}, k));
+      grid.appendChild(el('div', {class:'v muted'}, '—'));
+      return;
+    }
+    grid.appendChild(el('div', {class:'k'}, k));
+    const vEl = el('div', {class:'v'});
+    if (opt.badge) {
+      vEl.appendChild(el('span', {class:'badge ' + opt.badge}, String(v)));
+    } else if (Array.isArray(v)) {
+      // 元素可能是字符串也可能是对象;走通用渲染
+      vEl.appendChild(renderValue(v));
+    } else if (typeof v === 'object') {
+      vEl.appendChild(renderValue(v));
+    } else {
+      vEl.textContent = v;
+    }
+    grid.appendChild(vEl);
+  };
+
+  if (nodeKey === 'N1') {
+    addKV(t('f_template_type'), node.template_type, {badge:'badge-neutral'});
+    addKV(t('f_urgency'), node.n1_urgency_level, {badge:'badge-neutral'});
+    addKV(t('f_primary_impressions'), node.n1_primary_impressions);
+    addKV(t('f_differential'), node.n1_differential_list);
+    addKV(t('f_baseline_status'), node.n1_baseline_status_assessment);
+    addKV(t('f_complications_screen'), node.n1_chronic_complications_screening);
+    addKV(t('f_procedural_indication'), node.n1_procedural_indication);
+  } else if (nodeKey === 'N2') {
+    addKV(t('f_clinical_questions'), node.n2_clinical_questions);
+    addKV(t('f_intended_orders'), node.n2_intended_test_orders);
+    addKV(t('f_actual_orders'), node.n2_actual_test_orders);
+    addKV(t('f_missed_delayed'), node.n2_missed_or_delayed_tests);
+    addKV(t('f_critical_values'), node.n2_critical_values);
+  } else if (nodeKey === 'N3') {
+    addKV(t('f_severity_staging'), node.n3_severity_staging);
+    addKV(t('f_treatment_strategy'), node.n3_treatment_strategy, {badge:'badge-neutral'});
+  } else if (nodeKey === 'N4') {
+    addKV(t('f_standard_regimen'), node.n4_standard_regimen);
+    addKV(t('f_actual_regimen'), node.n4_actual_regimen);
+    addKV(t('f_deviation_nature'), node.n4_deviation_nature, {badge: devClass(node.n4_deviation_nature)});
+    addKV(t('f_patient_constraints'), node.n4_patient_constraints);
+    if (node.n4_forbidden_regimens_list && node.n4_forbidden_regimens_list.length) {
+      const list = node.n4_forbidden_regimens_list.map(f => `${f.forbidden_item} [${f.severity_level}]`);
+      addKV(t('f_forbidden_regimens'), list);
+    }
+  } else if (nodeKey === 'N5') {
+    addKV(t('f_outcome_observable'), node.n5_outcome_observable_within_admission != null ? String(node.n5_outcome_observable_within_admission) : null);
+    addKV(t('f_outcome_dimension'), node.n5_outcome_dimension, {badge:'badge-neutral'});
+    addKV(t('f_outcome_value'), node.n5_outcome_value, {badge:'badge-neutral'});
+    addKV(t('f_followup_outcome'), node.n5_followup_outcome);
+    if (node.n5_adverse_events_list && node.n5_adverse_events_list.length) {
+      const aes = node.n5_adverse_events_list.map(ae => `${ae.ae_name} [${ae.ae_grade||''}] ← ${ae.ae_attribution||''}`);
+      addKV(t('f_adverse_events'), aes);
+    }
+    addKV(t('f_emergency_actions'), node.n5_emergency_actions);
+  }
+
+  sec.appendChild(grid);
+  return sec;
+}
+
+function renderCotSection(node, nodeKey) {
+  const sec = el('div', {class:'section'});
+  sec.appendChild(el('div', {class:'section-title'}, t('sec_cot')));
+
+  const cot = el('div', {class:'cot-block'});
+
+  // 单文本 CoT vs 四步结构化 CoT
+  const stepCotKeys = {
+    N2: 'n2_decision_cot',
+    N4: 'n4_tradeoff_logic_cot',
+  };
+  const stepKey = stepCotKeys[nodeKey];
+  if (stepKey && typeof node[stepKey] === 'object' && node[stepKey]) {
+    const steps = Object.entries(node[stepKey]).filter(([k]) => k.startsWith('step_'));
+    steps.sort();
+    steps.forEach(([k, v]) => {
+      const label = k.replace(/^step_/, 'Step ').replace(/_/g, ' ');
+      const stepEl = el('div', {class:'cot-step'},
+        el('div', {class:'cot-step-label'}, label),
+        el('div', {class:'cot-step-text'}, v || '—'),
+      );
+      cot.appendChild(stepEl);
+    });
+  } else {
+    const textKey = {
+      N1: 'n1_diagnostic_logic_cot',
+      N3: 'n3_strategy_logic_cot',
+      N5: 'n5_adaptation_logic_cot',
+    }[nodeKey];
+    const text = textKey ? node[textKey] : '';
+    cot.appendChild(el('div', {class:'cot-text'}, text || t('cot_empty')));
+  }
+
+  sec.appendChild(cot);
+  return sec;
+}
+
+function renderEvidenceSection(node) {
+  const sec = el('div', {class:'section'});
+  const evb = node.node_evidence_block || {};
+  const ev = evb.mapped_emr_evidence || [];
+  sec.appendChild(el('div', {class:'section-title'},
+    el('span', {}, t('sec_evidence')),
+    el('span', {style:'color:var(--c-text-mute);font-weight:400;text-transform:none;letter-spacing:0'},
+      `${ev.length} ${t('evidence_count')}: ${evb.evidence_quality || '—'}`),
+  ));
+
+  if (!ev.length) {
+    sec.appendChild(el('div', {style:'font-size:12px;color:var(--c-text-mute);font-style:italic'}, t('evidence_empty')));
+    return sec;
+  }
+
+  const list = el('div', {class:'evidence-list'});
+  ev.forEach((e, idx) => {
+    const item = el('div', {
+      class: 'evidence-item' + (e.window_violation_flag ? ' violation' : ''),
+      onclick: () => locateEmr(e.evidence_path),
+    },
+      el('div', {class:'evidence-path'}, e.evidence_path || '—'),
+      el('div', {class:'evidence-text'}, `"${e.evidence_text || ''}"`),
+      e.window_violation_flag ? el('div', {class:'evidence-flag'}, t('violation_label')) : null,
+    );
+    list.appendChild(item);
+  });
+  sec.appendChild(list);
+  return sec;
+}
+
+function renderCrossLoop(left) {
+  const cross = state.anno.cross_loop_joint_reasoning || [];
+  left.innerHTML = '';
+  const wrap = el('div', {class:'node-content'});
+  wrap.appendChild(el('div', {class:'node-header'},
+    el('div', {class:'node-title'},
+      el('span', {class:'node-num'}, 'CROSS'),
+      t('node_CROSS'),
+    ),
+  ));
+
+  cross.forEach((item, idx) => {
+    const sec = el('div', {class:'global-cross', style:'margin-left:0;margin-right:0'});
+    sec.appendChild(el('div', {class:'global-cross-title'},
+      `${t('cross_section_title')} #${idx+1} · ${item.clinical_conflict_type || t('cross_no_type')}`));
+    const body = el('div', {class:'global-cross-body'});
+    body.appendChild(el('div', {},
+      el('strong', {}, t('cross_involved_loops')), ' ' + (item.involved_loop_ids||[]).join(', ')));
+    body.appendChild(el('div', {style:'margin-top:4px'},
+      el('strong', {}, t('cross_materiality')), ' ' + (item.materiality_threshold ? t('yes') : t('no'))));
+    if (item.joint_tradeoff_logic_cot) {
+      const cot = item.joint_tradeoff_logic_cot;
+      if (cot.conflict_paradox_analysis) {
+        body.appendChild(el('div', {style:'margin-top:10px'},
+          el('strong', {}, t('cross_paradox')),
+          el('div', {class:'cot-step-text', style:'margin-top:4px'}, cot.conflict_paradox_analysis)));
+      }
+      if (cot.holistic_resource_scheduling) {
+        body.appendChild(el('div', {style:'margin-top:10px'},
+          el('strong', {}, t('cross_resource')),
+          el('div', {class:'cot-step-text', style:'margin-top:4px'}, cot.holistic_resource_scheduling)));
+      }
+    }
+    sec.appendChild(body);
+    wrap.appendChild(sec);
+  });
+
+  left.appendChild(wrap);
+}
+
+/* ──────────────────────────────────────────────────────────
+   右侧 EMR 面板
+   ────────────────────────────────────────────────────────── */
+function renderRightPanel() {
+  const right = document.getElementById('panel-right');
+  right.innerHTML = '';
+  if (!state.emr) return;
+
+  if (state.activeNode === 'CROSS') {
+    right.innerHTML = `<div style="padding:40px;text-align:center;color:var(--c-text-mute);font-size:13px">${t('cross_no_single_view')}</div>`;
+    return;
+  }
+
+  const loop = state.anno.clinical_loop_network[state.activeLoopIdx];
+  const node = getNodeData(loop, state.activeNode);
+  const anchorInfo = getAnchor(node, state.activeNode);
+  const anchorTs = anchorInfo.timestamp;
+  const whitelist = NODE_WHITELIST[state.activeNode];
+  const evb = node.node_evidence_block || {};
+  const citedPaths = new Set((evb.mapped_emr_evidence || []).map(e => e.evidence_path));
+
+  // EMR 顶部信息条
+  const head = el('div', {class:'emr-header'});
+  head.appendChild(el('div', {class:'emr-title-row'},
+    el('div', {class:'emr-title'}, `📋 EMR · ${state.activeNode} ${t('emr_view_suffix')}`),
+  ));
+  const metaItems = [];
+  if (anchorTs) metaItems.push(el('div', {},
+    el('span', {style:'color:var(--c-text-mute)'}, t('emr_anchor_time') + ' '),
+    el('strong', {}, anchorTs)));
+  metaItems.push(el('div', {},
+    el('span', {style:'color:var(--c-text-mute)'}, t('emr_whitelist') + ' '),
+    el('strong', {}, Array.from(whitelist).length + ' ' + t('emr_whitelist_unit'))));
+  metaItems.push(el('div', {},
+    el('span', {style:'color:var(--c-text-mute)'}, t('emr_cited_count') + ' '),
+    el('strong', {}, citedPaths.size)));
+  const metaDiv = el('div', {class:'emr-meta'});
+  metaItems.forEach(m => metaDiv.appendChild(m));
+  head.appendChild(metaDiv);
+  right.appendChild(head);
+
+  const body = el('div', {class:'emr-content'});
+  const emr = state.emr;
+
+  // 顶层段顺序(贴近 emr_template.json),label 通过 i18n key 解析
+  const SECTIONS = [
+    ['basic_information', 'section_basic_information'],
+    ['enter_record', 'section_enter_record'],
+    ['inspections', 'section_inspections'],
+    ['image_reports', 'section_image_reports'],
+    ['pathologies', 'section_pathologies'],
+    ['course_record', 'section_course_record'],
+    ['consultation_record', 'section_consultation_record'],
+    ['advices', 'section_advices'],
+    ['operations', 'section_operations'],
+    ['exit_record', 'section_exit_record'],
+  ];
+
+  SECTIONS.forEach(([key, labelKey]) => {
+    if (!(key in emr) || emr[key] == null) return;
+    const inWhitelist = whitelist.has(key);
+    body.appendChild(renderEmrSection(key, t(labelKey), emr[key], inWhitelist, anchorTs, citedPaths));
+  });
+
+  right.appendChild(body);
+}
+
+function renderEmrSection(sectionKey, label, value, inWhitelist, anchorTs, citedPaths) {
+  const sec = el('div', {class: 'emr-section' + (inWhitelist ? '' : ' outside-window collapsed')});
+
+  // 计算 cited 数
+  const citedInSection = Array.from(citedPaths).filter(p => p.startsWith(sectionKey)).length;
+  const countText = Array.isArray(value) ? `${value.length}${t('emr_record_count_suffix')}` : '';
+  const head = el('div', {
+    class:'emr-section-head',
+    onclick: () => sec.classList.toggle('collapsed'),
+    'data-label-outside': t('emr_section_outside'),
+  },
+    el('div', {class:'emr-section-title'},
+      el('span', {class:'caret'}),
+      label,
+      el('span', {style:'color:var(--c-text-mute);font-family:var(--font-mono);font-size:10px'}, sectionKey),
+    ),
+    el('div', {style:'display:flex;gap:10px;align-items:center'},
+      countText ? el('span', {class:'emr-section-count'}, countText) : null,
+      citedInSection ? el('span', {style:'font-size:10px;color:var(--c-primary);font-weight:500'}, `${citedInSection} ${t('emr_cited_marker')}`) : null,
+    ),
+  );
+  sec.appendChild(head);
+
+  const bodyEl = el('div', {class:'emr-section-body'});
+
+  if (!inWhitelist) {
+    bodyEl.appendChild(el('div', {style:'padding:8px 0;font-size:11px;color:var(--c-text-mute);font-style:italic'},
+      `${t('emr_out_of_window_hint')} ${state.activeNode} ${t('emr_out_of_window_hint_2')}`));
+  }
+
+  // 渲染对象 vs 数组
+  if (Array.isArray(value)) {
+    if (value.length === 0) {
+      bodyEl.appendChild(el('div', {style:'font-size:11px;color:var(--c-text-mute);font-style:italic;padding:4px 0'}, t('emr_empty_array')));
+    } else {
+      value.forEach((item, idx) => {
+        bodyEl.appendChild(renderEmrItem(sectionKey, idx, item, inWhitelist, anchorTs, citedPaths));
+      });
+    }
+  } else if (typeof value === 'object') {
+    // basic_information / enter_record / exit_record / course_record / advices
+    bodyEl.appendChild(renderEmrObject(sectionKey, value, inWhitelist, anchorTs, citedPaths));
+  }
+  sec.appendChild(bodyEl);
+  return sec;
+}
+
+function renderEmrObject(parentPath, obj, inWhitelist, anchorTs, citedPaths) {
+  const wrap = el('div', {});
+
+  // advices 特殊:它下面是 long_advices.items / short_advices.items
+  if (parentPath === 'advices' && obj.long_advices) {
+    const longItems = (obj.long_advices && obj.long_advices.items) || [];
+    if (longItems.length) {
+      wrap.appendChild(el('div', {style:'font-size:11px;color:var(--c-text-3);margin:6px 0 4px;font-family:var(--font-mono)'}, 'long_advices.items'));
+      longItems.forEach((it, idx) => {
+        wrap.appendChild(renderEmrItem(`advices.long_advices.items`, idx, it, inWhitelist, anchorTs, citedPaths));
+      });
+    }
+    const shortItems = (obj.short_advices && obj.short_advices.items) || [];
+    if (shortItems.length) {
+      wrap.appendChild(el('div', {style:'font-size:11px;color:var(--c-text-3);margin:10px 0 4px;font-family:var(--font-mono)'}, 'short_advices.items'));
+      shortItems.forEach((it, idx) => {
+        wrap.appendChild(renderEmrItem(`advices.short_advices.items`, idx, it, inWhitelist, anchorTs, citedPaths));
+      });
+    }
+    return wrap;
+  }
+
+  // course_record:first_record 单条 + other_records 数组 + ward_records 数组
+  if (parentPath === 'course_record') {
+    if (obj.first_record) {
+      wrap.appendChild(el('div', {style:'font-size:11px;color:var(--c-text-3);margin:6px 0 4px;font-family:var(--font-mono)'}, 'first_record'));
+      wrap.appendChild(renderEmrPlainObj(`course_record.first_record`, obj.first_record, inWhitelist, citedPaths));
+    }
+    if (obj.other_records && obj.other_records.length) {
+      wrap.appendChild(el('div', {style:'font-size:11px;color:var(--c-text-3);margin:10px 0 4px;font-family:var(--font-mono)'}, `other_records (${obj.other_records.length})`));
+      obj.other_records.forEach((it, idx) => {
+        wrap.appendChild(renderEmrItem(`course_record.other_records`, idx, it, inWhitelist, anchorTs, citedPaths));
+      });
+    }
+    if (obj.ward_records && obj.ward_records.length) {
+      wrap.appendChild(el('div', {style:'font-size:11px;color:var(--c-text-3);margin:10px 0 4px;font-family:var(--font-mono)'}, `ward_records (${obj.ward_records.length})`));
+      obj.ward_records.forEach((it, idx) => {
+        wrap.appendChild(renderEmrItem(`course_record.ward_records`, idx, it, inWhitelist, anchorTs, citedPaths));
+      });
+    }
+    return wrap;
+  }
+
+  // 通用对象:平铺 KV
+  wrap.appendChild(renderEmrPlainObj(parentPath, obj, inWhitelist, citedPaths));
+  return wrap;
+}
+
+function renderEmrPlainObj(parentPath, obj, inWhitelist, citedPaths) {
+  const grid = el('div', {style:'display:grid;grid-template-columns:130px 1fr;gap:4px 14px;font-size:12px;padding:4px 0'});
+  for (const [k, v] of Object.entries(obj)) {
+    if (v == null || v === '' || (Array.isArray(v) && !v.length)) continue;
+    const fieldPath = `${parentPath}.${k}`;
+    const isCited = citedPaths.has(fieldPath);
+    const kEl = el('div', {class:'k', style:'color:var(--c-text-3);font-family:var(--font-mono);font-size:11px'}, k);
+    const vEl = el('div', {class:'v', style:'color:var(--c-text);word-break:break-word'});
+    if (v != null && (typeof v === 'object' || Array.isArray(v))) {
+      vEl.appendChild(renderValue(v));
+    } else {
+      vEl.textContent = String(v);
+    }
+    if (isCited) {
+      vEl.style.background = '#fef3c7';
+      vEl.style.padding = '1px 4px';
+      vEl.style.borderRadius = '2px';
+      vEl.setAttribute('data-emr-path', fieldPath);
+    }
+    grid.appendChild(kEl);
+    grid.appendChild(vEl);
+  }
+  return grid;
+}
+
+function renderEmrItem(arrayPath, idx, item, inWhitelist, anchorTs, citedPaths) {
+  // 判断锚定 / 引用 / 时序遮罩 / 默认折叠
+  const itemBasePath = `${arrayPath}[${idx}]`;
+
+  // 是否被本节点引用
+  const cited = Array.from(citedPaths).some(p => p.startsWith(itemBasePath));
+
+  // 是否为本节点锚定记录
+  const loop = state.anno.clinical_loop_network[state.activeLoopIdx];
+  const node = getNodeData(loop, state.activeNode);
+  const anchor = (node.node_temporal_anchor || {});
+  const anchorPaths = [
+    anchor.anchor_path,
+    ...(anchor.anchor_path_list || []),
+  ].filter(Boolean);
+  const isAnchored = anchorPaths.some(p => p.startsWith(itemBasePath));
+
+  // 是否被时序遮罩(在白名单内,但 time > anchorTs)
+  let outOfTime = false;
+  const needTimeFilter = NODE_TIME_FILTER[state.activeNode].has(arrayPath);
+  if (inWhitelist && needTimeFilter && anchorTs) {
+    const itemTime = item.time || item.start_time || item.excute_time
+      || item.course_time || item.record_time || item.consultation_time;
+    if (itemTime && String(itemTime) > String(anchorTs)) {
+      outOfTime = true;
+    }
+  }
+
+  // 默认折叠规则:被引用/锚定的展开,其他折叠
+  const defaultCollapsed = !(cited || isAnchored);
+
+  const card = el('div', {
+    class: 'emr-item-card'
+      + (isAnchored ? ' anchored' : '')
+      + (cited && !isAnchored ? ' cited' : '')
+      + (outOfTime ? ' out-of-time' : '')
+      + (defaultCollapsed ? ' collapsed-detail' : ''),
+    'data-emr-path-prefix': itemBasePath,
+    'data-label-anchored': t('emr_section_anchored'),
+    'data-label-masked': t('emr_section_time_masked'),
+  });
+
+  // Summary 行:从对象中抽取 1-2 个识别字段 + 时间
+  const previewKeys = ['name','type','project','part','specimen','op_name','consultation_type','diagnosis','department'];
+  let summary = '';
+  for (const pk of previewKeys) {
+    if (item[pk]) { summary = item[pk]; break; }
+  }
+  if (!summary) summary = `${arrayPath}[${idx}]`;
+  const itemTime = item.time || item.start_time || item.excute_time
+    || item.course_time || item.record_time || item.consultation_time || '';
+
+  const summaryRow = el('div', {
+    class:'emr-item-summary',
+    onclick: () => card.classList.toggle('collapsed-detail'),
+  },
+    el('div', {class:'emr-item-summary-text'}, `[${idx}] ${summary}`),
+    el('div', {class:'emr-item-summary-time'}, itemTime),
+  );
+  card.appendChild(summaryRow);
+
+  // Detail
+  const detail = el('div', {class:'emr-item-detail'});
+  detail.appendChild(renderEmrPlainObjForItem(itemBasePath, item, citedPaths));
+  card.appendChild(detail);
+
+  return card;
+}
+
+function renderEmrPlainObjForItem(parentPath, item, citedPaths) {
+  const grid = el('div', {style:'display:grid;grid-template-columns:110px 1fr;gap:4px 12px;font-size:12px'});
+  for (const [k, v] of Object.entries(item)) {
+    if (v == null || v === '') continue;
+    if (Array.isArray(v) && !v.length) continue;
+    const fieldPath = `${parentPath}.${k}`;
+    const isCited = citedPaths.has(fieldPath);
+    grid.appendChild(el('div', {class:'k', style:'color:var(--c-text-3);font-family:var(--font-mono);font-size:11px'}, k));
+    const vEl = el('div', {class:'v', style:'color:var(--c-text);word-break:break-word'});
+    if (Array.isArray(v)) {
+      // inspections 的 content 数组特殊处理(医学检验项目带状态)
+      if (k === 'content' && v.length && typeof v[0] === 'object'
+          && (v[0].name !== undefined || v[0].value !== undefined)) {
+        const subGrid = el('div', {style:'display:flex;flex-direction:column;gap:2px'});
+        v.forEach(c => {
+          const stateColor = c.state === '高' || c.state === 'high' ? '#c2410c'
+                          : c.state === '低' || c.state === 'low' ? '#1d4ed8'
+                          : 'var(--c-text-3)';
+          subGrid.appendChild(el('div', {style:`font-family:var(--font-mono);font-size:11px;color:var(--c-text-2)`},
+            `${c.name || ''}: ${c.value || ''} ${c.unit || ''} `,
+            el('span', {style:`color:${stateColor};font-weight:500`}, c.state ? `[${c.state}]` : ''),
+            el('span', {style:'color:var(--c-text-mute);margin-left:6px'}, c.range ? `${currentLang === 'en' ? 'ref' : '参考'} ${c.range}` : ''),
+          ));
+        });
+        vEl.appendChild(subGrid);
+      } else {
+        // 通用数组(标量或对象),统一走 renderValue
+        vEl.appendChild(renderValue(v));
+      }
+    } else if (typeof v === 'object') {
+      vEl.appendChild(renderValue(v));
+    } else {
+      vEl.textContent = String(v);
+    }
+    if (isCited) {
+      vEl.style.background = '#fef3c7';
+      vEl.style.padding = '1px 4px';
+      vEl.style.borderRadius = '2px';
+      vEl.setAttribute('data-emr-path', fieldPath);
+    }
+    grid.appendChild(vEl);
+  }
+  return grid;
+}
+
+/* ──────────────────────────────────────────────────────────
+   交互:点击左侧证据,定位右侧 EMR 字段
+   ────────────────────────────────────────────────────────── */
+function locateEmr(path) {
+  if (!path) return;
+  // 先尝试精确字段
+  const exact = document.querySelector(`[data-emr-path="${path}"]`);
+  if (exact) {
+    exact.scrollIntoView({behavior:'smooth', block:'center'});
+    flashElement(exact);
+    return;
+  }
+  // 退化到所属 item 卡片
+  const tokens = path.split(/[.\[\]]+/).filter(Boolean);
+  for (let i = tokens.length; i > 0; i--) {
+    const prefix = path.split('.').slice(0, i).join('.');
+    const card = document.querySelector(`[data-emr-path-prefix="${prefix}"]`);
+    if (card) {
+      card.classList.remove('collapsed-detail');
+      card.scrollIntoView({behavior:'smooth', block:'center'});
+      card.classList.add('cited-flash');
+      setTimeout(() => card.classList.remove('cited-flash'), 1500);
+      return;
+    }
+  }
+  // 再退化到所属顶层段
+  const topKey = path.split('.')[0].split('[')[0];
+  const section = Array.from(document.querySelectorAll('.emr-section'))
+    .find(s => s.querySelector('.emr-section-title')?.textContent.includes(topKey));
+  if (section) {
+    section.classList.remove('collapsed');
+    section.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+}
+
+function flashElement(elem) {
+  const orig = elem.style.transition;
+  const origBg = elem.style.background;
+  elem.style.transition = 'background 0.3s';
+  elem.style.background = '#fde68a';
+  setTimeout(() => {
+    elem.style.background = origBg;
+    setTimeout(() => { elem.style.transition = orig; }, 500);
+  }, 1200);
+}
+
+/* 初始化:首次应用静态文字 + 默认渲染空状态 */
+function applyStaticI18n() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (key) el.textContent = t(key);
+  });
+}
+applyStaticI18n();
+tryRender();
+</script>
+</body>
+</html>

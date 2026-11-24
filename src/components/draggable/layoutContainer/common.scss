@@ -1,0 +1,16 @@
+.input {
+  .el-input__inner {
+    text-align: left;
+    color: #1f1f1f;
+  }
+
+  .el-input__wrapper,
+  .el-textarea__inner {
+    border-radius: 8px 8px 8px 8px;
+    background-color: var(--theme-fill);
+    box-shadow: none;
+  }
+  .el-input__count-inner {
+    background: var(--theme-fill) !important;
+  }
+}

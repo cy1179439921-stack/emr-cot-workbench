@@ -1,0 +1,587 @@
+{
+  "specialty_context": {
+    "specialty_category": "GENERAL_SURGERY",
+    "subspecialty_note": "Colorectal Surgery / Gastrointestinal Oncology"
+  },
+  "patient_global_context": {
+    "patient_ref": "0001159277",
+    "age": 40,
+    "sex": "MALE",
+    "baseline_comorbidities_icd10": [
+      "I65.2 (Carotid Artery Stenosis)",
+      "M51.1 (Lumbar Disc Herniation)"
+    ],
+    "functional_baseline": "INDEPENDENT",
+    "economic_pressure_indicator": "NOT_OBSERVABLE",
+    "insurance_type": "UNKNOWN"
+  },
+  "clinical_loop_network": [
+    {
+      "loop_meta": {
+        "loop_id": "doc0001159277_L01",
+        "loop_name": "Management of Rectal Adenocarcinoma with Synchronous Liver and Lung Metastases",
+        "loop_type": "PRIMARY_DISEASE_MANAGEMENT",
+        "loop_status": "ACTIVE",
+        "trigger_event": "Hematochezia for over 3 months, digital rectal examination (DRE) revealing a hard rectal mass.",
+        "trigger_time": "2024-12-02 10:48:00",
+        "trigger_time_source_path": "basic_information.enter_time",
+        "close_time": null,
+        "guideline_era": "2021_2024",
+        "treatment_phase": "INITIAL",
+        "disease_status_milestone": "NEWLY_DIAGNOSED"
+      },
+      "loop_relationship_edges": [
+        {
+          "target_loop_id": "doc0001159277_L02",
+          "relation_type": "SAFETY_CONSTRAINT",
+          "relation_description": "Carotid artery stenosis increases the risk of cerebrovascular events during general anesthesia and pneumoperitoneum, constraining surgical positioning and hemodynamic management."
+        }
+      ],
+      "nodes_annotation": {
+        "node_1_initial_presentation": {
+          "node_temporal_anchor": {
+            "anchor_path": "basic_information.enter_time",
+            "anchor_timestamp": "2024-12-02 10:48:00"
+          },
+          "template_type": "ACUTE_OR_FIRST_DIAGNOSIS",
+          "n1_primary_impressions": [
+            "Rectal Mass",
+            "Rectal Malignancy"
+          ],
+          "n1_differential_list": [
+            "Ulcerative Colitis",
+            "Colorectal Polyp",
+            "Internal Hemorrhoids"
+          ],
+          "n1_urgency_level": "URGENT_TREATMENT",
+          "n1_diagnostic_logic_cot": "The patient is a middle-aged male presenting with a chief complaint of 'hematochezia for over 3 months,' accompanied by mucus and blood clots, without melena or systemic weight loss. Abdominal examination is unremarkable, but DRE reveals a hard mass approximately 3 cm from the anal verge, causing severe luminal narrowing (fingertip cannot pass). This physical sign highly suggests a low rectal malignancy. Given the hard consistency and luminal stenosis, it must be differentiated from ulcerative colitis and pedunculated polyps, though the probability of malignancy is extremely high. The immediate priority is to expedite endoscopic and imaging evaluations to determine the histological nature, local invasion depth, and rule out distant metastases.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "enter_record.complain",
+                "evidence_text": "Hematochezia for over 3 months.",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": false
+              },
+              {
+                "evidence_path": "enter_record.specialist_examination",
+                "evidence_text": "DRE: A hard mass palpable in the rectum approx. 3 cm from the anal verge; fingertip cannot pass.",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": false
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_2_investigation_interpretation": {
+          "node_temporal_anchor": {
+            "anchor_path_list": [
+              "pathologies[0].time",
+              "image_reports[4].time"
+            ],
+            "anchor_timestamp": "2024-12-03 08:01:57"
+          },
+          "n2_clinical_questions": [
+            "What is the histological nature of the rectal mass?",
+            "Are there distant metastases (liver, lungs) or regional lymph node involvement?"
+          ],
+          "n2_intended_test_orders": {
+            "Colonoscopy with biopsy": "To obtain histopathological confirmation",
+            "Contrast-enhanced CT of chest/abdomen/pelvis": "To evaluate local tumor invasion (T/N staging) and distant metastases (M staging)"
+          },
+          "n2_actual_test_orders": {
+            "Colonoscopy with biopsy": "Executed",
+            "Contrast-enhanced CT of chest/abdomen/pelvis": "Executed"
+          },
+          "n2_missed_or_delayed_tests": null,
+          "n2_critical_values": {
+            "Colonoscopy Pathology": "(Rectum) Poorly differentiated adenocarcinoma",
+            "CT Chest/Abdomen/Pelvis": "Abnormal density in liver segment VIII, suggestive of metastasis; bilateral pulmonary nodules; irregular thickening of the rectal wall"
+          },
+          "n2_decision_cot": {
+            "step_1_clinical_question": "Determine the benign/malignant nature of the rectal mass and the systemic tumor burden to guide the treatment strategy.",
+            "step_2_test_choice_logic": "Colonoscopy with biopsy is the gold standard for diagnosing rectal cancer; contrast-enhanced CT of the chest, abdomen, and pelvis is the preferred imaging modality for evaluating liver/lung metastases and local T/N staging.",
+            "step_3_actual_vs_planned_gap": "The actual examinations perfectly aligned with the plan; no omissions were noted.",
+            "step_4_result_reshapes_downstream": "Pathology confirmed poorly differentiated adenocarcinoma, and CT revealed a metastatic lesion in liver segment VIII and bilateral pulmonary nodules. This directly upstages the disease to Stage IV (metastatic), completely shattering the expectation of curative local surgery. Subsequent decisions must shift from 'local anatomical resection' to 'balancing systemic disease control with local symptom palliation,' necessitating an urgent Multidisciplinary Tumor Board (MDT) consultation."
+          },
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "pathologies[0].diagnosis",
+                "evidence_text": "(Rectum) Poorly differentiated adenocarcinoma.",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": false
+              },
+              {
+                "evidence_path": "image_reports[4].diagnosis",
+                "evidence_text": "Rectal space-occupying lesion... abnormal density in liver segment VIII, suggestive of metastasis, further examination recommended if necessary.",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": false
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_3_status_anchor": {
+          "node_temporal_anchor": {
+            "anchor_path": "course_record.other_records[1].record_time",
+            "anchor_timestamp": "2024-12-05 15:36:00"
+          },
+          "n3_severity_staging": {
+            "clinical_grading": "Advanced (Stage IV)",
+            "cTNM": "cT3N+M1"
+          },
+          "n3_treatment_strategy": "PALLIATIVE_LIFE_PROLONGING",
+          "n3_strategy_logic_cot": "Integrating colonoscopy pathology and CT results, the patient is diagnosed with rectal adenocarcinoma with synchronous liver and lung metastases. Although in an advanced stage, the patient is young (40 years old) with a good performance status. The primary rectal tumor is extremely low (3 cm from the anal verge), posing risks of bleeding and potential obstruction. Following consultations with Interventional Oncology and Hepatobiliary Surgery, a consensus was reached: the liver metastasis (located near the diaphragmatic dome) and lung nodules are currently not amenable to synchronous curative resection. However, the primary lesion is symptomatic. The strategy is defined as 'palliative/prophylactic resection of the primary tumor followed by systemic therapy'—a staged surgical approach to control rectal bleeding and relieve potential obstruction, paving the way for subsequent chemotherapy/targeted therapy.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "consultation_record[0].consultation_advice",
+                "evidence_text": "Currently diagnosed with rectal malignancy and liver metastasis. Recommend hepatobiliary surgery consultation to evaluate indications for synchronous resection of rectal cancer and liver metastasis, or rectal surgery combined with/sequential to liver metastasis ablation.",
+                "evidence_scope": "CURRENT_SECTION_CONTEXT",
+                "window_violation_flag": false
+              },
+              {
+                "evidence_path": "consultation_record[1].consultation_advice",
+                "evidence_text": "Recommend staged resection of liver metastasis; follow up with hepatobiliary surgery.",
+                "evidence_scope": "CURRENT_SECTION_CONTEXT",
+                "window_violation_flag": false
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_4_tailored_treatment": {
+          "node_temporal_anchor": {
+            "anchor_path": "operations[0].start_time",
+            "anchor_timestamp": "2024-12-06 11:15:00"
+          },
+          "n4_standard_regimen": [
+            "Neoadjuvant chemotherapy followed by synchronous or staged resection of primary and liver metastases",
+            "Direct synchronous resection of primary and liver metastases"
+          ],
+          "n4_actual_regimen": [
+            "Laparoscopic Intersphincteric Resection (ISR) + Diverting Ileostomy (Staged surgery, deferring liver metastasis management)"
+          ],
+          "n4_deviation_nature": "JUSTIFIED_TRADEOFF",
+          "n4_patient_constraints": [
+            "MEDICAL_CONTRAINDICATION",
+            "RESOURCE_COMPETITION"
+          ],
+          "n4_tradeoff_logic_cot": {
+            "step_1_standard_baseline": "According to CACA guidelines for holistic integrative management of rectal cancer (2024 Edition) guidelines, for synchronous resectable/potentially resectable liver metastases from rectal cancer, standard guidelines typically recommend neoadjuvant chemotherapy followed by synchronous or staged resection, or direct synchronous resection.",
+            "step_2_constraint_interception": "The liver metastasis is located near the diaphragmatic dome, making the anatomical approach and surgical resection highly complex. Furthermore, the rectal tumor is ultra-low (3 cm from the anal verge), requiring an ISR or ultra-low anterior resection, which is time-consuming and highly traumatic. Synchronous surgery carries an excessively high risk of severe perioperative complications.",
+            "step_3_clinical_balancing": "A staged approach was chosen after weighing the risks. Priority was given to 'Laparoscopic ISR + Diverting Ileostomy' to resect the primary tumor, control bleeding, and relieve potential obstruction. The diverting ileostomy protects the ultra-low anastomosis/anal canal, preventing catastrophic pelvic sepsis.",
+            "step_4_safety_guarantee": "Strict adherence to oncological principles intraoperatively, with early initiation of systemic evaluation and hepatobiliary follow-up postoperatively. This represents a justified compromise based on anatomical complexity and surgical risk."
+          },
+          "n4_forbidden_regimens_list": [
+            {
+              "forbidden_item": "Single-stage synchronous resection of rectal and diaphragmatic dome liver metastases",
+              "forbidden_reason_type": "CONTRAINDICATION_COMORBIDITY",
+              "severity_level": "RELATIVE_WARNING"
+            }
+          ],
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "operations[0].op_name",
+                "evidence_text": "1. Laparoscopic Intersphincteric Resection (ISR) 2. Diverting Ileostomy",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": false
+              },
+              {
+                "evidence_path": "image_reports[1].findings",
+                "evidence_text": "A round long-T1, long-T2 abnormal signal near the diaphragmatic dome... cross-section approx. 2.2 x 2.0 cm.",
+                "evidence_scope": "CURRENT_LINE_CONTEXT",
+                "window_violation_flag": false
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_5_longitudinal_adaptation": {
+          "node_temporal_anchor": {
+            "anchor_path": "basic_information.exit_time",
+            "anchor_timestamp": "2024-12-18 14:19:00"
+          },
+          "n5_outcome_observable_within_admission": true,
+          "n5_outcome_dimension": "PROCEDURAL_OR_SURGICAL",
+          "n5_outcome_value": "SUCCESS_WITH_MINOR_COMPLICATION",
+          "n5_followup_outcome": null,
+          "n5_adverse_events_list": [
+            {
+              "ae_name": "Postoperative inflammatory exudate and hypoalbuminemia",
+              "ae_grade": "Moderate",
+              "ae_attribution": "PROCEDURE_RELATED"
+            }
+          ],
+          "n5_emergency_actions": {
+            "Nutritional Support": "Intravenous human serum albumin and parenteral/enteral nutrition",
+            "Antimicrobial Therapy": "Moxifloxacin to cover potential intra-abdominal/pelvic infections"
+          },
+          "n5_adaptation_logic_cot": "Postoperative pathology indicated pT3N0Mx, moderately differentiated adenocarcinoma with lymphovascular invasion (LVI) and focal neuroendocrine expression; genetic testing showed no typical mutations. The primary tumor resection was surgically successful. However, a postoperative CT scan (Dec 11) showed an increase in the size of the liver S8 metastasis, indicating aggressive tumor biology and poor systemic disease control. The patient developed postoperative hypoalbuminemia and elevated inflammatory markers, which stabilized with albumin replacement and antimicrobial therapy prior to discharge. The overall surgical outcome was successful, but the oncological status is progressive, mandating seamless transition to systemic therapy with medical oncology and hepatobiliary surgery.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "pathologies[1].diagnosis",
+                "evidence_text": "pTNM staging: pT3 N0 Mx... Lymphovascular invasion: focal vascular tumor thrombus observed.",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": false
+              },
+              {
+                "evidence_path": "image_reports[3].diagnosis",
+                "evidence_text": "Abnormal density in liver segment VIII, increased in volume compared to previous, suggestive of metastatic tumor.",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": false
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        }
+      }
+    },
+    {
+      "loop_meta": {
+        "loop_id": "doc0001159277_L02",
+        "loop_name": "Perioperative Management of Carotid Artery Stenosis and Lumbar Disc Herniation",
+        "loop_type": "CHRONIC_COMORBIDITY_MAINTAIN",
+        "loop_status": "CLOSED",
+        "trigger_event": "History of carotid artery stenosis and lumbar disc herniation for over 10 years.",
+        "trigger_time": "2024-12-02 10:48:00",
+        "trigger_time_source_path": "basic_information.enter_time",
+        "close_time": "2024-12-18 14:19:00",
+        "guideline_era": "2021_2024",
+        "treatment_phase": "MAINTENANCE",
+        "disease_status_milestone": "STABLE_MAINTENANCE"
+      },
+      "loop_relationship_edges": [],
+      "nodes_annotation": {
+        "node_1_initial_presentation": {
+          "node_temporal_anchor": {
+            "anchor_path": "basic_information.enter_time",
+            "anchor_timestamp": "2024-12-02 10:48:00"
+          },
+          "template_type": "CHRONIC_MAINTENANCE_ASSESSMENT",
+          "n1_baseline_status_assessment": "The patient has a 10-year history of carotid artery stenosis and lumbar disc herniation. Currently asymptomatic for cerebral ischemia or radiculopathy, with an independent functional status.",
+          "n1_urgency_level": "ROUTINE_MONITORING",
+          "n1_diagnostic_logic_cot": "Despite being middle-aged, the patient has a 10-year history of carotid artery stenosis and lumbar disc herniation. As a candidate for general anesthesia and laparoscopic pneumoperitoneum, carotid stenosis poses risks of cerebral hypoperfusion or plaque rupture due to pneumoperitoneum-induced hypertension and the Trendelenburg position. Lumbar disc herniation may be exacerbated by surgical positioning. Preoperative vascular ultrasound and cardiopulmonary function assessments are required to ensure hemodynamic stability perioperatively.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "enter_record.past",
+                "evidence_text": "Past medical history: 'Carotid artery stenosis' for over 10 years, 'Lumbar disc herniation' for over 10 years.",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": false
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_2_investigation_interpretation": {
+          "node_temporal_anchor": {
+            "anchor_path_list": [
+              "image_reports[6].time"
+            ],
+            "anchor_timestamp": "2024-12-03 09:01:04"
+          },
+          "n2_clinical_questions": [
+            "Can the cardiopulmonary and vascular systems tolerate general anesthesia and pneumoperitoneum?"
+          ],
+          "n2_intended_test_orders": {
+            "Echocardiography": "To evaluate cardiac structure and hemodynamics"
+          },
+          "n2_actual_test_orders": {
+            "Echocardiography": "Executed"
+          },
+          "n2_critical_values": {
+            "Echocardiography": "No obvious abnormalities in cardiac structure and blood flow; mild tricuspid/aortic regurgitation"
+          },
+          "n2_decision_cot": {
+            "step_1_clinical_question": "Evaluate the cardiovascular system's tolerance to prolonged laparoscopic surgery.",
+            "step_2_test_choice_logic": "Echocardiography is the preferred non-invasive modality to assess cardiac function and valvular status.",
+            "step_3_actual_vs_planned_gap": "Executed as planned; no omissions.",
+            "step_4_result_reshapes_downstream": "Echocardiography showed no significant abnormalities, indicating good cardiovascular compensatory reserve. The patient can tolerate the hemodynamic fluctuations induced by general anesthesia and pneumoperitoneum, removing cardiovascular contraindications for surgery."
+          },
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "image_reports[6].diagnosis",
+                "evidence_text": "No obvious abnormalities detected in cardiac structure and blood flow.",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": false
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_3_status_anchor": {
+          "node_temporal_anchor": {
+            "anchor_path": "course_record.first_record.course_time",
+            "anchor_timestamp": "2024-12-02 13:40:00"
+          },
+          "n3_severity_staging": {
+            "clinical_grading": "Mild / Stable"
+          },
+          "n3_treatment_strategy": "ROUTINE_MAINTENANCE",
+          "n3_strategy_logic_cot": "The patient's baseline comorbidities are currently stable without acute exacerbations. The perioperative strategy is 'maintain status quo with close monitoring.' The anesthesia team will strictly control blood pressure and airway pressure intraoperatively, minimizing the duration of the Trendelenburg position to prevent cerebral edema or ischemia. Postoperatively, early mobilization will be encouraged to prevent deep vein thrombosis (DVT) and lumbar muscle strain.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "course_record.first_record.plan",
+                "evidence_text": "Actively evaluate the condition, consult relevant departments if necessary; if no surgical contraindications, schedule elective surgery.",
+                "evidence_scope": "CURRENT_LINE_CONTEXT",
+                "window_violation_flag": false
+              }
+            ],
+            "evidence_quality": "INFERRED_REASONABLE"
+          }
+        },
+        "node_4_tailored_treatment": {
+          "node_temporal_anchor": {
+            "anchor_path": "operations[0].start_time",
+            "anchor_timestamp": "2024-12-06 11:15:00"
+          },
+          "n4_standard_regimen": [
+            "Perioperative blood pressure monitoring and positioning management"
+          ],
+          "n4_actual_regimen": [
+            "Laparoscopic surgery under general anesthesia with intraoperative hemodynamic stability maintenance"
+          ],
+          "n4_deviation_nature": "ALIGNED_WITH_STANDARD",
+          "n4_tradeoff_logic_cot": {
+            "step_1_standard_baseline": "For patients with carotid artery stenosis, perioperative management requires maintaining blood pressure at baseline levels to avoid cerebral hypoperfusion.",
+            "step_2_constraint_interception": "Laparoscopic surgery requires pneumoperitoneum and the Trendelenburg position, which significantly increase central venous pressure (CVP) and intracranial pressure (ICP), potentially impacting carotid blood flow.",
+            "step_3_clinical_balancing": "The anesthesia team meticulously titrated vasoactive agents intraoperatively, maintained intra-abdominal pressure at 12 mmHg, and minimized the duration of the Trendelenburg position while ensuring adequate surgical exposure.",
+            "step_4_safety_guarantee": "The patient emerged from anesthesia with clear sensorium and no neurological complications, proving the efficacy of the positioning and blood pressure management strategy."
+          },
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "operations[0].process",
+                "evidence_text": "Set intra-abdominal pressure to 12 mmHg. Changed position to Trendelenburg approx. 30 degrees.",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": false
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_5_longitudinal_adaptation": {
+          "node_temporal_anchor": {
+            "anchor_path": "basic_information.exit_time",
+            "anchor_timestamp": "2024-12-18 14:19:00"
+          },
+          "n5_outcome_observable_within_admission": true,
+          "n5_outcome_dimension": "FUNCTIONAL_OR_PSYCHIATRIC",
+          "n5_outcome_value": "STABLE_NO_RECOVERY",
+          "n5_adaptation_logic_cot": "The patient navigated the perioperative period smoothly without cerebrovascular accidents or acute exacerbation of lumbar disc herniation. Baseline comorbidities remained stable, and functional status at discharge was identical to pre-admission. Outpatient follow-up for carotid ultrasound and lumbar spine is recommended.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "exit_record.out_description",
+                "evidence_text": "Sensorium clear, spirit good... abdomen flat... bilateral lower extremities without edema.",
+                "evidence_scope": "CURRENT_SECTION_CONTEXT",
+                "window_violation_flag": false
+              }
+            ],
+            "evidence_quality": "INFERRED_REASONABLE"
+          }
+        }
+      }
+    },
+    {
+      "loop_meta": {
+        "loop_id": "doc0001159277_L03",
+        "loop_name": "Management of Postoperative Inflammatory Response and Hypoalbuminemia",
+        "loop_type": "COMPLICATION_MANAGEMENT",
+        "loop_status": "CLOSED",
+        "trigger_event": "Surgical stress and nutritional depletion following laparoscopic radical rectal cancer resection.",
+        "trigger_time": "2024-12-06 14:00:00",
+        "trigger_time_source_path": "operations[0].end_time",
+        "close_time": "2024-12-18 14:19:00",
+        "guideline_era": "2021_2024",
+        "treatment_phase": "RESCUE",
+        "disease_status_milestone": "POST_PROCEDURE_RECOVERY"
+      },
+      "loop_relationship_edges": [
+        {
+          "target_loop_id": "doc0001159277_L01",
+          "relation_type": "CAUSAL_DERIVED",
+          "relation_description": "Postoperative stress and nutritional complications directly triggered by the surgical trauma of radical rectal cancer resection."
+        }
+      ],
+      "nodes_annotation": {
+        "node_1_initial_presentation": {
+          "node_temporal_anchor": {
+            "anchor_path": "operations[0].end_time",
+            "anchor_timestamp": "2024-12-06 14:00:00"
+          },
+          "template_type": "ACUTE_OR_FIRST_DIAGNOSIS",
+          "n1_primary_impressions": [
+            "Postoperative stress-induced inflammatory response",
+            "Potential intra-abdominal/pelvic infection",
+            "Postoperative hypoalbuminemia"
+          ],
+          "n1_urgency_level": "ROUTINE_MONITORING",
+          "n1_diagnostic_logic_cot": "The patient underwent a 165-minute laparoscopic radical rectal resection with diverting ileostomy, involving deep pelvic dissection and bowel anastomosis/stoma creation. Major postoperative risks include anastomotic leak/stoma ischemia, pelvic sepsis, stress ulcers, and hypoalbuminemia. Close monitoring of vital signs, drain output, and inflammatory markers is required, alongside prophylactic nutritional support and antimicrobial therapy.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "operations[0].duration",
+                "evidence_text": "165 minutes",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": false
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_2_investigation_interpretation": {
+          "node_temporal_anchor": {
+            "anchor_path_list": [
+              "inspections[7].time"
+            ],
+            "anchor_timestamp": "2024-12-07 10:14:43"
+          },
+          "n2_clinical_questions": [
+            "What is the extent of the early postoperative inflammatory response? Are there signs of early infection or anastomotic leak?"
+          ],
+          "n2_intended_test_orders": {
+            "CBC + CRP + PCT": "To assess the degree of infection and stress",
+            "Comprehensive Metabolic Panel (CMP)": "To evaluate albumin and electrolyte levels"
+          },
+          "n2_actual_test_orders": {
+            "CBC + CRP + PCT": "Executed",
+            "CMP": "Executed"
+          },
+          "n2_critical_values": {
+            "CBC": "WBC 13.79 x 10^9/L, Neutrophils 10.94 x 10^9/L",
+            "CRP": "62.6 mg/L",
+            "PCT": "0.176 ng/mL",
+            "Albumin": "32.2 g/L"
+          },
+          "n2_decision_cot": {
+            "step_1_clinical_question": "Quantify the early postoperative systemic inflammatory response to differentiate between sterile SIRS and early bacterial infection/anastomotic leak.",
+            "step_2_test_choice_logic": "Combining WBC with CRP and PCT effectively distinguishes sterile SIRS from bacterial infection; albumin levels reflect nutritional depletion and capillary leak.",
+            "step_3_actual_vs_planned_gap": "Executed as planned; no omissions.",
+            "step_4_result_reshapes_downstream": "Results show mild-to-moderate elevations in WBC, CRP, and PCT, suggesting early postoperative SIRS or mild localized infection. Albumin is low (32.2 g/L). Given the non-feculent nature of the drain fluid, a severe anastomotic leak is unlikely at this stage. However, empiric antimicrobial therapy and intravenous nutritional support must be intensified to prevent the progression of intra-abdominal infection."
+          },
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "inspections[7].content",
+                "evidence_text": "WBC: 13.79... Neutrophil count: 10.94",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": false
+              },
+              {
+                "evidence_path": "inspections[5].content",
+                "evidence_text": "C-reactive protein (nephelometry): 62.6",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": false
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_3_status_anchor": {
+          "node_temporal_anchor": {
+            "anchor_path": "course_record.other_records[3].record_time",
+            "anchor_timestamp": "2024-12-08 08:05:00"
+          },
+          "n3_severity_staging": {
+            "clinical_grading": "Moderate Stress / Mild Infection"
+          },
+          "n3_treatment_strategy": "SYMPTOM_CONTROL_SUPPORTIVE",
+          "n3_strategy_logic_cot": "On postoperative day (POD) 2, the patient is afebrile with decreased drain output, but inflammatory markers remain elevated and albumin is further depleted. The clinical status is anchored as 'postoperative stress-induced inflammatory response with hypoalbuminemia,' with no evidence of active bleeding or severe anastomotic leak. The treatment strategy is 'intensive nutritional support + empiric antimicrobials + maintenance of homeostasis' to promote tissue repair and stoma healing.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "course_record.other_records[3].content",
+                "evidence_text": "Temperature 37.8°C yesterday, afebrile this morning... drain patent, 15 ml intra-abdominal drainage yesterday.",
+                "evidence_scope": "CURRENT_LINE_CONTEXT",
+                "window_violation_flag": false
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_4_tailored_treatment": {
+          "node_temporal_anchor": {
+            "anchor_path": "advices.long_advices.items[41].start_time",
+            "anchor_timestamp": "2024-12-08 08:33:00"
+          },
+          "n4_standard_regimen": [
+            "Parenteral/Enteral nutritional support",
+            "Empiric antibiotics covering Gram-negative and anaerobic bacteria",
+            "Human serum albumin supplementation if indicated"
+          ],
+          "n4_actual_regimen": [
+            "Intravenous Moxifloxacin",
+            "Intravenous Human Serum Albumin",
+            "Enteral Nutrition Emulsion (TPF-T)"
+          ],
+          "n4_deviation_nature": "ALIGNED_WITH_STANDARD",
+          "n4_tradeoff_logic_cot": {
+            "step_1_standard_baseline": "For postoperative inflammation and hypoalbuminemia, standard care involves enteral/parenteral nutrition, albumin supplementation when indicated, and antibiotics based on susceptibility or empiric coverage.",
+            "step_2_constraint_interception": "The patient is NPO postoperatively, requiring substantial parenteral nutrition. Elevated CRP/PCT indicates a risk of pelvic/intra-abdominal infection, necessitating coverage for common enteric flora.",
+            "step_3_clinical_balancing": "Moxifloxacin was administered for antimicrobial coverage (including anaerobes and atypical pathogens), followed by the addition of human serum albumin and enteral nutrition emulsion.",
+            "step_4_safety_guarantee": "The regimen aligns with ERAS and postoperative antimicrobial stewardship principles. Albumin supplementation helps mitigate tissue edema, promoting the healing of the stoma and pelvic surgical bed."
+          },
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "advices.long_advices.items[41].name",
+                "evidence_text": "Moxifloxacin Hydrochloride and Sodium Chloride Injection 0.4g",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": false
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_5_longitudinal_adaptation": {
+          "node_temporal_anchor": {
+            "anchor_path": "basic_information.exit_time",
+            "anchor_timestamp": "2024-12-18 14:19:00"
+          },
+          "n5_outcome_observable_within_admission": true,
+          "n5_outcome_dimension": "PROCEDURAL_OR_SURGICAL",
+          "n5_outcome_value": "SUCCESS_WITH_MINOR_COMPLICATION",
+          "n5_adaptation_logic_cot": "Following nutritional support and antimicrobial therapy, the patient's albumin rebound to 37.6 g/L. However, CRP remained fluctuating (112 mg/L) with elevated WBC. A follow-up CT (Dec 11) revealed thickening of the sigmoid colon wall, suggestive of inflammatory changes. Ultimately, the patient was discharged in stable condition with the diverting ileostomy, without severe complications requiring reoperation (e.g., severe leak). The outcome is 'successful with minor complications,' as the postoperative inflammatory exudate was successfully managed conservatively.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "inspections[24].content",
+                "evidence_text": "Albumin (dry chemistry): 37.6",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": false
+              },
+              {
+                "evidence_path": "image_reports[3].diagnosis",
+                "evidence_text": "Thickening of the sigmoid colon wall, primarily suggestive of inflammatory lesions.",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": false
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        }
+      }
+    }
+  ],
+  "cross_loop_joint_reasoning": [
+    {
+      "involved_loop_ids": [
+        "doc0001159277_L01",
+        "doc0001159277_L02"
+      ],
+      "materiality_threshold": true,
+      "clinical_conflict_type": "PATHOPHYSIOLOGICAL_CONTRAINDICATION",
+      "joint_tradeoff_logic_cot": {
+        "conflict_paradox_analysis": "Loop 1 requires laparoscopic radical rectal resection, necessitating CO2 pneumoperitoneum (12 mmHg) and the Trendelenburg position (30 degrees). This significantly increases central venous pressure (CVP) and intracranial pressure (ICP), posing a potential risk of cerebral hypoperfusion or plaque rupture for the patient with carotid artery stenosis in Loop 2. There is a direct conflict in hemodynamic management between the surgical requirements and the baseline comorbidity constraints.",
+        "holistic_resource_scheduling": "The anesthesia and surgical teams collaborated to meticulously titrate vasoactive agents intraoperatively, maintaining blood pressure at baseline levels. Intra-abdominal pressure was kept at the lower limit of safety (12 mmHg), and the duration of the Trendelenburg position was minimized while ensuring adequate surgical exposure. The patient emerged with clear sensorium and no neurological complications, demonstrating that cross-loop collaborative management successfully mitigated the risk."
+      }
+    }
+  ]
+}

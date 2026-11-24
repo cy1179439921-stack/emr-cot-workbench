@@ -1,0 +1,3848 @@
+{
+  "advices": {
+    "long_advices": {
+      "items": [
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2024-12-06 14:28:00",
+          "frequency": "QD",
+          "is_drug": "否",
+          "name": "普通外科护理常规 QD",
+          "start_time": "2024-12-02 10:57:00",
+          "type": "护理"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2024-12-06 14:28:00",
+          "frequency": "QD",
+          "is_drug": "否",
+          "name": "Ⅱ级护理 QD",
+          "start_time": "2024-12-02 10:57:00",
+          "type": "护理"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2024-12-05 07:43:00",
+          "frequency": "QD",
+          "is_drug": "否",
+          "name": "半流质饮食 QD",
+          "start_time": "2024-12-02 10:57:00",
+          "type": "饮食"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2024-12-06 14:28:00",
+          "frequency": "",
+          "is_drug": "否",
+          "name": "踝泵运动",
+          "start_time": "2024-12-02 10:57:00",
+          "type": "护理"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2024-12-06 14:28:00",
+          "frequency": "",
+          "is_drug": "否",
+          "name": "下床活动",
+          "start_time": "2024-12-02 10:57:00",
+          "type": "其他"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2024-12-06 14:28:00",
+          "frequency": "QD",
+          "is_drug": "否",
+          "name": "留陪人 QD",
+          "start_time": "2024-12-02 10:57:00",
+          "type": "嘱托"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2024-12-06 14:28:00",
+          "frequency": "QW",
+          "is_drug": "否",
+          "name": "静脉血栓栓塞风险评估 QW",
+          "start_time": "2024-12-02 10:57:00",
+          "type": "治疗"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "250ml",
+          "end_time": "2024-12-06 14:28:00",
+          "frequency": "QD",
+          "is_drug": "是",
+          "name": "0.9%氯化钠注射液 250ml",
+          "start_time": "2024-12-04 08:39:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "15mg",
+          "end_time": "2024-12-06 14:28:00",
+          "frequency": "QD",
+          "is_drug": "是",
+          "name": "注射用七叶皂苷钠 15mg",
+          "start_time": "2024-12-04 08:39:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "500ml",
+          "end_time": "2024-12-06 14:28:00",
+          "frequency": "QD",
+          "is_drug": "是",
+          "name": "0.9%氯化钠注射液 500ml",
+          "start_time": "2024-12-04 08:39:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "1g",
+          "end_time": "2024-12-06 14:28:00",
+          "frequency": "QD",
+          "is_drug": "是",
+          "name": "氯化钾注射液 1g",
+          "start_time": "2024-12-04 08:39:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "500ml",
+          "end_time": "2024-12-06 14:28:00",
+          "frequency": "QD",
+          "is_drug": "是",
+          "name": "10%葡萄糖注射液 500ml",
+          "start_time": "2024-12-04 08:39:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "1g",
+          "end_time": "2024-12-06 14:28:00",
+          "frequency": "QD",
+          "is_drug": "是",
+          "name": "氯化钾注射液 1g",
+          "start_time": "2024-12-04 08:39:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "8u",
+          "end_time": "2024-12-06 14:28:00",
+          "frequency": "QD",
+          "is_drug": "是",
+          "name": "胰岛素注射液 8u",
+          "start_time": "2024-12-04 08:39:00",
+          "type": "药品"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2024-12-06 14:28:00",
+          "frequency": "QD",
+          "is_drug": "否",
+          "name": "留置针封堵 QD",
+          "start_time": "2024-12-04 16:21:00",
+          "type": "非药品"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2024-12-18 08:46:00",
+          "frequency": "QD",
+          "is_drug": "否",
+          "name": "普通外科护理常规 QD",
+          "start_time": "2024-12-06 14:31:00",
+          "type": "护理"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2024-12-10 08:21:00",
+          "frequency": "QD",
+          "is_drug": "否",
+          "name": "Ⅰ级护理 QD",
+          "start_time": "2024-12-06 14:31:00",
+          "type": "护理"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2024-12-10 08:34:00",
+          "frequency": "QD",
+          "is_drug": "否",
+          "name": "禁食 QD",
+          "start_time": "2024-12-06 14:31:00",
+          "type": "饮食"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2024-12-18 08:46:00",
+          "frequency": "QD",
+          "is_drug": "否",
+          "name": "留陪人 QD",
+          "start_time": "2024-12-06 14:31:00",
+          "type": "嘱托"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2024-12-08 07:58:00",
+          "frequency": "Q1H",
+          "is_drug": "否",
+          "name": "心电监测 Q1H",
+          "start_time": "2024-12-06 14:31:00",
+          "type": "治疗"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2024-12-08 07:58:00",
+          "frequency": "Q4H",
+          "is_drug": "否",
+          "name": "测血压、脉搏、呼吸 Q4H",
+          "start_time": "2024-12-06 14:31:00",
+          "type": "其他"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2024-12-08 07:58:00",
+          "frequency": "Q1H",
+          "is_drug": "否",
+          "name": "指脉氧监测 Q1H",
+          "start_time": "2024-12-06 14:31:00",
+          "type": "治疗"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2024-12-08 07:58:00",
+          "frequency": "Q1H",
+          "is_drug": "否",
+          "name": "氧气吸入（中高流量每分钟 >2L）Q1H",
+          "start_time": "2024-12-06 14:31:00",
+          "type": "护理"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2024-12-11 09:06:00",
+          "frequency": "QD",
+          "is_drug": "否",
+          "name": "留置导尿 QD",
+          "start_time": "2024-12-06 14:31:00",
+          "type": "护理"
+        },
+        {
+          "administration": "冲洗",
+          "dose_unit": "",
+          "end_time": "2024-12-11 09:06:00",
+          "frequency": "QD",
+          "is_drug": "是",
+          "name": "会阴冲洗",
+          "start_time": "2024-12-06 14:31:00",
+          "type": "药品"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2024-12-17 08:13:00",
+          "frequency": "QD",
+          "is_drug": "否",
+          "name": "腹腔引流 QD",
+          "start_time": "2024-12-06 14:31:00",
+          "type": "其他"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2024-12-17 08:13:00",
+          "frequency": "QD",
+          "is_drug": "否",
+          "name": "引流管引流 QD",
+          "start_time": "2024-12-06 14:31:00",
+          "type": "治疗"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2024-12-18 08:46:00",
+          "frequency": "QD",
+          "is_drug": "否",
+          "name": "造瘘护理 QD",
+          "start_time": "2024-12-06 14:31:00",
+          "type": "护理"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2024-12-18 08:46:00",
+          "frequency": "QW",
+          "is_drug": "否",
+          "name": "静脉血栓栓塞风险评估 QW",
+          "start_time": "2024-12-06 14:31:00",
+          "type": "治疗"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2024-12-18 08:46:00",
+          "frequency": "",
+          "is_drug": "否",
+          "name": "踝泵运动",
+          "start_time": "2024-12-06 14:31:00",
+          "type": "护理"
+        },
+        {
+          "administration": "雾化吸入",
+          "dose_unit": "1mg",
+          "end_time": "2024-12-12 07:32:00",
+          "frequency": "BID",
+          "is_drug": "是",
+          "name": "吸入用布地奈德混悬液（海滨）1mg 雾化吸入",
+          "start_time": "2024-12-06 14:31:00",
+          "type": "药品"
+        },
+        {
+          "administration": "雾化吸入",
+          "dose_unit": "0.5mg",
+          "end_time": "2024-12-12 07:32:00",
+          "frequency": "BID",
+          "is_drug": "是",
+          "name": "吸入用异丙托溴铵 溶液 0.5mg 雾化吸入",
+          "start_time": "2024-12-06 14:31:00",
+          "type": "药品"
+        },
+        {
+          "administration": "雾化吸入",
+          "dose_unit": "0.3g",
+          "end_time": "2024-12-12 07:32:00",
+          "frequency": "BID",
+          "is_drug": "是",
+          "name": "吸入用乙酰半胱氨酸 酸溶液（赞邦）0.3g 雾化吸入",
+          "start_time": "2024-12-06 14:31:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "100ml",
+          "end_time": "2024-12-17 18:20:00",
+          "frequency": "QD",
+          "is_drug": "是",
+          "name": "0.9%氯化钠注射液 100ml",
+          "start_time": "2024-12-06 14:31:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "40mg",
+          "end_time": "2024-12-17 18:20:00",
+          "frequency": "QD",
+          "is_drug": "是",
+          "name": "注射用艾司奥美拉唑钠（奥赛康） 40mg",
+          "start_time": "2024-12-06 14:31:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "250ml",
+          "end_time": "2024-12-13 07:09:00",
+          "frequency": "QD",
+          "is_drug": "是",
+          "name": "0.9%氯化钠注射液 250ml",
+          "start_time": "2024-12-06 14:31:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "15mg",
+          "end_time": "2024-12-13 07:09:00",
+          "frequency": "QD",
+          "is_drug": "是",
+          "name": "注射用七叶皂苷钠iv.drip 15mg",
+          "start_time": "2024-12-06 14:31:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "500ml",
+          "end_time": "2024-12-12 07:32:00",
+          "frequency": "QD",
+          "is_drug": "是",
+          "name": "葡萄糖氯化钠注射液液 500ml",
+          "start_time": "2024-12-06 14:31:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "1g",
+          "end_time": "2024-12-12 07:32:00",
+          "frequency": "QD",
+          "is_drug": "是",
+          "name": "氯化钾注射液（齐都）1g",
+          "start_time": "2024-12-06 14:31:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "1440ml",
+          "end_time": "2024-12-10 08:34:00",
+          "frequency": "QD",
+          "is_drug": "是",
+          "name": "脂肪乳氨基酸 (17) 葡萄糖 (11%) 注射液 1440ml",
+          "start_time": "2024-12-06 14:31:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "1瓶",
+          "end_time": "2024-12-10 08:34:00",
+          "frequency": "QD",
+          "is_drug": "是",
+          "name": "注射用水溶性维生素（罗欣）1 瓶 氯化钾注射液（齐都） ω-3 鱼油脂肪乳注射液",
+          "start_time": "2024-12-06 14:31:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "30ml",
+          "end_time": "2024-12-10 08:34:00",
+          "frequency": "QD",
+          "is_drug": "是",
+          "name": "浓氯化钠注射液 30ml",
+          "start_time": "2024-12-06 14:31:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "0.9g",
+          "end_time": "2024-12-10 08:34:00",
+          "frequency": "QD",
+          "is_drug": "是",
+          "name": "氯化钙注射液 0.9g",
+          "start_time": "2024-12-06 14:31:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "100ml",
+          "end_time": "2024-12-10 08:34:00",
+          "frequency": "QD",
+          "is_drug": "是",
+          "name": "丙氨酰谷氨酰胺注射液（科伦）100ml",
+          "start_time": "2024-12-06 14:31:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "250ml",
+          "end_time": "2024-12-13 07:09:00",
+          "frequency": "QD",
+          "is_drug": "是",
+          "name": "羟乙基淀粉 130/0.4 氯化钠注射液（华仁）250ml",
+          "start_time": "2024-12-06 14:31:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "100ml",
+          "end_time": "2024-12-07 09:30:00",
+          "frequency": "QD",
+          "is_drug": "是",
+          "name": "0.9% 氯化钠注射液 100ml",
+          "start_time": "2024-12-06 14:31:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "2g",
+          "end_time": "2024-12-07 09:30:00",
+          "frequency": "QD",
+          "is_drug": "是",
+          "name": "注射用头孢曲松钠（进口）2g",
+          "start_time": "2024-12-06 14:31:00",
+          "type": "药品"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2024-12-18 08:46:00",
+          "frequency": "",
+          "is_drug": "否",
+          "name": "留置针封堵",
+          "start_time": "2024-12-06 15:26:00",
+          "type": "非药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "0.4g",
+          "end_time": "2024-12-13 07:09:00",
+          "frequency": "QD",
+          "is_drug": "是",
+          "name": "盐酸莫西沙星氯化钠注射液（海南爱科） 0.4g",
+          "start_time": "2024-12-08 08:33:00",
+          "type": "药品"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2024-12-18 08:46:00",
+          "frequency": "QD",
+          "is_drug": "否",
+          "name": "Ⅱ级护理 QD",
+          "start_time": "2024-12-10 08:21:00",
+          "type": "护理"
+        },
+        {
+          "administration": "口服",
+          "dose_unit": "200ml",
+          "end_time": "2024-12-14 10:58:00",
+          "frequency": "QD",
+          "is_drug": "是",
+          "name": "肠内营养乳剂（TPF-T）200ml",
+          "start_time": "2024-12-10 08:24:00",
+          "type": "药品"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2024-12-15 09:20:00",
+          "frequency": "QD",
+          "is_drug": "否",
+          "name": "流质饮食 QD",
+          "start_time": "2024-12-10 08:35:00",
+          "type": "饮食"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "250ml",
+          "end_time": "2024-12-17 18:20:00",
+          "frequency": "QD",
+          "is_drug": "是",
+          "name": "复方氨基酸 -18 注射液 (18AA-) 250ml",
+          "start_time": "2024-12-10 08:35:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "500ml",
+          "end_time": "2024-12-12 07:32:00",
+          "frequency": "QD",
+          "is_drug": "是",
+          "name": "葡萄糖氯化钠注射液 500ml",
+          "start_time": "2024-12-10 08:35:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "1g",
+          "end_time": "2024-12-12 07:32:00",
+          "frequency": "QD",
+          "is_drug": "是",
+          "name": "氯化钾注射液（齐都） 1g",
+          "start_time": "2024-12-10 08:35:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "4u",
+          "end_time": "2024-12-13 07:09:00",
+          "frequency": "QD",
+          "is_drug": "是",
+          "name": "胰岛素注射液 4u",
+          "start_time": "2024-12-10 08:35:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "250ml",
+          "end_time": "2024-12-17 18:20:00",
+          "frequency": "QD",
+          "is_drug": "是",
+          "name": "多种油脂脂肪乳注射液 250ml",
+          "start_time": "2024-12-10 08:35:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "100ml",
+          "end_time": "2024-12-13 07:09:00",
+          "frequency": "QD",
+          "is_drug": "是",
+          "name": "0.9% 氯化钠注射液 100ml",
+          "start_time": "2024-12-10 08:35:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "20g",
+          "end_time": "2024-12-13 07:09:00",
+          "frequency": "QD",
+          "is_drug": "是",
+          "name": "人血白蛋白（泰邦） 20g",
+          "start_time": "2024-12-11 16:31:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉注射",
+          "dose_unit": "1mg",
+          "end_time": "2024-12-13 07:09:00",
+          "frequency": "QD",
+          "is_drug": "是",
+          "name": "布美他尼注射液 1mg",
+          "start_time": "2024-12-11 16:31:00",
+          "type": "药品"
+        },
+        {
+          "administration": "口服",
+          "dose_unit": "200ml",
+          "end_time": "2024-12-13 07:09:00",
+          "frequency": "QD",
+          "name": "肠内营养乳剂（TPF-T）200ml",
+          "start_time": "2024-12-11 16:31:00",
+          "type": "药品"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2024-12-18 08:46:00",
+          "frequency": "QD",
+          "is_drug": "否",
+          "name": "半流质饮食 QD",
+          "start_time": "2024-12-15 09:20:00",
+          "type": "饮食"
+        }
+      ]
+    },
+    "short_advices": {
+      "items": [
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-02 10:58:00",
+          "is_drug": "否",
+          "name": "心脏彩超",
+          "time": "2024-12-02 10:57:00",
+          "type": "检查"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-02 10:58:00",
+          "is_drug": "否",
+          "name": "肺功能（全项）",
+          "time": "2024-12-02 10:57:00",
+          "type": "检查"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-02 10:58:00",
+          "is_drug": "否",
+          "name": "腹部、盆腔平扫 + 增强 CT、胸部 CT",
+          "time": "2024-12-02 10:57:00",
+          "type": "检查"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-02 10:58:00",
+          "is_drug": "否",
+          "name": "双下肢深静脉 + 双下肢浅静脉超声",
+          "time": "2024-12-02 10:57:00",
+          "type": "检查"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-02 10:58:00",
+          "is_drug": "否",
+          "name": "血细胞分析（五分类）",
+          "time": "2024-12-02 10:57:00",
+          "type": "检验"
+        },
+        {
+          "excute_time": "2024-12-02 10:58:00",
+          "is_drug": "否",
+          "name": "肝功",
+          "time": "2024-12-02 10:57:00"
+        },
+        {
+          "excute_time": "2024-12-02 10:58:00",
+          "is_drug": "否",
+          "name": "肾功",
+          "time": "2024-12-02 10:57:00"
+        },
+        {
+          "excute_time": "2024-12-02 10:58:00",
+          "is_drug": "否",
+          "name": "电解质",
+          "time": "2024-12-02 10:57:00"
+        },
+        {
+          "excute_time": "2024-12-02 10:58:00",
+          "is_drug": "否",
+          "name": "葡萄糖测定（酶法）",
+          "time": "2024-12-02 10:57:00"
+        },
+        {
+          "excute_time": "2024-12-02 10:58:00",
+          "is_drug": "否",
+          "name": "感染标志物系列（10项）",
+          "time": "2024-12-02 10:57:00"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-02 10:58:00",
+          "is_drug": "否",
+          "name": "凝血常规",
+          "time": "2024-12-02 10:57:00",
+          "type": "检验"
+        },
+        {
+          "excute_time": "2024-12-02 10:58:00",
+          "is_drug": "否",
+          "name": "血型",
+          "time": "2024-12-02 10:57:00"
+        },
+        {
+          "excute_time": "2024-12-02 10:58:00",
+          "is_drug": "否",
+          "name": "消化道肿瘤",
+          "time": "2024-12-02 10:57:00"
+        },
+        {
+          "excute_time": "2024-12-02 10:58:00",
+          "is_drug": "否",
+          "name": "糖化血红蛋白测定（色谱法）",
+          "time": "2024-12-02 10:57:00"
+        },
+        {
+          "excute_time": "2024-12-02 10:58:00",
+          "is_drug": "否",
+          "name": "甲功五项",
+          "time": "2024-12-02 10:57:00"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-02 10:58:00",
+          "is_drug": "否",
+          "name": "营养风险筛查",
+          "time": "2024-12-02 10:57:00",
+          "type": "检查"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-02 10:58:00",
+          "is_drug": "否",
+          "name": "电子结肠镜",
+          "time": "2024-12-02 10:57:00",
+          "type": "其他"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-02 10:58:00",
+          "is_drug": "否",
+          "name": "经口全消化道清洁洗肠",
+          "time": "2024-12-02 10:57:00",
+          "type": "治疗"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-02 10:58:00",
+          "is_drug": "否",
+          "name": "定于明日静脉麻醉下行肠镜检查",
+          "time": "2024-12-02 10:57:00",
+          "type": "非药品"
+        },
+        {
+          "administration": "灌肠",
+          "dose_unit": "1000ml",
+          "excute_time": "2024-12-02 15:48:00",
+          "is_drug": "是",
+          "name": "生理氯化钠溶液（冲洗）1000ml 灌肠",
+          "time": "2024-12-02 10:57:00",
+          "type": "药品"
+        },
+        {
+          "administration": "",
+          "dose_unit": "80g",
+          "excute_time": "2024-12-02 15:48:00",
+          "is_drug": "是",
+          "name": "硫酸镁 80g 处方取药",
+          "time": "2024-12-02 10:57:00",
+          "type": "药品"
+        },
+        {
+          "administration": "口服",
+          "dose_unit": "80g",
+          "excute_time": "2024-12-02 15:48:00",
+          "is_drug": "是",
+          "name": "硫酸镁 80g",
+          "time": "2024-12-02 10:57:00",
+          "type": "药品"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-03 17:13:00",
+          "is_drug": "否",
+          "name": "上腹部平扫 + 增强 MR",
+          "time": "2024-12-03 17:12:00",
+          "type": "其他"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-04 15:14:00",
+          "is_drug": "否",
+          "name": "盆腔 MRI（包含 DWI 成像）",
+          "time": "2024-12-04 15:05:00",
+          "type": "检查"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "10mg",
+          "excute_time": "2024-12-04 21:50:00",
+          "is_drug": "是",
+          "name": "盐酸消旋山莨菪碱注射液 10mg",
+          "time": "2024-12-04 15:05:00",
+          "type": "药品"
+        },
+        {
+          "administration": "肛门给药",
+          "dose_unit": "100ml",
+          "excute_time": "2024-12-04 21:50:00",
+          "is_drug": "是",
+          "name": "开塞露 (含甘油) 100ml",
+          "time": "2024-12-04 15:05:00",
+          "type": "药品"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-05 08:46:00",
+          "is_drug": "否",
+          "name": "术前禁饮食",
+          "time": "2024-12-05 07:44:00",
+          "type": "饮食"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-05 08:46:00",
+          "is_drug": "否",
+          "name": "备皮",
+          "time": "2024-12-05 07:44:00",
+          "type": "治疗"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-05 08:46:00",
+          "is_drug": "否",
+          "name": "特殊介质交叉配血",
+          "time": "2024-12-05 07:44:00",
+          "type": "检验"
+        },
+        {
+          "administration": "灌肠",
+          "dose_unit": "",
+          "excute_time": "2024-12-05 08:46:00",
+          "is_drug": "是",
+          "name": "清洁灌肠",
+          "time": "2024-12-05 07:44:00",
+          "type": "药品"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-05 08:46:00",
+          "is_drug": "否",
+          "name": "导尿",
+          "time": "2024-12-05 07:44:00",
+          "type": "治疗"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-05 08:46:00",
+          "is_drug": "否",
+          "name": "留置静脉针穿刺",
+          "time": "2024-12-05 07:44:00",
+          "type": "护理"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "250ml",
+          "excute_time": "2024-12-05 17:14:00",
+          "is_drug": "是",
+          "name": "复方氨基酸 -18 注射液 18AA-II 250ml",
+          "time": "2024-12-05 07:44:00",
+          "type": "药品"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-05 08:46:00",
+          "is_drug": "否",
+          "name": "定于明日 16 点在全麻下行腹腔镜直肠癌根治术",
+          "time": "2024-12-05 07:44:00",
+          "type": "非药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "100ml",
+          "excute_time": "2024-12-05 10:07:00",
+          "is_drug": "是",
+          "name": "0.9%氯化钠注射液 100ml",
+          "time": "2024-12-05 07:44:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "40mg",
+          "excute_time": "2024-12-05 10:07:00",
+          "is_drug": "是",
+          "name": "注射用泮托拉唑钠 (中美) 40mg",
+          "time": "2024-12-05 07:44:00",
+          "type": "药品"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-05 08:46:00",
+          "is_drug": "否",
+          "name": "经口全消化道清洁洗肠",
+          "time": "2024-12-05 07:44:00",
+          "type": "治疗"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "2000ml",
+          "excute_time": "2024-12-05 14:10:00",
+          "is_drug": "是",
+          "name": "生理氯化钠溶液 (冲洗) 2000ml",
+          "time": "2024-12-05 07:44:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "100ml",
+          "excute_time": "2024-12-06 10:24:00",
+          "is_drug": "是",
+          "name": "0.9%氯化钠注射液 100ml",
+          "time": "2024-12-05 07:44:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "2g",
+          "excute_time": "2024-12-06 10:24:00",
+          "is_drug": "是",
+          "name": "注射用头孢曲松钠 (进口) 2g",
+          "time": "2024-12-05 07:44:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "500ml",
+          "excute_time": "2024-12-05 15:54:00",
+          "is_drug": "是",
+          "name": "0.9%氯化钠注射液 500ml",
+          "time": "2024-12-05 07:44:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉注射",
+          "dose_unit": "1g",
+          "excute_time": "2024-12-05 15:54:00",
+          "is_drug": "是",
+          "name": "氯化钾注射液 (齐都) 1g",
+          "time": "2024-12-05 07:44:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉注射",
+          "dose_unit": "4u",
+          "excute_time": "2024-12-05 15:54:00",
+          "is_drug": "是",
+          "name": "胰岛素注射液 4u",
+          "time": "2024-12-05 07:44:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "250ml",
+          "excute_time": "2024-12-05 17:14:00",
+          "is_drug": "是",
+          "name": "多种油脂脂肪乳注射液 250ml",
+          "time": "2024-12-05 07:44:00",
+          "type": "药品"
+        },
+        {
+          "administration": "冲洗",
+          "dose_unit": "300mg",
+          "excute_time": "2024-12-06 12:38:00",
+          "is_drug": "是",
+          "name": "奥沙利铂注射液 (齐鲁) 300mg 术中冲洗",
+          "time": "2024-12-05 07:44:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "100ml",
+          "excute_time": "2024-12-05 14:10:00",
+          "is_drug": "是",
+          "name": "0.9%氯化钠注射液 100ml",
+          "time": "2024-12-05 07:44:00",
+          "type": "药品"
+        },
+        {
+          "administration": "冲洗",
+          "dose_unit": "4mg",
+          "excute_time": "2024-12-06 12:38:00",
+          "is_drug": "是",
+          "name": "注射用雷替曲塞 4mg 术中冲洗 .",
+          "time": "2024-12-05 07:44:00",
+          "type": "药品"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-05 08:46:00",
+          "is_drug": "否",
+          "name": "病理检查",
+          "time": "2024-12-05 07:45:00",
+          "type": "其他"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-05 08:46:00",
+          "is_drug": "否",
+          "name": "备血：B 型 RhD 阳性悬浮去白细胞红细胞 2U 病毒灭活冰冻血浆 200ML",
+          "time": "2024-12-05 07:45:00",
+          "type": "非药品"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-05 08:46:00",
+          "is_drug": "否",
+          "name": "常规心电图检查 (自动分析)",
+          "time": "2024-12-05 07:47:00",
+          "type": "检查"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-05 08:46:00",
+          "is_drug": "否",
+          "name": "病理检查",
+          "time": "2024-12-05 07:56:00",
+          "type": "其他"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-05 10:37:00",
+          "is_drug": "否",
+          "name": "请肿瘤微创科 3 组会诊",
+          "time": "2024-12-05 10:35:00",
+          "type": "其他"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-05 10:40:00",
+          "is_drug": "否",
+          "name": "请肝胆外科二病区 2 组会诊",
+          "time": "2024-12-05 10:38:00",
+          "type": "其他"
+        },
+        {
+          "administration": "",
+          "dose_unit": "80g",
+          "excute_time": "2024-12-05 16:56:00",
+          "is_drug": "是",
+          "name": "硫酸镁 80g 处方取药",
+          "time": "2024-12-05 13:53:00",
+          "type": "药品"
+        },
+        {
+          "administration": "口服",
+          "dose_unit": "80g",
+          "excute_time": "2024-12-05 16:55:00",
+          "is_drug": "是",
+          "name": "硫酸镁 80g .",
+          "time": "2024-12-05 13:53:00",
+          "type": "药品"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-06 14:48:00",
+          "is_drug": "否",
+          "name": "全麻术后护理常规",
+          "time": "2024-12-06 14:32:00",
+          "type": "护理"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-06 14:48:00",
+          "is_drug": "否",
+          "name": "平卧六小时",
+          "time": "2024-12-06 14:32:00",
+          "type": "其他"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "500ml",
+          "excute_time": "2024-12-07 00:29:00",
+          "is_drug": "是",
+          "name": "葡萄糖氯化钠注射液 500ml",
+          "time": "2024-12-06 14:32:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "1g",
+          "excute_time": "2024-12-07 00:29:00",
+          "is_drug": "是",
+          "name": "氯化钾注射液（齐都）1g",
+          "time": "2024-12-06 14:32:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "500ml",
+          "excute_time": "2024-12-06 22:11:00",
+          "is_drug": "是",
+          "name": "复方氯化钠注射液 500ml",
+          "time": "2024-12-06 14:32:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "1g",
+          "excute_time": "2024-12-06 22:11:00",
+          "is_drug": "是",
+          "name": "氯化钾注射液（齐都）1g",
+          "time": "2024-12-06 14:32:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "500ml",
+          "excute_time": "2024-12-06 19:57:00",
+          "is_drug": "是",
+          "name": "5%葡萄糖注射液 500ml",
+          "time": "2024-12-06 14:32:00",
+          "type": "药品"
+        },
+        {
+          "administration": "皮下注射",
+          "dose_unit": "4u",
+          "excute_time": "2024-12-06 19:57:00",
+          "is_drug": "是",
+          "name": "胰岛素注射液 4u",
+          "time": "2024-12-06 14:32:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "1g",
+          "excute_time": "2024-12-06 19:57:00",
+          "is_drug": "是",
+          "name": "氯化钾注射液（齐都）1g",
+          "time": "2024-12-06 14:32:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "500ml",
+          "excute_time": "2024-12-07 01:31:00",
+          "is_drug": "是",
+          "name": "10%葡萄糖注射液 500ml",
+          "time": "2024-12-06 14:32:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "1g",
+          "excute_time": "2024-12-07 01:31:00",
+          "is_drug": "是",
+          "name": "氯化钾注射液（齐都）1g",
+          "time": "2024-12-06 14:32:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "8u",
+          "excute_time": "2024-12-07 01:31:00",
+          "is_drug": "是",
+          "name": "胰岛素注射液 8u",
+          "time": "2024-12-06 14:32:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "250ml",
+          "excute_time": "2024-12-06 16:56:00",
+          "is_drug": "是",
+          "name": "羟乙基淀粉 130/0.4 氯化钠注射液（华仁）250ml",
+          "time": "2024-12-06 14:32:00",
+          "type": "药品"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-06 14:48:00",
+          "is_drug": "否",
+          "name": "血细胞分析 (五分类)",
+          "time": "2024-12-06 14:32:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-06 14:48:00",
+          "is_drug": "否",
+          "name": "降钙素原检测",
+          "time": "2024-12-06 14:32:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-06 14:48:00",
+          "is_drug": "否",
+          "name": "C-反应蛋白测定 (CRP)(免疫散射比浊法)",
+          "time": "2024-12-06 14:32:00",
+          "type": "其他"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-06 14:48:00",
+          "is_drug": "否",
+          "name": "血清丙氨酸氨基转移酶测定 (化学法或酶促法)",
+          "time": "2024-12-06 14:32:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-06 14:48:00",
+          "is_drug": "否",
+          "name": "血清天门冬氨酸氨基转移酶测定 (化学法或酶促法)",
+          "time": "2024-12-06 14:32:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-06 14:48:00",
+          "is_drug": "否",
+          "name": "总胆红素测定 (化学法或酶促法)",
+          "time": "2024-12-06 14:32:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-06 14:48:00",
+          "is_drug": "否",
+          "name": "血清直接胆红素测定 (化学法或酶促法)",
+          "time": "2024-12-06 14:32:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-06 14:48:00",
+          "is_drug": "否",
+          "name": "血清白蛋白测定 (干化学法)",
+          "time": "2024-12-06 14:32:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-06 14:48:00",
+          "is_drug": "否",
+          "name": "尿素测定 (酶促动力学法)",
+          "time": "2024-12-06 14:32:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-06 14:48:00",
+          "is_drug": "否",
+          "name": "肌酐测定 (酶促动力学法)",
+          "time": "2024-12-06 14:32:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-06 14:48:00",
+          "is_drug": "否",
+          "name": "电解质",
+          "time": "2024-12-06 14:32:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-08 08:22:00",
+          "is_drug": "否",
+          "name": "特大换药",
+          "time": "2024-12-08 07:57:00",
+          "type": "治疗"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "0.4g",
+          "excute_time": "2024-12-08 12:09:00",
+          "is_drug": "是",
+          "name": "盐酸莫西沙星氯化钠注射液（海南爱科）0.4g",
+          "time": "2024-12-08 08:33:00",
+          "type": "药品"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-08 08:39:00",
+          "is_drug": "否",
+          "name": "痰培养+药敏",
+          "time": "2024-12-08 08:33:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-09 07:48:00",
+          "is_drug": "否",
+          "name": "血细胞分析 (五分类)",
+          "time": "2024-12-09 06:52:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-09 07:48:00",
+          "is_drug": "否",
+          "name": "降钙素原检测",
+          "time": "2024-12-09 06:52:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-09 07:48:00",
+          "is_drug": "否",
+          "name": "C 一反应蛋白测定 (CRP)(免疫散射比浊法)",
+          "time": "2024-12-09 06:52:00",
+          "type": "其他"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-09 07:48:00",
+          "is_drug": "否",
+          "name": "血清丙氨酸氨基转移酶测定 (化学法或酶促法)",
+          "time": "2024-12-09 06:52:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-09 07:48:00",
+          "is_drug": "否",
+          "name": "血清天门冬氨酸氨基转移酶测定 (化学法或酶促法)",
+          "time": "2024-12-09 06:52:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-09 07:48:00",
+          "is_drug": "否",
+          "name": "总胆红素测定 (化学法或酶促法)",
+          "time": "2024-12-09 06:52:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-09 07:48:00",
+          "is_drug": "否",
+          "name": "血清直接胆红素测定 (化学法或酶促法)",
+          "time": "2024-12-09 06:52:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-09 07:48:00",
+          "is_drug": "否",
+          "name": "血清白蛋白测定 (干化学法)",
+          "time": "2024-12-09 06:52:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-09 07:48:00",
+          "is_drug": "否",
+          "name": "尿素测定 (酶促动力学法)",
+          "time": "2024-12-09 06:52:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-09 07:48:00",
+          "is_drug": "否",
+          "name": "肌酐测定 (酶促动力学法)",
+          "time": "2024-12-09 06:52:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-09 07:48:00",
+          "is_drug": "否",
+          "name": "电解质",
+          "time": "2024-12-09 06:52:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-09 11:01:00",
+          "is_drug": "否",
+          "name": "留置静脉针穿刺",
+          "time": "2024-12-09 10:55:00",
+          "type": "护理"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-09 11:01:00",
+          "is_drug": "否",
+          "name": "更换引流管",
+          "time": "2024-12-09 10:55:00",
+          "type": "治疗"
+        },
+        {
+          "administration": "",
+          "dose_unit": "1g",
+          "excute_time": "2024-12-09 17:09:00",
+          "is_drug": "是",
+          "name": "肛泰软膏 1g 处方取药",
+          "time": "2024-12-09 15:36:00",
+          "type": "药品"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-09 16:02:00",
+          "is_drug": "否",
+          "name": "甲胎蛋白测定 (AFP)(化学发光法)",
+          "time": "2024-12-09 15:57:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-11 09:02:00",
+          "is_drug": "否",
+          "name": "胸部 + 腹部 + 盆腔平扫 CT",
+          "time": "2024-12-11 08:57:00",
+          "type": "检查"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "100ml",
+          "excute_time": "2024-12-11 17:51:00",
+          "is_drug": "是",
+          "name": "0.9%氯化钠注射液 100ml",
+          "time": "2024-12-11 16:31:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "20g",
+          "excute_time": "2024-12-11 17:51:00",
+          "is_drug": "是",
+          "name": "人血白蛋白 (泰邦) 20g",
+          "time": "2024-12-11 16:31:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉注射",
+          "dose_unit": "1mg",
+          "excute_time": "2024-12-11 19:13:00",
+          "is_drug": "是",
+          "name": "布美他尼注射液 1mg",
+          "time": "2024-12-11 16:31:00",
+          "type": "药品"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-12 08:59:00",
+          "is_drug": "否",
+          "name": "血细胞分析 (五分类)",
+          "time": "2024-12-12 07:23:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-12 08:59:00",
+          "is_drug": "否",
+          "name": "降钙素原检测",
+          "time": "2024-12-12 07:23:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-12 08:59:00",
+          "is_drug": "否",
+          "name": "C-反应蛋白测定 (CRP)(免疫散射比浊法)",
+          "time": "2024-12-12 07:23:00",
+          "type": "其他"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-12 08:59:00",
+          "is_drug": "否",
+          "name": "血清丙氨酸氨基转移酶测定 (化学法或酶促法)",
+          "time": "2024-12-12 07:23:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-12 08:59:00",
+          "is_drug": "否",
+          "name": "血清天门冬氨酸氨基转移酶测定 (化学法或酶促法)",
+          "time": "2024-12-12 07:23:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-12 08:59:00",
+          "is_drug": "否",
+          "name": "总胆红素测定 (化学法或酶促法)",
+          "time": "2024-12-12 07:23:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-12 08:59:00",
+          "is_drug": "否",
+          "name": "血清直接胆红素测定 (化学法或酶促法)",
+          "time": "2024-12-12 07:23:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-12 08:59:00",
+          "is_drug": "否",
+          "name": "血清白蛋白测定 (干化学法)",
+          "time": "2024-12-12 07:23:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-12 08:59:00",
+          "is_drug": "否",
+          "name": "尿素测定 (酶促动力学法)",
+          "time": "2024-12-12 07:23:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-12 08:59:00",
+          "is_drug": "否",
+          "name": "肌酐测定 (酶促动力学法)",
+          "time": "2024-12-12 07:23:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-12 08:59:00",
+          "is_drug": "否",
+          "name": "电解质",
+          "time": "2024-12-12 07:23:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-12 08:59:00",
+          "is_drug": "否",
+          "name": "甲胎蛋白测定 (AFP)(化学发光法)",
+          "time": "2024-12-12 07:23:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "15ml",
+          "excute_time": "2024-12-12 12:36:00",
+          "is_drug": "是",
+          "name": "复方黄柏液涂剂 15ml 处方取药",
+          "time": "2024-12-12 09:36:00",
+          "type": "药品"
+        },
+        {
+          "administration": "",
+          "dose_unit": "15ml",
+          "excute_time": "2024-12-13 09:53:00",
+          "is_drug": "是",
+          "name": "复方黄柏液涂剂 15ml 处方取药",
+          "time": "2024-12-13 08:36:00",
+          "type": "药品"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-14 09:00:00",
+          "is_drug": "否",
+          "name": "特大换药",
+          "time": "2024-12-14 08:44:00",
+          "type": "治疗"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-14 09:00:00",
+          "is_drug": "否",
+          "name": "拆线",
+          "time": "2024-12-14 08:44:00",
+          "type": "其他"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "50mg",
+          "excute_time": "2024-12-14 11:10:00",
+          "is_drug": "是",
+          "name": "氟比洛芬酯注射液（远大） 50mg ",
+          "time": "2024-12-14 11:08:00",
+          "type": "药品"
+        },
+        {
+          "administration": "静脉滴注",
+          "dose_unit": "100ml",
+          "excute_time": "2024-12-14 11:10:00",
+          "is_drug": "是",
+          "name": "0.9%氯化钠注射液 100ml ",
+          "time": "2024-12-14 11:08:00",
+          "type": "药品"
+        },
+        {
+          "administration": "",
+          "dose_unit": "0.4mg",
+          "excute_time": "2024-12-14 23:07:00",
+          "is_drug": "是",
+          "name": "阿普唑仑片 0.4mg 处方取药",
+          "time": "2024-12-14 21:42:00",
+          "type": "药品"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-16 09:22:00",
+          "is_drug": "否",
+          "name": "血细胞分析 (五分类)",
+          "time": "2024-12-16 09:19:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-16 09:22:00",
+          "is_drug": "否",
+          "name": "降钙素原检测",
+          "time": "2024-12-16 09:19:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-16 09:22:00",
+          "is_drug": "否",
+          "name": "C-反应蛋白测定 (CRP)(免疫散射比浊法)",
+          "time": "2024-12-16 09:19:00",
+          "type": "其他"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-16 09:22:00",
+          "is_drug": "否",
+          "name": "血清丙氨酸氨基转移酶测定 (化学法或酶促法)",
+          "time": "2024-12-16 09:19:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-16 09:22:00",
+          "is_drug": "否",
+          "name": "血清天门冬氨酸氨基转移酶测定 (化学法或酶促法)",
+          "time": "2024-12-16 09:19:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-16 09:22:00",
+          "is_drug": "否",
+          "name": "总胆红素测定 (化学法或酶促法)",
+          "time": "2024-12-16 09:19:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-16 09:22:00",
+          "is_drug": "否",
+          "name": "血清直接胆红素测定 (化学法或酶促法)",
+          "time": "2024-12-16 09:19:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-16 09:22:00",
+          "is_drug": "否",
+          "name": "血清白蛋白测定 (干化学法)",
+          "time": "2024-12-16 09:19:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-16 09:22:00",
+          "is_drug": "否",
+          "name": "尿素测定 (酶促动力学法)",
+          "time": "2024-12-16 09:19:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-16 09:22:00",
+          "is_drug": "否",
+          "name": "肌酐测定 (酶促动力学法)",
+          "time": "2024-12-16 09:19:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-16 09:22:00",
+          "is_drug": "否",
+          "name": "电解质",
+          "time": "2024-12-16 09:19:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-16 09:22:00",
+          "is_drug": "否",
+          "name": "凝血四项",
+          "time": "2024-12-16 09:19:00",
+          "type": "检验"
+        },
+        {
+          "administration": "",
+          "dose_unit": "15ml",
+          "excute_time": "2024-12-16 23:01:00",
+          "is_drug": "是",
+          "name": "复方黄柏液涂剂 15ml 处方取药",
+          "time": "2024-12-16 20:04:00",
+          "type": "药品"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-17 08:47:00",
+          "is_drug": "否",
+          "name": "特大换药",
+          "time": "2024-12-17 08:13:00",
+          "type": "治疗"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-17 08:47:00",
+          "is_drug": "否",
+          "name": "拔引流管",
+          "time": "2024-12-17 08:13:00",
+          "type": "其他"
+        },
+        {
+          "administration": "",
+          "dose_unit": "2000ml",
+          "excute_time": "2024-12-18 10:10:00",
+          "is_drug": "是",
+          "name": "肠内营养乳剂（TPF-T）2000ml 处方取药",
+          "time": "2024-12-18 08:46:00",
+          "type": "药品"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-18 09:05:00",
+          "is_drug": "否",
+          "name": "特大换药",
+          "time": "2024-12-18 08:46:00",
+          "type": "治疗"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-18 09:05:00",
+          "is_drug": "否",
+          "name": "拆线",
+          "time": "2024-12-18 08:46:00",
+          "type": "其他"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2024-12-18 09:05:00",
+          "is_drug": "否",
+          "name": "今日出院",
+          "time": "2024-12-18 08:46:00",
+          "type": "嘱托"
+        }
+      ]
+    }
+  },
+  "basic_information": {
+    "age": "40",
+    "birthday": "1984-09-15",
+    "career": "农民",
+    "clinic_diagnosis_icd10": "R93.300x004",
+    "clinic_diagnosis_name": "直肠占位性病变",
+    "document_id": "0001159277",
+    "enter_time": "2024-12-02 10:48:00",
+    "enter_way": "门诊",
+    "exit_time": "2024-12-18 14:19:00",
+    "in_department": "结直肠肛门外科",
+    "inhospital_days": 16,
+    "inhospital_number": "1",
+    "main_diagnosis_icd10": "",
+    "main_diagnosis_name": "直肠恶性肿瘤",
+    "marital": "已婚",
+    "operations_code": [
+      "无",
+      "无",
+      "无"
+    ],
+    "operations_name": [
+      "腹腔镜下超低位直肠前切除术",
+      "回肠造口术",
+      "结肠镜下大肠活组织检查"
+    ],
+    "operations_time": [
+      "2024-12-06",
+      "2024-12-06",
+      "2024-12-03"
+    ],
+    "other_diagnosis_icd10": [
+      "无",
+      "无",
+      "无",
+      "无",
+      "无",
+      "无",
+      "无"
+    ],
+    "other_diagnosis_name": [
+      "肝继发恶性肿瘤",
+      "双肺结节",
+      "心包积液",
+      "脂肪肝",
+      "副脾",
+      "颈动脉狭窄",
+      "腰椎间盘突出"
+    ],
+    "out_department": "结直肠肛门外科",
+    "sex": "男"
+  },
+  "consultation_record": [
+    {
+      "consultation_abstract": "会诊摘要:患者因“便血3月余”入院,入院诊断:1.直肠占位性病变 2.颈动脉狭窄 3.腰间盘突出,癌胚抗原(CLIA):5.46ng/mL,甲胎蛋白(CLIA):1925.61ng/mL,肠镜示:直肠Ca,为求下一步治疗意见,特请贵科会诊!",
+      "consultation_advice": "复习病史及化验检查，查体无明显异常体征。\n目前诊断:\n直肠恶性肿瘤肝继发恶性肿瘤建议:\n1.同意贵科诊治。\n2.，患者AFP明显升高，无肝炎病史，结合CT及MR结果，目前诊断考虑直肠恶性肿瘤肝转移，建议请肝胆外科会诊，评估有无同时性直肠癌及肝转移手术切除指征，或直肠癌手术联合或续贯肝转移瘤消融治疗。\n3.谢邀!",
+      "consultation_department": "肿瘤微创科3组 赵文华",
+      "consultation_time": "2024-12-05 11:18:00",
+      "consultation_type": "普通会诊",
+      "request_department": "结直肠肛门外科"
+    },
+    {
+      "consultation_abstract": "会诊摘要:患者因“便血3月余”入院,入院诊断:1.直肠占位性病变 2.颈动脉狭窄 3.腰间盘突出,癌胚抗原(CLIA):5.46ng/mL,甲胎蛋白(CLIA):1925.61ng/mL,肠镜示:直肠Ca,2024-12-04 10:12 上腹部(肝、胆、胰、脾):肝内近膈顶处异常信号,符合转移瘤表现,建议进一步确诊脂肪肝副脾为求下一步治疗意见,特请贵科会诊!",
+      "consultation_advice": "病史同前\n患者行腹部MRI示肝膈顶异常信号，考虑肝转移可能。肝内近膈顶处异常信号，符合转移瘤表现，建议进一步确诊脂肪肝副脾。\n患者拟行手术治疗，现评估病人后建议分期行肝转移瘤切除术，肝胆外科随诊。",
+      "consultation_department": "肝胆外科二病区2组 ",
+      "consultation_time": "2024-12-05 15:36:00",
+      "consultation_type": "普通会诊",
+      "request_department": "结直肠肛门外科"
+    }
+  ],
+  "course_record": {
+    "first_record": {
+      "course_time": "2024-12-02 13:40:00",
+      "description": "患者男，40岁，因“便血3月余”入院。既往“颈动脉狭窄”10年余，“腰间盘突出”10年余，否认高血压、糖尿病、冠心病等慢性疾病史。否认肝炎、结核等传染疾病及密切接触史，否认其他手术史、外伤史及输血史，未发现食物及药物过敏史，预防接种史随当地。查体：腹部平坦，无腹壁静脉曲张，无胃肠型及蠕动波。腹肌软，全腹无压痛及反跳痛，未扪及包块，肝脾肋下未触及，肝肾区无叩击痛，移动性浊音（-），肠鸣音正常。肛诊取膝胸位，视诊未见明显异常。肛门指诊：肛诊距肛缘约3cm直肠可触及质硬肿物，指尖无法通过。辅助检查：暂缺。",
+      "diagnostic_basis": "患者男，40岁，因“便血3月余”入院。既往“颈动脉狭窄”10年余，“腰间盘突出”10年余，否认高血压、糖尿病、冠心病等慢性疾病史。否认肝炎、结核等传染疾病及密切接触史，否认其他手术史、外伤史及输血史，未发现食物及药物过敏史，预防接种史随当地。查体：腹部平坦，无腹壁静脉曲张，无胃肠型及蠕动波。腹肌软，全腹无压痛及反跳痛，未扪及包块，肝脾肋下未触及，肝肾区无叩击痛，移动性浊音（-），肠鸣音正常。肛诊取膝胸位，视诊未见明显异常。肛门指诊：肛诊距肛缘约3cm直肠可触及质硬肿物，指尖无法通过。辅助检查：暂缺。",
+      "differential_diagnosis": "1. 溃疡性结肠炎：可表现为脓血便及腹痛，腹痛多为轻到中度的痉挛痛，少数病人直肠受累后亦可有里急后重感。结肠镜检查可明确诊断。2. 结肠息肉：也可表现为大便性状改变，有便血、下腹坠胀等。一般息肉带蒂，生长缓慢，质软，活动度大。结肠镜病理检查有利于鉴别。",
+      "plan": "1. 外科护理常规，二级护理，半流质饮食；2. 完善血常规、肝肾功、电解质、血型、肿瘤标志物、凝血常规、大小便常规等化验，完善心电图、胸部+腹部CT等检查；3. 积极评估病情，必要时请相关科室会诊，如无手术禁忌，限期手术。",
+      "preliminary_diagnosis": [
+        "直肠占位性病变",
+        "颈动脉狭窄",
+        "腰间盘突出"
+      ]
+    },
+    "other_records": [
+      {
+        "record_content": "患者因“便血3月余”入院，入院诊断：1.直肠占位性病变 2.颈动脉狭窄 3.腰间盘突出，癌胚抗原(CLIA):5.46ng/mL，甲胎蛋白(CLIA):1925.61ng/mL，肠镜示：直肠Ca，为求下一步治疗意见，请肿瘤微创科会诊。目前诊断：直肠恶性肿瘤 肝继发恶性肿瘤建议：1. 同意贵科诊治。2.,患者AFP明显升高，无肝炎病史，结合CT及MR结果，目前诊断考虑直肠恶性肿瘤肝转移，建议请肝胆外科会诊，评估有无同时性直肠癌及肝转移手术切除指征，或直肠癌手术联合或续贯肝转移瘤消融治疗。遵会诊意见执行。",
+        "record_time": "2024-12-05 11:18:00",
+        "record_type": "会诊记录"
+      },
+      {
+        "record_content": "患者因“便血3月余”入院，入院诊断：1.直肠占位性病变 2.颈动脉狭窄 3.腰间盘突出，癌胚抗原(CLIA)：5.46ng/mL，甲胎蛋白(CLIA)：1925.61ng/mL，肠镜示：直肠Ca，2024-12-04 10:12 上腹部（肝、胆、胰、脾）：肝内近膈顶处异常信号，符合转移瘤表现，建议进一步确诊脂肪肝副脾为求下一步治疗意见，请肝胆外科会诊。会诊意见：病史同前患者行腹部MRI示肝膈顶异常信号，考虑肝转移可能。肝内近膈顶处异常信号，符合转移瘤表现，建议进一步确诊脂肪肝副脾。患者拟行手术治疗，现评估病人后建议分期行肝转移瘤切除术，肝胆外科随诊。遵会诊意见执行。",
+        "record_time": "2024-12-05 15:36:00",
+        "record_type": "会诊记录"
+      },
+      {
+        "record_content": "简要病情：患者*，男，40岁，因便血3月余。于2024年12月2日入院。患者男，40岁，因“便血3月余”入院；既往“颈动脉狭窄”10年余，“腰间盘突出”10年余，否认高血压、糖尿病、冠心病等慢性疾病史。否认肝炎、结核等传染疾病及密切接触史，否认其他手术史、外伤史及输血史，未发现食物及药物过敏史，预防接种史随当地；查体：腹部平坦，无腹壁静脉曲张，无胃肠型及蠕动波。腹肌软，全腹无压痛及反跳痛，未扪及包块，肝脾肋下未触及，肝肾区无叩击痛，移动性浊音（-），肠鸣音正常。肛诊取膝胸位，视诊未见明显异常。肛门指诊：肛诊距肛缘约3cm直肠可触及质硬肿物，指尖无法通过；辅助检查：暂缺。术前诊断：直肠恶性肿瘤手术指征：直肠恶性肿瘤诊断明确，临床考虑以缓解患者临床症状为其主要诊疗手段，目前患者一般情况可，术前常规检查结果大致正常，未见绝对手术禁忌证。拟施手术名称和方式：腹腔镜直肠癌根治术拟施麻醉方式：全麻术中术后可能出现的风险及应对措施：术前备尿管，术前肠道准备，术中根据探查情况调整术式，术中注意仔细分离周围组织，减少出血。关于手术的必要性，麻醉、术中以及术后可能发生的意外及并发症已向病人家属说明，其表示理解并同意手术，已在手术手术知情同意书上签字。特殊的术前准备内容：无注意事项：注意加强围手术期护理与治疗，注意支持治疗及水电解质平衡，以利安全度过手术期。手术者术前查看患者情况：手术者*主任医师已查看患者并经手术组集体讨论。认为患者手术指征明确，一般情况可，无手术禁忌，可行手术治疗。",
+        "record_time": "2024-12-06 08:42:00",
+        "record_type": "术前讨论结论及术前小结"
+      },
+      {
+        "record_content": "手术完成时间：2024-12-06 14:00患者术前诊断结肠占位性病变，于今日下午在全麻下行腹腔镜右半结肠切除术，麻醉成功后，取仰卧位，常规消毒术野，铺巾，放置导尿管。脐上沿切开皮肤1.0cm，Veress 穿刺针建立 CO2 气腹，设定腹内压 12mmHg。改体位为头低脚高位约30度。脐上沿置 1.0cm Trocar，右侧下腹部（右锁骨中线与两髂前上棘连线交点)置1.2cm Trocar,左下腹对应位置置1.0cm Trocar,两侧锁骨中线平脐水平分别置0.5cm Trocar,置入腹腔镜及相应器械。镜下探查:腹腔内无腹水,肝脏、胆囊、胃、脾脏、小肠均未见明显异常,腹膜及肠系膜未探及转移结节。肿瘤位于腹膜反折下方,腹腔内无法探及,系膜未见肿大淋巴结。决定行腹腔镜直肠癌经括约肌间切除术(ISR)+回肠造口术。超声刀先分离黏连,后沿乙状结肠系膜于骶骨岬水平切开后腹膜,延乙状结肠根部由下向上游离,分离出肠系膜下动脉,沿肠系膜下动脉向远端游离,可见乙状结肠动脉与左结肠动脉共干,hemo-lock双重结肠乙状结肠动脉近心端后予以离断。对应水平离断肠系膜下静脉。向外侧拓展Toldt间隙,显露左侧输尿管及生殖血管。延左侧腹壁和乙状结肠系膜交界线切开,进入后腹膜Toldt间隙,向内侧游离,与内侧贯通。沿直肠后骶骨前间隙向下游离,远端达盆底肌水平,分别游离两侧方达相应水平。游离直肠系膜,裸化近切线距肿瘤约10cm处肠管,腔镜下直线切割闭合器距肿瘤上缘约10cm断乙状结肠。经肛操作:距肿瘤远端0.5cm于齿状线上缘做两个荷包缝合关闭直肠。经肛白线进入内外括约肌间沟,沿括约肌间沟向近端拓展,与腹腔相通。将肿瘤拉出体外。使用卵圆钳将近端结肠经肛门拉出体外,距结肠近端残端约3cm将结肠浆肌层固定于肛管近端,近端残端固定于肛管皮肤。清理手术野,彻底止血后,盆腔内放置1根引流管。见距回盲部30cm回肠自右下腹穿刺孔拖出行回肠造口。反复冲洗术野干净,查无活动性出血,清点器械纱布无误后,排除气腹,拔除各Trocar,各穿刺口无活动性出血,缝合关闭各切口,腹壁无皮下气肿。术程顺利,术后出血50ml,术中未输血,麻醉效果好,术后安返病房。标本送病理。明晨抽血查相关指标。手术情况已向患者亲属告知。",
+        "record_time": "2024-12-06 15:48:00",
+        "record_type": "术后首次病程记录"
+      }
+    ],
+    "ward_records": [
+      {
+        "content": "患者目前病情稳定，神志清，精神可，半流质饮食可，睡眠可，未诉特殊不适。查体：腹部平坦，无腹壁静脉曲张，无胃肠型及蠕动波。腹肌软，全腹无压痛及反跳痛，未扪及包块，肝脾肋下未触及，肝肾区无叩击痛，移动性浊音(-)，肠鸣音正常。胸、腹、盆腔：双肺结节，建议随诊直肠占位性病变、乙状结肠壁显厚，请结合内镜检查肝S8段异常密度，考虑转移，建议必要时进一步检查。消化道肿瘤★癌胚抗原(CLIA):5.46ng/mL，★甲胎蛋白(CLIA):1925.61ng/mL；*主任医师查房嘱：患者一般情况可，予以完善结肠镜检查，注意观察患者病情变化。",
+        "doctor": "*",
+        "time": "2024-12-03 08:35:00"
+      },
+      {
+        "content": "患者入院第3天，病情稳定，未诉特殊不适，精神可，睡眠可。查体：腹部平坦，无腹壁静脉曲张，无胃肠型及蠕动波。腹肌软，全腹无压痛及反跳痛，未扪及包块，肝脾肋下未触及，肝肾区无叩击痛，移动性浊音(-)，肠鸣音正常。肠镜示：直肠Ca。*副主任医师查房嘱：患者一般情况可，排除手术禁忌后，拟手术治疗，注意观察患者病情变化。",
+        "doctor": "*",
+        "time": "2024-12-04 08:18:00"
+      },
+      {
+        "content": "患者今日术后第1天,神志清,精神可,术后生命体征稳定,昨日体温37.8℃,今晨体温正常,持续导尿通畅,昨日尿量900ml,引流管通畅,昨日腹腔引流量450ml。查体:切口敷料干洁,未见明显渗血、渗液,腹软,无压痛反跳痛,移动性浊音(-)。今日*主任医师查房嘱:患者手术顺利,目前无特殊不适,今日继续给予抗感染、营养支持、对症治疗,密切观察患者病情变化。",
+        "doctor": "*",
+        "time": "2024-12-07 08:01:00"
+      },
+      {
+        "content": "患者术后第2天，病情稳定，神志清，精神可，睡眠可，禁饮食状态，昨日体温37.8℃，今晨体温正常，持续导尿通畅，昨日尿量2450ml，引流管通畅，昨日腹腔引流量15ml。查体：切口敷料干洁，未见明显渗血、渗液，腹软，无压痛反跳痛，移动性浊音（-）。降钙素原检测降钙素原:0.176ng/mL；C一反应蛋白测定(CRP) (免疫散射比浊法)C反应蛋白(散射比浊):62.6mg/L；血细胞分析(五分类)★白细胞计数:13.79×10^9/L，中性粒细胞计数:10.94×10^9/L，★红细胞计数:4.07×10^12/L，★血红蛋白:130.0g/L；电解质^肌酐测定(酶促动力学法)^尿素测定(酶促动力学法)^血清直接胆红素测定(化学法或酶促法)^总胆红素测定(化学法或酶促法)^血清天门冬氨酸氨基转移酶测定(化学法或酶促法)^血清丙氨酸氨基转移酶测定(化学法或酶促法)★钙:2.06mmol/L；今日*副主任医师查房：患者手术顺利，术后恢复尚可，继续给予抗感染、营养支持、对症治疗，密切关注病情变化，及时对症处理。",
+        "doctor": "*",
+        "time": "2024-12-08 08:05:00"
+      },
+      {
+        "content": "患者术后第3天，一般情况好，今晨体温正常，禁饮食状态，睡眠可，未述特殊不适。查体：切口敷料干洁，未见明显渗血、渗液，腹软，无压痛反跳痛，移动性浊音（-）。今日*主治医师查房：目前患者病情稳定，体温正常，维持当前对症治疗，今予以复查血细胞分析、肝肾功能、电解质等，密切观察患者病情变化，遵嘱执行",
+        "doctor": "*",
+        "time": "2024-12-09 09:08:00"
+      },
+      {
+        "content": "患者术后第6天，目前病情稳定，一般情况良好，神志清、精神可，流质饮食可，睡眠可，小便正常。查体：切口敷料干洁，未见明显渗血，有少量渗液，腹软，肝肾区无叩击痛，无压痛反跳痛，移动性浊音（-），肠鸣音可。胸、腹、盆腔：双肺结节，建议随诊双肺炎症、纤维灶，建议治疗后复查心包积液肝S8段异常密度，较前体积增大，考虑转移瘤，请结合临床直肠术后、回肠造瘘术后，盆腔内积液、积气乙状结肠壁增厚，首先考虑炎性病变，建议复查。血清白蛋白测定(干化学法)白蛋白(干):29.9g/L；血细胞分析(五分类)★白细胞计数:10.37×10^9/L，中性粒细胞计数:8.29×10^9/L，★红细胞计数:3.59×10^12/L，★血红蛋白:115.0g/L；降钙素原检测降钙素原:0.073ng/mL；今日*主任医师查房分析:患者术后一般情况可，目前无特殊不适，继续给予对症治疗，密切关注病情变化。",
+        "doctor": "*",
+        "time": "2024-12-12 08:47:00"
+      },
+      {
+        "content": "患者未诉特殊不适，病情稳定，神志清，精神可，睡眠可，流质饮食可，大小便正常，无发热。查体：腹软，肝肾区无叩击痛，无压痛反跳痛，移动性浊音(-)，肠鸣音可。血细胞分析(五分类)★白细胞计数:10.31×10^9/L，中性粒细胞计数:7.56×10^9/L，★红细胞计数:3.53×10^12/L，★血红蛋白:113.0g/L；降钙素原检测降钙素原:0.143ng/mL；甲胎蛋白测定(AFP)(化学发光法)★甲胎蛋白(CLIA):271.12ng/mL；今日*副主任医师查房：患者术后恢复好，密切关注病情变化，及时对症处理。",
+        "doctor": "*",
+        "time": "2024-12-15 08:50:00"
+      },
+      {
+        "content": "患者未诉特殊不适，无发热，无腹痛、腹胀，神志清，精神可，半流质饮食可，睡眠可。查体：腹部平坦，无腹壁静脉曲张，无胃肠型及蠕动波。腹肌软，全腹无压痛及反跳痛，未扪及包块，肝脾肋下未触及，肝肾区无叩击痛，移动性浊音(-)，肠鸣音正常。术后病理(202452384)：肿瘤位置：直肠 与腹膜返折处关系：下 大小：面积:7cm×5cm，厚1.5cm 肉眼类型：盘状隆起型 组织类型：管状腺癌，局灶伴神经内分泌表达 分级：中分化 癌旁病变：无 浸润深度：T3：非腹膜覆盖的直肠周围组织 穿孔：无 梗阻：无 脉管浸润：局灶显示血管癌栓 周围神经浸润：未显示 肿瘤芽分级：Grade 2 切线：未侵犯：距近切线5cm、距远切线0.8cm 另送“远端切线”未查见癌。新辅助化疗：无 淋巴结转移情况：一站（10个）、中央组（6个）、中间组（7个）及另送“二五三组”（2个）淋巴结未查见癌。pTNM分期:pT3 NO Mx 免疫组化检测示:HER2(1+)、Syn(+,约5%)、BRAF(-)、INSM1(-)、MSH6(+)、MSH2(+)、MLH1(+)、PMS2(+)、CD34（未显示血管癌栓）、D2-40（未显示淋巴管癌栓）。现患者术后恢复可，要求出院，今日*主任医师查房分析:患者术后恢复良好，同意出院，嘱患者出院后注意休息，合理膳食，定期复查，不适随诊。",
+        "doctor": "*",
+        "time": "2024-12-18 08:25:00"
+      }
+    ]
+  },
+  "enter_record": {
+    "allergy": "无",
+    "ancillary_tests": [],
+    "body_examination": "T 36.3℃ P 112次/min R 23次/min BP 137/105mmHg H 175cm BW 85kgVTE风险评估 低危营养风险筛查 6 分患者中年男性，发育正常，营养中等，神志清楚，自主体位，查体合作。全身皮肤无黄染、无瘀点、无出血点。全身浅表淋巴结未触及肿大。头颅发育正常，毛发分布均匀，眼睑无水肿，结膜无充血，巩膜无黄染，双侧瞳孔等大等圆，对光反射及调节反射存在，耳、鼻无异常，口唇无紫绀，咽部无充血，扁桃体无肿大。颈软，无抵抗，颈静脉无怒张，双侧颈动脉未闻及杂音，气管居中，甲状腺无肿大。胸廓对称无畸形，双肺呼吸音清晰，未闻及干、湿性啰音。心前区无隆起及凹陷，心界无扩大，心率次/分，节律规整，各瓣膜听诊区未闻及病理性杂音。腹部平坦，腹软，无压痛，无反跳痛。肝、脾肋下未触及，Murphy’s征阴性，肝、肾区无叩痛，肠鸣音无亢进，移动性浊音阴性。脊柱无畸形，四肢无畸形，双下肢无水肿。双下肢足背动脉搏动正常。肱二头肌反射正常，膝腱反射正常，腹壁反射正常。巴氏征阴性，布氏征阴性。",
+    "body_height": "175",
+    "body_weight": "85",
+    "bp": "137/105",
+    "complain": "便血3月余。",
+    "family": "父母健在；否认家族性遗传病及传染病史。",
+    "marriage": "适龄结婚，夫妻关系和睦。育有2女，配偶及女均体健。",
+    "menstruation": "无",
+    "past": "既往“颈动脉狭窄”10年余，“腰间盘突出”10年余，否认高血压、糖尿病、冠心病等慢性疾病史。否认肝炎、结核等传染疾病及密切接触史，否认其他手术史、外伤史及输血史，未发现食物及药物过敏史，预防接种史随当地。",
+    "personal": "生于原籍，否认长期外地居住史，否认疫区居住史及疫水接触史，生活规律，吸烟13年，20支/天，偶有饮酒，否认工业粉尘、毒物及放射性物质接触史。否认冶游史。",
+    "preliminary_diagnosis": [
+      "直肠占位性病变",
+      "颈动脉狭窄",
+      "腰间盘突出"
+    ],
+    "present": "患者约于3个多月前出现间断便血，为鲜红色，偶有血凝块，伴有黏液，无黑便，无发热，无腹痛、腹胀，无腹泻、便秘，无恶心、呕吐，无尿频、尿急、尿痛。至*医院就诊，未予以特殊处理，现患者为求明确诊疗来我院就诊，门诊以“直肠占位性病变”收入院。患者自发病以来，精神可，饮食可、睡眠欠佳，大便见现病史，小便可，体重近期未见明显变化。",
+    "pulse": "112",
+    "respiratory": "23",
+    "specialist_examination": "腹部平坦，无腹壁静脉曲张，无胃肠型及蠕动波。腹肌软，全腹无压痛及反跳痛，未扪及包块，肝脾肋下未触及，肝肾区无叩击痛，移动性浊音（-），肠鸣音正常。肛诊取膝胸位，视诊未见明显异常。肛门指诊:肛诊距肛缘约3cm直肠可触及质硬肿物，指尖无法通过。",
+    "temperature": "36.3"
+  },
+  "exit_record": {
+    "enter_description": "患者男，40岁，因“便血3月余”入院；既往“颈动脉狭窄”10年余，“腰间盘突出”10年余，否认高血压、糖尿病、冠心病等慢性疾病史。否认肝炎、结核等传染疾病及密切接触史，否认其他手术史、外伤史及输血史，未发现食物及药物过敏史，预防接种史随当地；查体:腹部平坦，无腹壁静脉曲张，无胃肠型及蠕动波。腹肌软，全腹无压痛及反跳痛，未扪及包块，肝脾肋下未触及，肝肾区无叩击痛，移动性浊音（-），肠鸣音正常。肛诊取膝胸位，视诊未见明显异常。肛门指诊:肛诊距肛缘约3cm直肠可触及质硬肿物，指尖无法通过；辅助检查:暂缺。",
+    "enter_diagnosis": [
+      "直肠占位性病变",
+      "颈动脉狭窄",
+      "腰间盘突出"
+    ],
+    "out_advice": [
+      "注意休息，合理膳食，定期复查；",
+      "如有不适，及时就诊。"
+    ],
+    "out_description": "患者未诉特殊不适，无发热，无腹痛、腹胀，神志清，精神可，半流质饮食可，睡眠可。查体:腹部平坦，无腹壁静脉曲张，无胃肠型及蠕动波。腹肌软，全腹无压痛及反跳痛，未扪及包块，肝脾肋下未触及，肝肾区无叩击痛，移动性浊音（-），肠鸣音正常。",
+    "out_diagnosis": [
+      "直肠恶性肿瘤",
+      "肝继发恶性肿瘤",
+      "双肺结节",
+      "心包积液",
+      "脂肪肝",
+      "副脾",
+      "颈动脉狭窄",
+      "腰椎间盘突出"
+    ],
+    "treatment": "入院后完善必要的化验检查，胸、腹、盆腔:双肺结节，建议随诊直肠占位性病变、乙状结肠壁显厚，请结合内镜检查肝S8段异常密度，考虑转移，建议必要时进一步检查。消化道肿瘤★癌胚抗原(CLIA):5.46ng/mL，★甲胎蛋白(CLIA):1925.61ng/mL；肠镜示:直肠Ca。病理(202451667):（直肠）低分化腺癌。免疫组化检测示:CK20（部分+）、Villin(+)、SATB2（少量+）、CK7（-）、Syn（个别+）、INSM1（个别+）、AFP（局灶+）、SALL4（局灶+）、Glypican-3（个别+）、HER2（1+）。排除手术禁忌后于2024-12-6全麻下行腹腔镜下超低位直肠前切除术+回肠造口术，术后给予营养支持、对症治疗，术后病理(202452384):肿瘤位置:直肠与腹膜返折处关系:下 大小:面积:7cm×5cm，厚1.5cm 肉眼类型:盘状隆起型 组织类型:管状腺癌，局灶伴神经内分泌表达 分级:中分化 癌旁病变:无 浸润深度:T3:非腹膜覆盖的直肠周围组织 穿孔:无 梗阻:无 脉管浸润:局灶显示血管癌栓 周围神经浸润:未显示 肿瘤芽分级:Grade 2 切线:未侵犯:距近切线5cm、距远切线0.8cm 另送“远端切线”未查见癌。新辅助化疗:无淋巴结转移情况:一站（10个）、中央组（6个）、中间组（7个）及另送“二五三组”（2个）淋巴结未查见癌。pTNM分期:pT3 NO Mx 免疫组化检测示:HER2（1+）、Syn（+，约5%）、BRAF（-）、INSM1（-）、MSH6（+）、MSH2（+）、MLH1(+)、PMS2(+)、CD34(未显示血管癌栓)、D2-40(未显示淋巴管癌栓)。复查胸、腹、盆腔 :双肺结节，建议随诊双肺炎症、纤维灶，建议治疗后复查心包积液肝S8段异常密度，较前体积增大，考虑转移瘤，请结合临床直肠术后、回肠造瘘术后，盆腔内积液、积气乙状结肠壁增厚，首先考虑炎性病变，建议复查。现患者术后恢复可，要求出院，今日*主任医师查房分析:患者术后恢复良好，同意出院，嘱患者出院后注意休息，合理膳食，定期复查，不适随诊。"
+  },
+  "image_reports": [
+    {
+      "department": "结直肠肛门外科2",
+      "diagnosis": "肠道准备波士顿评分:6\n直肠Ca\n",
+      "findings": "内镜所见：术前常规准备，患者取左侧卧位，钩拉法循腔进镜70cm达于回肠末端，回肠末端黏膜光滑。退镜观察各段肠腔内有较多粪水，观察所见黏膜：升结肠、肝曲、横结肠、脾曲、降结肠、乙状结肠粘膜光滑，血管纹理清晰。直肠距肛缘约3cm见一溃疡隆起型肿物，质硬、脆，触之易出血，病变绕肠腔3/4周，取活检3块送检。",
+      "part": "A:直肠×3",
+      "project": "无痛肠镜",
+      "time": "2024-12-03 00:00:00"
+    },
+    {
+      "department": "结直肠肛门外科2组",
+      "diagnosis": "肝内近膈顶处异常信号，符合转移瘤表现，建议进一步确诊\n脂肪肝\n副脾",
+      "findings": "肝脏大小及形态可，肝脏反相位信号较正相位明显减低，近膈顶处可见一类圆形长T1、长T2异常信号，DWI呈高信号，相应ADC减低，截面约2.2*2.0cm，边界局部欠清，增强扫描呈环形强化；肝内外胆管无扩张，胆囊不大，壁不厚，其内未见明显异常信号；胰腺平扫及增强扫描未见明显异常信号；脾脏下方可见一类圆形等信号，直径约0.7cm；腹腔未见积液征象，腹膜后未见明显肿大淋巴结。",
+      "part": "[上腹部(肝、胆、胰、脾),平扫+增强]",
+      "project": "MR",
+      "time": "2024-12-04 19:12:16"
+    },
+    {
+      "department": "结直肠肛门外科2组",
+      "diagnosis": "直肠中下段占位性病变，符合直肠恶性肿瘤MR表现（T3cN1）；\nMRF:阳性；\nEMVI:4分。",
+      "findings": "直肠中下段可见肠壁近环周增厚，长度范围约58mm（SE3 IM8），最厚处约18mm（SE4 IM16），病变上缘低于腹膜返折水平，下缘略低于肛提肌与直肠交界水平约5mm（SE3 IM8）。\n病变侵犯并穿透肌层，可见结节样病变浸润壁外直肠系膜，向外凸出约11mm（SE4 IM8）。\n病变下缘达肛管上缘（SE6 IM7），局部与左侧肛提肌分界欠清（SE4 IM15）；\n直肠系膜内及直肠上动脉走行区见可疑淋巴结显示，约3枚（SE7 IM7、8、9），最大者短径约9mm（SE7 IM9）。\n直肠系膜筋膜(MRF):直肠原发灶距离MRF的距离≤1mm（SE4 IM8、11）。\nEMVI壁外血管侵犯:病变周围见多根小血管穿入，部分管径增粗，其内见肿瘤信号（SE4 IM6，左前象限）。\n膀胱充盈欠佳，壁未见增厚。",
+      "part": "[盆腔,平扫]",
+      "project": "MR",
+      "time": "2024-12-06 11:49:10"
+    },
+    {
+      "department": "结直肠肛门外科2组",
+      "diagnosis": "双肺结节，建议随诊\n双肺炎症、纤维灶，建议治疗后复查\n心包积液\n肝S8段异常密度，较前体积增大，考虑转移瘤，请结合临床\n直肠术后、回肠造瘘术后，盆腔内积液、积气\n乙状结肠壁增厚，首先考虑炎性病变，建议复查",
+      "findings": "双肺纹理增多，双肺可见条索状及条状高密度影，局部肺实变。双肺见结节灶，大者位于左肺上叶（im27），大小约0.3*0.4cm，较前2024-12-02变化不著。所见段及段以上支气管开口通畅，纵隔内及双侧肺门未见肿大淋巴结，双侧胸腔未见异常。心包内可见液体密度影。\n\n肝脏大小形态可，肝S8段见类圆形稍低密度灶，直径约2.1cm，较前病灶体积增大，肝内外胆管无扩张。胆囊不大，壁不厚，其内未见异常密度。脾脏内缘见副脾结节。胰腺及双肾平扫未见异常密度。腹腔未见积液征象。腹腔及腹膜后见小淋巴结显示。\n\n直肠术后、回肠造瘘术后，局部呈术后状，局部肠管与体外相通，术区肠壁略增厚，周围脂肪间隙模糊、密度增高，盆腔内见引流管影、气体及液体密度影。乙状结肠壁增厚，周围管壁毛糙，可见渗出影，较前管壁略增厚，边缘渗出性改变。膀胱充盈欠佳，壁不厚，其内未见异常密度。前列腺边缘规整，截面大小约4.5*3.2cm，其内未见异常密度。",
+      "part": "[胸、腹、盆腔,平扫]",
+      "project": "CT",
+      "time": "2024-12-11 14:41:28"
+    },
+    {
+      "department": "结直肠肛门外科2组",
+      "diagnosis": "双肺结节，建议随诊\n直肠占位性病变、乙状结肠壁显厚，请结合内镜检查\n肝S8段异常密度，考虑转移，建议必要时进一步检查",
+      "findings": "双肺纹理增多，双肺见数个结节灶，大者位于左肺上叶（im23），大小约0.3*0.4cm，所见段及段以上支气管开口通畅，纵隔内及双侧肺门未见肿大淋巴结，双侧胸腔未见异常。\n肝脏大小形态可，肝S8段见类圆形稍低密度灶，直径约1.8cm，增强扫描呈轻度边缘强化，肝内外胆管无扩张，胆囊不大，壁不厚，其内未见异常密度，脾脏内缘见副脾结节，胰腺及双肾平扫及强化未见异常密度，腹腔未见积液征象，腹腔及腹膜后见小淋巴结显示。\n直肠壁不规则增厚，相应管腔变窄，增强扫描呈不均匀强化，周围脂肪间隙略模糊，可见多发小淋巴结显示；乙状结肠壁显厚。膀胱充盈可，壁不厚，其内未见异常密度，前列腺边缘规整，截面大小约4.5*3.2cm，其内未见异常密度，盆腔内见多发小淋巴结影，盆腔内未见积液征象。",
+      "part": "[腹、盆腔,平扫+增强] [胸部,平扫]",
+      "project": "CT",
+      "time": "2024-12-03 08:01:57"
+    },
+    {
+      "department": "结直肠肛门外科2",
+      "diagnosis": "双下肢深静脉及浅静脉声像图未见明显异常",
+      "findings": "双侧股总静脉、股浅静脉、股深静脉、腘静脉、胫后静脉、腓静脉走行正常，管壁规整，腔内透声好，探头加压可对合，CDFI示上述静脉彩色血流充盈好，可见呼吸节律，瓦氏试验示双下肢深静脉瓣膜处均未见明显返流信号。\n\n双侧大隐静脉、小隐静脉走行正常，管壁规整，管腔无增宽，腔内透声好，探头加压可对合，CDFI示血流信号充盈好，瓦氏试验示双侧隐股静脉瓣膜处未见明显返流信号。",
+      "part": "双下肢深静脉+双下肢浅静脉超声",
+      "project": "超声",
+      "time": "2024-12-02 16:21:37"
+    },
+    {
+      "department": "结直肠肛门外科2组",
+      "diagnosis": "心脏结构及血流未探及明显异常",
+      "findings": "一、M型和二维超声特征:\n各房、室内径正常。房、室间隔连续完整。室间隔及左室游离壁厚度正常，运动幅度及增厚率正常，静息状态下未见明显节段性室壁运动异常。各组瓣膜结构未见明显异常。大动脉内径及关系正常。主动脉弓降部显示欠清。心包腔未见异常。\n二、频谱和彩色多普勒特征:\n三尖瓣轻微返流。\n主动脉瓣轻微返流。\n舒张期二尖瓣口前向血流:E/A>1。\n",
+      "part": "心脏",
+      "project": "心脏超声检查",
+      "time": "2024-12-03 09:01:04"
+    }
+  ],
+  "inspections": [
+    {
+      "content": [
+        {
+          "name": "HBeAg(CMIA)",
+          "range": "<1.0",
+          "state": "正常",
+          "unit": "S/CO",
+          "value": "0.38"
+        },
+        {
+          "name": "HBsAg(CMIA)",
+          "range": "<0.05",
+          "state": "正常",
+          "unit": "IU/mL",
+          "value": "<0.01"
+        },
+        {
+          "name": "HBeAb(CMIA)",
+          "range": ">1.0",
+          "state": "正常",
+          "unit": "S/CO",
+          "value": "1.97"
+        },
+        {
+          "name": "HBcAb(CMIA)",
+          "range": "<1.0",
+          "state": "正常",
+          "unit": "S/CO",
+          "value": "0.07"
+        },
+        {
+          "name": "HCV-Ab(CMIA)",
+          "range": "<1.0",
+          "state": "正常",
+          "unit": "S/CO",
+          "value": "0.06"
+        },
+        {
+          "name": "HBsAb(CMIA)",
+          "range": "<10.0",
+          "state": "高",
+          "unit": "mIU/mL",
+          "value": "117.10"
+        },
+        {
+          "name": "TP-Ab(CMIA)",
+          "range": "<1.0",
+          "state": "正常",
+          "unit": "S/CO",
+          "value": "0.03"
+        },
+        {
+          "name": "HBV-PreS1Ag(CLIA)",
+          "range": "<1.0",
+          "state": "正常",
+          "unit": "S/CO",
+          "value": "0.220"
+        },
+        {
+          "name": "HCV-cAg(CLIA)",
+          "range": "<1.0",
+          "state": "正常",
+          "unit": "S/CO",
+          "value": "0.244"
+        },
+        {
+          "name": "HIV-Ag/Ab(CMIA)",
+          "range": "<1.0",
+          "state": "正常",
+          "unit": "S/CO",
+          "value": "0.06"
+        }
+      ],
+      "department": "结直肠肛门外科",
+      "diagnosis": "直肠占位性病变",
+      "inspection_number": "1214131463876907008",
+      "specimen_type": "血清",
+      "time": "2024-12-03 12:04:13",
+      "type": ""
+    },
+    {
+      "content": [
+        {
+          "name": "RH(D)血型(受血者标本复检)",
+          "range": "",
+          "state": "-",
+          "unit": "",
+          "value": "阳性"
+        },
+        {
+          "name": "ABO血型(受血者标本复检)",
+          "range": "",
+          "state": "-",
+          "unit": "",
+          "value": "B型"
+        }
+      ],
+      "department": "结直肠肛门外科",
+      "diagnosis": "直肠恶性肿瘤",
+      "inspection_number": "1214131463876907009",
+      "specimen_type": "血液",
+      "time": "2024-12-06 10:32:05",
+      "type": "特殊介质交叉配血（血型复检）"
+    },
+    {
+      "content": [
+        {
+          "name": "降钙素原",
+          "range": "0--0.05",
+          "state": "高",
+          "unit": "ng/mL",
+          "value": "0.176"
+        }
+      ],
+      "department": "结直肠肛门外科",
+      "diagnosis": "直肠恶性肿瘤",
+      "inspection_number": "1214131463876907010",
+      "specimen_type": "血液",
+      "time": "2024-12-07 09:17:55",
+      "type": "降钙素原检测"
+    },
+    {
+      "content": [
+        {
+          "name": "C反应蛋白(散射比浊)",
+          "range": "0--3.48",
+          "state": "高",
+          "unit": "mg/L",
+          "value": "62.6"
+        }
+      ],
+      "department": "结直肠肛门外科",
+      "diagnosis": "直肠恶性肿瘤",
+      "inspection_number": "1214131463876907011",
+      "specimen_type": "血清",
+      "time": "2024-12-07 09:23:08",
+      "type": "C 一反应蛋白测定 (CRP)(免疫散射比浊法)"
+    },
+    {
+      "content": [
+        {
+          "name": "白蛋白(干)",
+          "range": "35--50",
+          "state": "低",
+          "unit": "g/L",
+          "value": "32.2"
+        }
+      ],
+      "department": "结直肠肛门外科学",
+      "diagnosis": "直肠恶性肿瘤",
+      "inspection_number": "1214131463876907012",
+      "specimen_type": "血液",
+      "time": "2024-12-07 10:11:05",
+      "type": "血清白蛋白测定 (干化学法)"
+    },
+    {
+      "content": [
+        {
+          "name": "嗜酸细胞计数",
+          "range": "0.02--0.52",
+          "state": "低",
+          "unit": "10⁹/L",
+          "value": "0.01"
+        },
+        {
+          "name": "中性粒细胞百分比",
+          "range": "0.40--0.75",
+          "state": "高",
+          "unit": "",
+          "value": "0.793"
+        },
+        {
+          "name": "红细胞宽度-SD值",
+          "range": "37.0--54.0",
+          "state": "正常",
+          "unit": "fL",
+          "value": "43.60"
+        },
+        {
+          "name": "白细胞计数",
+          "range": "3.5--9.5",
+          "state": "高",
+          "unit": "10⁹/L",
+          "value": "13.79"
+        },
+        {
+          "name": "中性粒细胞计数",
+          "range": "1.8--6.3",
+          "state": "高",
+          "unit": "10⁹/L",
+          "value": "10.94"
+        },
+        {
+          "name": "嗜碱细胞百分比",
+          "range": "0--0.010",
+          "state": "正常",
+          "unit": "",
+          "value": "0.002"
+        },
+        {
+          "name": "大血小板比率",
+          "range": "19.7--42.4",
+          "state": "正常",
+          "unit": "%",
+          "value": "37.4"
+        },
+        {
+          "name": "血小板分布宽度",
+          "range": "9.6--15.2",
+          "state": "正常",
+          "unit": "fL",
+          "value": "14.10"
+        },
+        {
+          "name": "淋巴细胞计数",
+          "range": "1.1--3.2",
+          "state": "正常",
+          "unit": "10⁹/L",
+          "value": "1.25"
+        },
+        {
+          "name": "血红蛋白",
+          "range": "130--175",
+          "state": "正常",
+          "unit": "g/L",
+          "value": "130.0"
+        },
+        {
+          "name": "单核细胞百分比",
+          "range": "0.03--0.10",
+          "state": "高",
+          "unit": "",
+          "value": "0.113"
+        },
+        {
+          "name": "平均血小板体积",
+          "range": "9.2--12.0",
+          "state": "正常",
+          "unit": "fL",
+          "value": "11.60"
+        },
+        {
+          "name": "红细胞宽度-CV值",
+          "range": "11.5--14.5",
+          "state": "正常",
+          "unit": "%",
+          "value": "12.10"
+        },
+        {
+          "name": "平均红细胞体积",
+          "range": "82--100",
+          "state": "正常",
+          "unit": "fL",
+          "value": "97.10"
+        },
+        {
+          "name": "单核细胞计数",
+          "range": "0.10--0.60",
+          "state": "高",
+          "unit": "10⁹/L",
+          "value": "1.56"
+        },
+        {
+          "name": "嗜碱细胞计数",
+          "range": "0--0.06",
+          "state": "正常",
+          "unit": "10⁹/L",
+          "value": "0.03"
+        },
+        {
+          "name": "血小板压积",
+          "range": "0.19--0.39",
+          "state": "正常",
+          "unit": "%",
+          "value": "0.220"
+        },
+        {
+          "name": "红细胞压积",
+          "range": "0.4--0.5",
+          "state": "低",
+          "unit": "",
+          "value": "0.395"
+        },
+        {
+          "name": "淋巴细胞百分比",
+          "range": "0.2--0.5",
+          "state": "低",
+          "unit": "",
+          "value": "0.091"
+        },
+        {
+          "name": "平均血红蛋白浓度",
+          "range": "316--354",
+          "state": "正常",
+          "unit": "g/L",
+          "value": "329"
+        },
+        {
+          "name": "嗜酸细胞百分比",
+          "range": "0.004--0.080",
+          "state": "低",
+          "unit": "",
+          "value": "0.001"
+        },
+        {
+          "name": "血小板计数",
+          "range": "125--350",
+          "state": "正常",
+          "unit": "10⁹/L",
+          "value": "193"
+        },
+        {
+          "name": "平均血红蛋白含量",
+          "range": "27--34",
+          "state": "正常",
+          "unit": "pg",
+          "value": "31.90"
+        },
+        {
+          "name": "红细胞计数",
+          "range": "4.3--5.8",
+          "state": "低",
+          "unit": "10¹²/L",
+          "value": "4.07"
+        }
+      ],
+      "department": "结直肠肛门外科学",
+      "diagnosis": "直肠恶性肿瘤",
+      "inspection_number": "1214131463876907013",
+      "specimen_type": "血液",
+      "time": "2024-12-07 10:14:43",
+      "type": "血细胞分析 (五分类)"
+    },
+    {
+      "content": [
+        {
+          "name": "间接胆红素",
+          "range": "2.8--23.8",
+          "state": "正常",
+          "unit": "umol/L",
+          "value": "7.20"
+        },
+        {
+          "name": "阴离子间隙",
+          "range": "8.00--16.00",
+          "state": "正常",
+          "unit": "mmol/L",
+          "value": "9.70"
+        },
+        {
+          "name": "总胆红素",
+          "range": "5.0--24.0",
+          "state": "正常",
+          "unit": "umol/L",
+          "value": "12.60"
+        },
+        {
+          "name": "天门冬氨酸转氨酶",
+          "range": "<40",
+          "state": "正常",
+          "unit": "U/L",
+          "value": "20.40"
+        },
+        {
+          "name": "钙",
+          "range": "2.09--2.54",
+          "state": "低",
+          "unit": "mmol/L",
+          "value": "2.06"
+        },
+        {
+          "name": "无机磷",
+          "range": "0.87--1.45",
+          "state": "低",
+          "unit": "mmol/L",
+          "value": "0.79"
+        },
+        {
+          "name": "钠",
+          "range": "137--147",
+          "state": "低",
+          "unit": "mmol/L",
+          "value": "136.60"
+        },
+        {
+          "name": "二氧化碳",
+          "range": "22.0--34.0",
+          "state": "低",
+          "unit": "mmol/L",
+          "value": "20.90"
+        },
+        {
+          "name": "镁",
+          "range": "0.70--1.10",
+          "state": "正常",
+          "unit": "mmol/L",
+          "value": "0.80"
+        },
+        {
+          "name": "尿素",
+          "range": "2.86--8.20",
+          "state": "低",
+          "unit": "mmol/L",
+          "value": "1.90"
+        },
+        {
+          "name": "肌酐(酶法)",
+          "range": "59--104",
+          "state": "正常",
+          "unit": "umol/L",
+          "value": "78.00"
+        },
+        {
+          "name": "氯",
+          "range": "99--110",
+          "state": "正常",
+          "unit": "mmol/L",
+          "value": "106.00"
+        },
+        {
+          "name": "尿素：肌酐",
+          "range": "0.03--0.15",
+          "state": "低",
+          "unit": "RATIO",
+          "value": "0.024"
+        },
+        {
+          "name": "直接胆红素",
+          "range": "0.24--7.10",
+          "state": "正常",
+          "unit": "umol/L",
+          "value": "5.40"
+        },
+        {
+          "name": "钙磷浓度积",
+          "range": "2.0--3.70",
+          "state": "低",
+          "unit": "mmol/L",
+          "value": "1.63"
+        },
+        {
+          "name": "AST/ALT",
+          "range": "0.74--3.45",
+          "state": "正常",
+          "unit": "RATIO",
+          "value": "1.08"
+        },
+        {
+          "name": "钾",
+          "range": "3.5--5.3",
+          "state": "正常",
+          "unit": "mmol/L",
+          "value": "4.52"
+        },
+        {
+          "name": "丙氨酸转氨酶",
+          "range": "<50",
+          "state": "正常",
+          "unit": "U/L",
+          "value": "18.90"
+        },
+        {
+          "name": "估算的肾小球滤过率",
+          "range": "",
+          "state": "-",
+          "unit": "",
+          "value": "113.42"
+        }
+      ],
+      "department": "结直肠肛门外科",
+      "diagnosis": "直肠恶性肿瘤",
+      "inspection_number": "1214131463876907014",
+      "specimen_type": "血清",
+      "time": "2024-12-07 10:57:02",
+      "type": "电解质肌酐测定 (酶促动力学法) 尿素测定 (酶促动力学法) 血清直接胆红素测定 (化学法或酶法) 总胆红素测定 (化学法或酶法)"
+    },
+    {
+      "content": [
+        {
+          "name": "白蛋白(干)",
+          "range": "35--50",
+          "state": "低",
+          "unit": "g/L",
+          "value": "29.9"
+        }
+      ],
+      "department": "结直肠肛门外科",
+      "diagnosis": "",
+      "inspection_number": "1214131463881101312",
+      "specimen_type": "血液",
+      "time": "2024-12-10 08:55:43",
+      "type": "血清白蛋白测定 (干化学法)"
+    },
+    {
+      "content": [
+        {
+          "name": "嗜酸细胞计数",
+          "range": "0.02--0.52",
+          "state": "正常",
+          "unit": "10^9/L",
+          "value": "0.11"
+        },
+        {
+          "name": "中性粒细胞百分比",
+          "range": "0.40--0.75",
+          "state": "高",
+          "unit": "",
+          "value": "0.799"
+        },
+        {
+          "name": "红细胞压积",
+          "range": "0.4--0.5",
+          "state": "低",
+          "unit": "",
+          "value": "0.334"
+        },
+        {
+          "name": "白细胞计数",
+          "range": "3.5--9.5",
+          "state": "高",
+          "unit": "10^9/L",
+          "value": "10.37"
+        },
+        {
+          "name": "红细胞宽度-SD值",
+          "range": "37.0--54.0",
+          "state": "正常",
+          "unit": "fL",
+          "value": "41.00"
+        },
+        {
+          "name": "中性粒细胞计数",
+          "range": "1.8--6.3",
+          "state": "高",
+          "unit": "10^9/L",
+          "value": "8.29"
+        },
+        {
+          "name": "嗜碱细胞百分比",
+          "range": "0--0.010",
+          "state": "正常",
+          "unit": "",
+          "value": "0.003"
+        },
+        {
+          "name": "大血小板比率",
+          "range": "19.7--42.4",
+          "state": "正常",
+          "unit": "%",
+          "value": "34.0"
+        },
+        {
+          "name": "血小板分布宽度",
+          "range": "9.6--15.2",
+          "state": "正常",
+          "unit": "fL",
+          "value": "14.20"
+        },
+        {
+          "name": "红细胞计数",
+          "range": "4.3--5.8",
+          "state": "低",
+          "unit": "10^12 /L",
+          "value": "3.59"
+        },
+        {
+          "name": "淋巴细胞计数",
+          "range": "1.1--3.2",
+          "state": "正常",
+          "unit": "10^9/L",
+          "value": "1.28"
+        },
+        {
+          "name": "单核细胞百分比",
+          "range": "0.03--0.10",
+          "state": "正常",
+          "unit": "",
+          "value": "0.064"
+        },
+        {
+          "name": "平均血小板体积",
+          "range": "9.2--12.0",
+          "state": "正常",
+          "unit": "fL",
+          "value": "11.00"
+        },
+        {
+          "name": "红细胞宽度-CV值",
+          "range": "11.5--14.5",
+          "state": "正常",
+          "unit": "%",
+          "value": "12.00"
+        },
+        {
+          "name": "平均红细胞体积",
+          "range": "82--100",
+          "state": "正常",
+          "unit": "fL",
+          "value": "93.00"
+        },
+        {
+          "name": "单核细胞计数",
+          "range": "0.10--0.60",
+          "state": "高",
+          "unit": "10^9/L",
+          "value": "0.66"
+        },
+        {
+          "name": "嗜碱细胞计数",
+          "range": "0--0.06",
+          "state": "正常",
+          "unit": "10^9/L",
+          "value": "0.03"
+        },
+        {
+          "name": "血小板压积",
+          "range": "0.19--0.39",
+          "state": "正常",
+          "unit": "%",
+          "value": "0.230"
+        },
+        {
+          "name": "淋巴细胞百分比",
+          "range": "0.2--0.5",
+          "state": "低",
+          "unit": "",
+          "value": "0.123"
+        },
+        {
+          "name": "平均血红蛋白浓度",
+          "range": "316--354",
+          "state": "正常",
+          "unit": "g/L",
+          "value": "344"
+        },
+        {
+          "name": "嗜酸细胞百分比",
+          "range": "0.004--0.080",
+          "state": "正常",
+          "unit": "",
+          "value": "0.011"
+        },
+        {
+          "name": "平均血红蛋白含量",
+          "range": "27--34",
+          "state": "正常",
+          "unit": "pg",
+          "value": "32.00"
+        },
+        {
+          "name": "血小板计数",
+          "range": "125--350",
+          "state": "正常",
+          "unit": "10^9/L",
+          "value": "211"
+        },
+        {
+          "name": "血红蛋白",
+          "range": "130--175",
+          "state": "低",
+          "unit": "g/L",
+          "value": "115.0"
+        }
+      ],
+      "department": "结直肠肛门外科",
+      "diagnosis": "直肠恶性肿瘤",
+      "inspection_number": "1214131463881101313",
+      "specimen_type": "血液",
+      "time": "2024-12-10 08:59:40",
+      "type": "血细胞分析 (五分类)"
+    },
+    {
+      "content": [
+        {
+          "name": "降钙素原",
+          "range": "0--0.05",
+          "state": "高",
+          "unit": "ng/mL",
+          "value": "0.073"
+        }
+      ],
+      "department": "结直肠肛门外科",
+      "diagnosis": "直肠恶性肿瘤",
+      "inspection_number": "1214131463881101314",
+      "specimen_type": "血液",
+      "time": "2024-12-10 09:10:42",
+      "type": "降钙素原检测"
+    },
+    {
+      "content": [
+        {
+          "name": "间接胆红素",
+          "range": "2.8--23.8",
+          "state": "正常",
+          "unit": "umol/L",
+          "value": "5.40"
+        },
+        {
+          "name": "阴离子间隙",
+          "range": "8.00--16.00",
+          "state": "正常",
+          "unit": "mmol/L",
+          "value": "13.20"
+        },
+        {
+          "name": "总胆红素",
+          "range": "5.0--24.0",
+          "state": "正常",
+          "unit": "umol/L",
+          "value": "11.40"
+        },
+        {
+          "name": "天门冬氨酸转氨酶",
+          "range": "<40",
+          "state": "正常",
+          "unit": "U/L",
+          "value": "11.80"
+        },
+        {
+          "name": "钙",
+          "range": "2.09--2.54",
+          "state": "正常",
+          "unit": "mmol/L",
+          "value": "2.15"
+        },
+        {
+          "name": "无机磷",
+          "range": "0.87--1.45",
+          "state": "正常",
+          "unit": "mmol/L",
+          "value": "0.92"
+        },
+        {
+          "name": "钠",
+          "range": "137--147",
+          "state": "正常",
+          "unit": "mmol/L",
+          "value": "137.00"
+        },
+        {
+          "name": "二氧化碳",
+          "range": "22.0--34.0",
+          "state": "正常",
+          "unit": "mmol/L",
+          "value": "22.40"
+        },
+        {
+          "name": "镁",
+          "range": "0.70--1.10",
+          "state": "正常",
+          "unit": "mmol/L",
+          "value": "0.81"
+        },
+        {
+          "name": "尿素",
+          "range": "2.86--8.20",
+          "state": "正常",
+          "unit": "mmol/L",
+          "value": "4.70"
+        },
+        {
+          "name": "氯",
+          "range": "99--110",
+          "state": "正常",
+          "unit": "mmol/L",
+          "value": "101.40"
+        },
+        {
+          "name": "尿素：肌酐",
+          "range": "0.03--0.15",
+          "state": "正常",
+          "unit": "RATIO",
+          "value": "0.067"
+        },
+        {
+          "name": "直接胆红素",
+          "range": "0.24--7.10",
+          "state": "正常",
+          "unit": "umol/L",
+          "value": "6.00"
+        },
+        {
+          "name": "钙磷浓度积",
+          "range": "2.0--3.70",
+          "state": "低",
+          "unit": "mmol/L",
+          "value": "1.98"
+        },
+        {
+          "name": "AST/ALT",
+          "range": "0.74--3.45",
+          "state": "正常",
+          "unit": "RATIO",
+          "value": "1.37"
+        },
+        {
+          "name": "钾",
+          "range": "3.5--5.3",
+          "state": "正常",
+          "unit": "mmol/L",
+          "value": "4.00"
+        },
+        {
+          "name": "丙氨酸转氨酶",
+          "range": "<50",
+          "state": "正常",
+          "unit": "U/L",
+          "value": "8.60"
+        },
+        {
+          "name": "肌酐（酶法）",
+          "range": "59--104",
+          "state": "正常",
+          "unit": "umol/L",
+          "value": "70.00"
+        },
+        {
+          "name": "估算的肾小球滤过率",
+          "range": "",
+          "state": "-",
+          "unit": "",
+          "value": "118.59"
+        }
+      ],
+      "department": "结直肠肛门外科",
+      "diagnosis": "直肠恶性肿瘤",
+      "inspection_number": "1214131463881101315",
+      "specimen_type": "血清",
+      "time": "2024-12-10 09:33:51",
+      "type": "电解质、肌酐测定（酶促动力学法）、尿素测定（酶促动力学法）、血清直接胆红素测定（化学法或酶法）、总胆红素测定（化学法或酶法）"
+    },
+    {
+      "content": [
+        {
+          "name": "C反应蛋白(散射比浊)",
+          "range": "0--3.48",
+          "state": "高",
+          "unit": "mg/L",
+          "value": "83.4"
+        }
+      ],
+      "department": "结直肠肛门外科",
+      "diagnosis": "直肠恶性肿瘤",
+      "inspection_number": "1214131463881101316",
+      "specimen_type": "血清",
+      "time": "2024-12-10 10:45:11",
+      "type": "C 反应蛋白测定 (CRP)（免疫散射比浊法）"
+    },
+    {
+      "content": [
+        {
+          "name": "甲胎蛋白(CLIA)",
+          "range": "0--8.78",
+          "state": "高",
+          "unit": "ng/mL",
+          "value": "462.58"
+        }
+      ],
+      "department": "结直肠肛门外科",
+      "diagnosis": "直肠恶性肿瘤",
+      "inspection_number": "1214131463881101317",
+      "specimen_type": "血清",
+      "time": "2024-12-13 09:24:10",
+      "type": "甲胎蛋白测定（AFP）（化学发光法）"
+    },
+    {
+      "content": [
+        {
+          "name": "嗜酸细胞计数",
+          "range": "0.02--0.52",
+          "state": "正常",
+          "unit": "10^9/L",
+          "value": "0.10"
+        },
+        {
+          "name": "中性粒细胞百分比",
+          "range": "0.40--0.75",
+          "state": "正常",
+          "unit": "",
+          "value": "0.733"
+        },
+        {
+          "name": "红细胞宽度-SD值",
+          "range": "37.0--54.0",
+          "state": "正常",
+          "unit": "fL",
+          "value": "40.70"
+        },
+        {
+          "name": "白细胞计数",
+          "range": "3.5--9.5",
+          "state": "高",
+          "unit": "10^9/L",
+          "value": "10.31"
+        },
+        {
+          "name": "中性粒细胞计数",
+          "range": "1.8--6.3",
+          "state": "高",
+          "unit": "10^9/L",
+          "value": "7.56"
+        },
+        {
+          "name": "嗜碱细胞百分比",
+          "range": "0--0.010",
+          "state": "正常",
+          "unit": "",
+          "value": "0.005"
+        },
+        {
+          "name": "大血小板比率",
+          "range": "19.7--42.4",
+          "state": "正常",
+          "unit": "%",
+          "value": "32.8"
+        },
+        {
+          "name": "血小板分布宽度",
+          "range": "9.6--15.2",
+          "state": "正常",
+          "unit": "fL",
+          "value": "13.00"
+        },
+        {
+          "name": "淋巴细胞计数",
+          "range": "1.1--3.2",
+          "state": "正常",
+          "unit": "10^9/L",
+          "value": "1.61"
+        },
+        {
+          "name": "血红蛋白",
+          "range": "130--175",
+          "state": "低",
+          "unit": "g/L",
+          "value": "113.0"
+        },
+        {
+          "name": "单核细胞百分比",
+          "range": "0.03--0.10",
+          "state": "正常",
+          "unit": "",
+          "value": "0.096"
+        },
+        {
+          "name": "平均血小板体积",
+          "range": "9.2--12.0",
+          "state": "正常",
+          "unit": "fL",
+          "value": "10.90"
+        },
+        {
+          "name": "红细胞宽度-CV值",
+          "range": "11.5--14.5",
+          "state": "正常",
+          "unit": "%",
+          "value": "12.10"
+        },
+        {
+          "name": "平均红细胞体积",
+          "range": "82--100",
+          "state": "正常",
+          "unit": "fL",
+          "value": "91.20"
+        },
+        {
+          "name": "单核细胞计数",
+          "range": "0.10--0.60",
+          "state": "高",
+          "unit": "10^9/L",
+          "value": "0.99"
+        },
+        {
+          "name": "嗜碱细胞计数",
+          "range": "0--0.06",
+          "state": "正常",
+          "unit": "10^9/L",
+          "value": "0.05"
+        },
+        {
+          "name": "血小板压积",
+          "range": "0.19--0.39",
+          "state": "正常",
+          "unit": "%",
+          "value": "0.300"
+        },
+        {
+          "name": "红细胞压积",
+          "range": "0.4--0.5",
+          "state": "低",
+          "unit": "",
+          "value": "0.322"
+        },
+        {
+          "name": "淋巴细胞百分比",
+          "range": "0.2--0.5",
+          "state": "低",
+          "unit": "",
+          "value": "0.156"
+        },
+        {
+          "name": "平均血红蛋白浓度",
+          "range": "316--354",
+          "state": "正常",
+          "unit": "g/L",
+          "value": "351"
+        },
+        {
+          "name": "嗜酸细胞百分比",
+          "range": "0.004--0.080",
+          "state": "正常",
+          "unit": "",
+          "value": "0.010"
+        },
+        {
+          "name": "血小板计数",
+          "range": "125--350",
+          "state": "正常",
+          "unit": "10^9/L",
+          "value": "271"
+        },
+        {
+          "name": "平均血红蛋白含量",
+          "range": "27--34",
+          "state": "正常",
+          "unit": "pg",
+          "value": "32.00"
+        },
+        {
+          "name": "红细胞计数",
+          "range": "4.3--5.8",
+          "state": "低",
+          "unit": "10^12/L",
+          "value": "3.53"
+        }
+      ],
+      "department": "结直肠肛门外科",
+      "diagnosis": "直肠恶性肿瘤",
+      "inspection_number": "1214131463881101318",
+      "specimen_type": "血液",
+      "time": "2024-12-13 09:24:10",
+      "type": "血细胞分析（五分类）"
+    },
+    {
+      "content": [
+        {
+          "name": "白蛋白(干)",
+          "range": "35--50",
+          "state": "正常",
+          "unit": "g/L",
+          "value": "38.0"
+        }
+      ],
+      "department": "结直肠肛门外科",
+      "diagnosis": "直肠恶性肿瘤",
+      "inspection_number": "1214131463881101319",
+      "specimen_type": "血液",
+      "time": "2024-12-13 09:46:34",
+      "type": "血清白蛋白测定 (干化学法)"
+    },
+    {
+      "content": [
+        {
+          "name": "降钙素原",
+          "range": "0--0.05",
+          "state": "高",
+          "unit": "ng/mL",
+          "value": "0.143"
+        }
+      ],
+      "department": "结直肠肛门外科",
+      "diagnosis": "直肠恶性肿瘤",
+      "inspection_number": "1214131463881101320",
+      "specimen_type": "血液",
+      "time": "2024-12-13 10:06:24",
+      "type": "降钙素原检测"
+    },
+    {
+      "content": [
+        {
+          "name": "甲胎蛋白(CLIA)",
+          "range": "0--8.78",
+          "state": "高",
+          "unit": "ng/mL",
+          "value": "271.12"
+        }
+      ],
+      "department": "结直肠肛门外科",
+      "diagnosis": "直肠恶性肿瘤",
+      "inspection_number": "1214131463881101321",
+      "specimen_type": "血清",
+      "time": "2024-12-13 11:11:47",
+      "type": "甲胎蛋白测定 (AFP)(化学发光法)"
+    },
+    {
+      "content": [
+        {
+          "name": "间接胆红素",
+          "range": "2.8--23.8",
+          "state": "正常",
+          "unit": "umol/L",
+          "value": "7.00"
+        },
+        {
+          "name": "阴离子间隙",
+          "range": "8.00--16.00",
+          "state": "高",
+          "unit": "mmol/L",
+          "value": "17.10"
+        },
+        {
+          "name": "总胆红素",
+          "range": "5.0--24.0",
+          "state": "正常",
+          "unit": "umol/L",
+          "value": "12.60"
+        },
+        {
+          "name": "天门冬氨酸转氨酶",
+          "range": "<40",
+          "state": "正常",
+          "unit": "U/L",
+          "value": "36.90"
+        },
+        {
+          "name": "钙",
+          "range": "2.09--2.54",
+          "state": "正常",
+          "unit": "mmol/L",
+          "value": "2.29"
+        },
+        {
+          "name": "无机磷",
+          "range": "0.87--1.45",
+          "state": "正常",
+          "unit": "mmol/L",
+          "value": "1.40"
+        },
+        {
+          "name": "钠",
+          "range": "137--147",
+          "state": "正常",
+          "unit": "mmol/L",
+          "value": "138.00"
+        },
+        {
+          "name": "二氧化碳",
+          "range": "22.0--34.0",
+          "state": "低",
+          "unit": "mmol/L",
+          "value": "21.50"
+        },
+        {
+          "name": "镁",
+          "range": "0.70--1.10",
+          "state": "正常",
+          "unit": "mmol/L",
+          "value": "0.89"
+        },
+        {
+          "name": "尿素",
+          "range": "2.86--8.20",
+          "state": "正常",
+          "unit": "mmol/L",
+          "value": "5.20"
+        },
+        {
+          "name": "肌酐(酶法)",
+          "range": "59--104",
+          "state": "正常",
+          "unit": "umol/L",
+          "value": "74.00"
+        },
+        {
+          "name": "氯",
+          "range": "99--110",
+          "state": "正常",
+          "unit": "mmol/L",
+          "value": "99.40"
+        },
+        {
+          "name": "尿素：肌酐",
+          "range": "0.03--0.15",
+          "state": "正常",
+          "unit": "RATIO",
+          "value": "0.070"
+        },
+        {
+          "name": "直接胆红素",
+          "range": "0.24--7.10",
+          "state": "正常",
+          "unit": "umol/L",
+          "value": "5.60"
+        },
+        {
+          "name": "钙磷浓度积",
+          "range": "2.0--3.70",
+          "state": "正常",
+          "unit": "mmol/L",
+          "value": "3.21"
+        },
+        {
+          "name": "AST/ALT",
+          "range": "0.74--3.45",
+          "state": "低",
+          "unit": "RATIO",
+          "value": "0.72"
+        },
+        {
+          "name": "钾",
+          "range": "3.5--5.3",
+          "state": "正常",
+          "unit": "mmol/L",
+          "value": "3.70"
+        },
+        {
+          "name": "丙氨酸转氨酶",
+          "range": "<50",
+          "state": "高",
+          "unit": "U/L",
+          "value": "50.90"
+        },
+        {
+          "name": "估算的肾小球滤过率",
+          "range": "",
+          "state": "-",
+          "unit": "",
+          "value": "115.91"
+        }
+      ],
+      "department": "结直肠肛门外科",
+      "diagnosis": "直肠恶性肿瘤",
+      "inspection_number": "1214131463881101322",
+      "specimen_type": "血清",
+      "time": "2024-12-13 11:32:29",
+      "type": "电解质 肌酐测定 (酶促动力学法) 尿素测定 (酶促动力学法) 血清直接胆红素测定 (化学法或酶促法) 总胆红素测定 (化学法或酶促法)"
+    },
+    {
+      "content": [
+        {
+          "name": "C反应蛋白(散射比浊)",
+          "range": "0--3.48",
+          "state": "高",
+          "unit": "mg/L",
+          "value": "110"
+        }
+      ],
+      "department": "结直肠肛门外科",
+      "diagnosis": "直肠恶性肿瘤",
+      "inspection_number": "1214131463881101323",
+      "specimen_type": "血清",
+      "time": "2024-12-13 11:38:42",
+      "type": "C 一反应蛋白测定 (CRP)(免疫散射比浊法)"
+    },
+    {
+      "content": [
+        {
+          "name": "白蛋白(干)",
+          "range": "35--50",
+          "state": "正常",
+          "unit": "g/L",
+          "value": "37.6"
+        }
+      ],
+      "department": "结直肠肛门外科",
+      "diagnosis": "直肠恶性肿瘤",
+      "inspection_number": "1214131463881101324",
+      "specimen_type": "血液",
+      "time": "2024-12-17 09:29:04",
+      "type": "血清白蛋白测定 (干化学法)"
+    },
+    {
+      "content": [
+        {
+          "name": "降钙素原",
+          "range": "0--0.05",
+          "state": "高",
+          "unit": "ng/mL",
+          "value": "0.196"
+        }
+      ],
+      "department": "结直肠肛门外科",
+      "diagnosis": "直肠恶性肿瘤",
+      "inspection_number": "1214131463881101325",
+      "specimen_type": "血液",
+      "time": "2024-12-17 10:22:29",
+      "type": "降钙素原检测"
+    },
+    {
+      "content": [
+        {
+          "name": "嗜酸细胞计数",
+          "range": "0.02--0.52",
+          "state": "正常",
+          "unit": "10⁹/L",
+          "value": "0.10"
+        },
+        {
+          "name": "中性粒细胞百分比",
+          "range": "0.40--0.75",
+          "state": "正常",
+          "unit": "",
+          "value": "0.691"
+        },
+        {
+          "name": "红细胞压积",
+          "range": "0.4--0.5",
+          "state": "低",
+          "unit": "",
+          "value": "0.352"
+        },
+        {
+          "name": "白细胞计数",
+          "range": "3.5--9.5",
+          "state": "高",
+          "unit": "10⁹/L",
+          "value": "11.98"
+        },
+        {
+          "name": "红细胞宽度-SD值",
+          "range": "37.0--54.0",
+          "state": "正常",
+          "unit": "fL",
+          "value": "40.20"
+        },
+        {
+          "name": "中性粒细胞计数",
+          "range": "1.8--6.3",
+          "state": "高",
+          "unit": "10⁹/L",
+          "value": "8.28"
+        },
+        {
+          "name": "嗜碱细胞百分比",
+          "range": "0--0.010",
+          "state": "正常",
+          "unit": "",
+          "value": "0.006"
+        },
+        {
+          "name": "大血小板比率",
+          "range": "19.7--42.4",
+          "state": "正常",
+          "unit": "%",
+          "value": "36.7"
+        },
+        {
+          "name": "血小板分布宽度",
+          "range": "9.6--15.2",
+          "state": "正常",
+          "unit": "fL",
+          "value": "13.70"
+        },
+        {
+          "name": "红细胞计数",
+          "range": "4.3--5.8",
+          "state": "低",
+          "unit": "10¹²/L",
+          "value": "3.84"
+        },
+        {
+          "name": "淋巴细胞计数",
+          "range": "1.1--3.2",
+          "state": "正常",
+          "unit": "10⁹/L",
+          "value": "2.23"
+        },
+        {
+          "name": "单核细胞百分比",
+          "range": "0.03--0.10",
+          "state": "高",
+          "unit": "",
+          "value": "0.109"
+        },
+        {
+          "name": "平均血小板体积",
+          "range": "9.2--12.0",
+          "state": "正常",
+          "unit": "fL",
+          "value": "11.40"
+        },
+        {
+          "name": "红细胞宽度-CV值",
+          "range": "11.5--14.5",
+          "state": "正常",
+          "unit": "%",
+          "value": "11.90"
+        },
+        {
+          "name": "平均红细胞体积",
+          "range": "82--100",
+          "state": "正常",
+          "unit": "fL",
+          "value": "91.70"
+        },
+        {
+          "name": "单核细胞计数",
+          "range": "0.10--0.60",
+          "state": "高",
+          "unit": "10⁹/L",
+          "value": "1.31"
+        },
+        {
+          "name": "嗜碱细胞计数",
+          "range": "0--0.06",
+          "state": "高",
+          "unit": "10⁹/L",
+          "value": "0.07"
+        },
+        {
+          "name": "血小板压积",
+          "range": "0.19--0.39",
+          "state": "高",
+          "unit": "%",
+          "value": "0.430"
+        },
+        {
+          "name": "淋巴细胞百分比",
+          "range": "0.2--0.5",
+          "state": "低",
+          "unit": "",
+          "value": "0.186"
+        },
+        {
+          "name": "平均血红蛋白浓度",
+          "range": "316--354",
+          "state": "正常",
+          "unit": "g/L",
+          "value": "338"
+        },
+        {
+          "name": "嗜酸细胞百分比",
+          "range": "0.004--0.080",
+          "state": "正常",
+          "unit": "",
+          "value": "0.008"
+        },
+        {
+          "name": "平均血红蛋白含量",
+          "range": "27--34",
+          "state": "正常",
+          "unit": "pg",
+          "value": "31.00"
+        },
+        {
+          "name": "血小板计数",
+          "range": "125--350",
+          "state": "高",
+          "unit": "10⁹/L",
+          "value": "376"
+        },
+        {
+          "name": "血红蛋白",
+          "range": "130--175",
+          "state": "低",
+          "unit": "g/L",
+          "value": "119.0"
+        }
+      ],
+      "department": "结直肠肛门外科",
+      "diagnosis": "直肠恶性肿瘤",
+      "inspection_number": "1214131463881101326",
+      "specimen_type": "血液",
+      "time": "2024-12-17 10:33:15",
+      "type": "血细胞分析 (五分类)"
+    },
+    {
+      "content": [
+        {
+          "name": "C反应蛋白(散射比浊)",
+          "range": "0--3.48",
+          "state": "高",
+          "unit": "mg/L",
+          "value": "112"
+        }
+      ],
+      "department": "结直肠肛门外科",
+      "diagnosis": "直肠恶性肿瘤",
+      "inspection_number": "1214131463881101327",
+      "specimen_type": "血清",
+      "time": "2024-12-17 11:43:56",
+      "type": "C-反应蛋白测定 (CRP)(免疫散射比浊法)"
+    },
+    {
+      "content": [
+        {
+          "name": "间接胆红素",
+          "range": "2.8--23.8",
+          "state": "正常",
+          "unit": "umol/L",
+          "value": "4.50"
+        },
+        {
+          "name": "阴离子间隙",
+          "range": "8.00--16.00",
+          "state": "高",
+          "unit": "mmol/L",
+          "value": "18.10"
+        },
+        {
+          "name": "总胆红素",
+          "range": "5.0--24.0",
+          "state": "正常",
+          "unit": "umol/L",
+          "value": "9.60"
+        },
+        {
+          "name": "天门冬氨酸转氨酶",
+          "range": "40",
+          "state": "不正常",
+          "unit": "U/L",
+          "value": "21.80"
+        },
+        {
+          "name": "钙",
+          "range": "2.09--2.54",
+          "state": "正常",
+          "unit": "mmol/L",
+          "value": "2.22"
+        },
+        {
+          "name": "无机磷",
+          "range": "0.87--1.45",
+          "state": "正常",
+          "unit": "mmol/L",
+          "value": "1.33"
+        },
+        {
+          "name": "钠",
+          "range": "137--147",
+          "state": "低",
+          "unit": "mmol/L",
+          "value": "134.00"
+        },
+        {
+          "name": "二氧化碳",
+          "range": "22.0--34.0",
+          "state": "正常",
+          "unit": "mmol/L",
+          "value": "22.60"
+        },
+        {
+          "name": "镁",
+          "range": "0.70--1.10",
+          "state": "正常",
+          "unit": "mmol/L",
+          "value": "0.98"
+        },
+        {
+          "name": "尿素",
+          "range": "2.86--8.20",
+          "state": "正常",
+          "unit": "mmol/L",
+          "value": "5.50"
+        },
+        {
+          "name": "肌酐(酶法)",
+          "range": "59--104",
+          "state": "正常",
+          "unit": "umol/L",
+          "value": "69.00"
+        },
+        {
+          "name": "氯",
+          "range": "99--110",
+          "state": "低",
+          "unit": "mmol/L",
+          "value": "93.30"
+        },
+        {
+          "name": "尿素：肌酐",
+          "range": "0.03--0.15",
+          "state": "正常",
+          "unit": "RATIO",
+          "value": "0.080"
+        },
+        {
+          "name": "直接胆红素",
+          "range": "0.24--7.10",
+          "state": "正常",
+          "unit": "umol/L",
+          "value": "5.10"
+        },
+        {
+          "name": "钙磷浓度积",
+          "range": "2.0--3.70",
+          "state": "正常",
+          "unit": "mmol/L",
+          "value": "2.95"
+        },
+        {
+          "name": "AST/ALT",
+          "range": "0.74--3.45",
+          "state": "低",
+          "unit": "RATIO",
+          "value": "0.52"
+        },
+        {
+          "name": "钾",
+          "range": "3.5--5.3",
+          "state": "正常",
+          "unit": "mmol/L",
+          "value": "3.72"
+        },
+        {
+          "name": "丙氨酸转氨酶",
+          "range": "<50",
+          "state": "正常",
+          "unit": "U/L",
+          "value": "42.30"
+        },
+        {
+          "name": "估算的肾小球滤过率",
+          "range": "",
+          "state": "-",
+          "unit": "",
+          "value": "119.30"
+        }
+      ],
+      "department": "结直肠肛门外科",
+      "diagnosis": "直肠恶性肿瘤",
+      "inspection_number": "1214131463881101328",
+      "specimen_type": "血清",
+      "time": "2024-12-17 12:37:15",
+      "type": "电解质 肌酐测定 (酶促动力学法) 尿素测定 (酶促动力学法) 血清直接胆红素测定 (化学法或酶法) 总胆红素测定 (化学法或酶法)"
+    },
+    {
+      "content": [
+        {
+          "name": "凝血酶比率",
+          "range": "0.80--1.20",
+          "state": "正常",
+          "unit": "",
+          "value": "0.93"
+        },
+        {
+          "name": "凝血酶时间",
+          "range": "14.0--21.0",
+          "state": "正常",
+          "unit": "",
+          "value": "16.20"
+        },
+        {
+          "name": "凝血酶原活动度",
+          "range": "70.0--130.0",
+          "state": "正常",
+          "unit": "%",
+          "value": "77.20"
+        },
+        {
+          "name": "活化部分凝血活酶时间",
+          "range": "25.0--31.3",
+          "state": "正常",
+          "unit": "秒",
+          "value": "26.20"
+        },
+        {
+          "name": "纤维蛋白原",
+          "range": "1.8--3.5",
+          "state": "高",
+          "unit": "g/L",
+          "value": "6.30"
+        },
+        {
+          "name": "国际标准化比值",
+          "range": "0.84--1.16",
+          "state": "正常",
+          "unit": "",
+          "value": "1.05"
+        },
+        {
+          "name": "凝血酶原时间",
+          "range": "9.8--12.1",
+          "state": "高",
+          "unit": "秒",
+          "value": "12.20"
+        },
+        {
+          "name": "凝血酶原比率",
+          "range": "0.83--1.17",
+          "state": "正常",
+          "unit": "",
+          "value": "1.05"
+        },
+        {
+          "name": "活化部分凝血活酶比率",
+          "range": "0.80--1.20",
+          "state": "正常",
+          "unit": "",
+          "value": "0.96"
+        }
+      ],
+      "department": "结直肠肛门外科",
+      "diagnosis": "直肠恶性肿瘤",
+      "inspection_number": "1214131463881101329",
+      "specimen_type": "血液",
+      "time": "2024-12-17 12:43:21",
+      "type": "凝血四项"
+    }
+  ],
+  "operations": [
+    {
+      "anesthesia": "全麻",
+      "bleeding_volume": "无",
+      "duration": "165分钟",
+      "end_time": "2024-12-06 14:00:00",
+      "incision_type": "II类切口（清洁-污染手术）",
+      "intra_diagnosis": "1.直肠恶性肿瘤 2.肝继发恶性肿瘤",
+      "op_name": "1.腹腔镜下超低位直肠前切除术 2.回肠造口术",
+      "pre_diagnosis": "1.直肠恶性肿瘤 2.肝继发恶性肿瘤",
+      "process": "麻醉成功后，取仰卧位，常规消毒术野，铺巾，放置导尿管。脐上沿切开皮肤1.0cm，Veress穿刺针建立CO2气腹，设定腹内压12mmHg。改体位为头低脚高位约30度。脐上沿置1.0cm Trocar，右侧下腹部（右锁骨中线与两髂前上棘连线交点）置1.2cm Trocar，左下腹对应位置置1.0cm Trocar，两侧锁骨中线平脐水平分别置0.5cm Trocar，置入腹腔镜及相应器械。镜下探查:腹腔内无腹水，肝脏、胆囊、胃、脾脏、小肠均未见明显异常，腹膜及肠系膜未探及转移结节。肿瘤位于腹膜反折下方，腹腔内无法探及，系膜未见肿大淋巴结。决定行腹腔镜直肠癌经括约肌间切除术（ISR）+回肠造口术。\n超声刀先分离黏连，后沿乙状结肠系膜于骶骨岬水平切开后腹膜，延乙状结肠根部由下向上游离，分离出肠系膜下动静脉，沿肠系膜下动脉\n向远端游离，可见乙状结肠动脉与左结肠动脉共干，hemo-lock双重结肠乙状结肠动脉近心端后予以离断。对应水平离断肠系膜下静脉。向外侧拓展Toldt间隙，显露左侧输尿管及生殖血管。延左侧腹壁和乙状结肠系膜交界线切开，进入后腹膜Toldt间隙，向内侧游离，与内侧贯通。沿直肠后骶骨前间隙向下游离，远端达盆底肌水平，分别游离两侧方达相应水平。游离直肠系膜，裸化近切线距肿瘤约10cm处肠管，腔镜下直线切割闭合器距肿瘤上缘约10cm断乙状结肠。\n经肛操作:距肿瘤远端0.5cm于齿状线上缘做两个荷包缝合关闭直肠。经肛白线进入内外括约肌间沟，沿括约肌间沟向近端拓展，与腹腔相通。将肿瘤拉出体外。使用卵圆钳将近端结肠经肛门拉出体外，距结肠近端残端约3cm将结肠浆肌层固定于肛管近端，近端残端固定于肛管皮肤。清理手术野，彻底止血后，盆腔内放置1根引流管。见距回盲部30cm回肠自右下腹穿刺孔拖出行回肠造口。\n反复冲洗术野干净，查无活动性出血，清点器械纱布无误后，排除气腹，拔除各Trocar，各穿刺口无活动性出血，缝合关闭各切口，腹壁无皮下气肿。术程顺利，术后出血50ml，术中未输血，麻醉效果好，术后安返病房。标本送病理。",
+      "property": "无",
+      "start_time": "2024-12-06 11:15:00"
+    }
+  ],
+  "pathologies": [
+    {
+      "department": "消化内镜中心",
+      "diagnosis": "\n（直肠）低分化腺癌。\n免疫组化检测示:CK20（部分+）、Villin（+）、SATB2（少量+）、CK7（-）、Syn（个别+）、INSM1（个别+）、AFP（局灶+）、SALL4（局灶+）、Glypican-3（个别+）、HER2（1+）。",
+      "gross_description": "（直肠）组织3块，最大者体积0.4*0.3*0.2cm，最小者长径0.2cm，灰白色，质软。",
+      "specimen": "A:直肠×3",
+      "time": "2024-12-03 00:00:00"
+    },
+    {
+      "department": "结直肠肛门外科2组",
+      "diagnosis": "\n肿瘤位置:直肠\n与腹膜返折处关系:下\n大小:面积:7cm×5cm，厚1.5cm\n肉眼类型:盘状隆起型\n组织类型:管状腺癌，局灶伴神经内分泌表达\n分级:中分化\n癌旁病变:无\n浸润深度:T3:非腹膜覆盖的直肠周围组织\n穿孔:无\n梗阻:无\n脉管浸润:局灶显示血管癌栓\n周围神经浸润:未显示\n肿瘤芽分级:Grade 2\n切线:未侵犯:距近切线5cm、距远切线0.8cm\n另送“远端切线”未查见癌。\n新辅助化疗:无\n淋巴结转移情况:一站（10个）、中央组（6个）、中间组（7个）及另送“二五三组”（2个）淋巴结未查见癌。\npTNM分期:pT3 N0 Mx\n免疫组化检测示:HER2（1+）、Syn（+，约5%）、BRAF（-）、INSM1（-）、\nMSH6（+）、MSH2（+）、MLH1（+）、PMS2（+）、CD34（未显示血管癌栓）、D2-40（未显示淋巴管癌栓）。",
+      "gross_description": "肠管一段，长10.8cm，最大周长10cm，表面所覆浆膜大部分光滑，局部略增厚、粗糙，余为剥离面。手触沿肿瘤对侧打开管腔，于距近切线5cm、距远切线0.8cm，腹膜返折下查见一面积7×5cm的盘状隆起型肿物，几乎累及肠管全周；切面呈灰白色，质硬韧，最厚处厚1.5cm，侵达非腹膜覆盖的直肠周围组织，距剥离面最近处0.6cm。余肠黏膜未见明显异常。\n查见肠壁一站淋巴结10个，最大者长径1.5cm，灰白色，质软。\n查见肠壁中央组淋巴结6个，最大者长径1cm，灰白色，质软。\n查见肠壁中间组淋巴结7个，最大者长径1cm，灰白色，质软。\n（二五三组淋巴结）查见淋巴结2个，大者长径0.4cm，灰白色，质软。\n（远端切线）组织2块，大者体积2.5*2.2*0.6cm，小者长径1.5cm，表面光滑，切面灰白灰红色，质软。",
+      "specimen": "远端切线 直肠二五三组淋巴结",
+      "time": "2024-12-06 00:00:00"
+    },
+    {
+      "department": "结直肠肛门外科2组",
+      "diagnosis": "KRAS/NRAS/BRAF基因未检测到典型突变。",
+      "gross_description": "",
+      "specimen": "石蜡包埋组织",
+      "time": "2024-12-10 00:00:00"
+    }
+  ]
+}

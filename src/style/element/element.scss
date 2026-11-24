@@ -1,0 +1,64 @@
+:root {
+  --el-text-color-regular: #333;
+  --el-border-color: #d8d8d8;
+  --el-menu-item-font-size: 14px;
+  --dark-screen-bg-color: rgba(129, 167, 255, 0.1);
+  --dark-screen-border-color: #767676;
+  --light-screen-bg-color: #fff;
+  --light-screen-border-color: #fff;
+  --el-border-radius-base: 2px;
+  --el-color-info-light-9: #f2f2f2;
+  --el-color-primary: #3670f8;
+  --el-font-size-base: 14px;
+  --el-color-primary-dark-2: #5e8df9; // primary按钮focus色
+  --el-color-primary-light-3: #5e8df9; // primary按钮hover色
+  --el-color-danger: #ff4e4e;
+  --el-color-primary-light-9: #eaf0fe;
+  --el-color-primary-light-7: 1px solid #3670f8;
+  --el-border-color-extra-light: #eaf0fe;
+  --el-border-color-lighter: #e8e8e8;
+  --el-font-family: "San francisco", Arial;
+  --el-menu-hover-bg-color: rgba(54, 112, 248, 0.05);
+  --el-disabled-border-color: #d8d8d8;
+  --el-disabled-text-color: #999;
+}
+
+// 输入框颜色规范
+.el-input {
+  --el-input-hover-border-color: #3670f8;
+  --el-disabled-bg-color: #f7f8f8;
+  --el-disabled-border-color: #d8d8d8;
+  --el-text-color-placeholder: #999;
+}
+.el-textarea {
+  --el-input-hover-border-color: #3670f8;
+  --el-disabled-bg-color: #f7f8f8;
+  --el-disabled-border-color: #d8d8d8;
+  --el-text-color-placeholder: #999;
+}
+.el-checkbox {
+  --el-checkbox-text-color: #666;
+}
+.el-radio {
+  --el-radio-text-color: #666;
+  --el-radio-font-weight: normal;
+}
+
+// 这儿的样式会影响分页的样式,如果需要用到,单独去加
+// .el-select {
+//   --el-select-border-color-hover: inherit;
+//   --el-select-disabled-border: inherit;
+//   --el-select-font-size: inherit;
+//   --el-select-close-hover-color: inherit;
+//   --el-select-input-color: inherit;
+//   --el-select-multiple-input-color: inherit;
+//   --el-select-input-focus-border-color: inherit;
+// }
+
+.el-input {
+  border: none;
+}
+.el-tree {
+  --el-tree-node-hover-bg-color: rgba(54, 112, 248, 0.05) !important;
+  --el-tree-text-color: #333;
+}

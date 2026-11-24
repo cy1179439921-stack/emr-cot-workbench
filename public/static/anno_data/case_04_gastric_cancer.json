@@ -1,0 +1,265 @@
+{
+  "specialty_context": {
+    "specialty_category": "GENERAL_SURGERY",
+    "subspecialty_note": "胃肠肿瘤/微创外科"
+  },
+  "patient_global_context": {
+    "patient_ref": "0001092202",
+    "age": 70,
+    "sex": "MALE",
+    "baseline_comorbidities_icd10": ["I10", "I25.1"],
+    "functional_baseline": "INDEPENDENT",
+    "economic_pressure_indicator": "NOT_OBSERVABLE",
+    "insurance_type": "UNKNOWN"
+  },
+  "clinical_loop_network": [
+    {
+      "loop_meta": {
+        "loop_id": "doc0001092202_L01",
+        "loop_name": "胃恶性肿瘤及消化道出血/贫血",
+        "loop_type": "PRIMARY_DISEASE_MANAGEMENT",
+        "loop_status": "ACTIVE",
+        "trigger_event": "黑便1月余伴贫血入院，内镜确诊胃腺癌",
+        "trigger_time": null,
+        "trigger_time_source_path": "basic_information.enter_time",
+        "close_time": "2025-08-06 13:41:00",
+        "guideline_era": "2021_2024",
+        "treatment_phase": "INITIAL",
+        "disease_status_milestone": "NEWLY_DIAGNOSED"
+      },
+      "loop_relationship_edges": [
+        {
+          "target_loop_id": "doc0001092202_L02",
+          "relation_type": "SAFETY_CONSTRAINT",
+          "relation_description": "胃癌手术及围术期容量管理需受心血管基础病安全阈值约束"
+        }
+      ],
+      "nodes_annotation": {
+        "node_1_initial_presentation": {
+          "node_temporal_anchor": {
+            "anchor_path": "basic_information.enter_time",
+            "anchor_timestamp": null
+          },
+          "template_type": "ACUTE_OR_FIRST_DIAGNOSIS",
+          "n1_primary_impressions": ["黑便原因待查", "消化道肿瘤？", "消化性溃疡？", "中度贫血"],
+          "n1_differential_list": ["胃癌", "消化性溃疡出血", "结肠肿瘤", "炎症性肠病"],
+          "n1_baseline_status_assessment": null,
+          "n1_chronic_complications_screening": null,
+          "n1_procedural_indication": null,
+          "n1_urgency_level": "URGENT_TREATMENT",
+          "n1_diagnostic_logic_cot": "患者老年男性，主诉“黑便1月余”伴中下腹痛。查体见明显贫血貌、结膜苍白，中下腹轻压痛。既往无明确消化道溃疡史。结合高龄、慢性失血表现及腹痛，首要怀疑上消化道恶性肿瘤或消化性溃疡出血。当前需紧急评估血流动力学，完善血常规明确贫血程度，并预约胃肠镜直视下定位出血源及获取病理，以排除或确诊恶性病变。",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "enter_record.complain", "evidence_text": "黑便1月余。", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false},
+              {"evidence_path": "enter_record.body_examination", "evidence_text": "贫血貌,结膜有苍白...腹部平坦，腹软，中下腹轻压痛", "evidence_scope": "CURRENT_SECTION_CONTEXT", "window_violation_flag": false}
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_2_investigation_interpretation": {
+          "node_temporal_anchor": {
+            "anchor_path_list": ["image_reports[0].time", "pathologies[0].time"],
+            "anchor_timestamp": null
+          },
+          "n2_clinical_questions": ["明确黑便病因及精确出血部位？", "评估肿瘤病理类型与分子分型？", "量化贫血及营养储备状态？"],
+          "n2_intended_test_orders": {"电子胃镜+活检": "直视胃角/胃窦病变，取组织病理确诊", "电子结肠镜": "排查下消化道来源并处理同期发现的息肉", "血常规/铁代谢/凝血/肿瘤标志物": "量化贫血分级，筛查CEA等肿瘤指标"},
+          "n2_actual_test_orders": {"电子胃镜": "胃角1.0cm深溃疡伴结节样隆起，胃窦黏膜粗糙，多处活检", "电子结肠镜": "升结肠至直肠散在9枚息肉，已行EMR/CSP切除", "病理与化验": "胃角中-低分化腺癌；结肠多发低级别管状腺瘤；Hb 98g/L，铁蛋白9.68ng/mL"},
+          "n2_missed_or_delayed_tests": null,
+          "n2_critical_values": {"血红蛋白": "98g/L(中度贫血)", "胃角病理": "腺癌(中-低分化)", "Claudin_18.2": "+(约80%)", "HER2": "2+"},
+          "n2_decision_cot": {
+            "step_1_clinical_question": "核心在于明确黑便病理性质及肿瘤分期。",
+            "step_2_test_choice_logic": "胃肠镜联合活检是消化道出血病因诊断与分期的金标准，可同步完成息肉微创切除。",
+            "step_3_actual_vs_planned_gap": "实际执行与计划高度一致，结肠镜下一次性切除9枚息肉，避免二次入院风险。",
+            "step_4_result_reshapes_downstream": "病理确诊胃腺癌并提示Claudin 18.2高表达，直接锚定后续限期根治手术及潜在靶向策略，贫血原因明确为肿瘤慢性失血。"
+          },
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "pathologies[0].diagnosis", "evidence_text": "（胃角）腺癌（中-低分化）。免疫组化：HER2(2+)、Claudin 18.2(+，约80%)", "evidence_scope": "CURRENT_SECTION_CONTEXT", "window_violation_flag": false},
+              {"evidence_path": "inspections[1].content", "evidence_text": "血红蛋白 120.0g/L↓(术后回升)", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false}
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_3_status_anchor": {
+          "node_temporal_anchor": {
+            "anchor_path": "course_record.first_record.course_time",
+            "anchor_timestamp": null
+          },
+          "n3_severity_staging": {"TNM_临床": "cT2N0M0(初判)", "贫血分级": "中度", "营养风险": "NRS-2002: 1分"},
+          "n3_treatment_strategy": "SURGICAL_DEFINITIVE",
+          "n3_strategy_logic_cot": "首程确立检查与对症支持战略，待病理回报后迅速升级为手术根治。患者70岁，虽合并高血压/冠心病，但日常活动能力独立，心肺功能代偿可，无绝对手术禁忌。肿瘤局限于胃角/胃窦，影像学未报远处转移，具备限期根治指征。外科会诊确认手术可行性，当前战略锚定为限期腹腔镜根治术，术前聚焦纠正贫血、改善营养储备及心肺风险评估。",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "course_record.first_record.preliminary_diagnosis", "evidence_text": "黑便原因待查 消化性溃疡？ 消化道肿瘤？", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false},
+              {"evidence_path": "consultation_record[0].consultation_advice", "evidence_text": "患者胃癌诊断明确，有手术指征，可转结直肠外科1组评估手术。", "evidence_scope": "CURRENT_LINE_CONTEXT", "window_violation_flag": false}
+            ],
+            "evidence_quality": "INFERRED_REASONABLE"
+          }
+        },
+        "node_4_tailored_treatment": {
+          "node_temporal_anchor": {
+            "anchor_path": "operations[0].start_time",
+            "anchor_timestamp": null
+          },
+          "n4_standard_regimen": ["根治性胃癌切除术(D2淋巴结清扫)", "围手术期标准抗感染与抑酸", "肠外/肠内序贯营养支持"],
+          "n4_actual_regimen": ["腹腔镜胃大部切除伴胃空肠吻合+布朗吻合术", "围术期PPI抑酸、头孢曲松预防感染、静脉补铁", "术后早期肠内营养(TPF-T)过渡"],
+          "n4_deviation_nature": "ALIGNED_WITH_STANDARD",
+          "n4_patient_constraints": ["NONE"],
+          "n4_tradeoff_logic_cot": {
+            "step_1_standard_baseline": "早期/局部进展期胃癌标准方案为D2根治术，腹腔镜为优选入路。",
+            "step_2_constraint_interception": "患者高龄伴心血管慢病，但无严重器官衰竭或经济/库存限制。",
+            "step_3_clinical_balancing": "平衡点在于微创减创与彻底清扫的兼顾。选择腹腔镜吻合术降低开腹创伤，加速术后恢复。",
+            "step_4_safety_guarantee": "术前完善心肺评估、备血4U，术中常规预防性抗生素，术后规范引流与抗凝(VTE评估)，围术期管理完全契合ERAS指南，方案安全对齐标准。"
+          },
+          "n4_forbidden_regimens_list": null,
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "operations[0].op_name", "evidence_text": "腹腔镜胃大部切除伴胃空肠吻合+布朗吻合术", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false},
+              {"evidence_path": "advices.long_advices.items[9].name", "evidence_text": "注射用艾司奥美拉唑钠（奥赛康）40mg v.drip", "evidence_scope": "CURRENT_LINE_CONTEXT", "window_violation_flag": false}
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_5_longitudinal_adaptation": {
+          "node_temporal_anchor": {
+            "anchor_path": "basic_information.exit_time",
+            "anchor_timestamp": null
+          },
+          "n5_outcome_observable_within_admission": true,
+          "n5_outcome_dimension": "PROCEDURAL_OR_SURGICAL",
+          "n5_outcome_value": "PROCEDURE_SUCCESS_NO_COMPLICATION",
+          "n5_followup_outcome": null,
+          "n5_adverse_events_list": [
+            {"ae_name": "术后轻度炎症反应", "ae_grade": "轻", "ae_attribution": "PROCEDURE_RELATED"}
+          ],
+          "n5_emergency_actions": {"抗炎": "头孢曲松维持，监测PCT/CRP，术后第3天降至正常范围；雾化排痰防肺部感染"},
+          "n5_adaptation_logic_cot": "术后病理确证pT1aN0Mx，切缘阴性，预后极佳。围术期出现PCT/CRP轻度升高及BNP波动，及时予抗感染、雾化及限液利尿干预，成功阻断吻合口漏与心衰风险。营养路径严格按ERAS由肠外平稳过渡至肠内及流质饮食，肠鸣音恢复后早期拔管下床。整体方案随病理金标准与术后生理反馈动态微调，实现安全出院。",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "pathologies[2].diagnosis", "evidence_text": "pTNM分期: pT1a N0 Mx 免疫组化: Claudin 18.2(2+~3+), HER2(1+)", "evidence_scope": "CURRENT_SECTION_CONTEXT", "window_violation_flag": false},
+              {"evidence_path": "exit_record.out_description", "evidence_text": "患者恢复良好，无发热，无腹痛腹胀，进流质后无不适，大便已排", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false}
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        }
+      }
+    },
+    {
+      "loop_meta": {
+        "loop_id": "doc0001092202_L02",
+        "loop_name": "高血压病2级极高危/冠状动脉粥样硬化性心脏病",
+        "loop_type": "CHRONIC_COMORBIDITY_MAINTAIN",
+        "loop_status": "ACTIVE",
+        "trigger_event": "入院即存在，既往规律服药控制中",
+        "trigger_time": null,
+        "trigger_time_source_path": "basic_information.enter_time",
+        "close_time": "2025-08-06 13:41:00",
+        "guideline_era": "2021_2024",
+        "treatment_phase": "MAINTENANCE",
+        "disease_status_milestone": "STABLE_MAINTENANCE"
+      },
+      "loop_relationship_edges": [],
+      "nodes_annotation": {
+        "node_1_initial_presentation": {
+          "node_temporal_anchor": {"anchor_path": "basic_information.enter_time", "anchor_timestamp": null},
+          "template_type": "CHRONIC_MAINTENANCE_ASSESSMENT",
+          "n1_primary_impressions": null,
+          "n1_differential_list": null,
+          "n1_baseline_status_assessment": "既往高血压3年(最高160/95mmHg)，冠心病史1年。规律服用沙库巴曲缬沙坦、氨氯地平、单硝酸异山梨酯、尼可地尔。入院查体BP 189/107mmHg，提示近期血压控制欠佳。",
+          "n1_chronic_complications_screening": "需警惕围术期血压剧烈波动诱发心肌缺血或脑卒中，评估心功能储备。",
+          "n1_procedural_indication": null,
+          "n1_urgency_level": "ROUTINE_MONITORING",
+          "n1_diagnostic_logic_cot": "患者携带明确心血管慢病基础入院，首诊血压显著升高(189/107)，提示原方案可能需调整或存在疼痛/应激加重因素。当前维持原抗心肌缺血及降压药物，密切监测生命体征，避免术中术后血压骤升骤降诱发急性心血管事件。",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "enter_record.past", "evidence_text": "既往“高血压”病史3年...“冠状动脉粥样硬化性心脏病”病史1年，规律服用...", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false},
+              {"evidence_path": "enter_record.bp", "evidence_text": "189/107", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false}
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_2_investigation_interpretation": {
+          "node_temporal_anchor": {"anchor_path_list": ["image_reports[4].time"], "anchor_timestamp": null},
+          "n2_clinical_questions": ["评估心脏结构与收缩/舒张功能？", "排除急性心肌损伤？"],
+          "n2_intended_test_orders": {"常规心电图": "筛查缺血性ST-T改变及心律失常", "心脏彩超": "评估心室壁厚度、瓣膜功能及射血分数", "心肌损伤标志物": "排除围术期心肌微梗死"},
+          "n2_actual_test_orders": {"心电图": "窦性心律，逆钟向转位，T波改变(吸屏气试验后改善)", "心脏彩超": "左房扩大，室间隔基底段增厚，主动脉瓣退行性变，三尖瓣轻度反流，静息室壁运动正常", "肌钙蛋白": "阴性"},
+          "n2_missed_or_delayed_tests": null,
+          "n2_critical_values": {"心电图": "T波改变(应激相关)", "心脏彩超": "左房扩大，室间隔基底段增厚，舒张功能减退(E/A<1)"},
+          "n2_decision_cot": {
+            "step_1_clinical_question": "核心评估心血管系统能否耐受全麻及腹部大手术应激。",
+            "step_2_test_choice_logic": "心电图与心超是评估器质性心脏病与心功能的基础无创检查。",
+            "step_3_actual_vs_planned_gap": "按计划完成。结果提示长期高血压/冠心病导致的心肌肥厚与舒张功能减退，但静息室壁运动正常，储备尚可。",
+            "step_4_result_reshapes_downstream": "排除绝对麻醉禁忌。决策转向围术期严格控制容量负荷与心率，维持基础扩冠/降压治疗，防范舒张性心衰。"
+          },
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "image_reports[4].diagnosis", "evidence_text": "左房扩大，室间隔基底段增厚...三尖瓣返流(轻度)", "evidence_scope": "CURRENT_SECTION_CONTEXT", "window_violation_flag": false}
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_3_status_anchor": {
+          "node_temporal_anchor": {"anchor_path": "course_record.first_record.course_time", "anchor_timestamp": null},
+          "n3_severity_staging": {"高血压分级": "2级 极高危", "心功能分级": "NYHA II级", "心血管风险": "ASCVD高危"},
+          "n3_treatment_strategy": "ROUTINE_MAINTENANCE",
+          "n3_strategy_logic_cot": "心血管状态属慢性代偿期，无急性失代偿表现。战略定为常规维持治疗，目标是在肿瘤手术期提供平稳的内环境。继续原方案降压、扩冠，避免突然停药引起反跳。结合心超舒张功能减退，严格控制术中术后输液速度与总量，防范容量过负荷。",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "course_record.first_record.plan", "evidence_text": "治疗上给予抑酸护胃、改善胃肠功能、营养心肌等治疗", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false}
+            ],
+            "evidence_quality": "INFERRED_REASONABLE"
+          }
+        },
+        "node_4_tailored_treatment": {
+          "node_temporal_anchor": {"anchor_path": "advices.long_advices.items[4].start_time", "anchor_timestamp": null},
+          "n4_standard_regimen": ["继续原有ACEI/ARNI+CCB联合降压", "维持硝酸酯类抗心肌缺血", "围术期血压/心率严密监测"],
+          "n4_actual_regimen": ["沙库巴曲缬沙坦钠片 100mg QD", "单硝酸异山梨酯缓释片 30mg QD", "尼可地尔片 5mg TID", "术后心电/血压/指脉氧持续监测"],
+          "n4_deviation_nature": "ALIGNED_WITH_STANDARD",
+          "n4_patient_constraints": ["NONE"],
+          "n4_tradeoff_logic_cot": {
+            "step_1_standard_baseline": "慢病围术期管理标准原则为“不轻易停药，维持血流动力学稳定”。",
+            "step_2_constraint_interception": "患者无药物禁忌或经济障碍，依从性良好。",
+            "step_3_clinical_balancing": "临床平衡在于维持基础冠脉灌注与避免术中低血压。继续ARNI+硝酸酯类，提供双重心肌保护。",
+            "step_4_safety_guarantee": "术后升级护理至I级，持续心电监护，每日监测电解质与肾功能，确保利尿/补液平衡，方案完全符合心血管围术期管理共识。"
+          },
+          "n4_forbidden_regimens_list": null,
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "advices.long_advices.items[4].name", "evidence_text": "沙库巴曲缬沙坦钠片 100mg", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false},
+              {"evidence_path": "advices.long_advices.items[6].name", "evidence_text": "单硝酸异山梨酯缓释片（齐鲁）30mg", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false}
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_5_longitudinal_adaptation": {
+          "node_temporal_anchor": {"anchor_path": "basic_information.exit_time", "anchor_timestamp": null},
+          "n5_outcome_observable_within_admission": true,
+          "n5_outcome_dimension": "SYMPTOMATIC",
+          "n5_outcome_value": "STABLE",
+          "n5_followup_outcome": null,
+          "n5_adverse_events_list": [],
+          "n5_emergency_actions": null,
+          "n5_adaptation_logic_cot": "全程心血管状态平稳，围术期BNP一度轻度升高(253.95pg/mL)，及时通过限制晶体液入量、加强雾化与早期活动干预，术后复查恢复正常(72.91pg/mL)。未发生急性心梗、心衰或恶性心律失常。出院前恢复流质饮食，生命体征平稳，原心血管口服药无缝衔接，达到预期维持目标。",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {"evidence_path": "inspections[1].content", "evidence_text": "B型钠尿肽 253.95pg/mL↑", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false},
+              {"evidence_path": "inspections[7].content", "evidence_text": "B型钠尿肽 72.91pg/mL(正常范围)", "evidence_scope": "EXACT_ONLY", "window_violation_flag": false}
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        }
+      }
+    }
+  ],
+  "cross_loop_joint_reasoning": [
+    {
+      "involved_loop_ids": ["doc0001092202_L01", "doc0001092202_L02"],
+      "materiality_threshold": true,
+      "clinical_conflict_type": "PATHOPHYSIOLOGICAL_CONTRAINDICATION",
+      "joint_tradeoff_logic_cot": {
+        "conflict_paradox_analysis": "胃癌根治术及术后营养支持要求充分容量复苏与正氮平衡（L01需求），但患者合并左房扩大与舒张功能减退，容量过负荷极易诱发急性左心衰与肺水肿（L02限制）。两者在围术期液体管理上存在直接病理生理冲突。",
+        "holistic_resource_scheduling": "决策采用“限制性液体复苏+目标导向治疗”策略。术中严格控制晶体/胶体比例，依赖血管活性药物维持MAP，避免盲目扩容；术后监测CVP与BNP趋势，采用微量泵精确控制输液速度，早期启用利尿剂与肠内营养替代部分静脉补液。通过多参数动态监测与药物精准滴定，在保障肿瘤手术吻合口血供与防范心衰失代偿之间取得安全平衡。"
+      }
+    }
+  ]
+}

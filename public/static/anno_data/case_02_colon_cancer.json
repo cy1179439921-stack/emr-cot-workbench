@@ -1,0 +1,587 @@
+{
+  "specialty_context": {
+    "specialty_category": "GENERAL_SURGERY",
+    "subspecialty_note": "结直肠肛门外科/胃肠肿瘤"
+  },
+  "patient_global_context": {
+    "patient_ref": "0001159277",
+    "age": 40,
+    "sex": "MALE",
+    "baseline_comorbidities_icd10": [
+      "I65.2 (颈动脉狭窄)",
+      "M51.1 (腰椎间盘突出)"
+    ],
+    "functional_baseline": "INDEPENDENT",
+    "economic_pressure_indicator": "NOT_OBSERVABLE",
+    "insurance_type": "UNKNOWN"
+  },
+  "clinical_loop_network": [
+    {
+      "loop_meta": {
+        "loop_id": "doc0001159277_L01",
+        "loop_name": "直肠恶性肿瘤伴肝肺转移诊治",
+        "loop_type": "PRIMARY_DISEASE_MANAGEMENT",
+        "loop_status": "ACTIVE",
+        "trigger_event": "便血3月余，肛门指诊触及直肠质硬肿物",
+        "trigger_time": "2024-12-02 10:48:00",
+        "trigger_time_source_path": "basic_information.enter_time",
+        "close_time": null,
+        "guideline_era": "2021_2024",
+        "treatment_phase": "INITIAL",
+        "disease_status_milestone": "NEWLY_DIAGNOSED"
+      },
+      "loop_relationship_edges": [
+        {
+          "target_loop_id": "doc0001159277_L02",
+          "relation_type": "SAFETY_CONSTRAINT",
+          "relation_description": "颈动脉狭窄增加全麻及气腹手术的心脑血管风险，制约手术体位与血压管理"
+        }
+      ],
+      "nodes_annotation": {
+        "node_1_initial_presentation": {
+          "node_temporal_anchor": {
+            "anchor_path": "basic_information.enter_time",
+            "anchor_timestamp": "2024-12-02 10:48:00"
+          },
+          "template_type": "ACUTE_OR_FIRST_DIAGNOSIS",
+          "n1_primary_impressions": [
+            "直肠占位性病变",
+            "直肠恶性肿瘤"
+          ],
+          "n1_differential_list": [
+            "溃疡性结肠炎",
+            "结肠息肉",
+            "内痔出血"
+          ],
+          "n1_urgency_level": "URGENT_TREATMENT",
+          "n1_diagnostic_logic_cot": "患者中年男性，主诉“便血3月余”，伴黏液及血凝块，无黑便及全身消瘦。查体腹部无异常，但肛门指诊距肛缘约3cm触及质硬肿物，指尖无法通过。该体征高度提示低位直肠恶性肿瘤。因肿物质硬且导致肠腔狭窄（指尖无法通过），需与溃疡性结肠炎及带蒂息肉鉴别，但恶性概率极大。当前首要任务是限期完善内镜及影像学评估，明确病理性质及局部浸润深度，同时排查远处转移。",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "enter_record.complain",
+                "evidence_text": "便血3月余。",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": false
+              },
+              {
+                "evidence_path": "enter_record.specialist_examination",
+                "evidence_text": "肛门指诊:肛诊距肛缘约3cm直肠可触及质硬肿物，指尖无法通过。",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": false
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_2_investigation_interpretation": {
+          "node_temporal_anchor": {
+            "anchor_path_list": [
+              "pathologies[0].time",
+              "image_reports[4].time"
+            ],
+            "anchor_timestamp": "2024-12-03 08:01:57"
+          },
+          "n2_clinical_questions": [
+            "直肠肿物的病理性质是什么？",
+            "是否存在肝、肺等远处转移及局部淋巴结转移？"
+          ],
+          "n2_intended_test_orders": {
+            "无痛肠镜+活检": "获取组织病理学确诊",
+            "胸腹盆腔增强CT": "评估肿瘤局部浸润(T/N分期)及远处转移(M分期)"
+          },
+          "n2_actual_test_orders": {
+            "无痛肠镜+活检": "已执行",
+            "胸腹盆腔平扫+增强CT": "已执行"
+          },
+          "n2_missed_or_delayed_tests": null,
+          "n2_critical_values": {
+            "肠镜病理": "（直肠）低分化腺癌",
+            "胸腹盆CT": "肝S8段异常密度，考虑转移；双肺结节；直肠壁不规则增厚"
+          },
+          "n2_decision_cot": {
+            "step_1_clinical_question": "明确直肠占位病变的良恶性及全身肿瘤负荷，为制定治疗战略提供依据。",
+            "step_2_test_choice_logic": "肠镜结合活检是确诊直肠癌的金标准；胸腹盆增强CT是评估直肠癌肝/肺转移及局部T/N分期的首选影像学工具。",
+            "step_3_actual_vs_planned_gap": "实际检查与计划完全一致，未发现遗漏。",
+            "step_4_result_reshapes_downstream": "病理确诊为低分化腺癌，且CT发现肝S8段转移灶及双肺结节。这一结果将疾病分期直接推至IV期（晚期），彻底打破了单纯局部根治性手术的预期。后续决策必须从“局部解剖学切除”转向“全身系统性肿瘤控制与局部症状缓解的权衡”，急需启动多学科会诊(MDT)。"
+          },
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "pathologies[0].diagnosis",
+                "evidence_text": "（直肠）低分化腺癌。",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": false
+              },
+              {
+                "evidence_path": "image_reports[4].diagnosis",
+                "evidence_text": "直肠占位性病变...肝S8段异常密度，考虑转移，建议必要时进一步检查",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": false
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_3_status_anchor": {
+          "node_temporal_anchor": {
+            "anchor_path": "course_record.other_records[1].record_time",
+            "anchor_timestamp": "2024-12-05 15:36:00"
+          },
+          "n3_severity_staging": {
+            "clinical_grading": "晚期(IV期)",
+            "cTNM": "cT3N+M1"
+          },
+          "n3_treatment_strategy": "PALLIATIVE_LIFE_PROLONGING",
+          "n3_strategy_logic_cot": "结合肠镜病理及CT结果，患者确诊为直肠恶性肿瘤伴肝、肺多发转移。虽为晚期，但患者年轻(40岁)，一般情况可，且直肠原发灶位置极低(距肛缘3cm)，存在出血及潜在梗阻风险。经肿瘤微创科及肝胆外科会诊，达成共识：目前肝转移灶(位于膈顶)及肺结节暂不具备同期根治切除条件，但原发灶症状明显。战略定为“姑息性/预防性原发灶切除+后续系统治疗”，即分期手术，先解决直肠病灶止血并解除潜在梗阻，为后续化疗/靶向治疗创造条件。",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "consultation_record[0].consultation_advice",
+                "evidence_text": "目前诊断考虑直肠恶性肿瘤肝转移，建议请肝胆外科会诊，评估有无同时性直肠癌及肝转移手术切除指征，或直肠癌手术联合或续贯肝转移瘤消融治疗。",
+                "evidence_scope": "CURRENT_SECTION_CONTEXT",
+                "window_violation_flag": false
+              },
+              {
+                "evidence_path": "consultation_record[1].consultation_advice",
+                "evidence_text": "建议分期行肝转移瘤切除术，肝胆外科随诊。",
+                "evidence_scope": "CURRENT_SECTION_CONTEXT",
+                "window_violation_flag": false
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_4_tailored_treatment": {
+          "node_temporal_anchor": {
+            "anchor_path": "operations[0].start_time",
+            "anchor_timestamp": "2024-12-06 11:15:00"
+          },
+          "n4_standard_regimen": [
+            "新辅助化疗后同期或分期切除原发灶与肝转移灶",
+            "直接同期切除原发灶与肝转移灶"
+          ],
+          "n4_actual_regimen": [
+            "腹腔镜下超低位直肠前切除术(ISR)+回肠造口术（分期手术，暂不处理肝转移灶）"
+          ],
+          "n4_deviation_nature": "JUSTIFIED_TRADEOFF",
+          "n4_patient_constraints": [
+            "MEDICAL_CONTRAINDICATION",
+            "RESOURCE_COMPETITION"
+          ],
+          "n4_tradeoff_logic_cot": {
+            "step_1_standard_baseline": "根据中国恶性肿瘤整合诊治指南- 直肠癌（2024 版），对于同时性可切除/潜在可切除肝转移的直肠癌，标准方案通常为新辅助化疗后同期或分期切除，或直接同期切除。",
+            "step_2_constraint_interception": "肝转移灶位于近膈顶，解剖位置深，手术难度大；且直肠肿瘤位置极低（距肛缘3cm），需行超低位保肛或ISR手术，手术时间长、创伤大。同期手术风险极高，易导致严重并发症。",
+            "step_3_clinical_balancing": "权衡后选择分期手术。优先行“腹腔镜下超低位直肠前切除术+回肠造口术”，切除原发灶止血并解除潜在梗阻，回肠造口保护极低位的吻合口/肛管，避免严重盆腔感染。",
+            "step_4_safety_guarantee": "术中注意无瘤原则，术后尽早启动全身系统评估及肝胆外科随访。此为基于解剖难度与手术风险的合理妥协。"
+          },
+          "n4_forbidden_regimens_list": [
+            {
+              "forbidden_item": "一期同期切除直肠及膈顶肝转移灶",
+              "forbidden_reason_type": "CONTRAINDICATION_COMORBIDITY",
+              "severity_level": "RELATIVE_WARNING"
+            }
+          ],
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "operations[0].op_name",
+                "evidence_text": "1.腹腔镜下超低位直肠前切除术 2.回肠造口术",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": false
+              },
+              {
+                "evidence_path": "image_reports[1].findings",
+                "evidence_text": "近膈顶处可见一类圆形长T1、长T2异常信号...截面约2.2 2.0cm",
+                "evidence_scope": "CURRENT_LINE_CONTEXT",
+                "window_violation_flag": false
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_5_longitudinal_adaptation": {
+          "node_temporal_anchor": {
+            "anchor_path": "basic_information.exit_time",
+            "anchor_timestamp": "2024-12-18 14:19:00"
+          },
+          "n5_outcome_observable_within_admission": true,
+          "n5_outcome_dimension": "PROCEDURAL_OR_SURGICAL",
+          "n5_outcome_value": "SUCCESS_WITH_MINOR_COMPLICATION",
+          "n5_followup_outcome": null,
+          "n5_adverse_events_list": [
+            {
+              "ae_name": "术后炎性渗出及低蛋白血症",
+              "ae_grade": "中度",
+              "ae_attribution": "PROCEDURE_RELATED"
+            }
+          ],
+          "n5_emergency_actions": {
+            "营养支持": "静脉补充人血白蛋白及肠外/肠内营养",
+            "抗感染": "使用莫西沙星覆盖腹腔/盆腔潜在感染"
+          },
+          "n5_adaptation_logic_cot": "术后病理提示 pT3N0Mx，中分化腺癌，脉管癌栓，基因检测无典型突变。原发灶手术成功，但术后复查CT(12-11)示肝S8转移灶较前增大，提示肿瘤生物学行为侵袭性强，全身疾病控制不佳。术后出现低蛋白血症及炎性指标升高，经白蛋白及抗感染治疗后平稳出院。整体外科结局为成功，但肿瘤学结局处于进展状态，后续必须无缝衔接肝胆外科及肿瘤内科的系统治疗。",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "pathologies[1].diagnosis",
+                "evidence_text": "pTNM分期:pT3 N0 Mx...脉管浸润:局灶显示血管癌栓",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": false
+              },
+              {
+                "evidence_path": "image_reports[3].diagnosis",
+                "evidence_text": "肝S8段异常密度，较前体积增大，考虑转移瘤",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": false
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        }
+      }
+    },
+    {
+      "loop_meta": {
+        "loop_id": "doc0001159277_L02",
+        "loop_name": "颈动脉狭窄与腰椎间盘突出围术期评估",
+        "loop_type": "CHRONIC_COMORBIDITY_MAINTAIN",
+        "loop_status": "CLOSED",
+        "trigger_event": "既往史提示颈动脉狭窄10年余，腰间盘突出10年余",
+        "trigger_time": "2024-12-02 10:48:00",
+        "trigger_time_source_path": "basic_information.enter_time",
+        "close_time": "2024-12-18 14:19:00",
+        "guideline_era": "2021_2024",
+        "treatment_phase": "MAINTENANCE",
+        "disease_status_milestone": "STABLE_MAINTENANCE"
+      },
+      "loop_relationship_edges": [],
+      "nodes_annotation": {
+        "node_1_initial_presentation": {
+          "node_temporal_anchor": {
+            "anchor_path": "basic_information.enter_time",
+            "anchor_timestamp": "2024-12-02 10:48:00"
+          },
+          "template_type": "CHRONIC_MAINTENANCE_ASSESSMENT",
+          "n1_baseline_status_assessment": "患者既往颈动脉狭窄及腰椎间盘突出10年余，目前无明显脑缺血症状及下肢放射痛，功能状态独立。",
+          "n1_urgency_level": "ROUTINE_MONITORING",
+          "n1_diagnostic_logic_cot": "患者中年，但存在长达10年的颈动脉狭窄及腰椎间盘突出病史。作为拟行全麻及腹腔镜气腹手术的患者，颈动脉狭窄可能在气腹高压及头低脚高位时引发脑供血不足或斑块脱落风险；腰椎间盘突出则可能受手术体位影响。需在术前完善血管超声及心肺功能评估，确保围术期血流动力学稳定。",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "enter_record.past",
+                "evidence_text": "既往“颈动脉狭窄”10年余，“腰间盘突出”10年余",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": false
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_2_investigation_interpretation": {
+          "node_temporal_anchor": {
+            "anchor_path_list": [
+              "image_reports[6].time"
+            ],
+            "anchor_timestamp": "2024-12-03 09:01:04"
+          },
+          "n2_clinical_questions": [
+            "心肺功能及血管结构是否能耐受全麻及气腹手术？"
+          ],
+          "n2_intended_test_orders": {
+            "心脏彩超": "评估心脏结构及血流动力学"
+          },
+          "n2_actual_test_orders": {
+            "心脏彩超": "已执行"
+          },
+          "n2_critical_values": {
+            "心脏彩超": "心脏结构及血流未探及明显异常，三尖瓣/主动脉瓣轻微返流"
+          },
+          "n2_decision_cot": {
+            "step_1_clinical_question": "评估心血管系统对长时间腹腔镜手术的耐受力。",
+            "step_2_test_choice_logic": "心脏彩超是无创评估心功能及瓣膜情况的首选。",
+            "step_3_actual_vs_planned_gap": "按计划执行，无遗漏。",
+            "step_4_result_reshapes_downstream": "心脏彩超未见明显异常，提示患者心血管代偿功能良好，能够耐受全麻及气腹引起的血流动力学波动，解除了手术的心血管禁忌。"
+          },
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "image_reports[6].diagnosis",
+                "evidence_text": "心脏结构及血流未探及明显异常",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": false
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_3_status_anchor": {
+          "node_temporal_anchor": {
+            "anchor_path": "course_record.first_record.course_time",
+            "anchor_timestamp": "2024-12-02 13:40:00"
+          },
+          "n3_severity_staging": {
+            "clinical_grading": "轻度/稳定期"
+          },
+          "n3_treatment_strategy": "ROUTINE_MAINTENANCE",
+          "n3_strategy_logic_cot": "患者基础合并症目前处于稳定期，无急性发作症状。围术期战略为“维持现状，密切监测”，术中由麻醉科重点控制血压及气道压力，避免头低脚高位时间过长导致脑水肿或缺血，术后鼓励早期下床活动以预防血栓及腰肌劳损。",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "course_record.first_record.plan",
+                "evidence_text": "积极评估病情，必要时请相关科室会诊，如无手术禁忌，限期手术。",
+                "evidence_scope": "CURRENT_LINE_CONTEXT",
+                "window_violation_flag": false
+              }
+            ],
+            "evidence_quality": "INFERRED_REASONABLE"
+          }
+        },
+        "node_4_tailored_treatment": {
+          "node_temporal_anchor": {
+            "anchor_path": "operations[0].start_time",
+            "anchor_timestamp": "2024-12-06 11:15:00"
+          },
+          "n4_standard_regimen": [
+            "围术期血压监测与体位管理"
+          ],
+          "n4_actual_regimen": [
+            "全麻下腹腔镜手术，术中维持血流动力学稳定"
+          ],
+          "n4_deviation_nature": "ALIGNED_WITH_STANDARD",
+          "n4_tradeoff_logic_cot": {
+            "step_1_standard_baseline": "对于合并颈动脉狭窄的患者，围术期需维持血压在基线水平，避免低血压导致脑缺血。",
+            "step_2_constraint_interception": "腹腔镜手术需建立气腹及头低脚高位，这会显著增加中心静脉压及颅内压，对颈动脉血流产生影响。",
+            "step_3_clinical_balancing": "麻醉团队术中精细调控血管活性药物，控制腹内压在12mmHg，并在保证手术视野的前提下尽量缩短头低脚高位时间。",
+            "step_4_safety_guarantee": "术后患者神志清，无神经系统并发症，证明体位与血压管理策略有效。"
+          },
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "operations[0].process",
+                "evidence_text": "设定腹内压 12mmHg。改体位为头低脚高位约30度。",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": false
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_5_longitudinal_adaptation": {
+          "node_temporal_anchor": {
+            "anchor_path": "basic_information.exit_time",
+            "anchor_timestamp": "2024-12-18 14:19:00"
+          },
+          "n5_outcome_observable_within_admission": true,
+          "n5_outcome_dimension": "FUNCTIONAL_OR_PSYCHIATRIC",
+          "n5_outcome_value": "STABLE_NO_RECOVERY",
+          "n5_adaptation_logic_cot": "患者平稳度过围手术期，未发生脑血管意外或腰椎间盘突出急性加重。基础疾病维持稳定，出院时功能状态与入院前一致。后续需在门诊继续随访颈动脉超声及腰椎情况。",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "exit_record.out_description",
+                "evidence_text": "神志清，精神可...腹部平坦...双下肢无水肿(推断自常规查体)",
+                "evidence_scope": "CURRENT_SECTION_CONTEXT",
+                "window_violation_flag": false
+              }
+            ],
+            "evidence_quality": "INFERRED_REASONABLE"
+          }
+        }
+      }
+    },
+    {
+      "loop_meta": {
+        "loop_id": "doc0001159277_L03",
+        "loop_name": "术后炎性反应与低蛋白血症管理",
+        "loop_type": "COMPLICATION_MANAGEMENT",
+        "loop_status": "CLOSED",
+        "trigger_event": "腹腔镜直肠癌根治术后应激及营养消耗",
+        "trigger_time": "2024-12-06 14:00:00",
+        "trigger_time_source_path": "operations[0].end_time",
+        "close_time": "2024-12-18 14:19:00",
+        "guideline_era": "2021_2024",
+        "treatment_phase": "RESCUE",
+        "disease_status_milestone": "POST_PROCEDURE_RECOVERY"
+      },
+      "loop_relationship_edges": [
+        {
+          "target_loop_id": "doc0001159277_L01",
+          "relation_type": "CAUSAL_DERIVED",
+          "relation_description": "由直肠癌根治手术创伤直接引发的术后应激及营养消耗并发症"
+        }
+      ],
+      "nodes_annotation": {
+        "node_1_initial_presentation": {
+          "node_temporal_anchor": {
+            "anchor_path": "operations[0].end_time",
+            "anchor_timestamp": "2024-12-06 14:00:00"
+          },
+          "template_type": "ACUTE_OR_FIRST_DIAGNOSIS",
+          "n1_primary_impressions": [
+            "术后应激性炎症反应",
+            "潜在腹腔/盆腔感染",
+            "术后低蛋白血症"
+          ],
+          "n1_urgency_level": "ROUTINE_MONITORING",
+          "n1_diagnostic_logic_cot": "患者经历165分钟的腹腔镜直肠癌根治及回肠造口术，涉及盆腔深部操作及肠管吻合/造口。术后面临的主要风险包括：吻合口瘘/造口缺血、盆腔感染、应激性溃疡及术后低蛋白血症。需密切监测生命体征、引流管性状及炎症指标，预防性给予营养支持及抗感染治疗。",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "operations[0].duration",
+                "evidence_text": "165分钟",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": false
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_2_investigation_interpretation": {
+          "node_temporal_anchor": {
+            "anchor_path_list": [
+              "inspections[7].time"
+            ],
+            "anchor_timestamp": "2024-12-07 10:14:43"
+          },
+          "n2_clinical_questions": [
+            "术后早期炎症反应程度如何？有无早期感染/瘘迹象？"
+          ],
+          "n2_intended_test_orders": {
+            "血常规+CRP+PCT": "评估感染及应激程度",
+            "生化": "评估白蛋白及电解质水平"
+          },
+          "n2_actual_test_orders": {
+            "血常规+CRP+PCT": "已执行",
+            "生化": "已执行"
+          },
+          "n2_critical_values": {
+            "血常规": "WBC 13.79×10^9/L, 中性粒细胞 10.94×10^9/L",
+            "CRP": "62.6 mg/L",
+            "PCT": "0.176 ng/mL",
+            "白蛋白": "32.2 g/L"
+          },
+          "n2_decision_cot": {
+            "step_1_clinical_question": "量化术后早期的系统性炎症反应，鉴别是单纯手术应激还是早期细菌性感染/吻合口瘘。",
+            "step_2_test_choice_logic": "WBC结合CRP和PCT能有效区分无菌性SIRS与细菌感染；白蛋白水平反映营养消耗及毛细血管渗漏情况。",
+            "step_3_actual_vs_planned_gap": "按计划完善检查，无遗漏。",
+            "step_4_result_reshapes_downstream": "结果示WBC、CRP及PCT均轻中度升高，提示术后早期SIRS或轻度局部感染。白蛋白偏低(32.2g/L)。结合引流液性状(非粪性)，暂不考虑严重吻合口瘘，但需加强经验性抗感染及静脉营养支持，警惕腹腔感染进展。"
+          },
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "inspections[7].content",
+                "evidence_text": "白细胞计数:13.79...中性粒细胞计数:10.94",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": false
+              },
+              {
+                "evidence_path": "inspections[5].content",
+                "evidence_text": "C反应蛋白(散射比浊):62.6",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": false
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_3_status_anchor": {
+          "node_temporal_anchor": {
+            "anchor_path": "course_record.other_records[3].record_time",
+            "anchor_timestamp": "2024-12-08 08:05:00"
+          },
+          "n3_severity_staging": {
+            "clinical_grading": "中度应激/轻度感染"
+          },
+          "n3_treatment_strategy": "SYMPTOM_CONTROL_SUPPORTIVE",
+          "n3_strategy_logic_cot": "术后第2天，患者体温正常，引流液减少，但炎症指标仍高，白蛋白进一步消耗。病情锚定为“术后应激性炎症反应伴低蛋白血症”，暂无明确活动性出血或严重吻合口瘘证据。治疗战略为“强化营养支持+经验性抗感染+维持内环境稳定”，促进组织修复及造口愈合。",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "course_record.other_records[3].content",
+                "evidence_text": "昨日体温37.8℃，今晨体温正常...引流管通畅，昨日腹腔引流量15ml",
+                "evidence_scope": "CURRENT_LINE_CONTEXT",
+                "window_violation_flag": false
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_4_tailored_treatment": {
+          "node_temporal_anchor": {
+            "anchor_path": "advices.long_advices.items[41].start_time",
+            "anchor_timestamp": "2024-12-08 08:33:00"
+          },
+          "n4_standard_regimen": [
+            "肠外/肠内营养支持",
+            "经验性抗生素覆盖革兰氏阴性菌及厌氧菌",
+            "必要时补充人血白蛋白"
+          ],
+          "n4_actual_regimen": [
+            "静脉滴注莫西沙星",
+            "静脉补充人血白蛋白",
+            "肠内营养乳剂(TPF-T)"
+          ],
+          "n4_deviation_nature": "ALIGNED_WITH_STANDARD",
+          "n4_tradeoff_logic_cot": {
+            "step_1_standard_baseline": "针对术后炎症及低蛋白，标准方案为肠内/外营养支持，必要时补充白蛋白，根据药敏或经验使用抗生素。",
+            "step_2_constraint_interception": "患者术后禁食，肠外营养需求大；且CRP/PCT偏高，存在盆腔/腹腔感染风险，需覆盖肠道常见菌群。",
+            "step_3_clinical_balancing": "实际给予了莫西沙星抗感染(覆盖厌氧及非典型菌)，并后续追加了人血白蛋白及肠内营养乳剂。",
+            "step_4_safety_guarantee": "方案符合术后ERAS及抗感染原则，白蛋白的补充有助于减轻组织水肿，促进造口及盆腔创面愈合。"
+          },
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "advices.long_advices.items[41].name",
+                "evidence_text": "盐酸莫西沙星氯化钠注射液（海南爱科） 0.4g",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": false
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_5_longitudinal_adaptation": {
+          "node_temporal_anchor": {
+            "anchor_path": "basic_information.exit_time",
+            "anchor_timestamp": "2024-12-18 14:19:00"
+          },
+          "n5_outcome_observable_within_admission": true,
+          "n5_outcome_dimension": "PROCEDURAL_OR_SURGICAL",
+          "n5_outcome_value": "SUCCESS_WITH_MINOR_COMPLICATION",
+          "n5_adaptation_logic_cot": "经过营养支持及抗感染治疗，患者白蛋白回升至 37.6 g/L，但 CRP 仍有波动 (112 mg/L)，WBC 偏高。复查CT(12-11)示乙状结肠壁增厚，考虑炎性病变。最终患者带造口平稳出院，未发生需二次手术的严重并发症（如严重瘘）。结局为“成功伴轻微并发症”，术后炎性渗出经保守治疗成功控制。",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "inspections[24].content",
+                "evidence_text": "白蛋白(干):37.6",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": false
+              },
+              {
+                "evidence_path": "image_reports[3].diagnosis",
+                "evidence_text": "乙状结肠壁增厚，首先考虑炎性病变",
+                "evidence_scope": "EXACT_ONLY",
+                "window_violation_flag": false
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        }
+      }
+    }
+  ],
+  "cross_loop_joint_reasoning": [
+    {
+      "involved_loop_ids": [
+        "doc0001159277_L01",
+        "doc0001159277_L02"
+      ],
+      "materiality_threshold": true,
+      "clinical_conflict_type": "PATHOPHYSIOLOGICAL_CONTRAINDICATION",
+      "joint_tradeoff_logic_cot": {
+        "conflict_paradox_analysis": "Loop 1 要求行腹腔镜直肠癌根治术，需建立CO2气腹(12mmHg)并采取头低脚高位(30度)。这会显著增加中心静脉压及颅内压，对 Loop 2 的颈动脉狭窄患者构成脑供血不足或斑块脱落的潜在风险。两者在血流动力学管理上存在直接博弈。",
+        "holistic_resource_scheduling": "麻醉团队与外科团队协同，术中精细调控血管活性药物维持血压在基线水平，控制腹内压在安全下限(12mmHg)，并在保证手术视野的前提下尽量缩短头低脚高位时间。术后患者神志清，无神经系统并发症，证明跨圈协同管理成功化解了风险。"
+      }
+    }
+  ]
+}

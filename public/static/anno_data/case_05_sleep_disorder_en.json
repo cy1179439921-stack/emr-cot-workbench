@@ -1,0 +1,493 @@
+{
+  "specialty_context": {
+    "specialty_category": "INTERNAL_MEDICINE",
+    "subspecialty_note": "Cerebrovascular / Neuropsychiatry"
+  },
+  "patient_global_context": {
+    "patient_ref": "0001180698",
+    "age": 56,
+    "sex": "FEMALE",
+    "baseline_comorbidities_icd10": [
+      "I10",
+      "E11",
+      "E78.5"
+    ],
+    "functional_baseline": "INDEPENDENT",
+    "economic_pressure_indicator": "NOT_OBSERVABLE",
+    "insurance_type": "UNKNOWN"
+  },
+  "clinical_loop_network": [
+    {
+      "loop_meta": {
+        "loop_id": "doc0001180698_L01",
+        "loop_name": "Dizziness, Sleep Disorder, and Anxiety/Depression State",
+        "loop_type": "PRIMARY_DISEASE_MANAGEMENT",
+        "loop_status": "CLOSED",
+        "trigger_event": "Episodic dizziness and insomnia for 4 years, fall 12 days ago",
+        "trigger_time_source_path": "basic_information.enter_time",
+        "guideline_era": "2025_PRESENT",
+        "treatment_phase": "INITIAL",
+        "disease_status_milestone": "ACUTE_EPISODE"
+      },
+      "loop_relationship_edges": [
+        {
+          "target_loop_id": "doc0001180698_L02",
+          "relation_type": "SAFETY_CONSTRAINT",
+          "relation_description": "Psychotropic medications require monitoring of metabolic syndrome and baseline cardiovascular status."
+        }
+      ],
+      "nodes_annotation": {
+        "node_1_initial_presentation": {
+          "node_temporal_anchor": {
+            "anchor_path": "basic_information.enter_time"
+          },
+          "template_type": "ACUTE_OR_FIRST_DIAGNOSIS",
+          "n1_primary_impressions": [
+            "R42",
+            "G47.00",
+            "F41.1"
+          ],
+          "n1_differential_list": [
+            "Posterior circulation ischemia",
+            "Peripheral vestibular disorder",
+            "Somatoform disorder"
+          ],
+          "n1_urgency_level": "ROUTINE_DIAGNOSIS",
+          "n1_diagnostic_logic_cot": "The patient is a middle-aged female presenting with chronic dizziness and long-standing insomnia, recently exacerbated by a fall. Physical examination reveals a positive Romberg sign, indicating impaired proprioceptive balance. Absence of focal neurological deficits (e.g., limb numbness, dysarthria) makes acute stroke less likely. Differential diagnosis must include peripheral vestibular disorders, posterior circulation ischemia, and somatic symptom disorder secondary to underlying psychiatric conditions.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "enter_record.complain",
+                "evidence_text": "Episodic dizziness and insomnia for 4 years, fall 12 days ago.",
+                "evidence_scope": "EXACT_ONLY"
+              },
+              {
+                "evidence_path": "enter_record.specialist_examination",
+                "evidence_text": "Romberg sign (+).",
+                "evidence_scope": "EXACT_ONLY"
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_2_investigation_interpretation": {
+          "node_temporal_anchor": {
+            "anchor_path_list": [
+              "inspections[9].time"
+            ]
+          },
+          "n2_clinical_questions": [
+            "Rule out thyroid dysfunction as a cause for insomnia and palpitations",
+            "Assess baseline metabolic and coagulation status"
+          ],
+          "n2_intended_test_orders": {
+            "Thyroid function panel": "Rule out hyper/hypothyroidism",
+            "Comprehensive Metabolic Panel (CMP)": "Evaluate hepatic/renal function and electrolytes"
+          },
+          "n2_actual_test_orders": {
+            "Thyroid function panel": "Ordered",
+            "Comprehensive Metabolic Panel (CMP)": "Ordered"
+          },
+          "n2_critical_values": {
+            "HbA1c": "6.50% (Elevated)",
+            "Triglycerides": "3.13 mmol/L (Elevated)"
+          },
+          "n2_decision_cot": {
+            "step_1_clinical_question": "Identify organic etiologies for dizziness and insomnia.",
+            "step_2_test_choice_logic": "Order thyroid function and metabolic panels to rule out endocrine and metabolic encephalopathies.",
+            "step_3_actual_vs_planned_gap": "Comprehensive blood work was ordered as planned, with no omissions.",
+            "step_4_result_reshapes_downstream": "Thyroid and metabolic panels are largely within normal limits, ruling out common secondary endocrine causes. Further evaluation relies on neuroimaging and psychiatric scales."
+          },
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "inspections[9].content",
+                "evidence_text": "Thyroid Stimulating Hormone (ECLIA) 4.520 uIU/mL (Mildly elevated)",
+                "evidence_scope": "CURRENT_SECTION_CONTEXT"
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_3_status_anchor": {
+          "node_temporal_anchor": {
+            "anchor_path": "course_record.first_record.course_time"
+          },
+          "n3_severity_staging": {
+            "clinical_grading": "Moderate"
+          },
+          "n3_treatment_strategy": "SYMPTOM_CONTROL_SUPPORTIVE",
+          "n3_strategy_logic_cot": "Given the chronic dizziness, insomnia, and recent fall, alongside the exclusion of Meniere's disease and vestibular neuritis, there is a high suspicion of anxiety/depression with somatic symptoms. The strategic approach focuses on symptomatic relief via microcirculation improvement and neurotrophic support, while mandating psychiatric scale assessments to confirm the psychological disorder and guide targeted psychopharmacotherapy.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "course_record.first_record.differential_diagnosis",
+                "evidence_text": "The patient has no history of similar episodes... combined with the history and characteristics of dizziness, this disease can be basically excluded.",
+                "evidence_scope": "CURRENT_SECTION_CONTEXT"
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_4_tailored_treatment": {
+          "node_temporal_anchor": {
+            "anchor_path": "advices.long_advices.items[12].start_time"
+          },
+          "n4_standard_regimen": [
+            "SSRI/SNRI antidepressants",
+            "Benzodiazepines for short-term sleep aid",
+            "Cognitive Behavioral Therapy for Insomnia (CBT-I)"
+          ],
+          "n4_actual_regimen": [
+            "Escitalopram",
+            "Alprazolam",
+            "Flupentixol/Melitracen"
+          ],
+          "n4_deviation_nature": "ACCEPTABLE_ALTERNATIVE",
+          "n4_patient_constraints": [
+            "INSTITUTIONAL_PROTOCOL_LIMIT"
+          ],
+          "n4_tradeoff_logic_cot": {
+            "step_1_standard_baseline": "Standard US guidelines recommend SSRIs/SNRIs combined with CBT-I and short-term hypnotics.",
+            "step_2_constraint_interception": "The patient presents with severe somatic dizziness and insomnia requiring rapid symptom control. Flupentixol/Melitracen is a standard regional formulary option for rapid relief of somatic anxiety, though not FDA-approved.",
+            "step_3_clinical_balancing": "Escitalopram is initiated for long-term anxiety/depression management, Alprazolam for immediate sleep induction, and Flupentixol/Melitracen is added for multi-target rapid symptomatic relief.",
+            "step_4_safety_guarantee": "The regimen aligns with local institutional protocols. ECG monitoring is maintained to mitigate any QTc prolongation risks associated with psychotropics."
+          },
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "advices.long_advices.items[12]",
+                "evidence_text": "Escitalopram oxalate tablet 10mg QD",
+                "evidence_scope": "EXACT_ONLY"
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_5_longitudinal_adaptation": {
+          "node_temporal_anchor": {
+            "anchor_path": "basic_information.exit_time"
+          },
+          "n5_outcome_observable_within_admission": true,
+          "n5_outcome_dimension": "FUNCTIONAL_OR_PSYCHIATRIC",
+          "n5_outcome_value": "PARTIAL_RECOVERY",
+          "n5_adaptation_logic_cot": "Hamilton Anxiety and Depression scales confirmed the diagnosis of anxiety and depressive states during hospitalization. Following psychopharmacological and sleep-improving therapies, the patient's dizziness alleviated, and sleep quality improved, leading to a stable discharge. Long-term outpatient follow-up is required for gradual psychotropic titration and fall risk monitoring.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "course_record.ward_records[1].content",
+                "evidence_text": "Hamilton Anxiety Scale: Obvious anxiety symptoms; Hamilton Depression Scale: Possible depressive symptoms.",
+                "evidence_scope": "CURRENT_SECTION_CONTEXT"
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        }
+      }
+    },
+    {
+      "loop_meta": {
+        "loop_id": "doc0001180698_L02",
+        "loop_name": "Hypertension, Diabetes Mellitus, and Hyperlipidemia",
+        "loop_type": "CHRONIC_COMORBIDITY_MAINTAIN",
+        "loop_status": "ACTIVE",
+        "trigger_event": "History of metabolic syndrome, chronically non-compliant with medications",
+        "trigger_time_source_path": "basic_information.enter_time",
+        "guideline_era": "2025_PRESENT",
+        "treatment_phase": "MAINTENANCE",
+        "disease_status_milestone": "STABLE_MAINTENANCE"
+      },
+      "loop_relationship_edges": [],
+      "nodes_annotation": {
+        "node_1_initial_presentation": {
+          "node_temporal_anchor": {
+            "anchor_path": "basic_information.enter_time"
+          },
+          "template_type": "CHRONIC_MAINTENANCE_ASSESSMENT",
+          "n1_baseline_status_assessment": "History of hypertension for 4 years (max 153/92 mmHg), unmedicated; hyperglycemia for >4 years, unmedicated; hyperlipidemia for >20 years, unmedicated. Admission BP 148/90 mmHg.",
+          "n1_urgency_level": "ROUTINE_MONITORING",
+          "n1_diagnostic_logic_cot": "The patient has a well-established metabolic syndrome baseline but has been chronically non-compliant with medical therapy. Current mild hypertension requires evaluation of target organ damage and current metabolic indices to determine if immediate inpatient pharmacological initiation is warranted or if it should be deferred to outpatient management.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "enter_record.past",
+                "evidence_text": "History of 'hypertension' for 4 years... unmedicated...",
+                "evidence_scope": "EXACT_ONLY"
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_2_investigation_interpretation": {
+          "node_temporal_anchor": {
+            "anchor_path_list": [
+              "inspections[1].time"
+            ]
+          },
+          "n2_clinical_questions": [
+            "Quantify the severity of unmanaged metabolic syndrome"
+          ],
+          "n2_intended_test_orders": {
+            "HbA1c": "Assess glycemic control over the past 3 months",
+            "Lipid panel": "Stratify cardiovascular risk"
+          },
+          "n2_actual_test_orders": {
+            "HbA1c": "Ordered",
+            "Lipid panel": "Ordered"
+          },
+          "n2_critical_values": {
+            "HbA1c": "6.50%",
+            "Triglycerides": "3.13 mmol/L"
+          },
+          "n2_decision_cot": {
+            "step_1_clinical_question": "Quantify the severity of unmanaged metabolic syndrome.",
+            "step_2_test_choice_logic": "Order HbA1c and lipid panel to stratify cardiovascular risk.",
+            "step_3_actual_vs_planned_gap": "Results indicate HbA1c at the threshold of early diabetes and elevated triglycerides, but LDL-C is acceptable.",
+            "step_4_result_reshapes_downstream": "Values do not meet criteria for acute inpatient intravenous intervention, supporting a strategy of lifestyle modification and outpatient follow-up for chronic disease management."
+          },
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "inspections[1].content",
+                "evidence_text": "Hemoglobin A1c 6.50 %",
+                "evidence_scope": "EXACT_ONLY"
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_3_status_anchor": {
+          "node_temporal_anchor": {
+            "anchor_path": "course_record.first_record.course_time"
+          },
+          "n3_severity_staging": {
+            "clinical_grading": "Hypertension Stage 1 (Very High Cardiovascular Risk)"
+          },
+          "n3_treatment_strategy": "ROUTINE_MAINTENANCE",
+          "n3_strategy_logic_cot": "The patient has a long-standing history of the 'three highs', but the core issue of this admission is dizziness and insomnia. Metabolic indices show mild-to-moderate abnormalities. Strategically, the focus is on lifestyle interventions and inpatient monitoring, avoiding frequent medication adjustments during a short hospital stay to prevent post-discharge management discontinuity.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "course_record.first_record.preliminary_diagnosis",
+                "evidence_text": "Diabetes mellitus, Hypertension Stage 1 (Very High Risk), Hyperlipidemia",
+                "evidence_scope": "EXACT_ONLY"
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_4_tailored_treatment": {
+          "node_temporal_anchor": {
+            "anchor_path": "advices.long_advices.items[2].start_time"
+          },
+          "n4_standard_regimen": [
+            "ACEi/ARB or CCB for hypertension",
+            "Statin for dyslipidemia",
+            "Metformin/Lifestyle for diabetes"
+          ],
+          "n4_actual_regimen": [
+            "Low-salt, low-fat, diabetic diet",
+            "BP monitoring BID"
+          ],
+          "n4_deviation_nature": "JUSTIFIED_TRADEOFF",
+          "n4_patient_constraints": [
+            "HISTORICAL_TIME_GAP"
+          ],
+          "n4_tradeoff_logic_cot": {
+            "step_1_standard_baseline": "Standard guidelines mandate the initiation of regular antihypertensive, antidiabetic, and lipid-lowering pharmacotherapy.",
+            "step_2_constraint_interception": "The patient's core complaint is dizziness/insomnia, and the length of stay is short; she has a history of chronic non-compliance.",
+            "step_3_clinical_balancing": "Weighing the options, inpatient management focuses on lifestyle interventions and monitoring to avoid polypharmacy adjustments that could lead to confusion and non-adherence post-discharge.",
+            "step_4_safety_guarantee": "Discharge instructions emphasize diet, lifestyle, and outpatient follow-up, deferring systematic chronic disease pharmacotherapy to the outpatient setting."
+          },
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "advices.long_advices.items[2]",
+                "evidence_text": "Low-salt, low-fat diet",
+                "evidence_scope": "EXACT_ONLY"
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_5_longitudinal_adaptation": {
+          "node_temporal_anchor": {
+            "anchor_path": "basic_information.exit_time"
+          },
+          "n5_outcome_observable_within_admission": false,
+          "n5_outcome_dimension": "PHYSIOLOGICAL_OR_LAB",
+          "n5_outcome_value": "STABLE",
+          "n5_followup_outcome": "Discharge prescriptions do not include antihypertensive or antidiabetic drugs; reliance on outpatient follow-up to initiate systematic pharmacotherapy is required.",
+          "n5_adaptation_logic_cot": "No chronic disease medications were initiated during the hospital stay, and discharge prescriptions only emphasize lifestyle and monitoring. For a patient with Stage 1 Hypertension (Very High Risk), Diabetes, and Hyperlipidemia, the lack of pharmacological intervention may increase cardiovascular risk, necessitating close outpatient follow-up for medication initiation.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "exit_record.out_advice",
+                "evidence_text": "Low-salt, low-fat, diabetic diet,注意休息... monitor and control BP.",
+                "evidence_scope": "EXACT_ONLY"
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        }
+      }
+    },
+    {
+      "loop_meta": {
+        "loop_id": "doc0001180698_L03",
+        "loop_name": "Frequent Supraventricular Premature Complexes (SVPCs)",
+        "loop_type": "OBSERVATION_OR_SCREENING",
+        "loop_status": "CLOSED",
+        "trigger_event": "Holter monitor revealed frequent SVPCs",
+        "trigger_time_source_path": "course_record.other_records[1].record_time",
+        "guideline_era": "2025_PRESENT",
+        "treatment_phase": "OBSERVATION_OR_SCREENING",
+        "disease_status_milestone": "NEWLY_DIAGNOSED"
+      },
+      "loop_relationship_edges": [],
+      "nodes_annotation": {
+        "node_1_initial_presentation": {
+          "node_temporal_anchor": {
+            "anchor_path": "basic_information.enter_time"
+          },
+          "template_type": "ACUTE_OR_FIRST_DIAGNOSIS",
+          "n1_primary_impressions": [
+            "I49.1"
+          ],
+          "n1_urgency_level": "ROUTINE_MONITORING",
+          "n1_diagnostic_logic_cot": "Routine admission ECG indicated premature atrial contractions. Further evaluation with a Holter monitor and echocardiogram is required to assess the arrhythmia burden and rule out structural heart disease.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "enter_record.preliminary_diagnosis",
+                "evidence_text": "Dizziness, cause to be determined",
+                "evidence_scope": "EXACT_ONLY"
+              }
+            ],
+            "evidence_quality": "INFERRED_REASONABLE"
+          }
+        },
+        "node_2_investigation_interpretation": {
+          "node_temporal_anchor": {
+            "anchor_path_list": [
+              "image_reports[1].time"
+            ]
+          },
+          "n2_clinical_questions": [
+            "Assess arrhythmia burden and structural heart integrity"
+          ],
+          "n2_intended_test_orders": {
+            "24-hour Holter monitor": "Quantify premature complex burden",
+            "Echocardiogram": "Evaluate for structural heart disease"
+          },
+          "n2_actual_test_orders": {
+            "24-hour Holter monitor": "Ordered",
+            "Echocardiogram": "Ordered"
+          },
+          "n2_critical_values": {
+            "SVPC burden": "1302 beats/20 hours (1.7%)"
+          },
+          "n2_decision_cot": {
+            "step_1_clinical_question": "Determine the nature and burden of the arrhythmia.",
+            "step_2_test_choice_logic": "Order Holter monitor and Echocardiogram to rule out structural heart disease.",
+            "step_3_actual_vs_planned_gap": "Results show a low arrhythmia burden (1.7%) and echocardiogram reveals only a dilated ascending aorta without severe structural anomalies.",
+            "step_4_result_reshapes_downstream": "Low-burden SVPCs without structural heart disease do not require specific antiarrhythmic drugs; management focuses on observation and treating the primary underlying conditions."
+          },
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "image_reports[1].diagnosis",
+                "evidence_text": "Dilated ascending aorta",
+                "evidence_scope": "EXACT_ONLY"
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_3_status_anchor": {
+          "node_temporal_anchor": {
+            "anchor_path": "course_record.other_records[1].record_time"
+          },
+          "n3_severity_staging": {
+            "clinical_grading": "Mild"
+          },
+          "n3_treatment_strategy": "ROUTINE_MAINTENANCE",
+          "n3_strategy_logic_cot": "Based on Cardiology consultation, the arrhythmia burden is low and there is no evidence of structural heart disease. The strategic approach is clinical observation without specific intervention to avoid overmedicalization.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "consultation_record[1].consultation_advice",
+                "evidence_text": "Impression: Supraventricular premature complexes. Recommendation: No special treatment at this time, observe.",
+                "evidence_scope": "EXACT_ONLY"
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_4_tailored_treatment": {
+          "node_temporal_anchor": {
+            "anchor_path": "advices.short_advices.items[31].time"
+          },
+          "n4_standard_regimen": [
+            "Observation",
+            "Risk factor modification"
+          ],
+          "n4_actual_regimen": [
+            "Cardiology consultation",
+            "Clinical observation"
+          ],
+          "n4_deviation_nature": "ALIGNED_WITH_STANDARD",
+          "n4_tradeoff_logic_cot": {
+            "step_1_standard_baseline": "Standard of care for asymptomatic, low-burden SVPCs is observation.",
+            "step_2_constraint_interception": "The patient has comorbid anxiety and dizziness; cardiogenic syncope must be ruled out.",
+            "step_3_clinical_balancing": "Cardiology consultation was obtained to confirm the benign nature of the arrhythmia and the lack of indication for antiarrhythmics.",
+            "step_4_safety_guarantee": "Avoided beta-blockers or other antiarrhythmics that could exacerbate depressive symptoms or cause hypotension."
+          },
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "advices.short_advices.items[31]",
+                "evidence_text": "Please consult Cardiology Ward 1 Group 3",
+                "evidence_scope": "EXACT_ONLY"
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        },
+        "node_5_longitudinal_adaptation": {
+          "node_temporal_anchor": {
+            "anchor_path": "basic_information.exit_time"
+          },
+          "n5_outcome_observable_within_admission": true,
+          "n5_outcome_dimension": "PHYSIOLOGICAL_OR_LAB",
+          "n5_outcome_value": "STABLE",
+          "n5_adaptation_logic_cot": "No antiarrhythmic medications were administered during hospitalization. The patient remained asymptomatic regarding palpitations and was discharged in stable condition. Long-term management involves periodic ECG monitoring alongside the control of hypertension and anxiety.",
+          "node_evidence_block": {
+            "mapped_emr_evidence": [
+              {
+                "evidence_path": "exit_record.out_diagnosis",
+                "evidence_text": "Supraventricular premature complexes",
+                "evidence_scope": "EXACT_ONLY"
+              }
+            ],
+            "evidence_quality": "DIRECT_DOCUMENTED"
+          }
+        }
+      }
+    }
+  ],
+  "cross_loop_joint_reasoning": [
+    {
+      "involved_loop_ids": [
+        "doc0001180698_L01",
+        "doc0001180698_L02"
+      ],
+      "materiality_threshold": false,
+      "clinical_conflict_type": "DRUG_DRUG_INTERACTION",
+      "joint_tradeoff_logic_cot": {
+        "conflict_paradox_analysis": null,
+        "holistic_resource_scheduling": null
+      }
+    }
+  ]
+}

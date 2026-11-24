@@ -1,0 +1,13 @@
+:deep(.customInput) {
+  .el-input__wrapper {
+    height: 27px;
+    padding: 0 3px;
+  }
+}
+:deep(.customSelect) {
+  .el-select__wrapper {
+    height: 27px;
+    min-height: 0;
+    padding: 0 6px;
+  }
+}

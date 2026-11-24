@@ -1,0 +1,621 @@
+// ===================== 全局主题令牌 =====================
+// 三套外观：明亮（默认，白 + 浅蓝）/ 暖色（琥珀，人文关怀）/ 深色
+// 切换入口：左下角头像 → 外观风格；切换时由 modeStore 在 <html> 上挂 theme-* 类
+// 页面根节点加 class="warmTheme" 表示「业务卡片区」，仅负责组件级圆角/描边等细节，
+// 配色一律走 --theme-* 令牌，因此三套主题都能正确切换。
+
+:root,
+html.theme-light {
+  // 主色：浅蓝，与全站视觉一致
+  --theme-primary: #3670f8;
+  --theme-primary-light: #6f9bff;
+  --theme-primary-soft: #eff4ff;
+  --theme-primary-border: #cbdcff;
+  --theme-primary-rgb: 54, 112, 248;
+  --theme-fill: #f6f8fc;
+  --theme-bg: #f5f7fb;
+  --theme-card: #fff;
+  --theme-border: #e7ecf5;
+  --theme-text: #1f2733;
+  --theme-text-2: #5a6678;
+  --theme-text-3: #94a1b4;
+  --theme-success: #1f9d63;
+  --theme-success-soft: #eaf7f0;
+  --theme-warning: #e08a1e;
+  --theme-danger: #e15b52;
+  --theme-danger-soft: #fdeeec;
+  --theme-radius: 12px;
+  --theme-shadow: 0 6px 18px rgba(31, 58, 105, 0.06);
+  --theme-shadow-hover: 0 12px 26px rgba(31, 58, 105, 0.1);
+  --theme-page-bg: linear-gradient(180deg, #f8fafd 0%, #eef3fb 100%);
+  --theme-primary-shadow: 0 4px 12px rgba(54, 112, 248, 0.18);
+}
+
+html.theme-warm {
+  --theme-primary: #c9762f;
+  --theme-primary-light: #e0a05e;
+  --theme-primary-soft: #fdf1e3;
+  --theme-primary-border: #f0d5b4;
+  --theme-primary-rgb: 201, 118, 47;
+  --theme-fill: #faf4ea;
+  --theme-bg: #fdf8f2;
+  --theme-card: #fffdfa;
+  --theme-border: #f1e4d3;
+  --theme-text: #3c2f26;
+  --theme-text-2: #6f5a49;
+  --theme-text-3: #a08b79;
+  --theme-success: #4f9166;
+  --theme-success-soft: #eef6f0;
+  --theme-warning: #d98e2b;
+  --theme-danger: #c1594f;
+  --theme-danger-soft: #fdf0ee;
+  --theme-radius: 16px;
+  --theme-shadow: 0 8px 24px rgba(185, 138, 84, 0.08);
+  --theme-shadow-hover: 0 12px 28px rgba(185, 138, 84, 0.14);
+  --theme-page-bg: linear-gradient(180deg, #fdf8f2 0%, #fbf3e9 100%);
+  --theme-primary-shadow: 0 4px 12px rgba(201, 118, 47, 0.18);
+}
+
+html.theme-dark {
+  --theme-primary: #6f9bff;
+  --theme-primary-light: #8fb3ff;
+  --theme-primary-soft: #1e2a44;
+  --theme-primary-border: #33456b;
+  --theme-primary-rgb: 111, 155, 255;
+  --theme-fill: #232a3a;
+  --theme-bg: #12161f;
+  --theme-card: #1a1f2b;
+  --theme-border: #2a3142;
+  --theme-text: #e6ebf5;
+  --theme-text-2: #a9b5c9;
+  --theme-text-3: #74809a;
+  --theme-success: #48b98a;
+  --theme-success-soft: #172c24;
+  --theme-warning: #e0a54a;
+  --theme-danger: #ef7a70;
+  --theme-danger-soft: #2e1d1e;
+  --theme-radius: 12px;
+  --theme-shadow: 0 8px 22px rgba(0, 0, 0, 0.32);
+  --theme-shadow-hover: 0 12px 28px rgba(0, 0, 0, 0.42);
+  --theme-page-bg: linear-gradient(180deg, #141821 0%, #10141c 100%);
+  --theme-primary-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+// ===================== 业务卡片区（.warmTheme） =====================
+.warmTheme {
+  box-sizing: border-box;
+  background: var(--theme-page-bg);
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+  color: var(--theme-text);
+
+  .warmCard {
+    box-sizing: border-box;
+    border: 1px solid var(--theme-border);
+    border-radius: var(--theme-radius);
+    background: var(--theme-card);
+    box-shadow: var(--theme-shadow);
+    transition: box-shadow 0.25s ease, border-color 0.25s ease;
+
+    &:hover {
+      box-shadow: var(--theme-shadow-hover);
+    }
+  }
+
+  .warmAccent {
+    color: var(--theme-primary);
+  }
+
+  .el-button--primary {
+    border-color: var(--theme-primary);
+    border-radius: 10px;
+    background-color: var(--theme-primary);
+    box-shadow: var(--theme-primary-shadow);
+
+    &:hover,
+    &:focus {
+      border-color: var(--theme-primary-light);
+      background-color: var(--theme-primary-light);
+    }
+
+    &.is-link,
+    &.is-text {
+      border-color: transparent;
+      background-color: transparent;
+      box-shadow: none;
+      color: var(--theme-primary);
+    }
+  }
+
+  .el-button {
+    border-radius: 10px;
+  }
+
+  .el-button--default {
+    border-color: var(--theme-border);
+    background: var(--theme-card);
+    color: var(--theme-text-2);
+
+    &:hover {
+      border-color: var(--theme-primary-border);
+      background: var(--theme-primary-soft);
+      color: var(--theme-primary);
+    }
+  }
+
+  .el-input__wrapper,
+  .el-textarea__inner,
+  .el-select__wrapper {
+    border-radius: 10px;
+    background-color: var(--theme-card);
+    box-shadow: 0 0 0 1px var(--theme-border) inset;
+
+    &:hover {
+      box-shadow: 0 0 0 1px var(--theme-primary-border) inset;
+    }
+  }
+
+  .el-input__inner,
+  .el-textarea__inner {
+    color: var(--theme-text);
+  }
+
+  .el-input__wrapper.is-focus,
+  .el-select__wrapper.is-focused,
+  .el-textarea__inner:focus {
+    box-shadow: 0 0 0 1px var(--theme-primary) inset;
+  }
+
+  .el-table {
+    --el-table-border-color: var(--theme-border);
+    --el-table-header-bg-color: var(--theme-primary-soft);
+    --el-table-header-text-color: var(--theme-text-2);
+    --el-table-row-hover-bg-color: var(--theme-primary-soft);
+
+    background: transparent;
+
+    th.el-table__cell {
+      background-color: var(--theme-primary-soft) !important;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--theme-text-2) !important;
+    }
+
+    td.el-table__cell {
+      font-size: 14px;
+      color: var(--theme-text-2);
+    }
+  }
+
+  .el-tag {
+    border-radius: 8px;
+  }
+
+  .el-pagination {
+    --el-pagination-button-color: var(--theme-text-2);
+    --el-pagination-hover-color: var(--theme-primary);
+
+    // 当前页码跟随主题主色（Element 默认取 --el-color-primary）
+    .el-pager li.is-active {
+      background: var(--theme-primary) !important;
+      color: #fff !important;
+    }
+  }
+
+  .el-dialog {
+    border-radius: 16px;
+  }
+
+  .warmSectionTitle {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--theme-text);
+
+    &::before {
+      width: 4px;
+      height: 16px;
+      margin-right: 10px;
+      border-radius: 2px;
+      background: linear-gradient(180deg, var(--theme-primary-light), var(--theme-primary));
+      content: '';
+    }
+  }
+
+  .warmHint {
+    line-height: 20px;
+    font-size: 13px;
+    color: var(--theme-text-3);
+  }
+}
+
+// ===================== 详情页底部操作栏（固定不随内容滚动） =====================
+.pageBottomBar {
+  display: flex;
+  position: sticky;
+  bottom: 0;
+  z-index: 9;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  border-top: 1px solid var(--theme-border);
+  background: var(--theme-card);
+  box-shadow: 0 -6px 16px rgba(31, 58, 105, 0.06);
+  gap: 16px;
+}
+
+// ===================== 头像弹层：外观风格切换 =====================
+.el-popover.photoPanel.photoPanelWithTheme {
+  box-sizing: border-box;
+  height: auto;
+  padding: 12px 14px !important;
+
+  .themeBlock {
+    margin-bottom: 6px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--theme-border);
+  }
+
+  .themeBlockTitle {
+    margin-bottom: 8px;
+    font-size: 12px;
+    color: var(--theme-text-3);
+  }
+
+  .themeOptions {
+    display: flex;
+    gap: 6px;
+  }
+
+  .themeOption {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    height: 30px;
+    border: 1px solid var(--theme-border);
+    border-radius: 8px;
+    background: var(--theme-card);
+    cursor: pointer;
+    font-size: 12px;
+    color: var(--theme-text-2);
+    transition: all 0.2s;
+    gap: 5px;
+
+    &:hover {
+      border-color: var(--theme-primary-border);
+      color: var(--theme-primary);
+    }
+
+    &.is-active {
+      border-color: var(--theme-primary);
+      background: var(--theme-primary-soft);
+      font-weight: 600;
+      color: var(--theme-primary);
+    }
+  }
+
+  .themeDot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+}
+
+// ===================== 深色主题：全局兜底 =====================
+// 说明：项目里大量页面是写死的浅色，这里统一做一次覆盖，
+//      让深色主题在「不改动每个页面」的前提下整体可用。
+html.theme-dark {
+  color-scheme: dark;
+
+  // ---- Element Plus 变量 ----
+  --el-bg-color: #1a1f2b;
+  --el-bg-color-overlay: #1e2431;
+  --el-bg-color-page: #12161f;
+  --el-text-color-primary: #e6ebf5;
+  --el-text-color-regular: #c3ccdb;
+  --el-text-color-secondary: #94a1b6;
+  --el-text-color-placeholder: #6b7893;
+  --el-text-color-disabled: #55617a;
+  --el-border-color: #2a3142;
+  --el-border-color-light: #262e3e;
+  --el-border-color-lighter: #232b3a;
+  --el-border-color-extra-light: #202736;
+  --el-fill-color-blank: #1a1f2b;
+  --el-fill-color: #1f2634;
+  --el-fill-color-light: #222939;
+  --el-fill-color-lighter: #1f2634;
+  --el-fill-color-dark: #262e3f;
+  --el-mask-color: rgba(8, 11, 18, 0.72);
+  --el-disabled-bg-color: #242b3a;
+  --el-disabled-text-color: #6b7893;
+  --el-disabled-border-color: #2a3142;
+
+  body {
+    background: var(--theme-bg);
+    color: var(--theme-text);
+  }
+
+  // ---- 应用外壳 ----
+  // 数据看板自带暗色星空背景（.darkTheme），不要被这里覆盖
+  .home:not(.darkTheme) {
+    background: var(--theme-bg) !important;
+  }
+
+  .mainRouter,
+  .homeView {
+    background: var(--theme-bg) !important;
+  }
+
+  .homeView-content {
+    background: #10141c !important;
+  }
+
+  .homeMenu,
+  .homeDrawer .el-drawer,
+  .el-drawer {
+    border-color: #232a39 !important;
+    background-color: #161b26 !important;
+  }
+
+  .homeMenu {
+    .menuTitle,
+    .homeFooter,
+    .tobeDoneText,
+    .homeFooter-expand {
+      border-color: #232a39 !important;
+      background-color: #161b26 !important;
+    }
+
+    .el-menu {
+      background-color: transparent !important;
+    }
+
+    .name {
+      color: var(--theme-text-2) !important;
+    }
+  }
+
+  // ---- 通用容器（页面里最常见的白底卡片） ----
+  .container,
+  .list-div,
+  .list-section,
+  .list-header,
+  .list-panel,
+  .tableMain,
+  .table-header,
+  .panel,
+  .cardBlock,
+  .form-section,
+  .stepper-card,
+  .status-bar,
+  .pageHeader,
+  .footerHandler,
+  .action-bar,
+  .warmCard,
+  .introCard,
+  .listCard,
+  .formCard,
+  .helloPanel,
+  .detail-topbar,
+  .detail-card,
+  .detail-sidebar,
+  .detail-footer,
+  .contract-card,
+  .labor-form-panel,
+  .labor-contract-panel,
+  .rightContainer,
+  .leftContainer,
+  .rightWrapper,
+  .mainContent,
+  .pdfHeader,
+  .info-section-body {
+    border-color: var(--theme-border) !important;
+    background: var(--theme-card) !important;
+    color: var(--theme-text) !important;
+  }
+
+  .homeView-content,
+  .labor-settlement,
+  .labor-sign,
+  .settlement-detail-page {
+    background: var(--theme-page-bg) !important;
+  }
+
+  .record-nav,
+  .versionTabs {
+    border-color: var(--theme-border) !important;
+    background: var(--theme-fill) !important;
+  }
+
+  .pdfHeader,
+  .versionStrip {
+    border-color: var(--theme-border) !important;
+    background: var(--theme-card) !important;
+  }
+
+  // ---- 文字 ----
+  .el-table td.el-table__cell,
+  .el-table th.el-table__cell {
+    border-color: var(--theme-border) !important;
+    background: transparent !important;
+    color: var(--theme-text-2) !important;
+  }
+
+  .el-table tr,
+  .el-table__inner-wrapper,
+  .el-table__body-wrapper,
+  .el-table__header-wrapper {
+    background: transparent !important;
+  }
+
+  .el-table__empty-block {
+    background: transparent !important;
+  }
+
+  .el-table__empty-text {
+    color: var(--theme-text-3) !important;
+  }
+
+  .el-dialog,
+  .el-dialog__header,
+  .el-dialog__body,
+  .el-dialog__footer,
+  .el-drawer,
+  .el-popover,
+  .el-popper,
+  .el-select-dropdown,
+  .el-picker-panel,
+  .el-message-box,
+  .el-message {
+    border-color: var(--theme-border) !important;
+    background: var(--el-bg-color-overlay) !important;
+    color: var(--theme-text) !important;
+  }
+
+  .el-input__wrapper,
+  .el-select__wrapper,
+  .el-textarea__inner,
+  .el-input-group__append,
+  .el-input-number {
+    background-color: #1f2634 !important;
+    box-shadow: 0 0 0 1px var(--theme-border) inset !important;
+  }
+
+  .el-input__inner,
+  .el-textarea__inner,
+  .el-select__placeholder,
+  .el-range-input {
+    color: var(--theme-text) !important;
+  }
+
+  .el-input.is-disabled .el-input__wrapper,
+  .el-textarea.is-disabled .el-textarea__inner {
+    background-color: #242b3a !important;
+  }
+
+  .el-form-item__label,
+  .el-radio__label,
+  .el-checkbox__label,
+  .el-descriptions__label,
+  .el-descriptions__content,
+  .el-tabs__item,
+  .el-pagination,
+  .el-pagination__total,
+  .el-anchor__link,
+  .el-timeline-item__content,
+  .el-empty__description p {
+    color: var(--theme-text-2) !important;
+  }
+
+  .el-tabs__nav-wrap::after,
+  .el-tabs__header,
+  .el-divider {
+    border-color: var(--theme-border) !important;
+    background-color: var(--theme-border) !important;
+  }
+
+  .el-button--default {
+    border-color: var(--theme-border) !important;
+    background: #1f2634 !important;
+    color: var(--theme-text-2) !important;
+
+    &:hover {
+      border-color: var(--theme-primary-border) !important;
+      background: #252d3f !important;
+      color: var(--theme-primary) !important;
+    }
+  }
+
+  .el-tag {
+    border-color: var(--theme-border) !important;
+    background: #222939 !important;
+    color: var(--theme-text-2) !important;
+  }
+
+  .el-scrollbar__view {
+    background: transparent;
+  }
+
+  .el-loading-mask {
+    background-color: rgba(16, 20, 28, 0.72) !important;
+  }
+
+  // 分页：页码与每页条数在深色下不要白块
+  .el-pagination {
+    button,
+    .el-pager li {
+      background: transparent !important;
+      color: var(--theme-text-2) !important;
+    }
+
+    .el-pager li.is-active {
+      background: var(--theme-primary) !important;
+      color: #fff !important;
+    }
+
+    .el-select__wrapper {
+      background-color: #1f2634 !important;
+      box-shadow: 0 0 0 1px var(--theme-border) inset !important;
+    }
+  }
+
+  // ---- COT 标注表单：字段行 / 输入区在深色下统一压暗 ----
+  // 注意：这些组件用的是 scoped 样式（带 [data-v-x] 属性选择器），
+  // 这里多加 body 提升优先级，避免被组件样式盖回去。
+  body .cot-module {
+    .el-input__wrapper,
+    .el-textarea__inner,
+    .el-select__wrapper,
+    .field-row,
+    .field-value,
+    .field-body,
+    .node-card,
+    .node-block,
+    .key-value-row,
+    [contenteditable='true'] {
+      border-color: var(--theme-border) !important;
+      background: var(--theme-card) !important;
+      color: var(--theme-text) !important;
+    }
+
+    .el-input__inner,
+    .el-textarea__inner {
+      color: var(--theme-text) !important;
+    }
+  }
+
+  // ---- COT 标注表单：字段行 / 输入区在深色下统一压暗 ----
+  .anchor-row,
+  .field-grid,
+  .node-block,
+  .panel-body {
+    background: var(--theme-card) !important;
+    color: var(--theme-text) !important;
+
+    .el-input__wrapper,
+    .el-textarea__inner,
+    .el-select__wrapper {
+      background: var(--theme-fill) !important;
+      box-shadow: 0 0 0 1px var(--theme-border) inset !important;
+    }
+
+    .el-input__inner,
+    .el-textarea__inner,
+    .field-value,
+    .value-text,
+    .anchor-path,
+    span {
+      color: var(--theme-text) !important;
+    }
+  }
+
+  // 空状态插图在深色下压暗，避免刺眼
+  .el-empty__image img,
+  .emptyPicture {
+    opacity: 0.5;
+  }
+}

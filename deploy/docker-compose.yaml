@@ -1,0 +1,16 @@
+services:
+  __SERIVE_NAME__:
+    container_name: __CONTAINER_NAME__
+    restart: always
+    image: __IMAGE_NAME__
+    ports:
+      - __MAP_PORT__:80
+    volumes:
+      - ./__VOLUME_NAME__:/etc/nginx/conf.d/default.conf
+    environment:
+      - TZ=Asia/Shanghai
+
+networks:
+  default:
+    external: true
+    name: __NET_NAME__

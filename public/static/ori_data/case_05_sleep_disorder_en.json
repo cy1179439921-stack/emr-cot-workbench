@@ -1,0 +1,501 @@
+{
+  "basic_information": {
+    "age": "56",
+    "birthday": "1968-06-12",
+    "career": "Retired",
+    "clinic_diagnosis_icd10": "R42.x00x004",
+    "clinic_diagnosis_name": "Dizziness, etiology to be determined",
+    "document_id": "0001180698",
+    "enter_time": "2025-03-05 10:46:00",
+    "enter_way": "Emergency Department",
+    "exit_time": "2025-03-10 13:42:00",
+    "in_department": "Cerebrovascular Disease Ward, Team 2",
+    "inhospital_days": 5,
+    "inhospital_number": "1",
+    "main_diagnosis_icd10": "",
+    "main_diagnosis_name": "Sleep Disorder",
+    "marital": "Divorced",
+    "operations_code": [],
+    "operations_name": [],
+    "operations_time": [],
+    "other_diagnosis_icd10": [],
+    "other_diagnosis_name": [
+      "Anxiety and depression state",
+      "Hypertension Stage 1 (Very High Risk)",
+      "Diabetes Mellitus",
+      "Hyperlipidemia",
+      "Hepatic Steatosis",
+      "Supraventricular Premature Complexes (SVPCs)",
+      "Old Cerebral Infarction"
+    ],
+    "out_department": "Cerebrovascular Disease Ward, Team 2",
+    "sex": "Female"
+  },
+  "enter_record": {
+    "allergy": "No known drug or food allergies (NKDA).",
+    "ancillary_tests": [],
+    "body_examination": "The patient is a middle-aged female, normal development, moderate nutrition, alert and oriented, in a spontaneous position, and cooperative. Skin: no jaundice, petechiae, or purpura. No palpable superficial lymphadenopathy. Normocephalic, hair evenly distributed. Eyelids: no edema. Conjunctivae clear, sclerae anicteric. Pupils equal, round, and reactive to light and accommodation (PERRLA). Ears and nose unremarkable. Lips: no cyanosis. Pharynx: no erythema, tonsils not enlarged. Neck supple, no nuchal rigidity, no jugular venous distension (JVD), no carotid bruits, trachea midline, thyroid not enlarged. Chest symmetric, no deformities. Lungs: coarse breath sounds bilaterally, no wheezes or crackles. Precordium: no bulge or depression, heart borders normal, HR 78 bpm, regular rhythm, no pathological murmurs auscultated. Abdomen flat, soft, non-tender, no rebound tenderness. Liver and spleen not palpable below costal margins. Murphy's sign negative. No percussion pain in liver/kidney regions. Bowel sounds normal, no shifting dullness. Spine and extremities: no deformities, no bilateral lower extremity edema. Dorsalis pedis pulses 2+ bilaterally. Biceps and patellar reflexes 2+ bilaterally, abdominal reflexes present. Babinski and Brudzinski signs negative.",
+    "body_height": "160",
+    "body_weight": "78",
+    "bp": "148/90",
+    "complain": "Episodic dizziness and insomnia for 4 years, fall 12 days ago.",
+    "family": "Father deceased, mother alive; both parents had hyperglycemia, hyperlipidemia, and hypertension. One younger sister and one younger brother, healthy. Denies family history of major infectious, genetic, or psychiatric diseases.",
+    "marriage": "Married at age 24, has 1 daughter, who is healthy.",
+    "menstruation": "Menarche at age 13, cycle 4-5 days/25-28 days. Regular menses in the past, denies abnormal bleeding.",
+    "past": "History of 'hypertension' for 4 years, max BP 153/92 mmHg, not regularly taking antihypertensives. 'Hyperglycemia' for >4 years, fluctuating 6.7-6.8 mmol/L, not regularly taking hypoglycemics. 'Hyperlipidemia' for >20 years, unmedicated. Denies history of CAD, ischemic stroke, or other chronic diseases. Denies major trauma, surgeries, or blood transfusions. Denies hepatitis, TB, or other infectious diseases. Immunization history per local guidelines.",
+    "personal": "Born in local area, no long-term residence elsewhere, no endemic area residence or contact history. Regular lifestyle. Denies STDs or promiscuity. Denies exposure to industrial dust, toxins, or radiation. No major psychological trauma. Non-smoker, non-drinker.",
+    "preliminary_diagnosis": [
+      "Dizziness, etiology to be determined",
+      "Sleep disorder",
+      "Diabetes Mellitus",
+      "Hypertension Stage 1 (Very High Risk)",
+      "Hyperlipidemia"
+    ],
+    "present": "The patient developed dizziness and insomnia without obvious inducing factors 4 years ago, accompanied by headache, predominantly at the vertex, lasting several minutes. 12 days ago, she fell, sustaining occipital headache with nausea and vomiting. No limb numbness, dysarthria, diplopia, tinnitus, hearing loss, or loss of consciousness. She visited a local hospital where a head CT was unremarkable, and no specific treatment was given. She now presents to our hospital for further evaluation and is admitted via outpatient clinic for 'dizziness, etiology to be determined'. Since onset, she is alert, in fair spirits, with fair appetite, difficulty falling asleep, frequent nighttime awakenings, normal bowel and bladder habits, and no recent significant weight change.",
+    "pulse": "78",
+    "respiratory": "18",
+    "specialist_examination": "Alert, fair spirits, fluent speech, cooperative. Higher cortical functions (calculation, comprehension, orientation, judgment) intact. Pupils equal, round, ~3mm, normal light and accommodation reflexes. No ptosis, extraocular movements intact (EOMI). Corneal reflexes present. Facial sensation symmetric bilaterally, mastication strong and symmetric, nasolabial folds symmetric. Gross hearing intact. No dysphagia or choking on water, uvula midline, soft palate moves well, gag reflex present bilaterally. Shoulder shrug strong bilaterally. Tongue midline, no atrophy or fasciculations. Motor strength 5/5 in all extremities, normal tone. Finger-to-nose and heel-to-shin tests intact and accurate bilaterally. Romberg sign (+). Bilateral superficial and deep sensations intact. Deep tendon reflexes (DTRs) 2+ bilaterally. Babinski sign negative bilaterally. Meningeal signs (-).",
+    "temperature": "36.4"
+  },
+  "exit_record": {
+    "enter_description": "The patient is an elderly female admitted for 'episodic dizziness and insomnia for 4 years, fall 12 days ago.' History of 'hypertension' for 4 years, max BP 153/92mmHg, unmedicated; 'hyperglycemia' for >4 years, fluctuating 6.7-6.8mmol/L, unmedicated; 'hyperlipidemia' for >20 years, unmedicated. Denies CAD, stroke, major trauma, surgeries, transfusions, infectious diseases. NKDA. Neurological exam: Alert, fluent speech, cooperative. Higher cortical functions intact. Gross olfaction normal. PERRLA, ~3mm. EOMI. Corneal reflexes present. Facial sensation/mastication symmetric. Nasolabial folds symmetric. Hearing intact. No dysphagia. Uvula midline. Shoulder shrug strong. Tongue midline. Motor 5/5, normal tone. Finger-to-nose/heel-to-shin intact. Romberg (+). Sensations intact. DTRs 2+. Babinski (-). Ancillary tests: pending.",
+    "enter_diagnosis": [
+      "Dizziness, etiology to be determined",
+      "Sleep disorder",
+      "Diabetes Mellitus",
+      "Hypertension Stage 1 (Very High Risk)",
+      "Hyperlipidemia"
+    ],
+    "out_advice": [
+      "Low-salt, low-fat, diabetic diet; ensure adequate rest, moderate exercise, avoid emotional agitation and overexertion, monitor and control BP.",
+      "Continue oral medications: Flupentixol/Melitracen tablets (Huínéng) 10.5mg PO BID (morning and noon); Tongtian oral liquid 10ml PO TID; Alprazolam tablets 0.4mg PO QHS; Escitalopram oxalate tablets (Jīngwèi) 10mg PO QD.",
+      "Regular follow-up.",
+      "Neurology specialist clinic follow-up; return to ED if symptoms worsen. Chief Physician: Wed/Thu all day, Phone: *******; Associate Chief Physician: Tue all day, Phone: *******; Location: Neurology Specialist Clinic, 3rd Floor, Outpatient Comprehensive Building."
+    ],
+    "out_description": "Patient reports no specific discomfort, diet and sleep are fair. Exam: Alert, fair spirits, clear and fluent speech. Higher cortical functions intact. Motor strength 5/5, normal tone, finger-to-nose and heel-to-shin intact. Sensations intact. DTRs 2+, Babinski negative.",
+    "out_diagnosis": [
+      "Sleep disorder",
+      "Hypertension Stage 1 (Very High Risk)",
+      "Anxiety and depression state",
+      "Diabetes Mellitus",
+      "Hyperlipidemia",
+      "Hepatic Steatosis",
+      "Supraventricular Premature Complexes (SVPCs)",
+      "Old Cerebral Infarction"
+    ],
+    "treatment": "After admission, relevant ancillary tests were completed. Labs showed: HbA1c 6.50%; Urinalysis (2025-03-06 10:47) WBC 25/uL; Lipid/Renal/Hepatic/Electrolyte/Glucose panel (2025-03-06 11:43) Total Protein 60.10 g/L, Triglycerides 3.13 mmol/L; other labs unremarkable. ECG: 1. Sinus rhythm 2. PACs 3. Counterclockwise rotation. Brain MRI with DWI: Multiple ischemic infarcts in the brain. Brain MRA: Unremarkable, focal narrowing at the origin of the right vertebral artery. Chest CT: Bilateral pulmonary nodules, recommend follow-up; mild inflammation in the right middle lobe. Abdominal US: Hepatic steatosis (moderate). 24-hr Holter: 1. Sinus rhythm 2. Frequent SVPCs (couplets, short runs, non-conducted) 3. T-wave changes. HAMA: Obvious anxiety symptoms; HAMD: Possible depressive symptoms. Thyroid US: Left thyroid nodule, TI-RADS 3. Echo: Dilated ascending aorta. Breast US: Multiple hyperechoic nodules in bilateral breast fat layers, consistent with lipomas. Treatment included neurotrophic support, microcirculation improvement, and plaque stabilization. Patient's condition stabilized and she is discharged today."
+  },
+  "course_record": {
+    "first_record": {
+      "course_time": "2025-03-05 15:05",
+      "description": "Patient admitted for 'episodic dizziness and insomnia for 4 years, fall 12 days ago.' Characteristics: 1. Elderly female. 2. PMH: HTN x4y (max 153/92, unmedicated), Hyperglycemia x>4y (6.7-6.8, unmedicated), Hyperlipidemia x>20y (unmedicated). Denies CAD, stroke, trauma, surgeries, transfusions, infections. NKDA. 3. Neuro exam: Alert, fluent, cooperative. Higher cortical functions intact. Romberg (+). Motor 5/5. DTRs 2+. Babinski (-). 4. Ancillary tests: pending.",
+      "diagnostic_basis": "1. Elderly female, admitted for 'episodic dizziness and insomnia for 4 years, fall 12 days ago.' 2. PMH of HTN, Hyperglycemia, Hyperlipidemia. 3. Neuro exam: Romberg sign positive. 4. Ancillary tests: pending.",
+      "differential_diagnosis": "1. Meniere's disease: More common in young females, acute onset, characterized by recurrent vertigo, fluctuating tinnitus, and hearing loss. The more frequent the attacks, the longer and more severe the vertigo. This patient has no history of similar episodes, and current symptoms do not support this. 2. Vestibular neuritis: Etiology unclear, mostly viral, affecting peripheral vestibular organs/neurons. Common in 30-50yo, sudden onset, often preceded by fever/URI. Severe vertigo exacerbated by head movement, peaking in hours to days, gradually improving. Usually no tinnitus/deafness. Spontaneous nystagmus present initially. This patient had no prodromal fever, and combined with history and dizziness characteristics, this is basically excluded.",
+      "plan": "1. Neurology routine nursing, Level II care, low-salt/low-fat/diabetic diet; 2. Low VTE risk, complete admission workup to guide further management. 3. Administer neurotrophic and microcirculation-improving therapy; 4. Consult attending physician for guidance. The preliminary diagnosis and plan were explained to the patient/family, who understood and agreed.",
+      "preliminary_diagnosis": [
+        "Dizziness, etiology to be determined",
+        "Sleep disorder",
+        "Diabetes Mellitus",
+        "Hypertension Stage 1 (Very High Risk)",
+        "Hyperlipidemia"
+      ]
+    },
+    "other_records": [
+      {
+        "record_content": "Patient reports foreign body sensation in eyes. Ophthalmology consult requested. Exam: Corrected VA: OD 1.0, OS 1.0-1. Eyelids: no swelling. Conjunctivae clear, corneas clear, anterior chamber medium-deep, aqueous clear. Pupils round, ~2.5mm, light reflex +. Lenses: uneven opacity. Fundus: optic disc margins clear, retina attached, no hemorrhage/exudate. Diagnosis: Bilateral dry eye syndrome; Bilateral refractive error. Plan: 1. Agree with primary team. 2. Sodium hyaluronate eye drops OU QID, compound escin/digitalis glycoside eye drops OU TID. 3. Regular follow-up.",
+        "record_time": "2025-03-06 08:44",
+        "record_type": "Consultation Record"
+      },
+      {
+        "record_content": "Patient admitted for 'dizziness, insomnia x4y'. PMH: HTN, Hyperglycemia, Hyperlipidemia (all unmedicated). Holter showed frequent SVPCs, 1302 beats (1.7%). Cardiology consult requested. ECG: Premature P'-QRS-T complexes, QRS in V2 Rs or R/S >1. 24-hr Holter: SVPCs 1302/20hrs (1.7%), avg HR 64, min 47, max RR 1.78s. Echo: Dilated ascending aorta, EF 62%. Impression: SVPCs. Recommendation: No special treatment, observe.",
+        "record_time": "2025-03-08 23:40",
+        "record_type": "Consultation Record"
+      }
+    ],
+    "ward_records": [
+      {
+        "content": "Associate Chief Physician rounded today. Patient in fair condition, no specific complaints, dizziness slightly improved. Bowel/bladder normal. Exam: Higher cortical functions intact. Motor 5/5, tone normal, coordination intact, Romberg (+). Sensations intact. DTRs 2+, Babinski (-). Labs: HbA1c 6.50%; UA WBC 25/uL; CMP/Lipid: TP 60.1, TG 3.13; others normal. ECG: Sinus, PACs, counterclockwise rotation. Brain MRI: Multiple ischemic infarcts. MRA: Right vertebral artery focal narrowing. Chest CT: Pulmonary nodules, RML inflammation. US: Moderate hepatic steatosis. Attending noted chronic insomnia, ordered HAMA/HAMD scales, added Escitalopram. Current plan appropriate, continue symptomatic treatment. Patient reports symptom relief.",
+        "doctor": " , ",
+        "time": "2025-03-06 10:29"
+      },
+      {
+        "content": "Associate Chief Physician rounded today. Patient fair, no complaints. Exam: Cortical functions intact. Motor 5/5, coordination intact, Romberg (+). Babinski (-). Tests: Holter: Sinus, frequent SVPCs, T-wave changes. HAMA: Obvious anxiety; HAMD: Possible depression. Thyroid US: Left nodule, TI-RADS 3. Echo: Dilated ascending aorta. Breast US: Bilateral lipomas. Attending noted stable condition, anxiety diagnosis confirmed. Continue current plan. Patient reports relief.",
+        "doctor": " , ",
+        "time": "2025-03-09 10:20"
+      },
+      {
+        "content": "Patient no complaints, diet/sleep fair. Exam: Alert, fluent speech. Cortical functions intact. Motor 5/5, tone normal, coordination intact. Sensations intact. DTRs 2+, Babinski (-). Chief Physician rounded: Workup unremarkable for acute causes, prominent anxiety. Condition stable, patient/family request discharge. Discharged today. Advised low-salt/low-fat/diabetic diet, regular follow-up, medication compliance, return if worse.",
+        "doctor": " , ",
+        "time": "2025-03-10 11:55"
+      }
+    ]
+  },
+  "consultation_record": [
+    {
+      "consultation_abstract": "Patient reports foreign body sensation in eyes. Ophthalmology consult requested for co-management.",
+      "consultation_advice": "History noted.\nOphthalmology Exam: Corrected VA: OD 1.0, OS 1.0-1. Eyelids: no swelling. Conjunctivae clear, corneas clear, anterior chamber medium-deep, aqueous clear. Pupils round, ~2.5mm, light reflex +. Lenses: uneven opacity. Fundus: optic disc margins clear, retina attached, no hemorrhage/exudate.\nDiagnosis: Bilateral dry eye syndrome\n      Bilateral refractive error\nPlan:\n1. Agree with primary team.\n2. Sodium hyaluronate eye drops OU QID, compound escin/digitalis glycoside eye drops OU TID.\n3. Regular follow-up.\nThank you for the consult.",
+      "consultation_department": "Ophthalmology Clinic",
+      "consultation_time": "2025-03-06 08:44:00",
+      "consultation_type": "Routine Consultation",
+      "request_department": "Cerebrovascular Disease Ward, Team 2"
+    },
+    {
+      "consultation_abstract": "Patient admitted for 'dizziness, insomnia x4y'. PMH: HTN, Hyperglycemia, Hyperlipidemia (unmedicated). Holter showed frequent SVPCs, 1302 beats (1.7%). Cardiology consult requested for further management.",
+      "consultation_advice": "History as above. ECG: Premature P'-QRS-T complexes, QRS V2 Rs or R/S >1. 24-hr Holter: SVPCs 1302/20hrs (1.7%), avg HR 64, min 47, max RR 1.78s. Echo: Dilated ascending aorta, EF 62%.\nImpression: Supraventricular premature complexes (SVPCs).\nRecommendation: No special treatment at this time, observe.",
+      "consultation_department": "CAD Ward 1, Team 3",
+      "consultation_time": "2025-03-08 23:40:00",
+      "consultation_type": "Routine Consultation",
+      "request_department": "Cerebrovascular Disease Ward, Team 1"
+    }
+  ],
+  "operations": [],
+  "pathologies": [],
+  "image_reports": [
+    {
+      "department": "Cerebrovascular Disease Ward, Team 2",
+      "diagnosis": "Multiple hyperechoic nodules in the bilateral breast fat layers, consistent with lipomas.",
+      "findings": "Bilateral breast fat and glandular layers are distinct, glandular layer not thickened, echoes relatively uniform. Multiple hyperechoic nodules with clear borders and regular shapes are seen in the bilateral fat layers. The largest on the right is ~19x10mm (3 o'clock, 39mm from areola), and the largest on the left is ~11x6mm (10 o'clock, 43mm from areola).",
+      "part": "Breast",
+      "project": "Ultrasound",
+      "time": "2025-03-05 15:54:43"
+    },
+    {
+      "department": "Cerebrovascular Disease Ward, Team 2",
+      "diagnosis": "Dilated ascending aorta.",
+      "findings": "1. M-mode and 2D Echo: Atrial and ventricular dimensions normal. Septa intact. Ventricular septum and LV free wall thickness normal, motion and thickening normal. No regional wall motion abnormalities at rest. Valves structurally unremarkable. Ascending aorta dilated. Aortic arch and descending aorta intact. Pericardial cavity normal. 2. Spectral and Color Doppler: Mild tricuspid regurgitation. Mild aortic regurgitation. Diastolic mitral inflow: E/A <1.",
+      "part": "Heart",
+      "project": "Echocardiography",
+      "time": "2025-03-07 08:12:27"
+    },
+    {
+      "department": "Cerebrovascular Disease Ward, Team 2",
+      "diagnosis": "Left thyroid nodule, consistent with TI-RADS 3.",
+      "findings": "Thyroid size and morphology unremarkable. A ~3x2mm hypoechoic nodule with clear borders and relatively regular shape is seen in the left lobe. Remaining parenchyma echoes homogeneous. CDFI: No abnormal blood flow signals.",
+      "part": "Thyroid",
+      "project": "Ultrasound",
+      "time": "2025-03-07 14:02:37"
+    },
+    {
+      "department": "Cerebrovascular Disease Ward, Team 2",
+      "diagnosis": "Hepatic steatosis (moderate).",
+      "findings": "Liver plump, capsule smooth. Parenchyma echoes dense, enhanced, homogeneous, with posterior attenuation. Vascular markings less distinct. Portal and common bile ducts not dilated. Intra/extrahepatic bile ducts normal. Gallbladder normal size/shape, wall not thickened, good acoustic transmission. Pancreatic tail obscured by bowel gas, visible pancreas homogeneous. Spleen not thickened. Kidneys normal size/shape, clear internal architecture, no pelvicalyceal dilation.",
+      "part": "Hepatobiliary/Pancreas/Spleen/Kidneys",
+      "project": "Ultrasound",
+      "time": "2025-03-06 09:14:37"
+    }
+  ],
+  "inspections": [
+    {
+      "content": [
+        {
+          "name": "B-type Natriuretic Peptide (BNP)",
+          "range": "0--100",
+          "state": "Normal",
+          "unit": "pg/mL",
+          "value": "28.03"
+        }
+      ],
+      "department": "Cerebrovascular Disease Ward, Team 2",
+      "diagnosis": "Hypertension",
+      "inspection_number": "6025820405",
+      "specimen_type": "Blood",
+      "time": "2025-03-06 09:43:03",
+      "type": "BNP Assay"
+    },
+    {
+      "content": [
+        {
+          "name": "Glycated Hemoglobin (HbA1c)",
+          "range": "4.00--6.00",
+          "state": "High",
+          "unit": "%",
+          "value": "6.50"
+        }
+      ],
+      "department": "Cerebrovascular Disease Ward, Team 2",
+      "diagnosis": "Hypertension",
+      "inspection_number": "6025820401",
+      "specimen_type": "Whole Blood",
+      "time": "2025-03-06 09:49:08",
+      "type": "HbA1c Assay (Chromatography)"
+    },
+    {
+      "content": [
+        {"name": "WBC", "range": "3.5--9.5", "state": "Normal", "unit": "10^9/L", "value": "6.94"},
+        {"name": "Neutrophil %", "range": "0.40--0.75", "state": "Normal", "unit": "", "value": "0.529"},
+        {"name": "Lymphocyte %", "range": "0.2--0.5", "state": "Normal", "unit": "", "value": "0.392"},
+        {"name": "Basophil %", "range": "0--0.010", "state": "Normal", "unit": "", "value": "0.009"},
+        {"name": "Eosinophil %", "range": "0.004--0.080", "state": "Normal", "unit": "", "value": "0.027"},
+        {"name": "Monocyte %", "range": "0.03--0.10", "state": "Normal", "unit": "", "value": "0.043"},
+        {"name": "Neutrophil Count", "range": "1.8--6.3", "state": "Normal", "unit": "10^9/L", "value": "3.67"},
+        {"name": "Lymphocyte Count", "range": "1.1--3.2", "state": "Normal", "unit": "10^9/L", "value": "2.72"},
+        {"name": "Basophil Count", "range": "0--0.06", "state": "Normal", "unit": "10^9/L", "value": "0.06"},
+        {"name": "Eosinophil Count", "range": "0.02--0.52", "state": "Normal", "unit": "10^9/L", "value": "0.19"},
+        {"name": "Monocyte Count", "range": "0.10--0.60", "state": "Normal", "unit": "10^9/L", "value": "0.30"},
+        {"name": "RBC", "range": "3.8--5.1", "state": "Normal", "unit": "10^12/L", "value": "4.40"},
+        {"name": "Hemoglobin", "range": "115--150", "state": "Normal", "unit": "g/L", "value": "125.0"},
+        {"name": "Hematocrit", "range": "0.35--0.45", "state": "Normal", "unit": "", "value": "0.396"},
+        {"name": "MCV", "range": "82--100", "state": "Normal", "unit": "fL", "value": "90.00"},
+        {"name": "MCH", "range": "27--34", "state": "Normal", "unit": "pg", "value": "28.40"},
+        {"name": "MCHC", "range": "316--354", "state": "Normal", "unit": "g/L", "value": "316"},
+        {"name": "RDW-CV", "range": "11.5--14.5", "state": "Normal", "unit": "%", "value": "12.50"},
+        {"name": "RDW-SD", "range": "37.0--54.0", "state": "Normal", "unit": "fL", "value": "41.30"},
+        {"name": "Platelet Count", "range": "125--350", "state": "Normal", "unit": "10^9/L", "value": "214"},
+        {"name": "MPV", "range": "9.2--12.0", "state": "Normal", "unit": "fL", "value": "10.40"},
+        {"name": "PDW", "range": "9.6--15.2", "state": "Normal", "unit": "fL", "value": "11.70"},
+        {"name": "PCT", "range": "0.19--0.39", "state": "Normal", "unit": "%", "value": "0.220"},
+        {"name": "P-LCR", "range": "19.7--42.4", "state": "Normal", "unit": "%", "value": "27.9"}
+      ],
+      "department": "Cerebrovascular Disease Ward, Team 2",
+      "diagnosis": "Hypertension",
+      "inspection_number": "6025820397",
+      "specimen_type": "Blood",
+      "time": "2025-03-06 10:03:45",
+      "type": "CBC with 5-part Differential"
+    },
+    {
+      "content": [
+        {"name": "pH", "range": "4.5--8.0", "state": "Normal", "unit": "", "value": "5.00"},
+        {"name": "Color", "range": "", "state": "Normal", "unit": "", "value": "Straw"},
+        {"name": "Specific Gravity", "range": "1.003--1.030", "state": "Normal", "unit": "", "value": "1.022"},
+        {"name": "Leukocyte Esterase", "range": "Negative", "state": "Normal", "unit": "", "value": "Negative"},
+        {"name": "Nitrite", "range": "Negative", "state": "Normal", "unit": "", "value": "Negative"},
+        {"name": "Protein", "range": "Negative", "state": "Normal", "unit": "", "value": "Negative"},
+        {"name": "Glucose", "range": "Negative", "state": "Normal", "unit": "", "value": "Negative"},
+        {"name": "Ketones", "range": "Negative", "state": "Normal", "unit": "", "value": "Negative"},
+        {"name": "Urobilinogen", "range": "Negative", "state": "Normal", "unit": "", "value": "Negative"},
+        {"name": "Bilirubin", "range": "Negative", "state": "Normal", "unit": "", "value": "Negative"},
+        {"name": "Blood", "range": "Negative", "state": "Normal", "unit": "", "value": "Negative"},
+        {"name": "Clarity", "range": "Clear", "state": "Normal", "unit": "", "value": "Clear"},
+        {"name": "WBC", "range": "0--16.9", "state": "High", "unit": "/uL", "value": "25"},
+        {"name": "RBC", "range": "0--22.7", "state": "Normal", "unit": "/uL", "value": "2"},
+        {"name": "Bacteria", "range": "0--4700", "state": "Normal", "unit": "/uL", "value": "21"},
+        {"name": "Mucus", "range": "0--28", "state": "Normal", "unit": "/uL", "value": "0"},
+        {"name": "Squamous Epithelial Cells", "range": "0--39.6", "state": "Normal", "unit": "/uL", "value": "1"},
+        {"name": "Crystals", "range": "0--28", "state": "Normal", "unit": "/uL", "value": "0"},
+        {"name": "Conductivity", "range": "3--39", "state": "Normal", "unit": "mS/cm", "value": "20.80"},
+        {"name": "Hyaline Casts", "range": "0--2.5", "state": "Normal", "unit": "/uL", "value": "0"},
+        {"name": "Pathologic Casts", "range": "0--0", "state": "Normal", "unit": "/uL", "value": "0"},
+        {"name": "Renal Epithelial Cells", "range": "0--2", "state": "Normal", "unit": "/uL", "value": "0"}
+      ],
+      "department": "Cerebrovascular Disease Ward, Team 2",
+      "diagnosis": "Hypertension",
+      "inspection_number": "6025820399",
+      "specimen_type": "Urine",
+      "time": "2025-03-06 10:47:15",
+      "type": "Urinalysis with Microscopy"
+    },
+    {
+      "content": [
+        {
+          "name": "Troponin I",
+          "range": "0--0.034",
+          "state": "Normal",
+          "unit": "ng/mL",
+          "value": "<0.012"
+        }
+      ],
+      "department": "Cerebrovascular Disease Ward, Team 2",
+      "diagnosis": "Hypertension",
+      "inspection_number": "6025820404",
+      "specimen_type": "Serum",
+      "time": "2025-03-06 11:04:44",
+      "type": "Serum Troponin I Assay"
+    },
+    {
+      "content": [
+        {"name": "PT", "range": "9.8--12.1", "state": "Normal", "unit": "sec", "value": "10.50"},
+        {"name": "PT Activity", "range": "70.0--130.0", "state": "Normal", "unit": "%", "value": "96.90"},
+        {"name": "PT Ratio", "range": "0.83--1.17", "state": "Normal", "unit": "", "value": "0.91"},
+        {"name": "INR", "range": "0.84--1.16", "state": "Normal", "unit": "", "value": "0.90"},
+        {"name": "aPTT", "range": "25.0--31.3", "state": "Normal", "unit": "sec", "value": "28.60"},
+        {"name": "aPTT Ratio", "range": "0.80--1.20", "state": "Normal", "unit": "", "value": "1.05"},
+        {"name": "TT", "range": "14.0--21.0", "state": "Normal", "unit": "sec", "value": "19.60"},
+        {"name": "TT Ratio", "range": "0.80--1.20", "state": "Normal", "unit": "", "value": "1.12"},
+        {"name": "Fibrinogen", "range": "1.8--3.5", "state": "Normal", "unit": "g/L", "value": "3.13"},
+        {"name": "D-Dimer", "range": "0--0.55", "state": "Normal", "unit": "mg/L FEU", "value": "0.20"},
+        {"name": "FDP", "range": "0--5.0", "state": "Normal", "unit": "mg/L", "value": "2.50"}
+      ],
+      "department": "Cerebrovascular Disease Ward, Team 2",
+      "diagnosis": "Hypertension",
+      "inspection_number": "6025820400",
+      "specimen_type": "Blood",
+      "time": "2025-03-06 11:33:49",
+      "type": "Coagulation Panel"
+    },
+    {
+      "content": [
+        {"name": "ALT", "range": "<40", "state": "Normal", "unit": "U/L", "value": "9.90"},
+        {"name": "AST", "range": "<35", "state": "Normal", "unit": "U/L", "value": "14.00"},
+        {"name": "AST/ALT Ratio", "range": "0.74--3.45", "state": "Normal", "unit": "", "value": "1.41"},
+        {"name": "GGT", "range": "<45", "state": "Normal", "unit": "U/L", "value": "16.00"},
+        {"name": "ALP", "range": "50--135", "state": "Normal", "unit": "U/L", "value": "78.00"},
+        {"name": "Total Bilirubin", "range": "5.0--24.0", "state": "Low", "unit": "umol/L", "value": "4.70"},
+        {"name": "Direct Bilirubin", "range": "0.24--7.10", "state": "Normal", "unit": "umol/L", "value": "1.90"},
+        {"name": "Indirect Bilirubin", "range": "2.8--23.8", "state": "Normal", "unit": "umol/L", "value": "2.80"},
+        {"name": "Total Protein", "range": "65--85", "state": "Low", "unit": "g/L", "value": "60.10"},
+        {"name": "Albumin", "range": "40--55", "state": "Low", "unit": "g/L", "value": "39.20"},
+        {"name": "Globulin", "range": "20--40", "state": "Normal", "unit": "g/L", "value": "20.90"},
+        {"name": "A/G Ratio", "range": "1.2--2.4", "state": "Normal", "unit": "", "value": "1.88"},
+        {"name": "Prealbumin", "range": "200--400", "state": "Normal", "unit": "mg/L", "value": "228.60"},
+        {"name": "Cholinesterase", "range": "5320--12920", "state": "Normal", "unit": "U/L", "value": "10954.0"},
+        {"name": "ADA", "range": "0.0--25.0", "state": "Normal", "unit": "U/L", "value": "4.70"},
+        {"name": "Total Bile Acids", "range": "0.0--12.0", "state": "Normal", "unit": "umol/L", "value": "2.00"},
+        {"name": "Sialic Acid", "range": "45.6--75.4", "state": "Normal", "unit": "mg/dL", "value": "59.40"},
+        {"name": "SOD", "range": "129--216", "state": "Normal", "unit": "U/mL", "value": "138.00"},
+        {"name": "Glycocholic Acid", "range": "<2.70", "state": "Normal", "unit": "ug/mL", "value": "1.18"},
+        {"name": "BUN", "range": "2.86--8.20", "state": "Normal", "unit": "mmol/L", "value": "6.00"},
+        {"name": "Creatinine", "range": "45--84", "state": "Normal", "unit": "umol/L", "value": "57.00"},
+        {"name": "eGFR", "range": "", "state": "Normal", "unit": "", "value": "104.67"},
+        {"name": "BUN/Cr Ratio", "range": "0.03--0.15", "state": "Normal", "unit": "", "value": "0.105"},
+        {"name": "Uric Acid", "range": "142.8--339.2", "state": "High", "unit": "umol/L", "value": "404.0"},
+        {"name": "Cystatin C", "range": "0.57--1.30", "state": "Normal", "unit": "mg/L", "value": "0.68"},
+        {"name": "Beta-2 Microglobulin", "range": "1.0--3.0", "state": "Normal", "unit": "mg/L", "value": "1.68"},
+        {"name": "Retinol Binding Protein", "range": "25.0--70.0", "state": "Normal", "unit": "mg/L", "value": "44.30"},
+        {"name": "Potassium", "range": "3.5--5.3", "state": "Normal", "unit": "mmol/L", "value": "3.78"},
+        {"name": "Sodium", "range": "137--147", "state": "Normal", "unit": "mmol/L", "value": "145.00"},
+        {"name": "Chloride", "range": "99--110", "state": "Normal", "unit": "mmol/L", "value": "103.00"}
+      ],
+      "department": "Cerebrovascular Disease Ward, Team 2",
+      "diagnosis": "Hypertension",
+      "inspection_number": "6025820402",
+      "specimen_type": "Serum",
+      "time": "2025-03-06 11:43:14",
+      "type": "CMP, Lipid Panel, and Glucose (Enzymatic)"
+    },
+    {
+      "content": [
+        {"name": "Calcium", "range": "2.09--2.54", "state": "Normal", "unit": "mmol/L", "value": "2.22"},
+        {"name": "Phosphorus", "range": "0.87--1.45", "state": "Normal", "unit": "mmol/L", "value": "1.29"},
+        {"name": "Ca x P Product", "range": "2.0--3.70", "state": "Normal", "unit": "", "value": "2.86"},
+        {"name": "Magnesium", "range": "0.70--1.10", "state": "Normal", "unit": "mmol/L", "value": "0.94"},
+        {"name": "CO2", "range": "22.0--34.0", "state": "Normal", "unit": "mmol/L", "value": "27.30"},
+        {"name": "Anion Gap", "range": "8.00--16.00", "state": "Normal", "unit": "mmol/L", "value": "14.70"},
+        {"name": "Glucose", "range": "3.89--6.11", "state": "Normal", "unit": "mmol/L", "value": "5.64"},
+        {"name": "Triglycerides", "range": "0.41--1.77", "state": "High", "unit": "mmol/L", "value": "3.13"},
+        {"name": "Total Cholesterol", "range": "3.17--6.17", "state": "Normal", "unit": "mmol/L", "value": "5.51"},
+        {"name": "HDL-C", "range": "0.98--1.94", "state": "Normal", "unit": "mmol/L", "value": "1.11"},
+        {"name": "LDL-C", "range": "1.84--3.76", "state": "Normal", "unit": "mmol/L", "value": "3.12"},
+        {"name": "HDL/CHOL Ratio", "range": "0.16--0.36", "state": "Normal", "unit": "", "value": "0.20"},
+        {"name": "sdLDL-C", "range": "0.264--1.360", "state": "High", "unit": "mmol/L", "value": "1.88"},
+        {"name": "Lipoprotein(a)", "range": "10--300", "state": "Normal", "unit": "mg/L", "value": "54.70"},
+        {"name": "ApoA1", "range": "1.00--1.60", "state": "Normal", "unit": "g/L", "value": "1.25"},
+        {"name": "ApoB", "range": "0.60--1.10", "state": "Normal", "unit": "g/L", "value": "0.98"},
+        {"name": "ApoA1/ApoB Ratio", "range": "1.38--2.20", "state": "Low", "unit": "", "value": "1.28"},
+        {"name": "ApoE", "range": "29--53", "state": "High", "unit": "mg/L", "value": "69.20"},
+        {"name": "Homocysteine", "range": "<15.0", "state": "Normal", "unit": "umol/L", "value": "11.90"},
+        {"name": "Osmolality", "range": "280--320", "state": "Normal", "unit": "mOsm/L", "value": "309.20"},
+        {"name": "Lp-PLA2", "range": "<659", "state": "Normal", "unit": "IU/L", "value": "407.70"},
+        {"name": "Corrected Calcium", "range": "2.09--2.54", "state": "Normal", "unit": "mmol/L", "value": "2.24"},
+        {"name": "Complement C1q", "range": "15.7--23.7", "state": "Low", "unit": "mg/dL", "value": "15.10"}
+      ],
+      "department": "Cerebrovascular Disease Ward, Team 2",
+      "diagnosis": "Hypertension",
+      "inspection_number": "6025820402",
+      "specimen_type": "Serum",
+      "time": "2025-03-06 11:43:14",
+      "type": "CMP, Lipid Panel, and Glucose (Enzymatic)"
+    },
+    {
+      "content": [
+        {"name": "Color", "range": "", "state": "Normal", "unit": "", "value": "Yellow-Brown"},
+        {"name": "Consistency", "range": "", "state": "Normal", "unit": "", "value": "Soft"},
+        {"name": "WBC", "range": "None", "state": "Normal", "unit": "", "value": "None"},
+        {"name": "Pus Cells", "range": "None", "state": "Normal", "unit": "", "value": "None"},
+        {"name": "RBC", "range": "None", "state": "Normal", "unit": "", "value": "None"},
+        {"name": "Macrophages", "range": "None", "state": "Normal", "unit": "", "value": "None"},
+        {"name": "Starch Granules", "range": "None", "state": "Normal", "unit": "", "value": "None"},
+        {"name": "Fat Droplets", "range": "None", "state": "Normal", "unit": "", "value": "None"},
+        {"name": "Yeast", "range": "None", "state": "Normal", "unit": "", "value": "None"},
+        {"name": "Trichuris Ova", "range": "None", "state": "Normal", "unit": "", "value": "None"},
+        {"name": "Hookworm Ova", "range": "None", "state": "Normal", "unit": "", "value": "None"},
+        {"name": "Ascaris Ova", "range": "None", "state": "Normal", "unit": "", "value": "None"},
+        {"name": "Clonorchis Ova", "range": "None", "state": "Normal", "unit": "", "value": "None"},
+        {"name": "Parasite Ova", "range": "None", "state": "Normal", "unit": "", "value": "None"},
+        {"name": "Entamoeba histolytica", "range": "None", "state": "Normal", "unit": "", "value": "None"},
+        {"name": "Intestinal Trichomonas", "range": "None", "state": "Normal", "unit": "", "value": "None"},
+        {"name": "Charcot-Leyden Crystals", "range": "None", "state": "Normal", "unit": "", "value": "None"}
+      ],
+      "department": "Cerebrovascular Disease Ward, Team 2",
+      "diagnosis": "Hypertension",
+      "inspection_number": "6025820398",
+      "specimen_type": "Stool",
+      "time": "2025-03-06 11:46:47",
+      "type": "Stool Routine and Microscopy"
+    },
+    {
+      "content": [
+        {"name": "Free T3 (ECLIA)", "range": "3.1--6.8", "state": "Normal", "unit": "pmol/L", "value": "4.10"},
+        {"name": "Free T4 (ECLIA)", "range": "12--22", "state": "Normal", "unit": "pmol/L", "value": "12.23"},
+        {"name": "TSH (ECLIA)", "range": "0.27--4.2", "state": "High", "unit": "uIU/mL", "value": "4.520"}
+      ],
+      "department": "Cerebrovascular Disease Ward, Team 2",
+      "diagnosis": "Hypertension",
+      "inspection_number": "6025820403",
+      "specimen_type": "Serum",
+      "time": "2025-03-06 11:48:28",
+      "type": "Thyroid Function Panel"
+    }
+  ],
+  "advices": {
+    "long_advices": {
+      "items": [
+        {"administration": "", "dose_unit": "", "end_time": "2025-03-10 12:48:00", "frequency": "QD", "is_drug": "No", "name": "Neurology Routine Nursing Care", "start_time": "2025-03-05 11:39:00", "type": "Nursing"},
+        {"administration": "", "dose_unit": "", "end_time": "2025-03-10 12:48:00", "frequency": "QD", "is_drug": "No", "name": "Level II Nursing Care", "start_time": "2025-03-05 11:39:00", "type": "Nursing"},
+        {"administration": "", "dose_unit": "", "end_time": "2025-03-10 12:48:00", "frequency": "", "is_drug": "No", "name": "Low-Salt, Low-Fat Diet", "start_time": "2025-03-05 11:39:00", "type": "Diet"},
+        {"administration": "", "dose_unit": "", "end_time": "2025-03-10 12:48:00", "frequency": "BID", "is_drug": "No", "name": "BP Monitoring", "start_time": "2025-03-05 11:39:00", "type": "Nursing"},
+        {"administration": "", "dose_unit": "", "end_time": "2025-03-10 12:48:00", "frequency": "", "is_drug": "No", "name": "Accompaniment Required", "start_time": "2025-03-05 11:39:00", "type": "Instruction"},
+        {"administration": "PO", "dose_unit": "0.1g", "end_time": "2025-03-06 10:57:00", "frequency": "TID", "is_drug": "Yes", "name": "Citicoline Sodium Capsules", "start_time": "2025-03-05 11:39:00", "type": "Medication"},
+        {"administration": "IV Drip", "dose_unit": "90mg", "end_time": "2025-03-10 12:48:00", "frequency": "QD", "is_drug": "Yes", "name": "Papaverine Hydrochloride Injection (Hengrui)", "start_time": "2025-03-05 11:39:00", "type": "Medication"},
+        {"administration": "IV Drip", "dose_unit": "250ml", "end_time": "2025-03-10 12:48:00", "frequency": "QD", "is_drug": "Yes", "name": "0.9% Sodium Chloride Injection", "start_time": "2025-03-05 11:39:00", "type": "Medication"},
+        {"administration": "PO", "dose_unit": "10.5mg", "end_time": "2025-03-06 11:00:00", "frequency": "BID", "is_drug": "Yes", "name": "Flupentixol/Melitracen Tablets (Huínéng)", "start_time": "2025-03-05 15:02:00", "type": "Medication"},
+        {"administration": "PO", "dose_unit": "10.5mg", "end_time": "2025-03-10 12:48:00", "frequency": "Q.M.", "is_drug": "Yes", "name": "Flupentixol/Melitracen Tablets (Huínéng)", "start_time": "2025-03-06 11:00:00", "type": "Medication"},
+        {"administration": "PO", "dose_unit": "10.5mg", "end_time": "2025-03-10 12:48:00", "frequency": "12AM", "is_drug": "Yes", "name": "Flupentixol/Melitracen Tablets (Huínéng)", "start_time": "2025-03-06 11:00:00", "type": "Medication"},
+        {"administration": "PO", "dose_unit": "0.4mg", "end_time": "2025-03-10 12:48:00", "frequency": "QN", "is_drug": "Yes", "name": "Alprazolam Tablets", "start_time": "2025-03-06 11:50:00", "type": "Medication"},
+        {"administration": "PO", "dose_unit": "10mg", "end_time": "2025-03-10 12:48:00", "frequency": "QD", "is_drug": "Yes", "name": "Escitalopram Oxalate Tablets (Jīngwèi)", "start_time": "2025-03-06 11:50:00", "type": "Medication"}
+      ]
+    },
+    "short_advices": {
+      "items": [
+        {"administration": "", "dose_unit": "", "excute_time": "2025-03-05 11:40:00", "is_drug": "No", "name": "Routine ECG (Auto-analysis)", "time": "2025-03-05 11:39:00", "type": "Exam"},
+        {"administration": "", "dose_unit": "", "excute_time": "2025-03-05 11:40:00", "is_drug": "No", "name": "Urinalysis with Microscopy", "time": "2025-03-05 11:39:00", "type": "Lab"},
+        {"administration": "", "dose_unit": "", "excute_time": "2025-03-05 11:40:00", "is_drug": "No", "name": "Stool Routine and Microscopy", "time": "2025-03-05 11:39:00", "type": "Lab"},
+        {"administration": "", "dose_unit": "", "excute_time": "2025-03-05 11:40:00", "is_drug": "No", "name": "Thyroid Function Panel", "time": "2025-03-05 11:39:00", "type": "Lab"},
+        {"administration": "", "dose_unit": "", "excute_time": "2025-03-05 11:40:00", "is_drug": "No", "name": "Glucose Assay (Enzymatic)", "time": "2025-03-05 11:39:00", "type": "Lab"},
+        {"administration": "", "dose_unit": "", "excute_time": "2025-03-05 11:40:00", "is_drug": "No", "name": "CBC with 5-part Differential", "time": "2025-03-05 11:39:00", "type": "Lab"},
+        {"administration": "", "dose_unit": "", "excute_time": "2025-03-05 11:40:00", "is_drug": "No", "name": "Coagulation Panel", "time": "2025-03-05 11:39:00", "type": "Lab"},
+        {"administration": "", "dose_unit": "", "excute_time": "2025-03-05 11:40:00", "is_drug": "No", "name": "Electrolytes", "time": "2025-03-05 11:39:00", "type": "Lab"},
+        {"administration": "", "dose_unit": "", "excute_time": "2025-03-05 11:40:00", "is_drug": "No", "name": "Serum Troponin I Assay", "time": "2025-03-05 11:39:00", "type": "Lab"},
+        {"administration": "", "dose_unit": "", "excute_time": "2025-03-05 11:40:00", "is_drug": "No", "name": "BNP Assay", "time": "2025-03-05 11:39:00", "type": "Lab"},
+        {"administration": "", "dose_unit": "", "excute_time": "2025-03-05 11:40:00", "is_drug": "No", "name": "Hepatic Function Panel", "time": "2025-03-05 11:39:00", "type": "Lab"},
+        {"administration": "", "dose_unit": "", "excute_time": "2025-03-05 11:40:00", "is_drug": "No", "name": "Renal Function Panel", "time": "2025-03-05 11:39:00", "type": "Lab"},
+        {"administration": "", "dose_unit": "", "excute_time": "2025-03-05 11:40:00", "is_drug": "No", "name": "Lipid Panel", "time": "2025-03-05 11:39:00", "type": "Lab"},
+        {"administration": "", "dose_unit": "", "excute_time": "2025-03-05 11:40:00", "is_drug": "No", "name": "HbA1c Assay (Chromatography)", "time": "2025-03-05 11:39:00", "type": "Lab"},
+        {"administration": "", "dose_unit": "", "excute_time": "2025-03-05 11:40:00", "is_drug": "No", "name": "Brain MRI (with DWI)", "time": "2025-03-05 11:39:00", "type": "Exam"},
+        {"administration": "", "dose_unit": "", "excute_time": "2025-03-05 11:40:00", "is_drug": "No", "name": "Brain MRA", "time": "2025-03-05 11:39:00", "type": "Exam"},
+        {"administration": "", "dose_unit": "", "excute_time": "2025-03-05 11:40:00", "is_drug": "No", "name": "Neck MRA", "time": "2025-03-05 11:39:00", "type": "Exam"},
+        {"administration": "", "dose_unit": "", "excute_time": "2025-03-05 11:40:00", "is_drug": "No", "name": "Echocardiography", "time": "2025-03-05 11:39:00", "type": "Exam"},
+        {"administration": "", "dose_unit": "", "excute_time": "2025-03-05 11:40:00", "is_drug": "No", "name": "24-hour Ambulatory ECG (Holter)", "time": "2025-03-05 11:39:00", "type": "Exam"},
+        {"administration": "", "dose_unit": "", "excute_time": "2025-03-05 11:40:00", "is_drug": "No", "name": "Chest CT", "time": "2025-03-05 11:39:00", "type": "Exam"},
+        {"administration": "", "dose_unit": "", "excute_time": "2025-03-05 11:40:00", "is_drug": "No", "name": "Abdominal US (Hepatobiliary/Pancreas/Spleen/Kidneys)", "time": "2025-03-05 11:39:00", "type": "Exam"},
+        {"administration": "", "dose_unit": "", "excute_time": "2025-03-05 11:40:00", "is_drug": "No", "name": "Breast US", "time": "2025-03-05 11:39:00", "type": "Exam"},
+        {"administration": "IV Drip", "dose_unit": "90mg", "excute_time": "2025-03-05 16:23:00", "is_drug": "Yes", "name": "Papaverine Hydrochloride Injection (Hengrui)", "time": "2025-03-05 11:39:00", "type": "Medication"},
+        {"administration": "IV Drip", "dose_unit": "250ml", "excute_time": "2025-03-05 16:23:00", "is_drug": "Yes", "name": "0.9% Sodium Chloride Injection", "time": "2025-03-05 11:39:00", "type": "Medication"},
+        {"administration": "", "dose_unit": "", "excute_time": "2025-03-05 14:12:00", "is_drug": "No", "name": "Ophthalmology Clinic Consult", "time": "2025-03-05 14:05:00", "type": "Instruction"},
+        {"administration": "", "dose_unit": "", "excute_time": "2025-03-06 08:36:00", "is_drug": "No", "name": "Ophthalmology Clinic Consult", "time": "2025-03-06 08:18:00", "type": "Instruction"},
+        {"administration": "PO", "dose_unit": "0.4mg", "excute_time": "2025-03-06 15:02:00", "is_drug": "Yes", "name": "Alprazolam Tablets", "time": "2025-03-06 11:50:00", "type": "Medication"},
+        {"administration": "PO", "dose_unit": "10mg", "excute_time": "2025-03-06 15:02:00", "is_drug": "Yes", "name": "Escitalopram Oxalate Tablets (Jīngwèi)", "time": "2025-03-06 11:50:00", "type": "Medication"},
+        {"administration": "", "dose_unit": "", "excute_time": "2025-03-06 12:15:00", "is_drug": "No", "name": "Hamilton Anxiety Rating Scale (HAMA)", "time": "2025-03-06 12:12:00", "type": "Exam"},
+        {"administration": "", "dose_unit": "", "excute_time": "2025-03-06 12:15:00", "is_drug": "No", "name": "Hamilton Depression Rating Scale (HAMD)", "time": "2025-03-06 12:12:00", "type": "Exam"},
+        {"administration": "", "dose_unit": "", "excute_time": "2025-03-07 08:56:00", "is_drug": "No", "name": "Thyroid US", "time": "2025-03-07 08:37:00", "type": "Exam"},
+        {"administration": "", "dose_unit": "", "excute_time": "2025-03-08 11:17:00", "is_drug": "No", "name": "CAD Ward 1, Team 3 Consult", "time": "2025-03-08 11:16:00", "type": "Instruction"},
+        {"administration": "PO", "dose_unit": "10.5mg", "excute_time": "2025-03-10 10:27:00", "is_drug": "Yes", "name": "Flupentixol/Melitracen Tablets (Huínéng)", "time": "2025-03-10 10:24:00", "type": "Medication"},
+        {"administration": "PO", "dose_unit": "0.4mg", "excute_time": "2025-03-10 10:27:00", "is_drug": "Yes", "name": "Alprazolam Tablets", "time": "2025-03-10 10:24:00", "type": "Medication"},
+        {"administration": "PO", "dose_unit": "10mg", "excute_time": "2025-03-10 10:27:00", "is_drug": "Yes", "name": "Escitalopram Oxalate Tablets (Jīngwèi)", "time": "2025-03-10 10:24:00", "type": "Medication"},
+        {"administration": "PO", "dose_unit": "10ml", "excute_time": "2025-03-10 10:27:00", "is_drug": "Yes", "name": "Tongtian Oral Liquid", "time": "2025-03-10 10:24:00", "type": "Medication"},
+        {"administration": "", "dose_unit": "", "excute_time": "2025-03-10 13:27:00", "is_drug": "No", "name": "Discharge Today", "time": "2025-03-10 12:48:00", "type": "Instruction"},
+        {"administration": "", "dose_unit": "", "excute_time": "2025-03-10 13:40:00", "is_drug": "No", "name": "VTE Risk Assessment (Retrospective Entry)", "time": "2025-03-10 13:41:00", "type": "Other"}
+      ]
+    }
+  }
+}

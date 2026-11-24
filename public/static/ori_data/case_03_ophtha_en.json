@@ -1,0 +1,565 @@
+{
+  "advices": {
+    "long_advices": {
+      "items": [
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2012-02-23 08:00:00",
+          "frequency": "bid",
+          "is_drug": false,
+          "name": "Blood pressure monitoring bid",
+          "start_time": "2012-02-20 07:53:00",
+          "type": "Other"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2012-02-23 08:00:00",
+          "frequency": "daily",
+          "is_drug": false,
+          "name": "Routine ophthalmic nursing care",
+          "start_time": "2012-02-20 07:53:00",
+          "type": "Nursing"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2012-02-23 08:00:00",
+          "frequency": "daily",
+          "is_drug": false,
+          "name": "Level II nursing care",
+          "start_time": "2012-02-20 07:53:00",
+          "type": "Nursing"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "end_time": "2012-02-23 08:00:00",
+          "frequency": "daily",
+          "is_drug": false,
+          "name": "Low-sodium diet",
+          "start_time": "2012-02-20 07:53:00",
+          "type": "Dietary"
+        },
+        {
+          "administration": "Ophthalmic instillation",
+          "dose_unit": "0.1 mg",
+          "end_time": "2012-02-23 08:00:00",
+          "frequency": "q2h",
+          "is_drug": true,
+          "name": "Ofloxacin Ophthalmic Solution",
+          "start_time": "2012-02-20 07:53:00",
+          "type": "Medication"
+        },
+        {
+          "administration": "Ophthalmic instillation",
+          "dose_unit": "0.1 mL",
+          "end_time": "2012-02-23 08:00:00",
+          "frequency": "q2h",
+          "is_drug": true,
+          "name": "Prednisolone Acetate Ophthalmic Suspension",
+          "start_time": "2012-02-20 07:53:00",
+          "type": "Medication"
+        },
+        {
+          "administration": "Ophthalmic ointment application",
+          "dose_unit": "0.1 g",
+          "end_time": "2012-02-23 08:00:00",
+          "frequency": "qhs",
+          "is_drug": true,
+          "name": "Tobramycin/Dexamethasone Ophthalmic Ointment",
+          "start_time": "2012-02-20 07:53:00",
+          "type": "Medication"
+        },
+        {
+          "administration": "PO",
+          "dose_unit": "5 mL",
+          "end_time": "2012-02-23 08:00:00",
+          "frequency": "tid",
+          "is_drug": true,
+          "name": "Compound Liquorice Oral Solution",
+          "start_time": "2012-02-20 07:53:00",
+          "type": "Medication"
+        },
+        {
+          "administration": "PO",
+          "dose_unit": "80 mg",
+          "end_time": "2012-02-23 08:00:00",
+          "frequency": "qd",
+          "is_drug": true,
+          "name": "Valsartan Capsules",
+          "start_time": "2012-02-20 07:53:00",
+          "type": "Medication"
+        }
+      ]
+    },
+    "short_advices": {
+      "items": [
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2012-02-20 07:53:00",
+          "is_drug": false,
+          "name": "Urinalysis with sediment",
+          "time": "2012-02-20 07:53:00",
+          "type": "Laboratory"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2012-02-20 07:53:00",
+          "is_drug": false,
+          "name": "Digital fluoroscopy",
+          "time": "2012-02-20 07:53:00",
+          "type": "Imaging"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2012-02-20 07:53:00",
+          "is_drug": false,
+          "name": "12-lead ECG (automated analysis)",
+          "time": "2012-02-20 07:53:00",
+          "type": "Cardiac"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2012-02-20 07:53:00",
+          "is_drug": false,
+          "name": "Stool analysis",
+          "time": "2012-02-20 07:53:00",
+          "type": "Laboratory"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2012-02-20 07:53:00",
+          "is_drug": false,
+          "name": "Complete blood count with 5-part differential",
+          "time": "2012-02-20 07:53:00",
+          "type": "Laboratory"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2012-02-20 07:53:00",
+          "is_drug": false,
+          "name": "Pre-admission infectious disease panel",
+          "time": "2012-02-20 07:53:00",
+          "type": "Laboratory"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2012-02-20 07:53:00",
+          "is_drug": false,
+          "name": "Hepatic function panel",
+          "time": "2012-02-20 07:53:00",
+          "type": "Laboratory"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2012-02-20 07:53:00",
+          "is_drug": false,
+          "name": "Renal function panel",
+          "time": "2012-02-20 07:53:00",
+          "type": "Laboratory"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2012-02-20 07:53:00",
+          "is_drug": false,
+          "name": "Glucose measurement (enzymatic method)",
+          "time": "2012-02-20 07:53:00",
+          "type": "Laboratory"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2012-02-20 07:53:00",
+          "is_drug": false,
+          "name": "Coagulation panel (PT/aPTT/TT/Fib)",
+          "time": "2012-02-20 07:53:00",
+          "type": "Laboratory"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2012-02-20 07:53:00",
+          "is_drug": false,
+          "name": "Keratometry",
+          "time": "2012-02-20 07:53:00",
+          "type": "Ophthalmic"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2012-02-20 07:53:00",
+          "is_drug": false,
+          "name": "Corneal topography",
+          "time": "2012-02-20 07:53:00",
+          "type": "Ophthalmic"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2012-02-20 07:53:00",
+          "is_drug": false,
+          "name": "B-scan ultrasonography",
+          "time": "2012-02-20 07:53:00",
+          "type": "Ophthalmic"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2012-02-20 07:53:00",
+          "is_drug": false,
+          "name": "Tonometry (IOP measurement)",
+          "time": "2012-02-20 07:53:00",
+          "type": "Ophthalmic"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2012-02-20 07:53:00",
+          "is_drug": false,
+          "name": "A-scan biometry",
+          "time": "2012-02-20 07:53:00",
+          "type": "Ophthalmic"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2012-02-20 07:53:00",
+          "is_drug": false,
+          "name": "IOL power calculation",
+          "time": "2012-02-20 07:53:00",
+          "type": "Ophthalmic"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2012-02-20 07:53:00",
+          "is_drug": false,
+          "name": "Specular microscopy (corneal endothelium)",
+          "time": "2012-02-20 07:53:00",
+          "type": "Ophthalmic"
+        },
+        {
+          "administration": "",
+          "dose_unit": "",
+          "excute_time": "2012-02-20 11:04:00",
+          "is_drug": false,
+          "name": "Scheduled: Phacoemulsification with IOL implantation, right eye, under local anesthesia, tomorrow 09:00",
+          "time": "2012-02-20 11:04:00",
+          "type": "Procedure order"
+        },
+        {
+          "administration": "IV infusion",
+          "dose_unit": "1 g",
+          "excute_time": "2012-02-20 11:04:00",
+          "is_drug": true,
+          "name": "Cefradine for Injection",
+          "time": "2012-02-20 11:04:00",
+          "type": "Medication"
+        },
+        {
+          "administration": "IV infusion",
+          "dose_unit": "100 mL",
+          "excute_time": "2012-02-20 11:04:00",
+          "is_drug": true,
+          "name": "0.9% Sodium Chloride Injection (Normal Saline)",
+          "time": "2012-02-20 11:04:00",
+          "type": "Medication"
+        },
+        {
+          "administration": "Ocular irrigation",
+          "dose_unit": "80,000 U",
+          "excute_time": "2012-02-20 11:04:00",
+          "is_drug": true,
+          "name": "Gentamicin Sulfate Injection",
+          "time": "2012-02-20 11:04:00",
+          "type": "Medication"
+        },
+        {
+          "administration": "Ophthalmic instillation",
+          "dose_unit": "",
+          "excute_time": "2012-02-20 11:04:00",
+          "is_drug": true,
+          "name": "Tropicamide/Phenylephrine Ophthalmic Solution (mydriatic)",
+          "time": "2012-02-20 11:04:00",
+          "type": "Medication"
+        },
+        {
+          "administration": "PO",
+          "dose_unit": "5 mg",
+          "excute_time": "2012-02-20 11:04:00",
+          "is_drug": true,
+          "name": "Diazepam Tablet",
+          "time": "2012-02-20 11:04:00",
+          "type": "Medication"
+        }
+      ]
+    }
+  },
+  "basic_information": {
+    "age": 76,
+    "birthday": "1936-07-05",
+    "career": "Retired employee",
+    "clinic_diagnosis_icd10": "H26.900",
+    "clinic_diagnosis_name": "Cataract",
+    "document_id": "15005",
+    "enter_time": "2012-02-20 07:00:00",
+    "exit_time": "2012-02-23 08:00:00",
+    "in_department": "Ophthalmology",
+    "inhospital_days": 3,
+    "inhospital_number": "4",
+    "main_diagnosis_icd10": "H26.900",
+    "main_diagnosis_name": "Cataract, right eye",
+    "marital": "Married",
+    "operations_code": [""],
+    "operations_name": ["Phacoemulsification with IOL implantation, right eye"],
+    "operations_time": ["2012-02-21"],
+    "other_diagnosis_icd10": ["", "", "", "", "I10", "", "", ""],
+    "other_diagnosis_name": [
+      "Pseudophakia, left eye",
+      "Aniseikonia",
+      "Macular drusen",
+      "Vitreous opacity",
+      "Essential hypertension",
+      "Refractive error, bilateral",
+      "Macular degeneration, bilateral",
+      "Vitreous opacity, bilateral"
+    ],
+    "out_department": "Ophthalmology",
+    "sex": "Male"
+  },
+  "consultation_record": [],
+  "course_record": {
+    "first_record": {
+      "course_time": "",
+      "description": "",
+      "diagnostic_basis": "1. Progressive painless vision loss in right eye for 2 years. History of phacoemulsification with IOL implantation, left eye, performed at this institution 2 years ago. History of essential hypertension for >10 years, currently self-administering Valsartan (Diovan) PO.",
+      "differential_diagnosis": "(1) Traumatic cataract: Requires history of ocular trauma, often with corneal/scleral laceration; inconsistent with this patient. (2) Complicated cataract: Typically associated with systemic conditions (diabetes mellitus) or ocular inflammation (uveitis, glaucoma); lens opacities often petaloid or localized; inconsistent with this patient.",
+      "plan": "1. Complete preoperative workup; initiate topical antibiotic prophylaxis; prepare conjunctival sac. 2. Senior ophthalmologist consultation; schedule elective surgery.",
+      "preliminary_diagnosis": ["Cataract, right eye"]
+    },
+    "other_records": [
+      {
+        "record_content": "Surgical indication: Diagnosis confirmed; systemic condition adequate for surgical tolerance. Procedure: Phacoemulsification with IOL implantation, right eye. Anesthesia: Local anesthesia. Precautions: Surgical necessity, potential intraoperative complications, and postoperative risks explained to patient and family; informed consent obtained and signed.",
+        "record_time": "2012-02-20 11:04:00",
+        "record_type": "Preoperative summary"
+      },
+      {
+        "record_content": "Patient underwent phacoemulsification with IOL implantation, right eye, under local anesthesia this morning. Surgical procedure: Patient positioned supine; standard sterile prep and draping; lid speculum placement; topical proparacaine anesthesia; conjunctival sac irrigation with normal saline. Clear corneal incision at 11 o'clock position, 3.0 mm width; side-port incision at 3 o'clock with keratome. 'Soft-shell technique' applied: Viscoat injected into anterior chamber followed by sodium hyaluronate to coat corneal endothelium; continuous curvilinear capsulorhexis performed with capsulorhexis forceps. Hydrodissection of cortex from capsule. Direct chop phacoemulsification technique used for nuclear fragmentation and aspiration. Residual cortex removed with I/A system. Sodium hyaluronate injected into anterior chamber and capsular bag. Foldable IOL implanted into capsular bag and centered. Viscoelastic material aspirated from anterior chamber and capsular bag. Wound hydrated to achieve self-sealing closure; IOP confirmed normal. Tobramycin/dexamethasone ointment applied to conjunctival sac; eye patched; patient returned to ward in stable condition. Postoperative care: Routine ophthalmic postoperative nursing, daily dressing changes, close monitoring.",
+        "record_time": "2012-02-21 12:00:00",
+        "record_type": "Postoperative summary"
+      }
+    ],
+    "ward_records": [
+      {
+        "content": "Patient in good general condition. Laboratory studies reveal no surgical contraindications. Ophthalmic examination: VA: OD 0.5, OS 0.8, -1.50 DS = 1.0. IOP: OD 13 mmHg, OS 15 mmHg. Eyelids: No edema or erythema bilaterally; lacrimal irrigation patent. OD: Conjunctiva quiet, cornea clear, AC medium depth with clear aqueous, iris with normal architecture, pupil round 3 mm with (+) light reflex, lens with grayish-white uneven opacification, fundus: optic disc with normal color and margins, retina without hemorrhage or exudate, macula with pigmentary mottling. OS: Cornea clear, AC medium depth with clear aqueous, iris normal, pupil round 3 mm with (+) light reflex, IOL well-centered in capsular bag, fundus: optic disc normal, retina without hemorrhage/exudate, macula with pigmentary mottling. Bilateral macular OCT: No significant abnormalities. Chief physician ward round: Diagnosis and treatment plan confirmed; instructed to complete preoperative workup and prepare for phacoemulsification with IOL implantation, right eye.",
+        "doctor": "Chief Physician",
+        "time": "2012-02-20 11:00:00"
+      },
+      {
+        "content": "Patient: 76-year-old male, admitted for 'progressive painless vision loss in right eye for 2 years'. PMH: Phacoemulsification with IOL implantation, left eye, at this institution 2 years ago; essential hypertension >10 years, currently self-administering Valsartan (Diovan) PO. Admission vitals: BP 173/93 mmHg. Alert, oriented, in no acute distress. Lungs clear to auscultation bilaterally; HR 70 bpm, regular rhythm, normal heart sounds, no murmurs. Ophthalmic exam: VA: OD 0.5, OS 0.8, -1.50 DS = 1.0. IOP: OD 13 mmHg, OS 15 mmHg. Eyelids: No edema/erythema; lacrimal irrigation patent. OD: Conjunctiva quiet, cornea clear, AC medium depth, aqueous clear, iris normal architecture, pupil round 3 mm with (+) light reflex, lens with grayish-white uneven opacification, fundus: optic disc normal color/margins, retina without hemorrhage/exudate, macula with pigmentary mottling and hard drusen. OS: Cornea clear, AC medium depth, aqueous clear, iris normal, pupil round 3 mm with (+) light reflex, IOL well-centered, fundus: optic disc normal, retina without hemorrhage/exudate, macula with pigmentary mottling and hard drusen. Bilateral macular OCT: No significant abnormalities. Preoperative diagnoses: 1. Cataract, right eye; 2. Pseudophakia, left eye; 3. Refractive error, bilateral; 4. Macular degeneration, bilateral; 5. Vitreous opacity, bilateral; 6. Essential hypertension.",
+        "doctor": "",
+        "time": "2012-02-20 11:30:00"
+      },
+      {
+        "content": "Postoperative day 1: Patient in good general condition, denies ocular pain or headache. Ophthalmic exam: VA: OD 0.8, OS 0.8. IOP: OD 12 mmHg, OS 13 mmHg. OD: Conjunctiva quiet, cornea clear, AC medium depth with (+) aqueous flare (expected postoperative inflammatory response), iris normal architecture, pupil round 3 mm with (+) light reflex, IOL well-centered in capsular bag, fundus: optic disc normal color/margins, macula with hard exudates. OS exam unchanged from admission. Chief physician ward round: Continue topical antibiotics and steroids; daily dressing changes; close monitoring.",
+        "doctor": "Chief Physician",
+        "time": "2012-02-22 08:00:00"
+      },
+      {
+        "content": "Postoperative day 2: Patient in good general condition, denies ocular pain or headache. Ophthalmic exam: VA: OD 0.8, OS 0.8. IOP: OD 12 mmHg, OS 12 mmHg. OD: Conjunctiva quiet, cornea clear, AC medium depth with (+) aqueous flare, iris normal, pupil round 3 mm with (+) light reflex, IOL well-centered, fundus: optic disc normal, macula with hard exudates. OS exam unchanged from admission. Chief physician ward round: Continue topical antibiotics and steroids; ophthalmic condition stable; patient cleared for discharge.",
+        "doctor": "Chief Physician",
+        "time": "2012-02-23 08:00:00"
+      }
+    ]
+  },
+  "enter_record": {
+    "allergy": "No known drug allergies",
+    "ancillary_tests": [],
+    "body_examination": "T 36.5°C, P 70 bpm, R 16/min, BP 173/93 mmHg. Elderly male, alert, oriented, in no acute distress, normal development, fair nutrition, independent positioning, cooperative with exam. Skin: No icterus; no palpable superficial lymphadenopathy. Head: Normocephalic, atraumatic. ENT: Ears/nose without abnormality; lips without cyanosis; pharynx without erythema; tonsils not enlarged. Neck: Supple, trachea midline, thyroid not enlarged, no JVD. Chest: Symmetric, no deformity; lungs clear to auscultation bilaterally, no rales/rhonchi; HR 70 bpm, regular rhythm, normal heart sounds, no murmurs. Abdomen: Soft, non-tender, no rebound tenderness; liver/spleen not palpable; normoactive bowel sounds. Rectal/genitourinary: Unremarkable. Spine/extremities: No deformities. Neurologic: Normal abdominal/biceps/triceps reflexes; Babinski negative; meningeal signs negative. Ophthalmic examination: [See specialist exam section for detailed findings].",
+    "body_height": "",
+    "body_weight": "",
+    "bp": "173/93",
+    "complain": "Progressive painless vision loss in right eye for 2 years.",
+    "family": "Denies family history of hereditary or communicable diseases.",
+    "marriage": "Married at appropriate age; one son; family members in good health.",
+    "menstruation": "N/A",
+    "past": "Phacoemulsification with IOL implantation, left eye, performed at this institution 2 years ago. Essential hypertension >10 years, currently self-administering Valsartan (Diovan) PO. Denies diabetes mellitus. Denies food or drug allergies. Denies close contact history with hepatitis or tuberculosis. No history of trauma or blood transfusion. Immunizations up to date per local schedule.",
+    "personal": "Born and raised in native region; immunizations per local schedule. No residence history in endemic areas.",
+    "preliminary_diagnosis": ["Cataract, right eye"],
+    "present": "Patient noticed gradual, progressive vision loss in right eye starting 2 years ago without identifiable trigger. No associated ocular redness, pruritus, pain, headache, nausea, vomiting, chest tightness, or dyspnea. No prior evaluation or treatment for this complaint. Presented to outpatient clinic today; admitted with diagnosis of 'cataract'. Since symptom onset: mental status good, appetite good, sleep good, bowel/bladder function normal.",
+    "pulse": "70",
+    "respiratory": "16",
+    "specialist_examination": "",
+    "temperature": "36.5"
+  },
+  "exit_record": {
+    "enter_description": "Patient admitted for 'progressive painless vision loss in right eye for 2 years'. PMH: Phacoemulsification with IOL implantation, left eye, 2 years ago; essential hypertension >10 years, self-administering Valsartan (Diovan) PO. Admission vitals: BP 173/93 mmHg; lungs clear; HR 70 bpm, regular rhythm, normal heart sounds, no murmurs. Ophthalmic exam: VA: OD 0.5, OS 0.8, -1.50 DS = 1.0. IOP: OD 13 mmHg, OS 15 mmHg. Eyelids: No edema/erythema; lacrimal irrigation patent. OD: Conjunctiva quiet, cornea clear, AC medium depth, aqueous clear, iris normal, pupil round 3 mm with (+) light reflex, lens with grayish-white uneven opacification, fundus: optic disc normal, retina without hemorrhage/exudate, macula with pigmentary mottling and hard drusen. OS: Cornea clear, AC medium depth, aqueous clear, iris normal, pupil round 3 mm with (+) light reflex, IOL well-centered, fundus: optic disc normal, retina without hemorrhage/exudate, macula with pigmentary mottling and hard drusen.",
+    "enter_diagnosis": ["Cataract, right eye"],
+    "out_advice": [
+      "Continue topical medications: Ofloxacin ophthalmic solution q2h OD; Prednisolone acetate ophthalmic suspension q2h OD; Tobramycin/dexamethasone ophthalmic ointment qhs OD",
+      "Routine ophthalmology outpatient follow-up in 1 week."
+    ],
+    "out_description": "Patient in good general condition. Ophthalmic exam: VA: OD 0.8, OS 0.8. IOP: OD 13 mmHg, OS 15 mmHg. OD: Conjunctiva quiet, cornea clear, AC medium depth with (+) aqueous flare, iris normal architecture, pupil round 3 mm with (+) light reflex, IOL well-centered in capsular bag, fundus: optic disc normal color/margins, retina without hemorrhage/exudate, macula with pigmentary mottling. OS exam unchanged from prior. Ophthalmic condition stable; cleared for discharge.",
+    "out_diagnosis": [
+      "Cataract, right eye",
+      "Pseudophakia, left eye",
+      "Refractive error, bilateral",
+      "Macular degeneration, bilateral",
+      "Vitreous opacity, bilateral",
+      "Essential hypertension"
+    ],
+    "treatment": "Completed preoperative workup upon admission. Underwent phacoemulsification with IOL implantation, right eye, under local anesthesia on 2012-02-21; procedure uneventful. Visual acuity improved; clinical cure achieved; discharged in stable condition."
+  },
+  "image_reports": [
+    {
+      "department": "Ophthalmology",
+      "diagnosis": "No significant abnormalities",
+      "findings": "Bilateral macular OCT: No significant abnormalities",
+      "part": "Bilateral macula",
+      "project": "Optical Coherence Tomography (OCT)",
+      "time": "2012-02-20 17:52:00"
+    },
+    {
+      "department": "Ophthalmology",
+      "diagnosis": "",
+      "findings": "",
+      "part": "",
+      "project": "B-scan ultrasonography",
+      "time": "2012-02-20 07:53:00"
+    }
+  ],
+  "inspections": [
+    {
+      "content": [
+        {"name": "HBsAg", "range": "", "state": "Negative", "unit": "", "value": "Negative (-)"},
+        {"name": "HBsAb", "range": "", "state": "Negative", "unit": "", "value": "Negative (-)"},
+        {"name": "HBeAg", "range": "", "state": "Negative", "unit": "", "value": "Negative (-)"},
+        {"name": "HBeAb", "range": "", "state": "Negative", "unit": "", "value": "Negative (-)"},
+        {"name": "Anti-HBc", "range": "", "state": "Negative", "unit": "", "value": "Negative (-)"},
+        {"name": "PreS1Ag", "range": "", "state": "Negative", "unit": "", "value": "Negative (-)"},
+        {"name": "HCV Ag", "range": "", "state": "Negative", "unit": "", "value": "Negative (-)"},
+        {"name": "Anti-HCV", "range": "", "state": "Negative", "unit": "", "value": "Negative (-)"},
+        {"name": "TP (Syphilis)", "range": "", "state": "Negative", "unit": "", "value": "Negative (-)"},
+        {"name": "HIV Ag/Ab", "range": "", "state": "Negative", "unit": "", "value": "Negative (-)"}
+      ],
+      "department": "Ophthalmology Service 1",
+      "diagnosis": "Cataract",
+      "inspection_number": "",
+      "specimen_type": "Serum",
+      "time": "2012-02-20 08:56:31",
+      "type": "Infectious disease panel (Hepatitis B/C, Syphilis, HIV)"
+    },
+    {
+      "content": [
+        {"name": "ALT", "range": "5-40", "state": "Normal", "unit": "U/L", "value": "16.5"},
+        {"name": "Prealbumin", "range": "200-400", "state": "Normal", "unit": "mg/L", "value": "230.2"},
+        {"name": "AST", "range": "8-40", "state": "Normal", "unit": "U/L", "value": "29.9"},
+        {"name": "BUN", "range": "2.86-8.8", "state": "Normal", "unit": "mmol/L", "value": "3.9"},
+        {"name": "AST:ALT ratio", "range": "0.74-3.45", "state": "Normal", "unit": "Ratio", "value": "1.81"},
+        {"name": "Creatinine", "range": "59-104", "state": "Normal", "unit": "umol/L", "value": "70.0"},
+        {"name": "GGT", "range": "8.0-61.0", "state": "Normal", "unit": "U/L", "value": "13.8"},
+        {"name": "BUN:Creatinine ratio", "range": "", "state": "-", "unit": "", "value": "0.06"},
+        {"name": "Alkaline phosphatase", "range": "40-129", "state": "Low", "unit": "U/L", "value": "38.2"},
+        {"name": "Beta-2 microglobulin", "range": "1.0-3.0", "state": "Normal", "unit": "mg/L", "value": "1.45"},
+        {"name": "Cholinesterase", "range": "5000-12000", "state": "Normal", "unit": "U/L", "value": "6649"},
+        {"name": "Cystatin C", "range": "0.57-1.03", "state": "Normal", "unit": "mg/L", "value": "0.92"},
+        {"name": "Adenosine deaminase", "range": "0.0-25.0", "state": "Normal", "unit": "U/L", "value": "14.7"},
+        {"name": "Uric acid", "range": "90-420", "state": "Normal", "unit": "umol/L", "value": "272.6"},
+        {"name": "Total bilirubin", "range": "5.0-24.0", "state": "Normal", "unit": "umol/L", "value": "14.0"},
+        {"name": "Glucose", "range": "3.89-6.11", "state": "Normal", "unit": "mmol/L", "value": "5.50"},
+        {"name": "Direct bilirubin", "range": "0.24-7.10", "state": "Normal", "unit": "umol/L", "value": "5.3"},
+        {"name": "Indirect bilirubin", "range": "2.80-23.80", "state": "Normal", "unit": "umol/L", "value": "8.7"},
+        {"name": "Total protein", "range": "60.0-83.0", "state": "Normal", "unit": "g/L", "value": "70.0"},
+        {"name": "Albumin", "range": "35.0-55.0", "state": "Normal", "unit": "g/L", "value": "41.3"},
+        {"name": "Total protein (urine)", "range": "20.0-35.0", "state": "Normal", "unit": "g/L", "value": "28.7"},
+        {"name": "Albumin/Globulin ratio", "range": "1.1-2.5", "state": "Normal", "unit": "Ratio", "value": "1.44"}
+      ],
+      "department": "Ophthalmology Service 1",
+      "diagnosis": "Cataract",
+      "inspection_number": "",
+      "specimen_type": "Serum",
+      "time": "2012-02-20 08:56:34",
+      "type": "Comprehensive metabolic panel (hepatic/renal function, glucose)"
+    },
+    {
+      "content": [
+        {"name": "WBC count", "range": "3.97-9.15", "state": "Normal", "unit": "10^9/L", "value": "4.21"},
+        {"name": "MCHC", "range": "320-355", "state": "High", "unit": "g/L", "value": "357"},
+        {"name": "Neutrophil %", "range": "0.51-0.75", "state": "Low", "unit": "", "value": "0.477"},
+        {"name": "RDW-CV", "range": "11.50-14.5", "state": "Normal", "unit": "%", "value": "13.5"},
+        {"name": "Lymphocyte %", "range": "0.2-0.4", "state": "High", "unit": "", "value": "0.432"},
+        {"name": "RDW-SD", "range": "37.0-54.0", "state": "Normal", "unit": "fL", "value": "44.20"},
+        {"name": "Basophil %", "range": "0.000-0.010", "state": "Normal", "unit": "", "value": "0.005"},
+        {"name": "Platelet count", "range": "85-303", "state": "Normal", "unit": "10^9/L", "value": "195"},
+        {"name": "Eosinophil %", "range": "0.005-0.050", "state": "Normal", "unit": "", "value": "0.029"},
+        {"name": "MPV", "range": "7-11", "state": "Normal", "unit": "fL", "value": "9.40"},
+        {"name": "Monocyte %", "range": "0.030-0.100", "state": "Normal", "unit": "", "value": "0.057"},
+        {"name": "PDW", "range": "9-18", "state": "Normal", "unit": "fL", "value": "10.00"},
+        {"name": "Neutrophil absolute", "range": "1.50-7.00", "state": "Normal", "unit": "10^9/L", "value": "2.01"},
+        {"name": "Plateletcrit", "range": "0-0.99", "state": "Normal", "unit": "%", "value": "0.180"},
+        {"name": "Lymphocyte absolute", "range": "1.00-5.00", "state": "Normal", "unit": "10^9/L", "value": "1.82"},
+        {"name": "P-LCR", "range": "13.0-43.0", "state": "Normal", "unit": "%", "value": "19.0"},
+        {"name": "Basophil absolute", "range": "0.00-0.50", "state": "Normal", "unit": "10^9/L", "value": "0.02"},
+        {"name": "Eosinophil absolute", "range": "0.00-0.50", "state": "Normal", "unit": "10^9/L", "value": "0.12"},
+        {"name": "Monocyte absolute", "range": "0.00-0.80", "state": "Normal", "unit": "10^9/L", "value": "0.24"},
+        {"name": "RBC count", "range": "4.09-5.74", "state": "Normal", "unit": "10^12/L", "value": "4.88"},
+        {"name": "Hemoglobin", "range": "131-172", "state": "Normal", "unit": "g/L", "value": "155.0"},
+        {"name": "Hematocrit", "range": "0.380-0.510", "state": "Normal", "unit": "", "value": "0.434"},
+        {"name": "MCV", "range": "83.90-99.10", "state": "Normal", "unit": "fL", "value": "88.90"},
+        {"name": "MCH", "range": "27.80-33.80", "state": "Normal", "unit": "pg", "value": "31.80"}
+      ],
+      "department": "Ophthalmology Service 1",
+      "diagnosis": "Cataract",
+      "inspection_number": "",
+      "specimen_type": "Whole blood (EDTA)",
+      "time": "2012-02-20 08:56:36",
+      "type": "Complete blood count with differential"
+    },
+    {
+      "content": [
+        {"name": "Prothrombin time (PT)", "range": "9.8-12.1", "state": "Normal", "unit": "s", "value": "11.2"},
+        {"name": "PT activity", "range": "70.0-130.0", "state": "Normal", "unit": "%", "value": "101.10"},
+        {"name": "PT ratio", "range": "0.83-1.17", "state": "Normal", "unit": "", "value": "0.93"},
+        {"name": "INR", "range": "0.84-1.16", "state": "Normal", "unit": "", "value": "0.93"},
+        {"name": "Fibrinogen", "range": "1.8-3.5", "state": "Normal", "unit": "g/L", "value": "2.24"},
+        {"name": "aPTT", "range": "22.7-31.8", "state": "Normal", "unit": "s", "value": "27.60"},
+        {"name": "aPTT ratio", "range": "0.80-1.20", "state": "Normal", "unit": "", "value": "1.04"},
+        {"name": "Thrombin time (TT)", "range": "14.0-21.0", "state": "Normal", "unit": "s", "value": "17.60"},
+        {"name": "PT ratio (duplicate)", "range": "0.80-1.20", "state": "Normal", "unit": "", "value": "1.01"}
+      ],
+      "department": "Ophthalmology Service 1",
+      "diagnosis": "Cataract",
+      "inspection_number": "",
+      "specimen_type": "Plasma (citrate)",
+      "time": "2012-02-20 08:56:37",
+      "type": "Coagulation panel (PT/aPTT/TT/Fibrinogen)"
+    }
+  ],
+  "operations": [
+    {
+      "anesthesia": "Local anesthesia",
+      "bleeding_volume": "",
+      "duration": "",
+      "end_time": "",
+      "incision_type": "",
+      "intra_diagnosis": "1. Cataract, right eye; 2. Pseudophakia, left eye; 3. Refractive error, bilateral; 4. Macular degeneration, bilateral; 5. Vitreous opacity, bilateral; 6. Essential hypertension",
+      "op_name": "Phacoemulsification with IOL implantation, right eye",
+      "pre_diagnosis": "1. Cataract, right eye; 2. Pseudophakia, left eye; 3. Refractive error, bilateral; 4. Macular degeneration, bilateral; 5. Vitreous opacity, bilateral; 6. Essential hypertension",
+      "process": "Patient positioned supine; standard sterile prep and draping; lid speculum placement; topical proparacaine anesthesia; conjunctival sac irrigation with normal saline. Clear corneal incision at 11 o'clock position, 3.0 mm width; side-port incision at 3 o'clock with keratome. 'Soft-shell technique' applied: Viscoat injected into anterior chamber followed by sodium hyaluronate to coat corneal endothelium; continuous curvilinear capsulorhexis performed with capsulorhexis forceps. Hydrodissection of cortex from capsule. Direct chop phacoemulsification technique used for nuclear fragmentation and aspiration. Residual cortex removed with I/A system. Sodium hyaluronate injected into anterior chamber and capsular bag. Foldable IOL implanted into capsular bag and centered. Viscoelastic material aspirated from anterior chamber and capsular bag. Wound hydrated to achieve self-sealing closure; IOP confirmed normal.",
+      "property": "",
+      "start_time": "2012-02-21 09:35:00"
+    }
+  ],
+  "pathologies": []
+}

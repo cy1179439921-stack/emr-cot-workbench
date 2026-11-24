@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="150" viewBox="0 0 400 150" fill="none">
+  <defs>
+    <linearGradient id="cotBg" x1="0" y1="0" x2="400" y2="150" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#102E6E"/>
+      <stop offset="0.52" stop-color="#1E4FC2"/>
+      <stop offset="1" stop-color="#3C7CFF"/>
+    </linearGradient>
+    <radialGradient id="cotGlow" cx="0" cy="0" r="1" gradientTransform="translate(372 8) scale(120)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8FC0FF" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#8FC0FF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="cotGlow2" cx="0" cy="0" r="1" gradientTransform="translate(40 150) scale(110)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#59E0C0" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#59E0C0" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="cotCard" x1="284" y1="52" x2="390" y2="126" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity="0.99"/>
+      <stop offset="1" stop-color="#EAF1FF" stop-opacity="0.94"/>
+    </linearGradient>
+    <linearGradient id="cotBtn" x1="20" y1="106" x2="132" y2="136" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#E4EEFF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="400" height="150" fill="url(#cotBg)"/>
+  <rect width="400" height="150" fill="url(#cotGlow)"/>
+  <rect width="400" height="150" fill="url(#cotGlow2)"/>
+
+  <!-- 斜向光带装饰 -->
+  <g opacity="0.14" stroke="#FFFFFF" stroke-width="1">
+    <path d="M236 150L400 22"/>
+    <path d="M262 150L400 46"/>
+    <path d="M288 150L400 70"/>
+  </g>
+
+  <!-- 顶部高光线 -->
+  <path d="M0 0.5H400" stroke="#FFFFFF" stroke-opacity="0.28"/>
+
+  <!-- 品牌行 -->
+  <g>
+    <rect x="20" y="16" width="4" height="13" rx="2" fill="#63E6C6"/>
+    <text x="31" y="27" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif"
+      font-size="12" font-weight="600" letter-spacing="1.6" fill="#BFD6FF">颐邦 · COT 智能平台</text>
+  </g>
+
+  <!-- 主标题 -->
+  <text x="19" y="66" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif"
+    font-size="25" font-weight="700" letter-spacing="0.5" fill="#FFFFFF">临床思维链智能标注</text>
+
+  <!-- 副标题 -->
+  <text x="20" y="90" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif"
+    font-size="12.5" letter-spacing="0.3" fill="#CFE0FF">五步法校准 · AI 辅助 · 证据可溯源</text>
+
+  <!-- CTA 按钮 -->
+  <g>
+    <rect x="20" y="104" width="116" height="32" rx="16" fill="url(#cotBtn)"/>
+    <text x="60" y="125" text-anchor="middle" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif"
+      font-size="13.5" font-weight="700" fill="#1B49B8">立即体验</text>
+    <path d="M104 120h9m0 0l-3.6-3.6M113 120l-3.6 3.6" stroke="#1B49B8" stroke-width="1.8"
+      stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- 右侧：校对卡片示意 -->
+  <g transform="rotate(-9 320 100)" opacity="0.5">
+    <rect x="266" y="34" width="104" height="80" rx="11" fill="#FFFFFF" fill-opacity="0.55"/>
+  </g>
+  <g transform="rotate(-2 330 92)">
+    <rect x="282" y="42" width="102" height="80" rx="11" fill="url(#cotCard)"/>
+    <!-- 卡片内容条 -->
+    <rect x="296" y="60" width="46" height="5" rx="2.5" fill="#2E5FD4" fill-opacity="0.85"/>
+    <rect x="296" y="74" width="72" height="5" rx="2.5" fill="#C3D2EA"/>
+    <rect x="296" y="88" width="58" height="5" rx="2.5" fill="#C3D2EA"/>
+    <rect x="296" y="102" width="40" height="5" rx="2.5" fill="#C3D2EA"/>
+    <!-- 校对通过徽标 -->
+    <circle cx="360" cy="108" r="9" fill="#12B48A"/>
+    <path d="M356 108.2l2.7 2.7 4.9-5.1" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- 思维链节点 -->
+  <g>
+    <path d="M250 34h18M286 24h14" stroke="#9FC4FF" stroke-opacity="0.55" stroke-width="1.4" stroke-dasharray="4 4"/>
+    <circle cx="248" cy="34" r="4" fill="#63E6C6"/>
+    <circle cx="304" cy="24" r="3" fill="#FFFFFF" fill-opacity="0.7"/>
+  </g>
+</svg>

@@ -1,0 +1,41 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+dist.zip
+.VSCodeCounter
+
+# Claude Code AI files
+**/CLAUDE.md
+.claude/
+.codebuddy
+.workbuddy
+lanhu_output
+# 调试截图（本地验证用，不入库）
+.screenshots/
+
+# 发布目录与构建产物
+preview-site/
+preview-site-old-*/
+dist-release-*/
+
+# 生产构建产物（用于发版）
+dist-prod/
