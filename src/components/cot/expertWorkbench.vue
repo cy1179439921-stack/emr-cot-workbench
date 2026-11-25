@@ -31,14 +31,31 @@
         </div>
       </section>
 
-      <section class="guideNotes warmCard">
-        <h2 class="warmSectionTitle">准备好这些材料，一次就能过</h2>
-        <ul class="noteList">
-          <li v-for="item in prepareList" :key="item">
-            <i class="iconfont icon-duihao1"></i>
-            <span>{{ item }}</span>
-          </li>
-        </ul>
+      <div class="guideBottom">
+        <section class="guideNotes warmCard">
+          <h2 class="warmSectionTitle">准备好这些材料，一次就能过</h2>
+          <ul class="noteList">
+            <li v-for="item in prepareList" :key="item">
+              <i class="iconfont icon-duihao1"></i>
+              <span>{{ item }}</span>
+            </li>
+          </ul>
+        </section>
+
+        <section class="guideFaq warmCard">
+          <h2 class="warmSectionTitle">常见问题</h2>
+          <ul class="faqList">
+            <li v-for="item in faqList" :key="item.q">
+              <p class="faqQ">{{ item.q }}</p>
+              <p class="faqA">{{ item.a }}</p>
+            </li>
+          </ul>
+        </section>
+      </div>
+
+      <section class="guideAssure">
+        <i class="iconfont icon-anquan1"></i>
+        <span>资料仅用于资质审核，我们会逐项人工核对，不会外泄；审核期间可以随时回来补充材料。</span>
       </section>
     </div>
 
@@ -247,6 +264,16 @@ const userStore = useUserStore()
 // 入驻审核状态
 const onboardApproved = computed(() => onboardingState.status === ONBOARDING_STATUS.APPROVED)
 const onboardingStatus = computed(() => onboardingState.status)
+// 问候语按当前时间切换（未入驻引导页顶部使用）
+const greeting = computed(() => {
+  const hour = new Date().getHours()
+  if (hour < 6) return '夜深了'
+  if (hour < 11) return '早上好'
+  if (hour < 14) return '中午好'
+  if (hour < 18) return '下午好'
+  return '晚上好'
+})
+
 const displayName = computed(() => {
   const name = userStore.username || ''
   // 演示登录写的是「演示账号 · 全模块」这类名字，展示时回落到演示专家姓名
@@ -279,6 +306,12 @@ const guideSteps = [
   { title: '填写资料', desc: '身份信息、医师资质、简历，约 5 分钟填完，中途可以离开' },
   { title: '人工审核', desc: '审核老师会核对证件与资质，通常 1-2 个工作日给出结果' },
   { title: '开始接任务', desc: '通过后回到首页即可看到分配的病历，按 N1-N5 五步标注' }
+]
+
+const faqList = [
+  { q: '审核大概要多久？', a: '通常 1-2 个工作日，结果会通过站内消息通知，不用一直刷新。' },
+  { q: '材料暂时不齐怎么办？', a: '可以先「暂存」，下次进来接着填；补齐后再提交审核即可。' },
+  { q: '必须有高级职称吗？', a: '不用。执业证书在有效期内即可，职称证书按实际等级上传。' }
 ]
 
 const prepareList = [
@@ -494,6 +527,68 @@ onMounted(() => {
 }
 
 /* ===================== 引导页 ===================== */
+.guideBottom {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 16px;
+}
+
+.guideFaq {
+  .faqList {
+    list-style: none;
+    margin: 14px 0 0;
+    padding: 0;
+  }
+
+  li {
+    padding: 12px 0;
+    border-top: 1px solid var(--theme-border);
+
+    &:first-child {
+      padding-top: 0;
+      border-top: none;
+    }
+  }
+
+  .faqQ {
+    margin: 0 0 4px;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--theme-text);
+  }
+
+  .faqA {
+    margin: 0;
+    line-height: 20px;
+    font-size: 13px;
+    color: var(--theme-text-2);
+  }
+}
+
+.guideAssure {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border: 1px dashed var(--theme-border);
+  border-radius: 10px;
+  background: var(--theme-fill);
+  font-size: 12.5px;
+  color: var(--theme-text-3);
+  gap: 8px;
+
+  .iconfont {
+    flex: none;
+    font-size: 14px;
+    color: var(--theme-success);
+  }
+}
+
+@media (max-width: 1180px) {
+  .guideBottom {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 .guideWrap {
   display: flex;
   flex-direction: column;
@@ -1462,6 +1557,40 @@ onMounted(() => {
   flex: none;
   font-size: 11px;
   color: var(--theme-text-3);
+}
+
+/* 窄屏：引导页单列排布，避免内容被挤压看不清 */
+@media (max-width: 900px) {
+  .homePage {
+    padding: 12px 12px 28px;
+  }
+
+  .guideHero {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 18px;
+  }
+
+  .guideIllustration {
+    display: none;
+  }
+
+  .guideTitle {
+    font-size: 20px;
+  }
+
+  .guideDesc {
+    font-size: 13px;
+  }
+
+  .guideSteps,
+  .guideBottom {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .guideAssure {
+    align-items: flex-start;
+  }
 }
 
 @media (max-width: 1360px) {
