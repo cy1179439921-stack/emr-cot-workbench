@@ -85,13 +85,6 @@
         </div>
         <div class="notice" v-show="isCollapse&&Number(tobeDoneStore.tobeDoneNum?.todoTotalNum)">{{`${tobeDoneStore.tobeDoneNum?.todoTotalNum>99?'99+':(tobeDoneStore.tobeDoneNum?.todoTotalNum)||0}`}}</div>
       </div> -->
-      <div class="collapseFooter" @click="handelCollapse">
-        <el-icon :size="13">
-          <ArrowLeftBold v-if="!isCollapse" />
-          <ArrowRightBold v-else />
-        </el-icon>
-        <span v-if="!isCollapse">收起侧边导航</span>
-      </div>
       <footer class="homeFooter" :class="isCollapse ? '' : 'homeFooter-expand'">
         <el-popover
           placement="right-end"
@@ -566,11 +559,6 @@ const submitForm = async(formEl) => {
       console.log('error submit!', fields)
     }
   })
-}
-const handelCollapse = () => {
-  isCollapse.value = !isCollapse.value
-  // 此处是为了手动触发ecahrts图表的重绘
-  window.dispatchEvent(new Event('resize'))
 }
 // 展开菜单
 const openSubMenu = () => {
@@ -1216,23 +1204,5 @@ const closeSubMenu = () => {
     color: var(--theme-primary);
   }
 
-  .collapseFooter {
-    display: flex;
-    align-items: center;
-    height: 40px;
-    margin: 6px 12px;
-    padding: 0 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 13px;
-    color: var(--theme-text-3);
-    gap: 8px;
-    transition: all 0.2s;
-
-    &:hover {
-      background: var(--theme-fill);
-      color: var(--theme-primary);
-    }
-  }
 }
 </style>

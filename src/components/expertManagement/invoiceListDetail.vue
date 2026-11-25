@@ -97,16 +97,6 @@
                 <span class="val">{{ baseInfo.deptName || '-' }}</span>
               </div>
             </div>
-
-            <div class="gridRow margin-top-24">
-              <div class="gridCol">
-                <span class="requiredMark">*</span>
-                <span class="label">创建人：</span>
-                <span class="val">{{ baseInfo.creator || '-' }}</span>
-              </div>
-              <div class="gridCol"></div>
-              <div class="gridCol"></div>
-            </div>
           </div>
 
           <!-- 2. 薪酬核算 -->
@@ -129,7 +119,7 @@
               </div>
               <div class="gridCol">
                 <span class="requiredMark">*</span>
-                <span class="label">标注病历数：</span>
+                <span class="label">标注量：</span>
                 <span class="val">{{ baseInfo.annotationCount || '-' }}</span>
               </div>
             </div>

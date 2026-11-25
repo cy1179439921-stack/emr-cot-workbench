@@ -73,10 +73,6 @@
                 <span class="info-label">单据生成时间：</span>
                 <span class="info-value">{{ detail.createTime || '-' }}</span>
               </div>
-              <div class="info-item">
-                <span class="info-label">创建人：</span>
-                <span class="info-value">{{ detail.creator || '-' }}</span>
-              </div>
             </div>
           </div>
         </section>
@@ -89,7 +85,7 @@
           <div class="card-body">
             <div class="info-grid grid-3">
               <div class="info-item">
-                <span class="info-label">标注病历数：</span>
+                <span class="info-label">标注量：</span>
                 <span class="info-value">{{ formatNumber(detail.annotationCount) }}</span>
               </div>
               <div class="info-item">

@@ -8,7 +8,7 @@
       <img class="login-title" :src="loginTitleLogo" />
       <img class="loginText" alt="" :src="loginText">
       <div class="loginIpCard">
-        <img class="loginIp" alt="颐邦小源" :src="brandIp">
+        <BrandMascot class="loginMascot" />
       </div>
       <div class="medical-login">
         <div class="loginColumn">
@@ -173,7 +173,7 @@ import { approveApplication, resetApplication } from '@/utils/onboarding'
 import authentication from '@/components/authentication/login-authentication.vue'
 import loginBgDefault from '@/assets/login-bg2.png'
 import brandLockup from '@/assets/brand/brand-lockup.png'
-import brandIp from '@/assets/brand/brand-ip.png'
+import BrandMascot from '@/components/brand/brandMascot.vue'
 import loginText from '@/assets/loginText.png'
 import { setFavicon } from '@/utils/setIco'
 import PrivacyPolicy from './PrivacyPolicy.vue'
@@ -738,20 +738,26 @@ const handleClose = () => {
   color: #8a94a6;
 }
 
-/* 颐邦小源 IP 形象 */
+/* 颐邦小源 IP 形象：矢量绘制（brandMascot），不再使用位图贴图 */
 .loginIpCard {
+  display: flex;
   overflow: hidden;
   position: absolute;
   left: 48px;
   bottom: 26px;
+  align-items: flex-end;
+  justify-content: center;
+  box-sizing: border-box;
   width: 190px;
+  height: 250px;
+  padding: 8px 10px 0;
   border-radius: 22px;
-  background: linear-gradient(180deg, #dcebfd 0%, #cfe3fb 100%);
+  background:
+    radial-gradient(120% 92% at 50% 0%, #eef6ff 0%, #dbeafd 52%, #c8dffa 100%);
   box-shadow: 0 16px 32px rgba(31, 58, 105, 0.12);
 }
 
-.loginIp {
-  display: block;
+.loginMascot {
   width: 100%;
   height: auto;
 }

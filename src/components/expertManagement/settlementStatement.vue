@@ -44,10 +44,6 @@
           <span class="fieldValue">{{ data.deptName || '--' }}</span>
         </div>
         <div class="field">
-          <span class="fieldLabel">创建人</span>
-          <span class="fieldValue">{{ data.creator || '--' }}</span>
-        </div>
-        <div class="field">
           <span class="fieldLabel">执业医院</span>
           <span class="fieldValue">{{ data.hospitalName || '--' }}</span>
         </div>
@@ -62,7 +58,7 @@
       </div>
       <div class="fieldGrid cols3">
         <div class="field">
-          <span class="fieldLabel">标注病历数</span>
+          <span class="fieldLabel">标注量</span>
           <span class="fieldValue">{{ data.annotationCount || '--' }}</span>
         </div>
         <div class="field">
@@ -145,7 +141,6 @@ const data = reactive({
   createTime: '',
   doctorName: '',
   deptName: '',
-  creator: '',
   hospitalName: '',
   annotationCount: '',
   unitPrice: '',

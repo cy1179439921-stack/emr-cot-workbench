@@ -61,64 +61,42 @@
 
     <!-- ============ 已通过审核：正常首页 ============ -->
     <template v-else>
+      <!-- 问候语：整行通栏，左右两栏从同一水平线开始，保证上下对齐 -->
+      <div class="wbGreeting">
+        <h2 class="wbGreetingTitle">{{ greeting }}，{{ displayName }}</h2>
+        <p class="wbGreetingTip">{{ greetingTip }}</p>
+      </div>
+
       <div class="wbLayout">
         <div class="wbMain">
-          <!-- 问候语 -->
-          <div class="wbGreeting">
-            <h2 class="wbGreetingTitle">{{ greeting }}，{{ displayName }}</h2>
-            <p class="wbGreetingTip">{{ greetingTip }}</p>
-          </div>
-
-          <!-- 待办工作：签署劳务协议 → 完成标注 → 申请结算 -->
+          <!-- 待办工作：按清单展示，每项后面跟对应的操作入口 -->
           <section class="panel todoPanel">
-            <header class="todoHead">
+            <header class="panelHead">
               <h2 class="warmSectionTitle">待办工作</h2>
-              <span class="todoHint">先签协议，再完成标注，标注完成后即可申请结算</span>
+              <span class="panelMeta">按清单逐项处理，状态会实时更新</span>
             </header>
 
-            <div class="todoFlow">
-              <div
-                v-for="(step, index) in todoSteps"
-                :key="step.key"
-                class="todoStep"
-                :class="'is-' + step.state">
-                <span class="todoDot">
-                  <i v-if="step.state === 'done'" class="iconfont icon-duihao1" />
-                  <template v-else>{{ index + 1 }}</template>
+            <ul class="todoList">
+              <li v-for="item in todoList" :key="item.key" class="todoItem">
+                <span class="todoIcon" :class="'is-' + item.type">
+                  <i class="iconfont" :class="item.icon" />
                 </span>
-                <div class="todoBody">
-                  <div class="todoTitleRow">
-                    <span class="todoTitle">{{ step.title }}</span>
-                    <span class="todoBadge">{{ step.badge }}</span>
-                  </div>
-                  <p class="todoDesc">{{ step.desc }}</p>
+                <div class="todoText">
+                  <p class="todoTitle">
+                    <b>{{ item.count }}</b>{{ item.unit }}{{ item.label }}
+                  </p>
+                  <p class="todoSub">{{ item.desc }}</p>
                 </div>
-                <el-button v-if="step.btnText" link type="primary" class="todoBtn" @click="step.onClick">
-                  {{ step.btnText }}
+                <el-button
+                  class="todoAction"
+                  :class="'is-' + item.type"
+                  :type="item.primary ? 'primary' : 'default'"
+                  :disabled="item.count === 0"
+                  @click="item.onClick">
+                  {{ item.action }}
                 </el-button>
-                <span v-else class="todoLock">{{ step.lockText }}</span>
-              </div>
-            </div>
-
-            <!-- 待申请结算的任务：可能有多笔，可以一起申请 -->
-            <div class="settleBox">
-              <header class="settleBoxHead">
-                <span class="settleBoxTitle">待申请结算的任务</span>
-                <span class="settleBoxMeta">
-                  {{ settleTasks.length ? `共 ${settleTasks.length} 个任务 · 合计 ¥${settleAmountText}` : '暂无待结算任务' }}
-                </span>
-              </header>
-              <ul v-if="settleTasks.length" class="settleTaskList">
-                <li v-for="task in settleTasks" :key="task.id" class="settleTaskItem">
-                  <span class="stId">{{ task.allocateId }}</span>
-                  <span class="stCount">已完成 {{ task.completedCount }} 例</span>
-                  <span class="stAmount">¥{{ ((Number(task.completedCount) || 0) * UNIT_PRICE).toFixed(2) }}</span>
-                  <span class="stStatus"><i class="dot" />待申请结算</span>
-                  <el-button link type="primary" class="stBtn" @click="goSettlement">去申请</el-button>
-                </li>
-              </ul>
-              <div v-else class="settleEmpty">当前没有待申请结算的任务，完成标注后会自动出现在这里</div>
-            </div>
+              </li>
+            </ul>
           </section>
 
           <!-- 当前任务 + 培训规范（规范收窄放右侧，当前任务不再占满整行） -->
@@ -434,46 +412,54 @@ const settleAmountText = computed(() => {
   return total.toLocaleString('zh-CN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
 })
 
-const todoSteps = computed(() => {
-  const signed = isContractSigned.value
-  const annotateDone = progressTotal.value > 0 && progressDone.value >= progressTotal.value
-  const settlePending = settleTasks.value.length > 0
-  return [
-    {
-      key: 'sign',
-      title: '签署劳务协议',
-      badge: signed ? '已完成' : '当前待办',
-      state: signed ? 'done' : 'current',
-      desc: signed ? '协议已签署，可以正常领取标注任务' : '未签署协议不能领取标注任务',
-      btnText: signed ? '查看协议' : '去签署',
-      onClick: () => router.push({ name: 'laborSign' })
-    },
-    {
-      key: 'annotate',
-      title: '完成标注',
-      badge: !signed ? '待解锁' : (annotateDone ? '已完成' : '进行中'),
-      state: !signed ? 'locked' : (annotateDone ? 'done' : 'current'),
-      desc: !signed
-        ? '签署劳务协议后自动解锁'
-        : (progressTotal.value ? `当前任务已完成 ${progressDone.value}/${progressTotal.value} 例` : '暂无分配中的标注任务'),
-      btnText: signed && !annotateDone && progressTotal.value > 0 ? '继续标注' : '',
-      lockText: signed ? '-' : '未解锁',
-      onClick: goAnnotation
-    },
-    {
-      key: 'settle',
-      title: '申请结算',
-      badge: !signed ? '待解锁' : (settlePending ? `${settleTasks.value.length} 个任务待申请` : '已完成'),
-      state: !signed ? 'locked' : (settlePending ? 'current' : 'done'),
-      desc: !signed
-        ? '签署协议并完成标注后才可以申请结算'
-        : (settlePending ? '可同时申请多个任务的结算，提交后在结算中心跟进' : '当前任务的结算都已提交'),
-      btnText: settlePending && signed ? '去结算' : '',
-      lockText: settlePending ? '-' : '已完成',
-      onClick: goSettlement
-    }
-  ]
-})
+// 待办清单：病历待标注 / 任务待结算 / 结算单待确认
+const pendingCaseCount = computed(() => Math.max(progressTotal.value - progressDone.value, 0))
+const confirmTasks = computed(() => historyList.value.filter((row) => row.settlementStatus === 'WAITING_EXPERT_CONFIRM'))
+
+const todoList = computed(() => [
+  {
+    key: 'annotate',
+    type: 'task',
+    icon: 'icon-renwujindu',
+    count: pendingCaseCount.value,
+    unit: ' 份',
+    label: '病历待标注',
+    desc: pendingCaseCount.value
+      ? '当前批次还没标注完，完成后会自动进入复核'
+      : '当前批次的病历已全部标注完成',
+    action: '去标注',
+    primary: true,
+    onClick: goAnnotation
+  },
+  {
+    key: 'settle',
+    type: 'settle',
+    icon: 'icon-jiesuan',
+    count: settleTasks.value.length,
+    unit: ' 个',
+    label: '任务待结算',
+    desc: settleTasks.value.length
+      ? `已完成任务可申请结算，合计约 ¥${settleAmountText.value}，支持一次申请多个`
+      : '暂无待申请结算的任务',
+    action: '去结算',
+    primary: false,
+    onClick: goSettlement
+  },
+  {
+    key: 'confirm',
+    type: 'confirm',
+    icon: 'icon-jiesuandan',
+    count: confirmTasks.value.length,
+    unit: ' 份',
+    label: '结算单待确认',
+    desc: confirmTasks.value.length
+      ? '确认结算金额后进入打款流程'
+      : '暂无待确认的结算单',
+    action: '去确认',
+    primary: false,
+    onClick: goSettlement
+  }
+])
 
 // ============ 个人中心 / 结算概览 ============
 const pendingStatusList = ['UNSETTLED', 'PENDING_CONFIRM', 'WAITING_EXPERT_CONFIRM']
@@ -1004,15 +990,21 @@ onMounted(() => {
 .panel {
   display: flex;
   flex-direction: column;
-  margin-top: 16px;
-  padding: 22px 24px;
+  padding: 20px 22px;
   gap: 16px;
 }
 
 .panelHead {
   display: flex;
-  align-items: baseline;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 26px;
   gap: 12px;
+}
+
+.panelMeta {
+  font-size: 12.5px;
+  color: var(--theme-text-3);
 }
 
 .panelTip {
@@ -1156,7 +1148,8 @@ onMounted(() => {
 
 /* ===================== 工作台：新版三栏版式 ===================== */
 .wbGreeting {
-  padding: 2px 4px 0;
+  margin: 0 0 16px;
+  padding: 0;
 }
 
 .wbGreetingTitle {
@@ -1187,233 +1180,107 @@ onMounted(() => {
   gap: 16px;
 }
 
-/* 待办工作 */
+/* 待办工作：清单式 */
 .todoPanel {
   border: 1px solid var(--theme-border);
   background: var(--theme-card);
 }
 
-.todoHead {
+.todoList {
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 10px;
-}
-
-.todoHint {
-  font-size: 12.5px;
-  color: var(--theme-text-3);
-}
-
-.todoFlow {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.todoStep {
-  display: flex;
-  position: relative;
-  align-items: center;
-  padding: 14px 16px;
-  border: 1px solid var(--theme-border);
-  border-radius: 12px;
-  background: var(--theme-fill);
-  gap: 12px;
-
-  &.is-current {
-    border-color: var(--theme-primary-border);
-    background: var(--theme-primary-soft);
-  }
-
-  &.is-locked {
-    opacity: 0.72;
-  }
-}
-
-.todoDot {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: none;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: var(--theme-border);
-  font-weight: 700;
-  font-size: 13px;
-  color: var(--theme-text-2);
-
-  .is-current & {
-    background: var(--theme-primary);
-    color: #fff;
-  }
-
-  .is-done & {
-    background: var(--theme-success-soft);
-    font-size: 14px;
-    color: var(--theme-success);
-  }
-}
-
-.todoBody {
-  flex: 1;
-  min-width: 0;
-}
-
-.todoTitleRow {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 6px;
-}
-
-.todoTitle {
-  font-weight: 600;
-  font-size: 14px;
-  color: var(--theme-text);
-}
-
-.todoBadge {
-  padding: 1px 7px;
-  border-radius: 999px;
-  background: var(--theme-border);
-  font-size: 11px;
-  color: var(--theme-text-2);
-
-  .is-current & {
-    background: var(--theme-card);
-    color: var(--theme-primary);
-  }
-
-  .is-done & {
-    background: var(--theme-success-soft);
-    color: var(--theme-success);
-  }
-}
-
-.todoDesc {
-  overflow: hidden;
-  margin: 4px 0 0;
-  text-overflow: ellipsis;
-  font-size: 12px;
-  color: var(--theme-text-3);
-  white-space: nowrap;
-}
-
-.todoBtn {
-  flex: none;
+  flex-direction: column;
+  margin: 0;
   padding: 0;
-  font-size: 13px;
-}
-
-.todoLock {
-  flex: none;
-  font-size: 12px;
-  color: var(--theme-text-3);
-}
-
-/* 待申请结算任务列表 */
-.settleBox {
-  padding: 12px 14px;
-  border: 1px dashed var(--theme-primary-border);
-  border-radius: 12px;
-  background: var(--theme-fill);
-}
-
-.settleBoxHead {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 8px;
-}
-
-.settleBoxTitle {
-  font-weight: 600;
-  font-size: 13px;
-  color: var(--theme-text);
-}
-
-.settleBoxMeta {
-  font-size: 12px;
-  color: var(--theme-text-3);
-}
-
-.settleTaskList {
   list-style: none;
-  margin: 8px 0 0;
-  padding: 0;
 }
 
-.settleTaskItem {
+.todoItem {
   display: flex;
   align-items: center;
-  padding: 9px 0;
+  padding: 13px 0;
   border-top: 1px solid var(--theme-border);
   gap: 14px;
 
   &:first-child {
+    padding-top: 0;
     border-top: none;
+  }
+
+  &:last-child {
+    padding-bottom: 0;
   }
 }
 
-.stId {
+.todoIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--theme-primary-soft);
+  font-size: 17px;
+  color: var(--theme-primary);
+
+  &.is-settle {
+    background: rgba(224, 138, 30, 0.12);
+    color: var(--theme-warning);
+  }
+
+  &.is-confirm {
+    background: var(--theme-success-soft);
+    color: var(--theme-success);
+  }
+}
+
+.todoText {
   flex: 1;
   min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 13px;
+}
+
+.todoTitle {
+  display: flex;
+  align-items: baseline;
+  margin: 0;
+  font-size: 14px;
   color: var(--theme-text);
+  gap: 3px;
+
+  b {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1;
+    color: var(--theme-primary);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.todoSub {
+  overflow: hidden;
+  margin: 5px 0 0;
+  text-overflow: ellipsis;
+  font-size: 12.5px;
+  color: var(--theme-text-3);
   white-space: nowrap;
 }
 
-.stCount {
+.todoAction {
   flex: none;
-  font-size: 12px;
-  color: var(--theme-text-3);
-}
-
-.stAmount {
-  flex: none;
-  width: 84px;
-  text-align: right;
-  font-weight: 600;
-  font-size: 13px;
-  color: var(--theme-primary);
-}
-
-.stStatus {
-  display: inline-flex;
-  align-items: center;
-  flex: none;
-  width: 92px;
-  font-size: 12px;
-  color: var(--theme-warning);
-  gap: 5px;
-
-  .dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--theme-warning);
-  }
-}
-
-.stBtn {
-  flex: none;
-  padding: 0;
-  font-size: 13px;
-}
-
-.settleEmpty {
-  margin-top: 8px;
-  padding: 12px;
+  min-width: 92px;
+  height: 34px;
   border-radius: 8px;
-  background: var(--theme-card);
-  text-align: center;
-  font-size: 12.5px;
-  color: var(--theme-text-3);
+  font-size: 13px;
+
+  &.is-settle:not(.el-button--primary) {
+    border-color: rgba(224, 138, 30, 0.45);
+    color: var(--theme-warning);
+  }
+
+  &.is-confirm:not(.el-button--primary) {
+    border-color: rgba(4, 162, 115, 0.4);
+    color: var(--theme-success);
+  }
 }
 
 /* 标注培训与操作规范：收窄放右侧 */
@@ -1427,7 +1294,9 @@ onMounted(() => {
 
 .bannerTag {
   display: inline-flex;
-  align-self: flex-start;
+  position: absolute;
+  top: 18px;
+  right: 18px;
   align-items: center;
   height: 22px;
   padding: 0 9px;
@@ -1447,8 +1316,10 @@ onMounted(() => {
   position: relative;
   z-index: 1;
   margin: 0;
+  min-height: 26px;
+  padding-right: 76px;
   font-weight: 700;
-  font-size: 17px;
+  font-size: 18px;
   color: var(--theme-primary);
 }
 
@@ -1494,10 +1365,10 @@ onMounted(() => {
 
 .trainImg {
   position: absolute;
-  right: -10px;
-  bottom: -14px;
-  height: 104px;
-  opacity: 0.32;
+  right: -8px;
+  bottom: -12px;
+  height: 96px;
+  opacity: 0.22;
   pointer-events: none;
 }
 
@@ -1534,7 +1405,8 @@ onMounted(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
+  min-height: 26px;
+  gap: 12px;
 }
 
 .taskId {
@@ -1640,7 +1512,7 @@ onMounted(() => {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
+  min-height: 26px;
   gap: 12px;
 }
 
@@ -1837,6 +1709,8 @@ onMounted(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  min-height: 26px;
+  gap: 8px;
 }
 
 .sideMore {
@@ -1979,10 +1853,6 @@ onMounted(() => {
 @media (max-width: 1180px) {
   .taskRow {
     grid-template-columns: minmax(0, 1fr);
-  }
-
-  .todoFlow {
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
   }
 
   .trainImg {

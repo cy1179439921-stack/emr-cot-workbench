@@ -4,7 +4,7 @@ import { DEMO_TASKS } from '@/mock/proofreadDemo'
 import { DEMO_USER } from '@/mock/demoUser'
 
 // ===================== 我的工作台 =====================
-// 工作进度：当前批次 10 份，已完成 3 份（含 1 份校对中）
+// 工作进度：当前批次 20 份，已完成 5 份（待标注 15 份）
 export const WORKBENCH_PROGRESS = {
   contractStatus: 'SIGNED',
   todayCompletedCount: 2,
@@ -13,8 +13,8 @@ export const WORKBENCH_PROGRESS = {
   allocateTime: '2026-11-06 09:00:00',
   latestBatchProgress: {
     allocateId: '10293847561029384756',
-    completedTaskCount: 3,
-    totalTaskCount: 10
+    completedTaskCount: 5,
+    totalTaskCount: 20
   }
 }
 
@@ -22,6 +22,7 @@ export const WORKBENCH_PROGRESS = {
 export const WORKBENCH_HISTORY = [
   { id: 'HS-1001', allocateId: '10293847561029380001', totalCount: 20, completedCount: 20, settlementStatus: 'UNSETTLED', transferTime: '' },
   { id: 'HS-1002', allocateId: '10293847561029380002', totalCount: 15, completedCount: 15, settlementStatus: 'WAITING_EXPERT_CONFIRM', transferTime: '' },
+  { id: 'HS-1007', allocateId: '10293847561029380008', totalCount: 18, completedCount: 18, settlementStatus: 'UNSETTLED', transferTime: '' },
   { id: 'HS-1003', allocateId: '10293847561029380003', totalCount: 12, completedCount: 12, settlementStatus: 'WAITING_PAYMENT', transferTime: '' },
   { id: 'HS-1004', allocateId: '10293847561029380004', totalCount: 30, completedCount: 30, settlementStatus: 'SETTLED', transferTime: '2026-10-28 15:20:00' },
   { id: 'HS-1005', allocateId: '10293847561029380005', totalCount: 8, completedCount: 8, settlementStatus: 'ARCHIVED', transferTime: '2026-09-16 10:05:00' },
