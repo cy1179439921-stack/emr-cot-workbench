@@ -403,7 +403,8 @@ watch(() => medicalStore.activeCurPatientDetail, (newValue) => {
     }
   })
 })
-const isCollapse = ref(true)
+// 未入驻时菜单只有「首页 / 入驻申请」两项，默认展开，避免只剩两个图标认不出来
+const isCollapse = ref(onboardingApproved.value)
 const userOperationList = ref([
   {
     name: '修改密码',

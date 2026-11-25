@@ -1,8 +1,7 @@
 <template>
   <div :class="{home:true,darkTheme:(modeStore.mode==='dark'&&route.path==='/dataBoard')}" v-loading="loadingFlag" element-loading-text="分析中，请稍候...">
-    <!-- 未入驻（未通过审核）不展示侧边栏，只留首页内容 -->
-    <homeMenu v-if="showSidebar"/>
-    <div class="mainRouter" v-if="showMenu" :class="{ 'is-full': !showSidebar }">
+    <homeMenu v-if="showMenu"/>
+    <div class="mainRouter" v-if="showMenu">
       <!-- <homeHeader /> -->
       <div class="homeView" v-if="isPermission">
         <div class="homeView-content">
@@ -88,9 +87,6 @@ const $route = computed(() => route)
 const loadingFlag = ref(false)
 const configUrlArr = ref([])
 const showMenu = ref(false)
-// 入驻审核通过后才展示侧边栏
-const onboardApproved = computed(() => onboardingState.status === ONBOARDING_STATUS.APPROVED)
-const showSidebar = computed(() => showMenu.value && onboardApproved.value)
 // 未入驻引导弹窗
 const onboardDialogVisible = ref(false)
 const routerArr = ref([])
@@ -366,11 +362,6 @@ if (token) {
     flex-direction: column;
     flex: 1;
     margin-left: 72px;
-
-    // 未入驻时没有侧边栏，内容区铺满
-    &.is-full {
-      margin-left: 0;
-    }
     .homeView {
       display: flex;
       flex: 1;
