@@ -41,7 +41,7 @@
       <!-- 右侧内容区域（作为锚点的滚动容器） -->
       <div class="rightWrapper">
         <!-- 核心修改：在此处挂载 containerRef 并设置 overflow-y: auto -->
-        <div class="rightContainer" ref="containerRef">
+        <div class="rightContainer" ref="containerRef" :class="{ 'is-scrolling': scrolling }" @scroll.passive="handleContainerScroll">
           <!-- 卡片 1：基本信息 -->
           <div id="baseInfo" class="cardBlock">
             <div class="cardTitle">
@@ -246,7 +246,7 @@
 
 <script setup>
 import commonGoBack from '@/components/common/commonGoBack.vue'
-import { ref, onMounted, nextTick, reactive, computed } from 'vue'
+import { ref, onMounted, onBeforeUnmount, nextTick, reactive, computed } from 'vue'
 import router from '@/router'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { getAuditDetail, checkInAudit } from '@/api/api_expertManagement.js'
@@ -286,6 +286,15 @@ const openResume = () => {
 }
 
 const containerRef = ref(null)
+// 滚动中才显示滚动条滑块（停止 900ms 后隐藏）
+const scrolling = ref(false)
+let scrollTimer = null
+const handleContainerScroll = () => {
+  scrolling.value = true
+  clearTimeout(scrollTimer)
+  scrollTimer = setTimeout(() => { scrolling.value = false }, 900)
+}
+onBeforeUnmount(() => clearTimeout(scrollTimer))
 
 // 阻止默认锚点跳转的哈希行为
 const handleClick = (e) => {

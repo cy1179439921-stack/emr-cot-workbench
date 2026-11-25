@@ -32,53 +32,55 @@ html.theme-light {
 }
 
 html.theme-warm {
-  --theme-primary: #c9762f;
+  // 暖色提亮：背景接近米白，卡片纯白，靠琥珀主色与描边体现暖感
+  --theme-primary: #c2742c;
   --theme-primary-light: #e0a05e;
-  --theme-primary-soft: #fdf1e3;
-  --theme-primary-border: #f0d5b4;
-  --theme-primary-rgb: 201, 118, 47;
-  --theme-fill: #faf4ea;
-  --theme-bg: #fdf8f2;
-  --theme-card: #fffdfa;
-  --theme-border: #f1e4d3;
-  --theme-text: #3c2f26;
-  --theme-text-2: #6f5a49;
-  --theme-text-3: #a08b79;
+  --theme-primary-soft: #fdf3e8;
+  --theme-primary-border: #f2ddc4;
+  --theme-primary-rgb: 194, 116, 44;
+  --theme-fill: #fdf8f1;
+  --theme-bg: #fdfaf6;
+  --theme-card: #fffefb;
+  --theme-border: #f0e5d7;
+  --theme-text: #40342b;
+  --theme-text-2: #6b5b4c;
+  --theme-text-3: #9b8a79;
   --theme-success: #4f9166;
   --theme-success-soft: #eef6f0;
   --theme-warning: #d98e2b;
   --theme-danger: #c1594f;
   --theme-danger-soft: #fdf0ee;
   --theme-radius: 16px;
-  --theme-shadow: 0 8px 24px rgba(185, 138, 84, 0.08);
-  --theme-shadow-hover: 0 12px 28px rgba(185, 138, 84, 0.14);
-  --theme-page-bg: linear-gradient(180deg, #fdf8f2 0%, #fbf3e9 100%);
-  --theme-primary-shadow: 0 4px 12px rgba(201, 118, 47, 0.18);
+  --theme-shadow: 0 8px 24px rgba(185, 138, 84, 0.07);
+  --theme-shadow-hover: 0 12px 28px rgba(185, 138, 84, 0.12);
+  --theme-page-bg: linear-gradient(180deg, #fdfaf6 0%, #fbf5ec 100%);
+  --theme-primary-shadow: 0 4px 12px rgba(194, 116, 44, 0.16);
 }
 
 html.theme-dark {
-  --theme-primary: #6f9bff;
-  --theme-primary-light: #8fb3ff;
-  --theme-primary-soft: #1e2a44;
-  --theme-primary-border: #33456b;
-  --theme-primary-rgb: 111, 155, 255;
-  --theme-fill: #232a3a;
-  --theme-bg: #12161f;
-  --theme-card: #1a1f2b;
-  --theme-border: #2a3142;
-  --theme-text: #e6ebf5;
-  --theme-text-2: #a9b5c9;
-  --theme-text-3: #74809a;
-  --theme-success: #48b98a;
-  --theme-success-soft: #172c24;
-  --theme-warning: #e0a54a;
-  --theme-danger: #ef7a70;
-  --theme-danger-soft: #2e1d1e;
+  // 深色提亮：底色改为中性深蓝灰，卡片再亮一档，保证卡片边界与正文都看得清
+  --theme-primary: #7fa6ff;
+  --theme-primary-light: #9dbcff;
+  --theme-primary-soft: #2c3a58;
+  --theme-primary-border: #46598a;
+  --theme-primary-rgb: 127, 166, 255;
+  --theme-fill: #2d3648;
+  --theme-bg: #1c2230;
+  --theme-card: #252d3d;
+  --theme-border: #3a455c;
+  --theme-text: #eef2fa;
+  --theme-text-2: #c4cddd;
+  --theme-text-3: #94a2b8;
+  --theme-success: #4cc394;
+  --theme-success-soft: #1f3a30;
+  --theme-warning: #e6ae57;
+  --theme-danger: #f28a80;
+  --theme-danger-soft: #3a2628;
   --theme-radius: 12px;
-  --theme-shadow: 0 8px 22px rgba(0, 0, 0, 0.32);
-  --theme-shadow-hover: 0 12px 28px rgba(0, 0, 0, 0.42);
-  --theme-page-bg: linear-gradient(180deg, #141821 0%, #10141c 100%);
-  --theme-primary-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  --theme-shadow: 0 8px 22px rgba(8, 12, 20, 0.28);
+  --theme-shadow-hover: 0 12px 28px rgba(8, 12, 20, 0.36);
+  --theme-page-bg: linear-gradient(180deg, #202736 0%, #1a2130 100%);
+  --theme-primary-shadow: 0 4px 12px rgba(8, 12, 20, 0.3);
 }
 
 // ===================== 业务卡片区（.warmTheme） =====================
@@ -244,6 +246,162 @@ html.theme-dark {
   background: var(--theme-card);
   box-shadow: 0 -6px 16px rgba(31, 58, 105, 0.06);
   gap: 16px;
+}
+
+// ===================== 个人中心弹窗 =====================
+.el-dialog.profileCenterDialog {
+  overflow: hidden;
+  padding: 0;
+  border-radius: 14px;
+
+  .el-dialog__header {
+    height: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .el-dialog__headerbtn {
+    right: 16px;
+    top: 18px;
+    width: 26px;
+    height: 26px;
+  }
+
+  .el-dialog__body {
+    padding: 0;
+  }
+
+  .pcHead {
+    padding: 24px 28px 18px;
+    border-bottom: 1px solid var(--theme-border);
+  }
+
+  .pcTitle {
+    margin: 0;
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--theme-text);
+  }
+
+  .pcSub {
+    margin: 6px 0 0;
+    font-size: 13px;
+    color: var(--theme-text-3);
+  }
+
+  .pcHero {
+    display: flex;
+    align-items: center;
+    padding: 22px 28px;
+    gap: 14px;
+  }
+
+  .pcAvatar {
+    flex: none;
+    background: var(--theme-primary-soft);
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--theme-primary);
+  }
+
+  .pcPhone {
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--theme-text);
+  }
+
+  .pcIconBtn {
+    display: flex;
+    padding: 4px;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    color: var(--theme-text-3);
+
+    &:hover {
+      color: var(--theme-primary);
+    }
+  }
+
+  .pcList {
+    list-style: none;
+    margin: 0;
+    padding: 0 28px;
+  }
+
+  .pcRow {
+    display: flex;
+    align-items: center;
+    height: 56px;
+    border-top: 1px solid var(--theme-border);
+    cursor: pointer;
+    gap: 12px;
+    transition: background 0.2s;
+
+    &:hover {
+      background: var(--theme-fill);
+    }
+  }
+
+  .pcRowIcon,
+  .pcRowAction {
+    display: flex;
+    align-items: center;
+  }
+
+  .pcRowIcon {
+    color: var(--theme-text-3);
+  }
+
+  .pcRowLabel {
+    min-width: 72px;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--theme-text);
+  }
+
+  .pcRowValue {
+    overflow: hidden;
+    flex: 1;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    color: var(--theme-text-3);
+    white-space: nowrap;
+  }
+
+  .pcRowAction {
+    color: var(--theme-primary);
+  }
+
+  .pcFoot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16px;
+    padding: 16px 28px;
+    border-top: 1px solid var(--theme-border);
+    font-size: 12.5px;
+    color: var(--theme-text-3);
+    gap: 6px;
+
+    svg {
+      flex: none;
+    }
+  }
+
+  .pcMail {
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--theme-primary);
+  }
+}
+
+.el-dialog.profilePhoneDialog {
+  border-radius: 12px;
+
+  .el-dialog__body {
+    padding: 8px 22px 4px;
+  }
 }
 
 // ===================== 未入驻引导弹窗 =====================
@@ -418,25 +576,25 @@ html.theme-dark {
   color-scheme: dark;
 
   // ---- Element Plus 变量 ----
-  --el-bg-color: #1a1f2b;
-  --el-bg-color-overlay: #1e2431;
-  --el-bg-color-page: #12161f;
-  --el-text-color-primary: #e6ebf5;
-  --el-text-color-regular: #c3ccdb;
-  --el-text-color-secondary: #94a1b6;
-  --el-text-color-placeholder: #6b7893;
+  --el-bg-color: #252d3d;
+  --el-bg-color-overlay: #2a3345;
+  --el-bg-color-page: #1c2230;
+  --el-text-color-primary: #eef2fa;
+  --el-text-color-regular: #c4cddd;
+  --el-text-color-secondary: #94a2b8;
+  --el-text-color-placeholder: #78859c;
   --el-text-color-disabled: #55617a;
-  --el-border-color: #2a3142;
-  --el-border-color-light: #262e3e;
-  --el-border-color-lighter: #232b3a;
-  --el-border-color-extra-light: #202736;
-  --el-fill-color-blank: #1a1f2b;
-  --el-fill-color: #1f2634;
-  --el-fill-color-light: #222939;
-  --el-fill-color-lighter: #1f2634;
-  --el-fill-color-dark: #262e3f;
+  --el-border-color: #3a455c;
+  --el-border-color-light: #343e53;
+  --el-border-color-lighter: #303a4d;
+  --el-border-color-extra-light: #2c3547;
+  --el-fill-color-blank: #252d3d;
+  --el-fill-color: #2b3446;
+  --el-fill-color-light: #2d3648;
+  --el-fill-color-lighter: #293244;
+  --el-fill-color-dark: #333d52;
   --el-mask-color: rgba(8, 11, 18, 0.72);
-  --el-disabled-bg-color: #242b3a;
+  --el-disabled-bg-color: #2c3547;
   --el-disabled-text-color: #6b7893;
   --el-disabled-border-color: #2a3142;
 
@@ -457,14 +615,14 @@ html.theme-dark {
   }
 
   .homeView-content {
-    background: #10141c !important;
+    background: #1c2230 !important;
   }
 
   .homeMenu,
   .homeDrawer .el-drawer,
   .el-drawer {
-    border-color: #232a39 !important;
-    background-color: #161b26 !important;
+    border-color: #3a455c !important;
+    background-color: #222a39 !important;
   }
 
   .homeMenu {
@@ -472,8 +630,8 @@ html.theme-dark {
     .homeFooter,
     .tobeDoneText,
     .homeFooter-expand {
-      border-color: #232a39 !important;
-      background-color: #161b26 !important;
+      border-color: #3a455c !important;
+      background-color: #222a39 !important;
     }
 
     .el-menu {

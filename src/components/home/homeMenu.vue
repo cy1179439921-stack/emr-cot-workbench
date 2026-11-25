@@ -135,6 +135,7 @@
       </footer>
     </div>
   </el-drawer>
+  <ProfileCenter v-model="profileDialogVisible" @edit-password="openChangePassword" />
   <el-dialog :title="titleName" v-model="changeDialogShow" v-if="changeDialogShow" class="changePasswordDialog" :width="pxToRem(536)" :before-close="handleClose" :append-to-body="true">
     <el-form ref="ruleFormRef" :label-width="pxToRem(83)" label-position="right" :model="formData" class="new_DialogForm" :rules="rules">
       <el-form-item label="账号：" prop="account">
@@ -185,6 +186,7 @@ import cdcLogoName from '@/assets/cdclogo2.png'
 import darkLogoName from '@/assets/darkLogoName.png'
 import userDefaultImg from '@/assets/defaultHeadImg.png'
 import { useModeStore, THEME_OPTIONS } from '@/store/modeStore'
+import ProfileCenter from '@/components/home/profileCenter.vue'
 import { useMedicalStore } from '@/store/medicalStore'
 import { setFavicon } from '@/utils/setIco'
 import { onboardingState, ONBOARDING_STATUS } from '@/utils/onboarding'
@@ -248,6 +250,17 @@ const showEye3 = ref(false)
 const isShow = ref(false)
 const drawer = ref(true)
 const changeDialogShow = ref(false)
+const profileDialogVisible = ref(false)
+
+// 个人中心里点「登录密码」→ 打开原有的修改密码弹窗
+const openChangePassword = () => {
+  profileDialogVisible.value = false
+  if (userStore.username) formData.value.userName = userStore.username
+  formData.value.oldPassword = ''
+  formData.value.newPassword = ''
+  formData.value.surePassword = ''
+  changeDialogShow.value = true
+}
 const formData = ref({
   account: localStorage.getItem('account'),
   userName: userStore.username,
@@ -407,7 +420,7 @@ watch(() => medicalStore.activeCurPatientDetail, (newValue) => {
 const isCollapse = ref(onboardingApproved.value)
 const userOperationList = ref([
   {
-    name: '修改密码',
+    name: '个人中心',
     value: 0
   },
   {
@@ -508,11 +521,7 @@ const selectLi = async (value) => {
 
     medicalStore.clearmedicalList()
   } else if (value === 0) {
-    formData.value.userName = userStore.username
-    formData.value.oldPassword = ''
-    formData.value.newPassword = ''
-    formData.value.surePassword = ''
-    changeDialogShow.value = true
+    profileDialogVisible.value = true
   }
 }
 const handleClose = async () => {

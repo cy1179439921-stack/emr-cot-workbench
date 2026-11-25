@@ -1,5 +1,5 @@
 <template>
-  <div class="onboardingApply warmTheme">
+  <div class="onboardingApply warmTheme" :class="{ 'is-scrolling': scrolling }" @scroll.passive="handlePageScroll">
     <!-- 页头 -->
     <div class="pageHero warmCard">
       <div class="heroText">
@@ -212,7 +212,7 @@ export default { name: 'OnboardingApply' }
 </script>
 
 <script setup>
-import { computed, reactive, ref, watch } from 'vue'
+import { computed, onBeforeUnmount, reactive, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import UploadField from '@/components/expertManagement/uploadField.vue'
@@ -234,6 +234,16 @@ const router = useRouter()
 const state = onboardingState
 const formRef = ref(null)
 const saving = ref(false)
+
+// 滚动中才显示滚动条滑块（停止 900ms 后隐藏）
+const scrolling = ref(false)
+let scrollTimer = null
+const handlePageScroll = () => {
+  scrolling.value = true
+  clearTimeout(scrollTimer)
+  scrollTimer = setTimeout(() => { scrolling.value = false }, 900)
+}
+onBeforeUnmount(() => clearTimeout(scrollTimer))
 
 const status = computed(() => state.status)
 const statusText = computed(() => ONBOARDING_STATUS_TEXT[state.status] || '未提交')
@@ -342,6 +352,9 @@ const goHome = () => {
 <style lang="scss" scoped>
 .onboardingApply {
   overflow-y: auto;
+
+  @include scrollBarStyle;
+
   box-sizing: border-box;
   width: 100%;
   max-width: 880px;

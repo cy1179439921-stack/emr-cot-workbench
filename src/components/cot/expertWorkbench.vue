@@ -77,6 +77,7 @@
                     <div class="taskStat"><b>{{ progressTotal }}</b><span>总病例</span></div>
                     <div class="taskStat"><b class="isDone">{{ progressDone }}</b><span>已完成</span></div>
                     <div class="taskStat"><b class="isRest">{{ Math.max(progressTotal - progressDone, 0) }}</b><span>剩余</span></div>
+                    <div class="taskStat taskStat--today"><b class="isToday">{{ progressToday }}</b><span>今日已完成</span></div>
                   </div>
                 </div>
                 <el-button
@@ -89,16 +90,6 @@
               </div>
             </section>
 
-            <section class="panel todayCard">
-              <h2 class="warmSectionTitle">今日已完成</h2>
-              <div class="todayBody">
-                <div class="todayNumWrap">
-                  <strong class="todayNum">{{ progressToday }}</strong>
-                  <span class="todayUnit">今日完成数</span>
-                </div>
-                <i class="iconfont icon-renwujindu todayIcon" />
-              </div>
-            </section>
           </div>
 
           <!-- 历史任务 -->
@@ -1051,8 +1042,29 @@ onMounted(() => {
 /* 当前任务 + 今日已完成 */
 .taskRow {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 210px;
+  grid-template-columns: minmax(0, 1fr);
   gap: 16px;
+}
+
+// 每个区域给不同底色 + 描边，靠框架区分模块
+.taskCard {
+  border: 1px solid var(--theme-primary-border);
+  background: var(--theme-primary-soft);
+}
+
+.historyPanel {
+  border: 1px solid var(--theme-border);
+  background: var(--theme-card);
+}
+
+.profileCard {
+  border: 1px solid var(--theme-border);
+  background: var(--theme-card);
+}
+
+.msgCard {
+  border: 1px solid var(--theme-border);
+  background: var(--theme-fill);
 }
 
 .taskHead {
@@ -1113,7 +1125,7 @@ onMounted(() => {
 .taskFill {
   height: 100%;
   border-radius: 4px;
-  background: linear-gradient(90deg, var(--theme-primary), #6aa1ff);
+  background: linear-gradient(90deg, var(--theme-primary), var(--theme-primary-light));
   transition: width 0.3s;
 }
 
@@ -1139,6 +1151,10 @@ onMounted(() => {
     &.isRest {
       color: var(--theme-warning);
     }
+
+    &.isToday {
+      color: var(--theme-success);
+    }
   }
 
   span {
@@ -1152,36 +1168,6 @@ onMounted(() => {
   height: 36px;
   padding: 0 20px;
   border-radius: 6px;
-}
-
-.todayBody {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 12px;
-}
-
-.todayNumWrap {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.todayNum {
-  line-height: 1;
-  font-weight: 700;
-  font-size: 34px;
-  color: var(--theme-primary);
-}
-
-.todayUnit {
-  font-size: 12px;
-  color: var(--theme-text-3);
-}
-
-.todayIcon {
-  font-size: 30px;
-  color: var(--theme-primary-border);
 }
 
 /* 历史任务 */

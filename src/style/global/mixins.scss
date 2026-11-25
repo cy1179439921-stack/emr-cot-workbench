@@ -1,12 +1,32 @@
 
-@mixin scrollBarStyle($scrollBarColor: #e8e8e8) {
+@mixin scrollBarStyle($scrollBarColor: var(--theme-text-3)) {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+
   &::-webkit-scrollbar {
     width: 6px;
     height: 6px;
   }
+
+  // 不显示轨道，只保留滑块
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
   &::-webkit-scrollbar-thumb {
     border-radius: 4px;
-    background-color: $scrollBarColor;
+    background-color: transparent;
+    transition: background-color 0.2s;
+  }
+
+  // 静止时不显示；鼠标移入或正在滚动（.is-scrolling）时才出现深色滑块
+  &:hover,
+  &.is-scrolling {
+    scrollbar-color: $scrollBarColor transparent;
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $scrollBarColor;
+    }
   }
 }
 

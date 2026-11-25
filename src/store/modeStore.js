@@ -6,8 +6,8 @@ import { defineStore } from 'pinia'
 // 可选项：头像弹层的风格切换器使用
 export const THEME_OPTIONS = [
   { label: '明亮', value: 'light', dot: '#3670f8', desc: '白底浅蓝' },
-  { label: '暖色', value: 'warm', dot: '#c9762f', desc: '温润琥珀' },
-  { label: '深色', value: 'dark', dot: '#1a1f2b', desc: '夜间护眼' }
+  { label: '深色', value: 'dark', dot: '#252d3d', desc: '深蓝灰底，长时间不刺眼' },
+  { label: '暖色', value: 'warm', dot: '#c2742c', desc: '米白底 + 琥珀主色' }
 ]
 
 const THEME_CLASSES = ['theme-light', 'theme-warm', 'theme-dark']
