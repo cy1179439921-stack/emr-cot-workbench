@@ -235,6 +235,8 @@ const toFirstRoute = () => {
 }
 // 入驻审核未通过时，只允许访问「首页」与「入驻审核」
 const UNVERIFIED_ALLOWED_ROUTE = ['expertWorkbench', 'onboardingAudit']
+// 专家演示账号（zhuanjia）：已入驻，但一级菜单只保留这 5 项
+const EXPERT_VISIBLE_MENU = ['expertWorkbench', 'onboardingAudit', 'medicalRecordProofreading', 'laborSign', 'laborSettlement']
 const redirectIfNotVerified = () => {
   if (onboardingState.status === ONBOARDING_STATUS.APPROVED) return
   const currentName = router.currentRoute.value.name
@@ -273,6 +275,10 @@ watch(
 // 加载时请求页面列表
 const init = async () => {
   if (!userStore.needCheckPermission) {
+    // 专家角色在菜单数据源头裁剪，主菜单与独立菜单组都会一起收敛
+    if (localStorage.getItem('cot-login-role') === 'expert') {
+      routerArr.value = routerArr.value.filter(item => EXPERT_VISIBLE_MENU.includes(item.name))
+    }
     showMenu.value = true
     if (router.currentRoute.value.name === 'home') {
       toFirstRoute() // 统一走优先首页/第一路由的跳转逻辑

@@ -144,6 +144,7 @@
               <span class="demoAccountName">{{ item.account }} / {{ item.password }}</span>
               <span class="demoAccountDesc">{{ item.desc }}</span>
             </div>
+            <div class="demoAccountsTip">演示环境：短信验证码固定为 123456</div>
           </div>
         </div>
       </div>
@@ -269,9 +270,11 @@ onMounted(() => {
 
 // ===== 演示账号 =====
 // admin：全模块可用（入驻状态直接置为已通过）
+// zhuanjia：专家演示账号，已入驻，但仅展示 5 个专家相关一级菜单
 // guest：每次登录都回到「未入驻」，必须先填入驻申请
 const DEMO_ACCOUNTS = [
   { account: 'admin', password: '123456', role: 'full', desc: '全部模块可用' },
+  { account: 'zhuanjia', password: '123456', role: 'expert', desc: '专家账号 · 仅 5 个模块' },
   { account: 'guest', password: '123456', role: 'newbie', desc: '每次登录都需入驻申请' }
 ]
 
@@ -282,22 +285,24 @@ const fillDemoAccount = (item) => {
 }
 
 // ===== Mock 登录：绕过后端直接预览 =====
-const doLogin = ({ account, full = false, displayName }) => {
+const doLogin = ({ account, role = 'newbie', displayName }) => {
   loadingFlag.value = true
-  if (full) {
-    approveApplication()
-  } else {
+  // full / expert 都视为已入驻，只有 newbie 每次回到未提交
+  if (role === 'newbie') {
     resetApplication()
+  } else {
+    approveApplication()
   }
-  localStorage.setItem('cot-login-role', full ? 'full' : 'newbie')
+  localStorage.setItem('cot-login-role', role)
   // 重置入驻引导标记，保证每次登录首页都会提醒一次
   sessionStorage.removeItem('cot-onboard-landed')
   sessionStorage.removeItem('cot-onboard-guide-shown')
   storeToken('mock-token-for-preview')
-  localStorage.setItem('user_id', full ? 'mock-user-id' : `mock-user-${account}`)
+  localStorage.setItem('user_id', role === 'full' ? 'mock-user-id' : `mock-user-${account}`)
   localStorage.setItem('account', account)
   localStorage.setItem('mockLogin', 'true')
-  userStore.setUsername(displayName || (full ? '演示账号 · 全模块' : `${account}（待入驻）`))
+  const defaultName = role === 'full' ? '演示账号 · 全模块' : role === 'expert' ? '张慧敏' : `${account}（待入驻）`
+  userStore.setUsername(displayName || defaultName)
   userStore.needCheckPermission = false
   // 沿用用户上次选择的外观风格
   modeStore.initTheme()
@@ -309,8 +314,10 @@ const submitForm = async (formEl) => {
   await formEl.validate((valid, fields) => {
     if (valid) {
       const account = String(loginForm.account || '').trim()
-      const isFullAccount = ['admin', 'full'].includes(account.toLowerCase())
-      doLogin({ account: account || 'admin', full: isFullAccount })
+      const lower = account.toLowerCase()
+      const matched = DEMO_ACCOUNTS.find(item => item.account.toLowerCase() === lower)
+      const role = matched?.role || (['admin', 'full'].includes(lower) ? 'full' : 'newbie')
+      doLogin({ account: account || 'admin', role })
     } else {
       console.log('error submit!', fields)
     }
@@ -333,7 +340,7 @@ const submitPhone = async () => {
       return
     }
     const phone = phoneForm.phone
-    doLogin({ account: phone, full: false, displayName: `${phone.slice(0, 3)}****${phone.slice(-4)}` })
+    doLogin({ account: phone, role: 'newbie', displayName: `${phone.slice(0, 3)}****${phone.slice(-4)}` })
   })
 }
 
@@ -732,6 +739,14 @@ const handleClose = () => {
 .loginDiv .demoAccountDesc {
   font-size: 14px;
   color: #8a94a6;
+}
+
+.loginDiv .demoAccountsTip {
+  margin-top: 10px;
+  padding-top: 9px;
+  border-top: 1px dashed rgba(54, 112, 248, 0.25);
+  font-size: 13px;
+  color: var(--theme-text-2);
 }
 
 .agreement {

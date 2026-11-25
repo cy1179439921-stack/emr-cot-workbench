@@ -7,8 +7,9 @@ const STORAGE_KEY = 'cot-onboarding-apply'
 
 // 申请状态枚举
 // 演示账号（登录页提示条可一键填入）：
-//   admin / 123456  全模块账号，登录时直接置为「已通过」
-//   guest / 123456  新入驻账号，每次登录都回到「未提交」并先进入驻申请
+//   admin / 123456     全模块账号，登录时直接置为「已通过」
+//   zhuanjia / 123456  专家账号，已通过入驻，但仅展示 5 个专家相关一级菜单
+//   guest / 123456     新入驻账号，每次登录都回到「未提交」并先进入驻申请
 export const ONBOARDING_STATUS = {
   NOT_APPLIED: 'NOT_APPLIED',
   PENDING: 'PENDING',

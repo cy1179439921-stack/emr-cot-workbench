@@ -7,8 +7,11 @@
          @mouseenter="openSubMenu"
          @mouseleave="closeSubMenu">
       <div class="menuTitle" :class="getMenuTitleClassNmae">
-        <img v-if="isCollapse" class="brandMark" alt="颐邦小源" :src="brandLogo" />
-        <img v-else class="brandLockup" alt="颐邦小源医学专家平台" :src="brandLockup" />
+        <div v-if="isCollapse" class="brandArt brandArtMini" title="颐邦小源医学专家平台">颐邦<br />小源</div>
+        <div v-else class="brandArt" title="颐邦小源医学专家平台">
+          <span class="brandArtMain">颐邦小源</span>
+          <span class="brandArtSub">医学专家平台</span>
+        </div>
       </div>
       <div v-if="!isCollapse" class="menuSectionLabel">工作区</div>
       <el-scrollbar height="100%">
@@ -181,8 +184,6 @@ import cdcLogoName from '@/assets/cdclogo2.png'
 import darkLogoName from '@/assets/darkLogoName.png'
 import userDefaultImg from '@/assets/defaultHeadImg.png'
 import { useModeStore, THEME_OPTIONS } from '@/store/modeStore'
-import brandLogo from '@/assets/brand/brand-logo.png'
-import brandLockup from '@/assets/brand/brand-lockup.png'
 import ProfileCenter from '@/components/home/profileCenter.vue'
 import { useMedicalStore } from '@/store/medicalStore'
 import { setFavicon } from '@/utils/setIco'
@@ -1154,18 +1155,54 @@ const closeSubMenu = () => {
 /* ===================== 新版侧边栏（品牌头 + 工作区分组） ===================== */
 .homeMenu {
   .menuTitle {
+    display: flex;
+    align-items: center;
     height: 68px;
     padding: 0 18px;
     border-bottom: 1px solid var(--theme-border);
 
-    .brandLockup {
-      width: 176px;
-      height: auto;
-    }
+    .brandArt {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+      line-height: 1.15;
+      white-space: nowrap;
+      user-select: none;
 
-    .brandMark {
-      width: 32px;
-      height: auto;
+      .brandArtMain {
+        font-family: 'STKaiti', 'KaiTi', 'Songti SC', 'PingFang SC', 'Microsoft YaHei', serif;
+        font-size: 21px;
+        font-weight: 700;
+        letter-spacing: 3px;
+        color: var(--theme-text);
+        background: linear-gradient(100deg, var(--theme-text) 0%, var(--theme-primary) 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .brandArtSub {
+        padding-left: 2px;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 5px;
+        color: var(--theme-text-2);
+      }
+
+      &.brandArtMini {
+        align-items: center;
+        font-family: 'STKaiti', 'KaiTi', 'Songti SC', 'PingFang SC', 'Microsoft YaHei', serif;
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 1.3;
+        letter-spacing: 2px;
+        color: var(--theme-text);
+        background: linear-gradient(100deg, var(--theme-text) 0%, var(--theme-primary) 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
     }
   }
 
