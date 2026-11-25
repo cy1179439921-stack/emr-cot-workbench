@@ -32,7 +32,7 @@ export const CONTRACT_DEMO_LIST = [
     rejectReason: '',
     contractFile: '颐邦小源专家劳务协议.pdf',
     remarkList: [
-      { id: 'N-1', time: '2026-11-21 10:20:00', content: '已电话确认签约意愿，等待专家在线签署。' }
+      { id: 'N-1', createTime: '2026-11-21 10:20:00', noteText: '已电话确认签约意愿，等待专家在线签署。' }
     ]
   },
   {
@@ -76,7 +76,7 @@ export const CONTRACT_DEMO_LIST = [
     rejectReason: '',
     contractFile: '颐邦小源专家劳务协议.pdf',
     remarkList: [
-      { id: 'N-2', time: '2026-11-17 09:00:00', content: '银行卡号已核对，与身份证姓名一致。' }
+      { id: 'N-2', createTime: '2026-11-17 09:00:00', noteText: '银行卡号已核对，与身份证姓名一致。' }
     ]
   },
   {

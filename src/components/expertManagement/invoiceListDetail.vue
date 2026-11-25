@@ -308,8 +308,8 @@ const handleSaveRemark = (params, done) => {
     ElMessage.warning('请填写备注内容')
     return
   }
-  // 最新的备注排在最上方，时间轴按时间倒序阅读
-  baseInfo.value.salaryNotes.unshift({
+  // 与劳务合同备注保持一致：按添加顺序追加到时间轴末尾
+  baseInfo.value.salaryNotes.push({
     id: `R-${Date.now()}`,
     createTime: nowText(),
     noteText: text

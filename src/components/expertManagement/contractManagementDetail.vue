@@ -209,8 +209,8 @@
                 </el-timeline-item>
               </el-timeline>
               <el-button class="lineBtn blueLine" :class="{editBtn:!remarkList?.length}" @click="openRemarkDialog" v-if="(!needCheckPermission || hadPermissionList.includes('备注'))">
-                <i class="iconfont icon-bianji1"></i>
-                编 辑
+                <i class="iconfont icon-tianjia-1"></i>
+                添加备注
               </el-button>
             </div>
 
@@ -221,7 +221,7 @@
 
     <!-- 编辑/添加劳务信息补充备注弹窗 -->
     <el-dialog
-      title="编辑劳务信息补充备注"
+      title="添加劳务信息补充备注"
       v-model="remarkDialogVisible"
       :width="pxToRem ? pxToRem(520) : '520px'"
       :before-close="closeRemarkDialog"
@@ -444,17 +444,32 @@ const closeRemarkDialog = () => {
   }
 }
 
+// 当前时间（备注时间轴展示用）
+const nowText = () => {
+  const d = new Date()
+  const pad = (n) => String(n).padStart(2, '0')
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`
+}
+
 const confirmSaveRemark = () => {
   remarkFormRef.value.validate((valid) => {
     if (valid) {
+      const text = String(remarkForm.content || '').trim()
       addNoteList({
         contractId: currentId.value,
-        text: remarkForm.content
-      }).then(res => {
+        text
+      }).then(async (res) => {
         if (res.code === 10000) {
+          // 有真实备注接口数据就以接口为准；演示环境没有返回时落到本地，保证刚加的备注立刻可见
+          const fromServer = await getNoteListFn()
+          if (!fromServer) {
+            remarkList.value = [
+              ...remarkList.value,
+              { id: `N-${Date.now()}`, createTime: nowText(), noteText: text }
+            ]
+          }
           ElMessage.success('已保存')
           closeRemarkDialog()
-          getNoteListFn()
         }
       })
     }
@@ -475,13 +490,14 @@ const handleDeleteRemark = (item, index) => {
     })
   })
 }
-// 查询备注
-const getNoteListFn = () => {
-  withTimeout(getNoteList({ id: currentId.value })).then(res => {
-    if (res && res.code === 10000 && res.data?.length) {
-      remarkList.value = res.data
-    }
-  })
+// 查询备注：有接口数据时覆盖本地列表，返回是否已用接口数据
+const getNoteListFn = async () => {
+  const res = await withTimeout(getNoteList({ id: currentId.value }))
+  if (res && res.code === 10000 && res.data?.length) {
+    remarkList.value = res.data
+    return true
+  }
+  return false
 }
 // 演示环境没有后端：接口超时 / 报错 / 返回空数据时回落到演示合同，避免详情页空白
 const applyDemoDetail = () => {
