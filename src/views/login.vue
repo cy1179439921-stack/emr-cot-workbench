@@ -12,66 +12,138 @@
           <!--登录 start-->
           <div class="medical-login_form">
             <div class="loginNav">
-              <span>账号密码登录</span>
+              <span class="loginNavTitle">{{ isPhoneMode ? '登录/注册' : '账号密码登录' }}</span>
+              <p class="loginNavSub">{{ isPhoneMode ? '手机号验证码登录，未注册账号将自动创建' : '使用账号与密码登录工作台' }}</p>
             </div>
-            <el-form
-              ref="ruleFormRef"
-              :model="loginForm"
-              :rules="rules"
-              :hide-required-asterisk="true"
-              class="login-form"
-              @submit.prevent
-            >
-              <el-form-item prop="account" class="accountInput" label="账号ID">
-                <el-input
-                  v-focus
-                  v-model.trim="loginForm.account"
-                  autocomplete="off"
-                  placeholder="请填写账号ID"
-                ></el-input>
-              </el-form-item>
-              <el-form-item prop="password" label="账号密码">
-                <el-input
-                  v-model="loginForm.password"
-                  :type="showEye ? 'password' : 'text'"
-                  placeholder="请填写账号密码"
-                  autocomplete="off"
-                  @keyup.enter="submitForm(ruleFormRef)"
-                ></el-input>
-                <i
-                  :class="
-                    showEye
-                      ? 'iconfont icon-yincang'
-                      : 'iconfont icon-xianshi'
-                  "
-                  @click="showEye = !showEye"
-                ></i>
-              </el-form-item>
-            </el-form>
-            <div class="agreement">
-              登录视为您已阅读并同意
-              <span @click="handleAgreement('agreement')">用户协议</span>
-              和
-              <span @click="handleAgreement('privacy')">隐私政策</span>
+
+            <div class="loginTabs">
+              <span
+                :class="{ 'is-active': isPhoneMode }"
+                @click="switchLoginMode('phone')">
+                手机验证码登录
+              </span>
+              <span
+                :class="{ 'is-active': !isPhoneMode }"
+                @click="switchLoginMode('password')">
+                账号密码登录
+              </span>
             </div>
-            <div class="btn-login"
-                 :class="loginForm.account !== '' && loginForm.password !== '' ? 'active' : ''"
-                 @click="submitForm(ruleFormRef)">
-              登 录
-            </div>
-            <!-- 演示账号：点击可快速填入 -->
-            <div class="demoAccounts">
-              <div class="demoAccountsTitle">演示账号（点击填入）</div>
-              <div
-                v-for="item in DEMO_ACCOUNTS"
-                :key="item.account"
-                class="demoAccountItem"
-                @click="fillDemoAccount(item)"
+
+            <!-- 手机验证码登录 -->
+            <template v-if="isPhoneMode">
+              <el-form
+                ref="phoneFormRef"
+                :model="phoneForm"
+                :rules="phoneRules"
+                :hide-required-asterisk="true"
+                class="login-form"
+                @submit.prevent
               >
-                <span class="demoAccountName">{{ item.account }} / {{ item.password }}</span>
-                <span class="demoAccountDesc">{{ item.desc }}</span>
+                <el-form-item prop="phone" class="accountInput">
+                  <el-input
+                    v-model.trim="phoneForm.phone"
+                    maxlength="11"
+                    autocomplete="off"
+                    placeholder="请输入手机号"
+                  ></el-input>
+                </el-form-item>
+                <el-form-item prop="code">
+                  <div class="codeRow">
+                    <el-input
+                      v-model.trim="phoneForm.code"
+                      maxlength="6"
+                      autocomplete="off"
+                      placeholder="请输入短信验证码"
+                      @keyup.enter="submitPhone"
+                    ></el-input>
+                    <el-button class="codeBtn" :disabled="counting" @click="sendCode">
+                      {{ counting ? countdown + 's 后重发' : '获取验证码' }}
+                    </el-button>
+                  </div>
+                </el-form-item>
+              </el-form>
+
+              <div class="agreeCheck">
+                <el-checkbox v-model="agreed" />
+                <span class="agreeText">我已阅读并同意</span>
+                <span class="agreeLink" @click="handleAgreement('agreement')">《用户协议》</span>
+                <span class="agreeText">和</span>
+                <span class="agreeLink" @click="handleAgreement('privacy')">《隐私政策》</span>
               </div>
-            </div>
+
+              <div
+                class="btn-login"
+                :class="{ active: phoneReady }"
+                @click="submitPhone">
+                登录/注册
+              </div>
+              <p class="phoneDemoTip">演示环境：短信验证码固定为 123456</p>
+            </template>
+
+            <!-- 账号密码登录 -->
+            <template v-else>
+              <el-form
+                ref="ruleFormRef"
+                :model="loginForm"
+                :rules="rules"
+                :hide-required-asterisk="true"
+                class="login-form"
+                @submit.prevent
+              >
+                <el-form-item prop="account" class="accountInput" label="账号ID">
+                  <el-input
+                    v-focus
+                    v-model.trim="loginForm.account"
+                    autocomplete="off"
+                    placeholder="请填写账号ID"
+                  ></el-input>
+                </el-form-item>
+                <el-form-item prop="password" label="账号密码">
+                  <el-input
+                    v-model="loginForm.password"
+                    :type="showEye ? 'password' : 'text'"
+                    placeholder="请填写账号密码"
+                    autocomplete="off"
+                    @keyup.enter="submitForm(ruleFormRef)"
+                  ></el-input>
+                  <i
+                    :class="
+                      showEye
+                        ? 'iconfont icon-yincang'
+                        : 'iconfont icon-xianshi'
+                    "
+                    @click="showEye = !showEye"
+                  ></i>
+                </el-form-item>
+              </el-form>
+              <div class="agreement">
+                登录视为您已阅读并同意
+                <span @click="handleAgreement('agreement')">用户协议</span>
+                和
+                <span @click="handleAgreement('privacy')">隐私政策</span>
+              </div>
+              <div class="btn-login"
+                   :class="loginForm.account !== '' && loginForm.password !== '' ? 'active' : ''"
+                   @click="submitForm(ruleFormRef)">
+                登 录
+              </div>
+              <!-- 演示账号：点击可快速填入 -->
+              <div class="demoAccounts">
+                <div class="demoAccountsTitle">演示账号（点击填入）</div>
+                <div
+                  v-for="item in DEMO_ACCOUNTS"
+                  :key="item.account"
+                  class="demoAccountItem"
+                  @click="fillDemoAccount(item)"
+                >
+                  <span class="demoAccountName">{{ item.account }} / {{ item.password }}</span>
+                  <span class="demoAccountDesc">{{ item.desc }}</span>
+                </div>
+              </div>
+            </template>
+
+            <div class="orLine"><span>或</span></div>
+            <div class="authBtn" @click="openAuth">颐邦小源统一认证登录</div>
           </div>
         </div>
       </div>
@@ -87,8 +159,9 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted } from 'vue'
+import { computed, onBeforeUnmount, onMounted, reactive, ref } from 'vue'
 import router from '@/router'
+import { ElMessage } from 'element-plus'
 import { emitter } from '@/utils/bus'
 import { storeToken } from '@/utils/crypto'
 import { useUserStore } from '@/store/user'
@@ -112,6 +185,55 @@ const loginForm = reactive({
   account: '',
   password: ''
 })
+
+// ===== 登录方式：手机验证码 / 账号密码 =====
+const loginMode = ref('phone')
+const isPhoneMode = computed(() => loginMode.value === 'phone')
+const switchLoginMode = (mode) => { loginMode.value = mode }
+
+const phoneFormRef = ref()
+const phoneForm = reactive({ phone: '', code: '' })
+const phoneRules = {
+  phone: [
+    { required: true, message: '请填写手机号', trigger: 'blur' },
+    { pattern: /^1\d{10}$/, message: '手机号应为 11 位数字', trigger: 'blur' }
+  ],
+  code: [{ required: true, message: '请填写短信验证码', trigger: 'blur' }]
+}
+// 演示环境：短信验证码固定为 123456
+const DEMO_SMS_CODE = '123456'
+const agreed = ref(false)
+const counting = ref(false)
+const countdown = ref(60)
+let countdownTimer = null
+
+const phoneReady = computed(() => /^1\d{10}$/.test(phoneForm.phone) && phoneForm.code.length >= 4)
+
+const sendCode = () => {
+  if (!/^1\d{10}$/.test(phoneForm.phone)) {
+    ElMessage.warning('请先填写 11 位手机号')
+    return
+  }
+  if (counting.value) return
+  counting.value = true
+  countdown.value = 60
+  ElMessage.success('验证码已发送（演示环境固定为 123456）')
+  countdownTimer = setInterval(() => {
+    countdown.value -= 1
+    if (countdown.value <= 0) {
+      clearInterval(countdownTimer)
+      counting.value = false
+    }
+  }, 1000)
+}
+
+onBeforeUnmount(() => clearInterval(countdownTimer))
+
+// 统一认证登录：打开原有认证弹窗
+const openAuth = () => {
+  authenticationStatus.value = 1
+  showDialog.value = true
+}
 const showEye = ref(true)
 const ruleFormRef = ref()
 const rules = reactive({
@@ -164,36 +286,59 @@ const fillDemoAccount = (item) => {
   loginForm.password = item.password
 }
 
+// ===== Mock 登录：绕过后端直接预览 =====
+const doLogin = ({ account, full = false, displayName }) => {
+  loadingFlag.value = true
+  if (full) {
+    approveApplication()
+  } else {
+    resetApplication()
+  }
+  localStorage.setItem('cot-login-role', full ? 'full' : 'newbie')
+  // 重置入驻引导标记，保证每次登录首页都会提醒一次
+  sessionStorage.removeItem('cot-onboard-landed')
+  sessionStorage.removeItem('cot-onboard-guide-shown')
+  storeToken('mock-token-for-preview')
+  localStorage.setItem('user_id', full ? 'mock-user-id' : `mock-user-${account}`)
+  localStorage.setItem('account', account)
+  localStorage.setItem('mockLogin', 'true')
+  userStore.setUsername(displayName || (full ? '演示账号 · 全模块' : `${account}（待入驻）`))
+  userStore.needCheckPermission = false
+  // 沿用用户上次选择的外观风格
+  modeStore.initTheme()
+  router.push({ name: 'home' })
+}
+
 const submitForm = async (formEl) => {
   if (!formEl) return
   await formEl.validate((valid, fields) => {
     if (valid) {
-      loadingFlag.value = true
-      // ===== Mock 登录：绕过后端直接预览 =====
       const account = String(loginForm.account || '').trim()
       const isFullAccount = ['admin', 'full'].includes(account.toLowerCase())
-      // 全模块账号：入驻审核直接通过；其他账号：每次登录都重置为待入驻
-      if (isFullAccount) {
-        approveApplication()
-      } else {
-        resetApplication()
-      }
-      localStorage.setItem('cot-login-role', isFullAccount ? 'full' : 'newbie')
-      // 重置入驻引导标记，保证每次登录首页都会提醒一次
-      sessionStorage.removeItem('cot-onboard-landed')
-      sessionStorage.removeItem('cot-onboard-guide-shown')
-      storeToken('mock-token-for-preview')
-      localStorage.setItem('user_id', isFullAccount ? 'mock-user-id' : `mock-user-${account}`)
-      localStorage.setItem('account', account || 'admin')
-      localStorage.setItem('mockLogin', 'true')
-      userStore.setUsername(isFullAccount ? '演示账号 · 全模块' : `${account || '新专家'}（待入驻）`)
-      userStore.needCheckPermission = false
-      // 沿用用户上次选择的外观风格
-      modeStore.initTheme()
-      router.push({ name: 'home' })
+      doLogin({ account: account || 'admin', full: isFullAccount })
     } else {
       console.log('error submit!', fields)
     }
+  })
+}
+
+// 手机验证码登录：未注册手机号自动创建账号（走未入驻流程）
+const submitPhone = async () => {
+  if (!agreed.value) {
+    ElMessage.warning('请先勾选《用户协议》和《隐私政策》')
+    return
+  }
+  await phoneFormRef.value.validate((valid, fields) => {
+    if (!valid) {
+      console.log('error submit!', fields)
+      return
+    }
+    if (phoneForm.code !== DEMO_SMS_CODE && phoneForm.code.length !== 6) {
+      ElMessage.error('验证码不正确或已过期，请重新获取')
+      return
+    }
+    const phone = phoneForm.phone
+    doLogin({ account: phone, full: false, displayName: `${phone.slice(0, 3)}****${phone.slice(-4)}` })
   })
 }
 
@@ -239,29 +384,154 @@ const handleClose = () => {
       align-items: end;
       box-sizing: border-box;
       width: 100%;
-      height: 562px;
+      min-height: 562px;
       margin-right: 141px;
       margin-bottom: 2px;
       .medical-login_box {
         box-sizing: border-box;
         width: 509px;
-        height: 100%;
-        padding: 53px 44px 0 45px;
+        min-height: 100%;
+        padding: 34px 44px 28px 45px;
         border: 2px solid #fff;
         border-radius: 10px;
         background: rgba(255, 255, 255, 0.5);
         .medical-login_form {
           .loginNav {
+            margin: 0 auto 18px;
+            text-align: center;
+
+            .loginNavTitle {
+              cursor: default;
+              font-weight: 700;
+              font-size: 26px;
+              color: #262626;
+            }
+
+            .loginNavSub {
+              margin: 8px 0 0;
+              line-height: 20px;
+              font-size: 13px;
+              color: #8a94a6;
+            }
+          }
+
+          /* 登录方式切换 */
+          .loginTabs {
             display: flex;
-            justify-content: center;
-            margin: 0 auto;
-            margin-bottom: 44px;
+            margin-bottom: 20px;
+            padding: 4px;
+            border-radius: 8px;
+            background: #eef1f6;
 
             span {
+              flex: 1;
+              height: 38px;
+              border-radius: 6px;
               cursor: pointer;
-              font-weight: 600;
-              font-size: 30px;
-              color: #262626;
+              line-height: 38px;
+              text-align: center;
+              font-size: 14px;
+              color: #5a6678;
+              transition: all 0.2s;
+
+              &.is-active {
+                background: #fff;
+                box-shadow: 0 2px 6px rgba(31, 58, 105, 0.12);
+                font-weight: 600;
+                color: var(--theme-primary);
+              }
+            }
+          }
+
+          /* 短信验证码一行 */
+          .codeRow {
+            display: flex;
+            width: 100%;
+            gap: 10px;
+
+            :deep(.el-input) {
+              flex: 1;
+            }
+
+            .codeBtn {
+              flex: none;
+              width: 118px;
+              height: 40px;
+              border-color: var(--theme-primary-border);
+              font-size: 13px;
+              color: var(--theme-primary);
+
+              &.is-disabled {
+                border-color: #e2e8f2;
+                color: #a3abbd;
+              }
+            }
+          }
+
+          /* 协议勾选 */
+          .agreeCheck {
+            display: flex;
+            align-items: center;
+            margin-top: 12px;
+            font-size: 12.5px;
+            color: #8a94a6;
+
+            :deep(.el-checkbox) {
+              height: auto;
+              margin-right: 2px;
+            }
+
+            .agreeText {
+              line-height: 20px;
+            }
+
+            .agreeLink {
+              cursor: pointer;
+              color: var(--theme-primary);
+            }
+          }
+
+          .phoneDemoTip {
+            margin: 8px 0 0;
+            text-align: center;
+            font-size: 12px;
+            color: #a3abbd;
+          }
+
+          /* 或 */
+          .orLine {
+            display: flex;
+            align-items: center;
+            margin: 16px 0;
+            font-size: 12px;
+            color: #a8b0be;
+            gap: 12px;
+
+            &::before,
+            &::after {
+              flex: 1;
+              height: 1px;
+              background: #e7ecf5;
+              content: '';
+            }
+          }
+
+          /* 统一认证登录 */
+          .authBtn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 44px;
+            border: 1px solid var(--theme-primary-border);
+            border-radius: 4px;
+            background: #fff;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--theme-primary);
+            transition: all 0.2s;
+
+            &:hover {
+              background: var(--theme-primary-soft);
             }
           }
 
@@ -430,7 +700,7 @@ const handleClose = () => {
     padding: 10px 15px;
     border: 1px solid #e9ecef;
     border-radius: 4px;
-    background-color: var(--theme-bg)#f8f9fa;
+    background-color: var(--theme-bg) #f8f9fa;
 
     pre {
       margin: 0;

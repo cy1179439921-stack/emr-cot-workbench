@@ -63,6 +63,12 @@
     <template v-else>
       <div class="wbLayout">
         <div class="wbMain">
+          <!-- 问候语 -->
+          <div class="wbGreeting">
+            <h2 class="wbGreetingTitle">{{ greeting }}，{{ displayName }}</h2>
+            <p class="wbGreetingTip">{{ greetingTip }}</p>
+          </div>
+
           <!-- 培训横幅 -->
           <section class="trainBanner">
             <div class="bannerText">
@@ -257,6 +263,7 @@ import { DEMO_USER } from '@/mock/demoUser'
 import textImg from '@/assets/textImg.png'
 import { WORKBENCH_PROGRESS, WORKBENCH_HISTORY, WORKBENCH_IN_PROGRESS } from '@/mock/demoModules'
 import { onboardingState, ONBOARDING_STATUS, ONBOARDING_STATUS_TEXT } from '@/utils/onboarding'
+import { getGreeting, getGreetingTip } from '@/utils/greeting'
 
 const router = useRouter()
 const userStore = useUserStore()
@@ -264,15 +271,9 @@ const userStore = useUserStore()
 // 入驻审核状态
 const onboardApproved = computed(() => onboardingState.status === ONBOARDING_STATUS.APPROVED)
 const onboardingStatus = computed(() => onboardingState.status)
-// 问候语按当前时间切换（未入驻引导页顶部使用）
-const greeting = computed(() => {
-  const hour = new Date().getHours()
-  if (hour < 6) return '夜深了'
-  if (hour < 11) return '早上好'
-  if (hour < 14) return '中午好'
-  if (hour < 18) return '下午好'
-  return '晚上好'
-})
+// 问候语按当前时段切换（首页横幅上方 / 未入驻引导页顶部共用）
+const greeting = computed(() => getGreeting())
+const greetingTip = computed(() => getGreetingTip())
 
 const displayName = computed(() => {
   const name = userStore.username || ''
@@ -1052,6 +1053,23 @@ onMounted(() => {
 }
 
 /* ===================== 工作台：新版三栏版式 ===================== */
+.wbGreeting {
+  padding: 2px 4px 0;
+}
+
+.wbGreetingTitle {
+  margin: 0;
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--theme-text);
+}
+
+.wbGreetingTip {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: var(--theme-text-3);
+}
+
 .wbLayout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 300px;

@@ -1,6 +1,12 @@
 <template>
   <div class="onboardingApply warmTheme" :class="{ 'is-scrolling': scrolling }" @scroll.passive="handlePageScroll">
     <!-- 页头 -->
+    <!-- 问候语 -->
+    <div class="applyGreeting">
+      <h2 class="applyGreetingTitle">{{ greeting }}，{{ applicantName }}</h2>
+      <p class="applyGreetingTip">{{ greetingTip }}</p>
+    </div>
+
     <div class="pageHero warmCard">
       <div class="heroText">
         <h1 class="heroTitle">专家入驻申请</h1>
@@ -214,6 +220,9 @@ export default { name: 'OnboardingApply' }
 <script setup>
 import { computed, onBeforeUnmount, reactive, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
+import { useUserStore } from '@/store/user'
+import { getGreeting, getGreetingTip } from '@/utils/greeting'
+import { DEMO_USER } from '@/mock/demoUser'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import UploadField from '@/components/expertManagement/uploadField.vue'
 import {
@@ -231,7 +240,18 @@ import {
 } from '@/utils/onboarding'
 
 const router = useRouter()
+const userStore = useUserStore()
 const state = onboardingState
+
+// 问候语：22-6 夜深了 / 6-10 早上好 / 10-14 中午好 / 14-17 下午好 / 17-22 晚上好
+const greeting = computed(() => getGreeting())
+const greetingTip = computed(() => getGreetingTip())
+const applicantName = computed(() => {
+  if (form?.name) return form.name
+  const name = userStore.username || ''
+  // 演示登录名是「演示账号 · 全模块」，展示时回落到演示专家姓名
+  return name && !name.startsWith('演示账号') ? name : DEMO_USER.userName
+})
 const formRef = ref(null)
 const saving = ref(false)
 
@@ -361,6 +381,25 @@ const goHome = () => {
   height: 100%;
   margin: 0 auto;
   padding: 20px 24px 0;
+}
+
+/* ===================== 问候语 ===================== */
+.applyGreeting {
+  margin-bottom: 14px;
+  padding: 0 2px;
+}
+
+.applyGreetingTitle {
+  margin: 0;
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--theme-text);
+}
+
+.applyGreetingTip {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: var(--theme-text-3);
 }
 
 /* ===================== 页头 ===================== */
