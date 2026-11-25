@@ -142,7 +142,7 @@
             <div class="gridRow margin-top-24">
               <div class="gridCol fullWidth">
                 <remarkSection
-                  :isEdit="false"
+                  :isEdit="true"
                   :remarkList="baseInfo.salaryNotes"
                   title="其他核算备注"
                   @save="handleSaveRemark"
@@ -294,18 +294,38 @@ const scrollTo = (href) => {
   })
 }
 
-// 备注交互逻辑
+// 备注交互逻辑：统一写进 salaryNotes（其他核算备注的时间轴数据）
+const nowText = () => {
+  const d = new Date()
+  const pad = (n) => String(n).padStart(2, '0')
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`
+}
+
 const handleSaveRemark = (params, done) => {
-  baseInfo.value.remarkList.push({
+  if (!Array.isArray(baseInfo.value.salaryNotes)) baseInfo.value.salaryNotes = []
+  const text = String(params || '').trim()
+  if (!text) {
+    ElMessage.warning('请填写备注内容')
+    return
+  }
+  // 最新的备注排在最上方，时间轴按时间倒序阅读
+  baseInfo.value.salaryNotes.unshift({
     id: `R-${Date.now()}`,
-    createTime: '2026-08-12 16:00:00',
-    noteText: params
+    createTime: nowText(),
+    noteText: text
   })
   done()
 }
 
-const handleDeleteRemark = (item, index) => {
-  baseInfo.value.remarkList.splice(index, 1)
+const handleDeleteRemark = ({ item, index } = {}) => {
+  const list = baseInfo.value.salaryNotes
+  if (!Array.isArray(list)) return
+  if (typeof index === 'number' && index > -1) {
+    list.splice(index, 1)
+  } else if (item?.id) {
+    const i = list.findIndex((row) => row.id === item.id)
+    if (i > -1) list.splice(i, 1)
+  }
   ElMessage.success('已删除')
 }
 const downloading = ref(false)
