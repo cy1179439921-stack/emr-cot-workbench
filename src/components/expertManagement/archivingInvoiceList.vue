@@ -101,6 +101,9 @@
     </div>
   </div>
 
+  <!-- 结算单导出模板（离屏渲染） -->
+  <SettlementStatement ref="statementRef" />
+
 </template>
 
 <script>
@@ -112,8 +115,9 @@ export default {
 <script setup>
 import { ref, onMounted } from 'vue'
 import { echartsToPx } from '@/utils/utils.js'
+import SettlementStatement from '@/components/expertManagement/settlementStatement.vue'
 import { getAngencyAndDepartmentTreeListByRole } from '@/api/api_home'
-import { getInvoiceList, invoiceDownload } from '@/api/api_expertManagement.js'
+import { getInvoiceList } from '@/api/api_expertManagement.js'
 import { INVOICE_ARCHIVED_DEMO_LIST } from '@/mock/demoModules'
 import { withTimeout } from '@/utils/requestFallback'
 import { ElMessage } from 'element-plus'
@@ -208,35 +212,18 @@ const viewDetail = (row) => {
   })
 }
 const downloading = ref(false)
+const statementRef = ref(null)
 // 下载结算单（带内存释放防御）
 const handleDownload = async (row) => {
   if (downloading.value) return
   downloading.value = true
-  let url = ''
   try {
-    const res = await invoiceDownload({ id: row.id })
-    const blobData = res.data || res
-
-    const blob = new Blob([blobData], { type: 'application/pdf' })
-    url = window.URL.createObjectURL(blob)
-
-    const fileName = `结算单_${row.settlementNo}.pdf`
-
-    const link = document.createElement('a')
-    link.href = url
-    link.setAttribute('download', fileName)
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-
+    await statementRef.value?.download(row, `结算单_${row.settlementNo || row.id || '未命名'}`)
     ElMessage.success('文件已开始下载')
   } catch (error) {
     console.error('下载失败', error)
-    ElMessage.error('文件没能文件已开始下载，请稍后重试')
+    ElMessage.error('结算单生成失败，请稍后重试')
   } finally {
-    if (url) {
-      window.URL.revokeObjectURL(url) // 确保无论成败均回收内存
-    }
     downloading.value = false
   }
 }

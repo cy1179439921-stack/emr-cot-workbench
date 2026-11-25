@@ -44,154 +44,180 @@
 
     <!-- ============ 已通过审核：正常首页 ============ -->
     <template v-else>
-      <!-- 问候 + 概览 -->
-      <section class="helloPanel warmCard">
-        <div class="helloLeft">
-          <p class="helloGreeting">{{ greeting }}，{{ displayName }}</p>
-          <p class="helloSub">{{ helloSub }}</p>
-          <div class="helloActions">
-            <el-button type="primary" class="primaryBtn" :disabled="progressTotal == 0 || (progressDone === progressTotal)" @click="goAnnotation">
-              继续标注
-            </el-button>
-            <el-button class="ghostBtn" @click="openTrainingPdf">查看标注手册</el-button>
-          </div>
-        </div>
-        <div class="helloStats">
-          <div class="statBlock">
-            <span class="statNum">{{ progressToday }}</span>
-            <span class="statName">今日已完成</span>
-          </div>
-          <div class="statDivider" />
-          <div class="statBlock">
-            <span class="statNum">{{ progressDone }}<em>/{{ progressTotal }}</em></span>
-            <span class="statName">当前任务进度</span>
-          </div>
-          <div class="statDivider" />
-          <div class="statBlock">
-            <span class="statNum">{{ recordList.length }}</span>
-            <span class="statName">待处理病历</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- 培训横幅 -->
-      <section class="trainingBar">
-        <div class="trainingText">
-          <i class="iconfont icon-xianshangxuexi"></i>
-          <span class="trainingTitle">标注培训必看</span>
-          <span class="trainingSub">快速掌握标注规范、操作流程与质量要求</span>
-        </div>
-        <el-button class="trainingBtn" @click="openTrainingPdf">点击查看</el-button>
-      </section>
-
-      <!-- 工作进度 -->
-      <section class="panel warmCard">
-        <div class="progressHeader">
-          <h2 class="warmSectionTitle">工作进度</h2>
-          <span class="progressTask">任务 ID：{{ progressTaskId || '-' }}</span>
-        </div>
-        <div class="progressBody">
-          <div class="progressLeft">
-            <div class="progressRow">
-              <span class="progressLabel">当前专家标注任务的完成进度</span>
-              <strong class="progressValue">{{ progressDone }}<span>/{{ progressTotal }}</span></strong>
+      <div class="wbLayout">
+        <div class="wbMain">
+          <!-- 培训横幅 -->
+          <section class="trainBanner">
+            <div class="bannerText">
+              <span class="bannerTag"><i class="iconfont icon-xianshangxuexi"></i>标注必看</span>
+              <h1 class="bannerTitle">标注培训与操作规范</h1>
+              <p class="bannerSub">快速掌握标注要求、操作流程与质量标准</p>
+              <el-button type="primary" class="bannerBtn" @click="openTrainingPdf">立即查看</el-button>
             </div>
-            <div class="progressTrack">
-              <div class="progressBar" :style="{ width: progressPercent + '%' }" />
-            </div>
-            <p class="progressHint">{{ progressHint }}</p>
-          </div>
-          <div class="progressRight">
-            <img :src="textImg" alt="" class="progressImg" />
-          </div>
-        </div>
-      </section>
+            <img class="bannerImg" :src="textImg" alt="" />
+          </section>
 
-      <!-- 我的任务病历 -->
-      <section class="panel warmCard">
-        <div class="panelHead">
-          <h2 class="warmSectionTitle">我的任务病历</h2>
-          <span class="panelTip">共 {{ recordList.length }} 份，其中标注中 {{ proofingCount }} 份</span>
-        </div>
-        <CommonTable class="singleTable" :data="recordList">
-          <el-table-column prop="id" label="文件 ID" min-width="200" />
-          <el-table-column prop="documentId" label="文档编号" min-width="170" />
-          <el-table-column prop="departmentName" label="科室" min-width="110" />
-          <el-table-column label="文件状态" min-width="110">
-            <template #default="{ row }">
-              <span class="statusPill" :class="'is-' + row.proofreadStatus">
-                {{ FILE_STATUS_LABEL[row.proofreadStatus] || '-' }}
-              </span>
-            </template>
-          </el-table-column>
-          <el-table-column prop="annotateCount" label="标注次数" min-width="100">
-            <template #default="{ row }">
-              <span class="countText">{{ row.annotateCount || 0 }} / 4</span>
-            </template>
-          </el-table-column>
-          <el-table-column prop="updateTime" label="更新时间" min-width="170" />
-          <el-table-column label="操作" width="120" fixed="right">
-            <template #default="{ row }">
-              <el-button
-                v-if="row.proofreadStatus === 1 || row.proofreadStatus === 2"
-                type="primary"
-                link
-                @click="goRecord(row, true)">
-                继续标注
-              </el-button>
-              <el-button v-else type="primary" link @click="goRecord(row, false)">查看</el-button>
-            </template>
-          </el-table-column>
-        </CommonTable>
-      </section>
+          <!-- 当前任务 + 今日已完成 -->
+          <div class="taskRow">
+            <section class="panel taskCard">
+              <header class="taskHead">
+                <h2 class="warmSectionTitle">当前任务</h2>
+                <span class="taskId">任务ID：{{ progressTaskId || '-' }}</span>
+              </header>
+              <div class="taskBody">
+                <div class="taskProgress">
+                  <div class="taskProgressTop">
+                    <span class="taskProgressLabel">当前专家标注任务的完成进度</span>
+                    <strong class="taskProgressNum">{{ progressDone }}<em>/{{ progressTotal }}</em></strong>
+                  </div>
+                  <div class="taskTrack">
+                    <div class="taskFill" :style="{ width: progressPercent + '%' }" />
+                  </div>
+                  <div class="taskStats">
+                    <div class="taskStat"><b>{{ progressTotal }}</b><span>总病例</span></div>
+                    <div class="taskStat"><b class="isDone">{{ progressDone }}</b><span>已完成</span></div>
+                    <div class="taskStat"><b class="isRest">{{ Math.max(progressTotal - progressDone, 0) }}</b><span>剩余</span></div>
+                  </div>
+                </div>
+                <el-button
+                  type="primary"
+                  class="taskBtn"
+                  :disabled="progressTotal === 0 || progressDone === progressTotal"
+                  @click="goAnnotation">
+                  继续标注
+                </el-button>
+              </div>
+            </section>
 
-      <!-- 历史任务 -->
-      <section v-loading="loading" class="panel warmCard">
-        <div class="panelHead">
-          <h2 class="warmSectionTitle">历史任务</h2>
-        </div>
-        <EmptyState
-          v-if="!isContractSigned && historyList.length === 0"
-          class="empty-state--fullscreen"
-          :type="2"
-          desc="完成劳务签署后就可以开始标注了"
-          @action="handleAction"
-        />
-        <template v-else-if="historyList.length > 0">
-          <CommonTable class="singleTable" :data="historyList">
-            <el-table-column prop="allocateId" label="任务 ID" min-width="200" />
-            <el-table-column prop="totalCount" label="总病历数" min-width="100" />
-            <el-table-column prop="completedCount" label="完成病历总数" min-width="110" />
-            <el-table-column label="结算状态" min-width="110">
-              <template #default="{ row }">
-                <span class="status-dot" :style="{ backgroundColor: STATUS_DOT_COLOR[row.settlementStatus] }" />
-                <span class="status-text">{{ SETTLE_STATUSALL[row.settlementStatus] }}</span>
-              </template>
-            </el-table-column>
-            <el-table-column label="结算时间" min-width="120">
-              <template #default="{ row }">
-                <span>{{ row.transferTime || '-' }}</span>
-              </template>
-            </el-table-column>
-            <el-table-column label="操作" min-width="90" fixed="right">
-              <template #default="{ row }">
-                <el-button link type="primary" @click="onAction(row)" v-if="getActionText(row.settlementStatus)">{{ getActionText(row.settlementStatus) }}</el-button>
-              </template>
-            </el-table-column>
-          </CommonTable>
-          <div class="tabel_pagination">
-            <el-pagination
-              v-model:current-page="currentPage"
-              :page-size="limit"
-              :total="total"
-              layout="slot, total, prev, pager, next, sizes, jumper"
-              @current-change="fetchHistory"
-              @size-change="fetchHistory"
+            <section class="panel todayCard">
+              <h2 class="warmSectionTitle">今日已完成</h2>
+              <div class="todayBody">
+                <div class="todayNumWrap">
+                  <strong class="todayNum">{{ progressToday }}</strong>
+                  <span class="todayUnit">今日完成数</span>
+                </div>
+                <i class="iconfont icon-renwujindu todayIcon" />
+              </div>
+            </section>
+          </div>
+
+          <!-- 历史任务 -->
+          <section v-loading="loading" class="panel historyPanel">
+            <header class="historyHead">
+              <h2 class="warmSectionTitle">历史任务</h2>
+              <div class="statusTabs">
+                <span
+                  v-for="tab in statusTabs"
+                  :key="tab.key"
+                  class="statusTab"
+                  :class="{ 'is-active': activeStatus === tab.key }"
+                  @click="activeStatus = tab.key">
+                  {{ tab.label }}<em v-if="tab.key === 'ALL'">({{ total }})</em>
+                </span>
+              </div>
+            </header>
+
+            <EmptyState
+              v-if="!isContractSigned && historyList.length === 0"
+              class="empty-state--fullscreen"
+              :type="2"
+              desc="完成劳务签署后就可以开始标注了"
+              @action="handleAction"
             />
-          </div>
-        </template>
-        <EmptyState v-else desc="暂时没有分配任务，有新任务会第一时间通知您" />
-      </section>
+            <template v-else-if="historyList.length > 0">
+              <CommonTable class="singleTable historyTable" :data="filteredHistory">
+                <el-table-column prop="allocateId" label="任务 ID" min-width="190" />
+                <el-table-column prop="totalCount" label="总病例数" min-width="90" />
+                <el-table-column prop="completedCount" label="完成病例总数" min-width="100" />
+                <el-table-column label="结算状态" min-width="110">
+                  <template #default="{ row }">
+                    <span class="status-dot" :style="{ backgroundColor: STATUS_DOT_COLOR[row.settlementStatus] }" />
+                    <span class="status-text">{{ SETTLE_STATUSALL[row.settlementStatus] }}</span>
+                  </template>
+                </el-table-column>
+                <el-table-column label="结算时间" min-width="120">
+                  <template #default="{ row }">
+                    <span>{{ row.transferTime || '-' }}</span>
+                  </template>
+                </el-table-column>
+                <el-table-column label="操作" min-width="90" fixed="right">
+                  <template #default="{ row }">
+                    <el-button link type="primary" @click="onAction(row)" v-if="getActionText(row.settlementStatus)">{{ getActionText(row.settlementStatus) }}</el-button>
+                  </template>
+                </el-table-column>
+              </CommonTable>
+              <div class="tabel_pagination">
+                <el-pagination
+                  v-model:current-page="currentPage"
+                  :page-size="limit"
+                  :total="total"
+                  layout="slot, total, prev, pager, next, sizes, jumper"
+                  @current-change="fetchHistory"
+                  @size-change="fetchHistory"
+                />
+              </div>
+            </template>
+            <EmptyState v-else desc="暂时没有分配任务，有新任务会第一时间通知您" />
+          </section>
+        </div>
+
+        <aside class="wbSide">
+          <!-- 个人中心 -->
+          <section class="panel profileCard">
+            <h2 class="warmSectionTitle">个人中心</h2>
+            <div class="profileRow">
+              <el-avatar :size="46" class="profileAvatar">{{ displayName.slice(0, 1) }}</el-avatar>
+              <div class="profileMeta">
+                <div class="profileName">
+                  {{ displayName }}
+                  <span class="verifyTag"><i class="iconfont icon-guanfangrenzheng" />已认证</span>
+                </div>
+                <p class="profileSub">{{ profileSubText }}</p>
+              </div>
+            </div>
+            <div class="profileStats">
+              <div class="pStat">
+                <span class="pStatLabel">历史累计病例</span>
+                <strong class="pStatNum">{{ historyCaseTotal }}<em>例</em></strong>
+              </div>
+              <div class="pStat">
+                <span class="pStatLabel">待结算</span>
+                <strong class="pStatNum isWarn">{{ pendingCaseTotal }}<em>例</em></strong>
+              </div>
+            </div>
+            <div class="settleBar">
+              <i class="seg isPending" :style="{ flex: pendingRatio }" />
+              <i class="seg isConfirm" :style="{ flex: confirmRatio }" />
+              <i class="seg isDone" :style="{ flex: doneRatio }" />
+            </div>
+            <div class="settleLegend">
+              <span><i class="dot isPending" />待结算</span>
+              <span><i class="dot isConfirm" />待确认</span>
+              <span><i class="dot isDone" />已结算</span>
+            </div>
+            <el-button class="settleLink" link type="primary" @click="goSettlement">去结算中心 →</el-button>
+          </section>
+
+          <!-- 消息列表 -->
+          <section class="panel msgCard">
+            <header class="sideHead">
+              <h2 class="warmSectionTitle">消息列表</h2>
+              <span class="sideMore" @click="openMessages">全部消息 →</span>
+            </header>
+            <ul class="msgList">
+              <li v-for="item in messageList" :key="item.id" class="msgItem" @click="handleMessage(item)">
+                <span class="msgIcon" :class="'is-' + item.type"><i class="iconfont" :class="item.icon" /></span>
+                <div class="msgBody">
+                  <p class="msgTitle">【{{ item.title }}】</p>
+                  <p class="msgDesc">{{ item.desc }}</p>
+                </div>
+                <span class="msgTime">{{ item.time }}</span>
+              </li>
+            </ul>
+          </section>
+        </aside>
+      </div>
+
     </template>
 
     <!-- 结算单详情（全屏视图） -->
@@ -210,6 +236,7 @@ export default { name: 'ExpertWorkbench' }
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+import { ElMessage } from 'element-plus'
 import { useRouter } from 'vue-router'
 import { getExpertProgress, getExpertHistoryTasks } from '@/api/api_cot'
 import { SETTLE_STATUSALL } from '@/utils/cotEnums'
@@ -220,8 +247,7 @@ import { captureShareCode } from '@/utils/shareCode'
 import { useUserStore } from '@/store/user'
 import { DEMO_USER } from '@/mock/demoUser'
 import textImg from '@/assets/textImg.png'
-import { FILE_STATUS_LABEL } from '@/mock/proofreadDemo'
-import { WORKBENCH_PROGRESS, WORKBENCH_HISTORY, WORKBENCH_RECORDS, WORKBENCH_IN_PROGRESS } from '@/mock/demoModules'
+import { WORKBENCH_PROGRESS, WORKBENCH_HISTORY, WORKBENCH_IN_PROGRESS } from '@/mock/demoModules'
 import { onboardingState, ONBOARDING_STATUS, ONBOARDING_STATUS_TEXT } from '@/utils/onboarding'
 
 const router = useRouter()
@@ -231,23 +257,9 @@ const userStore = useUserStore()
 const onboardApproved = computed(() => onboardingState.status === ONBOARDING_STATUS.APPROVED)
 const onboardingStatus = computed(() => onboardingState.status)
 const displayName = computed(() => {
-  const name = userStore.username
-  return name && name !== '演示账号' ? name : DEMO_USER.userName
-})
-
-// 问候语按当前时间切换
-const greeting = computed(() => {
-  const hour = new Date().getHours()
-  if (hour < 6) return '夜深了'
-  if (hour < 11) return '早上好'
-  if (hour < 14) return '中午好'
-  if (hour < 18) return '下午好'
-  return '晚上好'
-})
-const helloSub = computed(() => {
-  const hour = new Date().getHours()
-  if (hour >= 22 || hour < 6) return '今天已经辛苦了，剩下的病历明天再继续也来得及'
-  return '今天也请按自己的节奏来，标注过程中有疑问随时翻看培训手册'
+  const name = userStore.username || ''
+  // 演示登录写的是「演示账号 · 全模块」这类名字，展示时回落到演示专家姓名
+  return name && !name.startsWith('演示账号') ? name : DEMO_USER.userName
 })
 
 // ============ 引导页文案（按申请状态区分） ============
@@ -291,8 +303,7 @@ const progressDone = ref(0)
 const progressTotal = ref(0)
 const progressToday = ref(0)
 const historyList = ref([])
-const recordList = ref(WORKBENCH_RECORDS)
-const proofingCount = computed(() => recordList.value.filter(item => item.proofreadStatus === 2).length)
+
 const currentPage = ref(1)
 const limit = ref(20)
 const total = ref(0)
@@ -312,14 +323,79 @@ const STATUS_DOT_COLOR = {
   REJECTED: 'var(--theme-danger)'
 }
 
+// ============ 历史任务状态筛选 ============
+const STATUS_TABS = [
+  { key: 'ALL', label: '全部' },
+  { key: 'UNSETTLED', label: '待申请' },
+  { key: 'PENDING_CONFIRM', label: '已申请' },
+  { key: 'WAITING_EXPERT_CONFIRM', label: '待确认' },
+  { key: 'WAITING_PAYMENT', label: '待打款' },
+  { key: 'SETTLED', label: '已结清' },
+  { key: 'REJECTED', label: '已驳回' }
+]
+const activeStatus = ref('ALL')
+
+// 已结清包含归档
+const matchStatus = (row, key) => {
+  if (key === 'ALL') return true
+  if (key === 'SETTLED') return ['SETTLED', 'ARCHIVED'].includes(row.settlementStatus)
+  return row.settlementStatus === key
+}
+
+const statusTabs = computed(() => STATUS_TABS.map((tab) => ({
+  ...tab,
+  count: tab.key === 'ALL' ? total.value : historyList.value.filter((row) => matchStatus(row, tab.key)).length
+})))
+const filteredHistory = computed(() => historyList.value.filter((row) => matchStatus(row, activeStatus.value)))
+
+// ============ 个人中心 / 结算概览 ============
+const pendingStatusList = ['UNSETTLED', 'PENDING_CONFIRM', 'WAITING_EXPERT_CONFIRM']
+const sumCompleted = (list) => list.reduce((sum, row) => sum + (Number(row.completedCount) || 0), 0)
+const historyCaseTotal = computed(() => sumCompleted(historyList.value))
+const pendingCaseTotal = computed(() => sumCompleted(historyList.value.filter((row) => pendingStatusList.includes(row.settlementStatus))))
+const confirmCaseTotal = computed(() => sumCompleted(historyList.value.filter((row) => row.settlementStatus === 'WAITING_PAYMENT')))
+const doneCaseTotal = computed(() => sumCompleted(historyList.value.filter((row) => ['SETTLED', 'ARCHIVED'].includes(row.settlementStatus))))
+const settleTotalCases = computed(() => pendingCaseTotal.value + confirmCaseTotal.value + doneCaseTotal.value)
+// 分段条按占比给 flex，全为 0 时均分，避免出现空白条
+const ratioOf = (value) => (settleTotalCases.value ? value / settleTotalCases.value : 1)
+const pendingRatio = computed(() => ratioOf(pendingCaseTotal.value))
+const confirmRatio = computed(() => ratioOf(confirmCaseTotal.value))
+const doneRatio = computed(() => ratioOf(doneCaseTotal.value))
+
+// 职称 / 科室 / 医院：优先取入驻申请里填的，演示环境回落到演示账号
+const profileSubText = computed(() => [
+  onboardingState.form?.titleLevel || '主治医师',
+  onboardingState.form?.departmentCategory || DEMO_USER.department,
+  onboardingState.form?.hospitalName || DEMO_USER.agencyName
+].filter(Boolean).join(' · '))
+
+// ============ 消息列表（演示数据） ============
+const messageList = ref([
+  { id: 'm1', type: 'task', icon: 'icon-renwujindu', title: '任务分配', desc: '有新的标注任务分配给您，请前往标注管理查看。', time: '10:24', routeName: 'medicalRecordPool' },
+  { id: 'm2', type: 'settle', icon: 'icon-jiesuan', title: '结算提醒', desc: '有一笔结算单待您确认，确认后进入打款流程。', time: '昨天', routeName: 'laborSettlement' },
+  { id: 'm3', type: 'sign', icon: 'icon-laowujiesuan', title: '签署通知', desc: '劳务协议已发起，请完成在线签署。', time: '昨天', routeName: 'laborSign' },
+  { id: 'm4', type: 'task', icon: 'icon-tishi-wancheng', title: '审核结果', desc: '您提交的标注已通过审核，辛苦了。', time: '11-24', routeName: '' }
+])
+
+function goSettlement() {
+  router.push({ name: 'laborSettlement' })
+}
+
+function openMessages() {
+  ElMessage.info('消息中心正在建设中，后续会在这里汇总全部通知')
+}
+
+function handleMessage(item) {
+  if (!item.routeName) {
+    ElMessage.info('这条消息已处理，无更多操作')
+    return
+  }
+  router.push({ name: item.routeName })
+}
+
 const progressPercent = computed(() =>
   progressTotal.value ? Math.round((progressDone.value / progressTotal.value) * 100) : 0
 )
-const progressHint = computed(() => {
-  if (!progressTotal.value) return '暂时还没有分配任务，有新任务会第一时间通知您'
-  if (progressDone.value >= progressTotal.value) return '这一批病历已经标注完了，感谢您的耐心'
-  return `还差 ${progressTotal.value - progressDone.value} 份就完成这一批了`
-})
 
 function handleAction() {
   router.push({ name: 'laborSign' })
@@ -887,5 +963,542 @@ onMounted(() => {
   justify-content: flex-end;
   flex-shrink: 0;
   padding: 4px 0 0;
+}
+
+/* ===================== 工作台：新版三栏版式 ===================== */
+.wbLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  align-items: start;
+  gap: 16px;
+}
+
+.wbMain,
+.wbSide {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 16px;
+}
+
+/* 培训横幅 */
+.trainBanner {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  justify-content: space-between;
+  height: 168px;
+  padding: 22px 26px;
+  border-radius: 14px;
+  background: linear-gradient(110deg, var(--theme-primary-soft) 0%, var(--theme-fill) 100%);
+}
+
+.bannerText {
+  display: flex;
+  position: relative;
+  z-index: 1;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.bannerTag {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 10px;
+  border-radius: 4px;
+  background: #ffab2e;
+  font-weight: 600;
+  font-size: 12px;
+  color: #fff;
+  gap: 4px;
+
+  .iconfont {
+    font-size: 12px;
+  }
+}
+
+.bannerTitle {
+  margin: 12px 0 6px;
+  font-weight: 800;
+  font-size: 26px;
+  color: var(--theme-primary);
+  letter-spacing: 1px;
+}
+
+.bannerSub {
+  margin: 0 0 16px;
+  font-size: 13px;
+  color: var(--theme-text-2);
+}
+
+.bannerBtn {
+  height: 34px;
+  padding: 0 20px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.bannerImg {
+  position: absolute;
+  right: 12px;
+  bottom: -6px;
+  height: 158px;
+  opacity: 0.95;
+  pointer-events: none;
+}
+
+/* 当前任务 + 今日已完成 */
+.taskRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 210px;
+  gap: 16px;
+}
+
+.taskHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.taskId {
+  font-size: 12px;
+  color: var(--theme-text-3);
+}
+
+.taskBody {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.taskProgress {
+  flex: 1;
+  min-width: 0;
+}
+
+.taskProgressTop {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.taskProgressLabel {
+  font-size: 13px;
+  color: var(--theme-text-2);
+}
+
+.taskProgressNum {
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--theme-text);
+
+  em {
+    margin-left: 2px;
+    font-style: normal;
+    font-size: 14px;
+    color: var(--theme-text-3);
+  }
+}
+
+.taskTrack {
+  overflow: hidden;
+  height: 8px;
+  margin: 10px 0 16px;
+  border-radius: 4px;
+  background: var(--theme-primary-soft);
+}
+
+.taskFill {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--theme-primary), #6aa1ff);
+  transition: width 0.3s;
+}
+
+.taskStats {
+  display: flex;
+  gap: 36px;
+}
+
+.taskStat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  b {
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--theme-text);
+
+    &.isDone {
+      color: var(--theme-primary);
+    }
+
+    &.isRest {
+      color: var(--theme-warning);
+    }
+  }
+
+  span {
+    font-size: 12px;
+    color: var(--theme-text-3);
+  }
+}
+
+.taskBtn {
+  flex: none;
+  height: 36px;
+  padding: 0 20px;
+  border-radius: 6px;
+}
+
+.todayBody {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.todayNumWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.todayNum {
+  line-height: 1;
+  font-weight: 700;
+  font-size: 34px;
+  color: var(--theme-primary);
+}
+
+.todayUnit {
+  font-size: 12px;
+  color: var(--theme-text-3);
+}
+
+.todayIcon {
+  font-size: 30px;
+  color: var(--theme-primary-border);
+}
+
+/* 历史任务 */
+.historyHead {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 12px;
+}
+
+.statusTabs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+}
+
+.statusTab {
+  padding: 4px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--theme-text-2);
+  transition: all 0.2s;
+
+  em {
+    margin-left: 2px;
+    font-style: normal;
+    font-size: 12px;
+    color: var(--theme-text-3);
+  }
+
+  &:hover {
+    background: var(--theme-fill);
+  }
+
+  &.is-active {
+    background: var(--theme-primary);
+    color: #fff;
+
+    em {
+      color: rgba(255, 255, 255, 0.8);
+    }
+  }
+}
+
+/* 右侧：个人中心 */
+.profileRow {
+  display: flex;
+  align-items: center;
+  margin: 16px 0;
+  gap: 10px;
+}
+
+.profileAvatar {
+  flex: none;
+  background: var(--theme-primary-soft);
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--theme-primary);
+}
+
+.profileName {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--theme-text);
+  gap: 4px 6px;
+}
+
+.verifyTag {
+  display: inline-flex;
+  align-items: center;
+  height: 18px;
+  padding: 0 6px;
+  border-radius: 3px;
+  background: var(--theme-success-soft);
+  font-weight: 400;
+  font-size: 11px;
+  color: var(--theme-success);
+  gap: 2px;
+
+  .iconfont {
+    font-size: 11px;
+  }
+}
+
+.profileSub {
+  margin: 5px 0 0;
+  line-height: 18px;
+  font-size: 12px;
+  color: var(--theme-text-3);
+}
+
+.profileStats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.pStat {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  border-radius: 10px;
+  background: var(--theme-fill);
+  gap: 6px;
+}
+
+.pStatLabel {
+  font-size: 12px;
+  color: var(--theme-text-3);
+}
+
+.pStatNum {
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--theme-text);
+
+  em {
+    margin-left: 2px;
+    font-style: normal;
+    font-size: 12px;
+    color: var(--theme-text-3);
+  }
+
+  &.isWarn {
+    color: var(--theme-warning);
+  }
+}
+
+.settleBar {
+  display: flex;
+  overflow: hidden;
+  height: 6px;
+  margin: 14px 0 8px;
+  border-radius: 3px;
+  background: var(--theme-border);
+  gap: 2px;
+
+  .seg {
+    display: block;
+    min-width: 0;
+  }
+
+  .isPending {
+    background: var(--theme-warning);
+  }
+
+  .isConfirm {
+    background: var(--theme-primary);
+  }
+
+  .isDone {
+    background: var(--theme-success);
+  }
+}
+
+.settleLegend {
+  display: flex;
+  font-size: 11px;
+  color: var(--theme-text-3);
+  gap: 14px;
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+
+    &.isPending {
+      background: var(--theme-warning);
+    }
+
+    &.isConfirm {
+      background: var(--theme-primary);
+    }
+
+    &.isDone {
+      background: var(--theme-success);
+    }
+  }
+}
+
+.settleLink {
+  align-self: flex-start;
+  margin-top: 10px;
+  padding: 0;
+  font-size: 13px;
+}
+
+/* 右侧：消息列表 */
+.sideHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sideMore {
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--theme-text-3);
+
+  &:hover {
+    color: var(--theme-primary);
+  }
+}
+
+.msgList {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+}
+
+.msgItem {
+  display: flex;
+  align-items: flex-start;
+  padding: 10px 0;
+  border-top: 1px solid var(--theme-border);
+  cursor: pointer;
+  gap: 10px;
+
+  &:first-child {
+    border-top: none;
+  }
+
+  &:hover .msgTitle {
+    color: var(--theme-primary);
+  }
+}
+
+.msgIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--theme-primary-soft);
+  color: var(--theme-primary);
+
+  .iconfont {
+    font-size: 15px;
+  }
+
+  &.is-settle {
+    background: var(--theme-success-soft);
+    color: var(--theme-success);
+  }
+
+  &.is-sign {
+    background: var(--theme-primary-soft);
+    color: var(--theme-primary);
+  }
+}
+
+.msgBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.msgTitle {
+  margin: 0 0 3px;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--theme-text);
+  transition: color 0.2s;
+}
+
+.msgDesc {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 0;
+  line-height: 18px;
+  -webkit-line-clamp: 2;
+  font-size: 12px;
+  color: var(--theme-text-3);
+  -webkit-box-orient: vertical;
+}
+
+.msgTime {
+  flex: none;
+  font-size: 11px;
+  color: var(--theme-text-3);
+}
+
+@media (max-width: 1360px) {
+  .wbLayout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .wbSide {
+    flex-direction: row;
+  }
+
+  .wbSide > .panel {
+    flex: 1;
+  }
+}
+
+@media (max-width: 1080px) {
+  .taskRow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .wbSide {
+    flex-direction: column;
+  }
 }
 </style>

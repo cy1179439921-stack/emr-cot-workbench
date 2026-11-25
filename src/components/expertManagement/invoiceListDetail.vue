@@ -241,14 +241,18 @@
       </div>
     </div>
   </div>
+  <!-- 结算单导出模板（离屏渲染） -->
+  <SettlementStatement ref="statementRef" />
+
 </template>
 
 <script setup>
 import commonGoBack from '@/components/common/commonGoBack.vue'
 import remarkSection from './remarkSection.vue'
+import SettlementStatement from '@/components/expertManagement/settlementStatement.vue'
 import { ref, onMounted, nextTick } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { getInvoiceDetail, invoiceDownload, archiveSettlement } from '@/api/api_expertManagement.js'
+import { getInvoiceDetail, archiveSettlement } from '@/api/api_expertManagement.js'
 import router from '@/router'
 import { useRoute } from 'vue-router'
 import { getPagePermission } from '@/hooks/permissionHooks'
@@ -311,35 +315,18 @@ const handleDeleteRemark = (item, index) => {
   ElMessage.success('已删除')
 }
 const downloading = ref(false)
+const statementRef = ref(null)
 // 下载结算单（带内存释放防御）
 const handleDownload = async () => {
   if (downloading.value) return
   downloading.value = true
-  let url = ''
   try {
-    const res = await invoiceDownload({ id: currentId.value })
-    const blobData = res.data || res
-
-    const blob = new Blob([blobData], { type: 'application/pdf' })
-    url = window.URL.createObjectURL(blob)
-
-    const fileName = `结算单_${baseInfo.value.settlementNo || currentId.value}.pdf`
-
-    const link = document.createElement('a')
-    link.href = url
-    link.setAttribute('download', fileName)
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-
+    await statementRef.value?.download({ ...baseInfo.value, hospitalName: baseInfo.value?.agencyName }, `结算单_${baseInfo.value.settlementNo || currentId.value}`)
     ElMessage.success('文件已开始下载')
   } catch (error) {
     console.error('下载失败', error)
-    ElMessage.error('文件没能文件已开始下载，请稍后重试')
+    ElMessage.error('结算单生成失败，请稍后重试')
   } finally {
-    if (url) {
-      window.URL.revokeObjectURL(url) // 确保无论成败均回收内存
-    }
     downloading.value = false
   }
 }

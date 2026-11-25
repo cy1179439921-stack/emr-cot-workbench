@@ -288,17 +288,20 @@
       </div>
     </div>
   </div>
+  <!-- 结算单导出模板（离屏渲染） -->
+  <SettlementStatement ref="statementRef" />
+
 </template>
 
 <script setup>
 import commonGoBack from '@/components/common/commonGoBack.vue'
 import { ref, onMounted, nextTick, computed } from 'vue'
+import SettlementStatement from '@/components/expertManagement/settlementStatement.vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import remarkSection from './remarkSection.vue'
 import router from '@/router'
 import {
   getInvoiceDetail,
-  invoiceDownload,
   addSettlementNoteList,
   getSettlementNoteList,
   delSettlementNoteList,
@@ -320,6 +323,7 @@ const formData = ref({})
 // 加载/提交防重控制
 const submitting = ref(false)
 const downloading = ref(false)
+const statementRef = ref(null)
 
 // 判断是否为待打款状态
 const isWaitingPayment = computed(() => baseInfo.value?.settlementStatus === 'WAITING_PAYMENT')
@@ -475,31 +479,13 @@ const getNoteListFn = () => {
 const handleDownload = async () => {
   if (downloading.value) return
   downloading.value = true
-  let url = ''
   try {
-    const res = await invoiceDownload({ id: currentId.value })
-    const blobData = res.data || res
-
-    const blob = new Blob([blobData], { type: 'application/pdf' })
-    url = window.URL.createObjectURL(blob)
-
-    const fileName = `结算单_${formData.value.settlementNo || currentId.value}.pdf`
-
-    const link = document.createElement('a')
-    link.href = url
-    link.setAttribute('download', fileName)
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-
+    await statementRef.value?.download({ ...formData.value }, `结算单_${formData.value.settlementNo || currentId.value}`)
     ElMessage.success('文件已开始下载')
   } catch (error) {
     console.error('下载失败', error)
-    ElMessage.error('文件没能文件已开始下载，请稍后重试')
+    ElMessage.error('结算单生成失败，请稍后重试')
   } finally {
-    if (url) {
-      window.URL.revokeObjectURL(url)
-    }
     downloading.value = false
   }
 }
