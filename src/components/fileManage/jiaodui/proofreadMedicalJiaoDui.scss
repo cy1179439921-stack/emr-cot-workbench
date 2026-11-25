@@ -20,6 +20,39 @@
     }
   }
 
+  // 本阶段倒计时条（真实链路视图）
+  .stepCountdownBar {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    height: 34px;
+    padding: 0 16px;
+    border-bottom: 1px solid #eef1f6;
+    background: #f6f8fc;
+    font-size: 13px;
+    color: #8a94a6;
+    gap: 8px;
+
+    .countdownNode {
+      padding: 1px 8px;
+      border: 1px solid #b9cdfd;
+      border-radius: 4px;
+      font-size: 12px;
+      color: var(--theme-primary);
+    }
+
+    .countdownNum {
+      font-style: normal;
+      font-weight: 600;
+      color: #4a5670;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .countdownHint {
+      color: #97a2b3;
+    }
+  }
+
   .viewContent {
     display: flex;
     flex-direction: column;

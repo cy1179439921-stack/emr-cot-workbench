@@ -103,7 +103,7 @@
                   :class="{ 'is-urgent': remaining <= 10, 'is-first': index === 0, 'is-last': index === steps.length - 1 }">
                   <i class="iconfont icon-shijian1"></i>
                   <b>{{ remaining }}s</b>
-                  <em>后将自动保存并进入下一阶段</em>
+                  <em>后自动保存并进入 {{ countdownNextLabel }}</em>
                 </span>
               </div>
               <div class="line" v-if="index < steps.length - 1"></div>
@@ -184,6 +184,9 @@
             :is-edit="isEdit"
             :is-last-step="step === steps.length"
             :is-last-loop="isLastLoop"
+            :countdown="remaining"
+            :countdown-range="countdownRangeText"
+            :countdown-next="countdownNextLabel"
             :readonly="isReadonlyView"
             :is-audit-mode="isAuditMode"
             :is-reannotate-mode="isReannotateMode"
@@ -197,6 +200,17 @@
             @next="handleDemoNext" />
           <div class="right" v-else>
             <div class="viewContent">
+              <div class="stepCountdownBar">
+                <span class="countdownNode">N{{ step }}</span>
+                <template v-if="remaining > 0">
+                  本阶段倒计时 <em class="countdownNum">{{ String(Math.floor(remaining / 60)).padStart(2, '0') }}:{{ String(remaining % 60).padStart(2, '0') }}</em>
+                  <span class="countdownHint">结束后自动进入 {{ countdownNextLabel }}</span>
+                </template>
+                <template v-else>
+                  本阶段限时 <em class="countdownNum">{{ countdownRangeText }}</em>
+                  <span class="countdownHint">开始校对后自动计时，结束后进入 {{ countdownNextLabel }}</span>
+                </template>
+              </div>
               <el-scrollbar class="cot-scrollbar">
                 <COTN1 ref="cotN1Ref" :is-edit="isEdit" v-if="step === 1" :cot-data="cotFormData" :anchor-time="lastEditTime" />
                 <COTN2 ref="cotN2Ref" :is-edit="isEdit" v-if="step === 2" :cot-data="cotFormData" :anchor-time="lastEditTime" @updataLastSavedTime="updataLastSavedTime"/>
@@ -1792,13 +1806,46 @@ const startLocateAndHighlight = (rawPath) => {
   setTimeout(tryOnce, LOCATE_CONFIG.initialDelay)
 }
 
-// ============ 模块五：N1-N5 独立倒计时（每步 30s，无操作自动进入下一 N） ============
-const stepCountdown = 30
+// ============ 模块五：N1-N5 独立倒计时 ============
+// 时长取「配置管理 - 自动保存时间」里对应 N 的范围（默认 30-40s），每次随机落点；
+// 无操作 / 倒计时归零后自动保存当前 N，并进入下一个 N 或下一份病历。
+const DEFAULT_COUNTDOWN_RANGE = { min: 30, max: 40 }
+
+// 当前 N 的配置范围
+const currentCountdownRange = computed(() => {
+  const config = getSystemConfig()
+  const range = config?.autoSaveRanges?.[step.value - 1] || DEFAULT_COUNTDOWN_RANGE
+  const min = Number(range.min) || DEFAULT_COUNTDOWN_RANGE.min
+  const max = Number(range.max) || DEFAULT_COUNTDOWN_RANGE.max
+  return { min, max: Math.max(min, max) }
+})
+
+// 供界面展示的范围文案，如 30-40s
+const countdownRangeText = computed(() => {
+  const { min, max } = currentCountdownRange.value
+  return min === max ? `${min}s` : `${min}-${max}s`
+})
+
+// 倒计时结束后要去的地方：下一个 N 名称 / 下一份病历
+const countdownNextLabel = computed(() => {
+  if (step.value < steps.value.length) {
+    const next = steps.value[step.value]
+    return `N${next.id} ${next.name}`
+  }
+  return isLastLoop.value ? '下一份病历' : '下一个 Loop'
+})
+
+// 在范围内随机取一个时长，避免每个 N 都整 30 秒
+const getStepCountdownSeconds = () => {
+  const { min, max } = currentCountdownRange.value
+  if (max <= min) return min
+  return Math.floor(min + Math.random() * (max - min + 1))
+}
 
 // 重新开始当前 N 的倒计时（切换步骤 / 进入编辑时调用）
 const startStepCountdown = () => {
   stop()
-  start(stepCountdown)
+  start(getStepCountdownSeconds())
 }
 
 // 倒计时结束：保存当前 N，自动进入下一个 N；N5 结束后进入下一个 Loop 或下一份病历
@@ -1863,7 +1910,7 @@ async function handleRealStepIdle() {
   }
 }
 
-const { start, stop, remaining } = useIdle(stepCountdown, handleStepIdle)
+const { start, stop, remaining } = useIdle(30, handleStepIdle)
 
 watch(
   () => medicalPathStore.activeHighlightPath,

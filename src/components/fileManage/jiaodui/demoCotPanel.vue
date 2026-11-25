@@ -11,6 +11,21 @@
       </div>
     </div>
 
+    <!-- 本阶段倒计时：时长取「配置管理-自动保存时间」的 N 段范围，归零后自动进入下一个 N / 病历 -->
+    <div v-if="!readonly && !isAuditMode" class="step-countdown" :class="{ 'is-running': countdown > 0 }">
+      <i class="iconfont icon-shijian"></i>
+      <template v-if="countdown > 0">
+        <span class="countdown-text">本阶段倒计时</span>
+        <em class="countdown-num">{{ countdownText }}</em>
+        <span class="countdown-hint">结束后自动进入 {{ countdownNext || '下一阶段' }}</span>
+      </template>
+      <template v-else>
+        <span class="countdown-text">本阶段限时</span>
+        <em class="countdown-num">{{ countdownRange || '30-40s' }}</em>
+        <span class="countdown-hint">开始校对后自动计时，结束后进入 {{ countdownNext || '下一阶段' }}</span>
+      </template>
+    </div>
+
     <el-scrollbar class="panel-scroll">
       <div class="panel-body">
         <!-- 锚定路径（锚定内容来自病历原文，始终只读） -->
@@ -149,10 +164,24 @@ const props = defineProps({
   // 审核模式（任务详情进入审核）
   isAuditMode: { type: Boolean, default: false },
   // 重新标注模式（审核未通过后重新标注）
-  isReannotateMode: { type: Boolean, default: false }
+  isReannotateMode: { type: Boolean, default: false },
+  // 当前 N 的阶段倒计时剩余秒数（0 表示未开始计时）
+  countdown: { type: Number, default: 0 },
+  // 「配置管理」里该 N 配置的时长范围文案，如 30-40s
+  countdownRange: { type: String, default: '30-40s' },
+  // 倒计时结束后会去哪里，如「N2 检查策略」/「下一份病历」
+  countdownNext: { type: String, default: '' }
 })
 
 const emit = defineEmits(['audit-pass', 'audit-reject', 'reannotate', 'start-proofread', 'cancel', 'save-draft', 'next', 'change'])
+
+// 剩余秒数 → mm:ss
+const countdownText = computed(() => {
+  const total = Math.max(0, Number(props.countdown) || 0)
+  const minutes = String(Math.floor(total / 60)).padStart(2, '0')
+  const seconds = String(total % 60).padStart(2, '0')
+  return `${minutes}:${seconds}`
+})
 
 // 底部主按钮文案：普通阶段「下一步」；中间 Loop 的 N5「保存并进入下一loop」；
 // 最后一个 Loop 的 N5「保存并进入下一份病历」
@@ -369,6 +398,51 @@ defineExpose({
       em {
         font-style: normal;
         color: #4a5670;
+      }
+    }
+  }
+
+  /* 本阶段倒计时条：紧贴在面板头下方 */
+  .step-countdown {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    height: 34px;
+    padding: 0 20px;
+    border-bottom: 1px solid #eef1f6;
+    background: var(--theme-fill);
+    font-size: 13px;
+    color: var(--theme-text-3);
+    gap: 8px;
+
+    .iconfont {
+      font-size: 13px;
+      color: var(--theme-text-3);
+    }
+
+    .countdown-num {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--theme-text-2);
+      letter-spacing: 0.5px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .countdown-hint {
+      color: var(--theme-text-3);
+    }
+
+    &.is-running {
+      background: var(--theme-primary-soft);
+
+      .iconfont,
+      .countdown-num {
+        color: var(--theme-primary);
+      }
+
+      .countdown-text {
+        color: var(--theme-text-2);
       }
     }
   }
