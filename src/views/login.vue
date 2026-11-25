@@ -90,19 +90,19 @@
                 class="login-form"
                 @submit.prevent
               >
-                <el-form-item prop="account" class="accountInput" label="账号ID">
+                <el-form-item prop="account" class="accountInput">
                   <el-input
                     v-focus
                     v-model.trim="loginForm.account"
                     autocomplete="off"
-                    placeholder="请填写账号ID"
+                    placeholder="请输入账号ID"
                   ></el-input>
                 </el-form-item>
-                <el-form-item prop="password" label="账号密码">
+                <el-form-item prop="password">
                   <el-input
                     v-model="loginForm.password"
                     :type="showEye ? 'password' : 'text'"
-                    placeholder="请填写账号密码"
+                    placeholder="请输入密码"
                     autocomplete="off"
                     @keyup.enter="submitForm(ruleFormRef)"
                   ></el-input>
@@ -141,9 +141,6 @@
                 </div>
               </div>
             </template>
-
-            <div class="orLine"><span>或</span></div>
-            <div class="authBtn" @click="openAuth">颐邦小源统一认证登录</div>
           </div>
         </div>
       </div>
@@ -229,11 +226,6 @@ const sendCode = () => {
 
 onBeforeUnmount(() => clearInterval(countdownTimer))
 
-// 统一认证登录：打开原有认证弹窗
-const openAuth = () => {
-  authenticationStatus.value = 1
-  showDialog.value = true
-}
 const showEye = ref(true)
 const ruleFormRef = ref()
 const rules = reactive({
@@ -535,8 +527,18 @@ const handleClose = () => {
             }
           }
 
+          /* 两个登录方式共用同一套字段尺寸 */
           .login-form {
             width: 100%;
+
+            :deep(.el-input__wrapper) {
+              height: 46px;
+            }
+
+            :deep(.el-input__inner) {
+              height: 46px;
+              font-size: 15px;
+            }
             :deep(.el-form-item) {
               display: flex;
               flex-direction: column;

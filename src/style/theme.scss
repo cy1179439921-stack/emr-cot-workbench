@@ -304,10 +304,55 @@ html.theme-dark {
     color: var(--theme-primary);
   }
 
-  .pcPhone {
+  .pcName {
     font-weight: 600;
     font-size: 17px;
     color: var(--theme-text);
+  }
+
+  .verifyTag {
+    display: inline-flex;
+    align-items: center;
+    height: 20px;
+    padding: 0 7px;
+    border-radius: 4px;
+    background: var(--theme-success-soft);
+    font-size: 11px;
+    color: var(--theme-success);
+    gap: 2px;
+
+    .iconfont {
+      font-size: 11px;
+    }
+  }
+
+  .pcHeroEdit {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 4px;
+  }
+
+  .pcInlineActions {
+    display: inline-flex;
+    align-items: center;
+    flex: none;
+    gap: 4px;
+
+    .el-button {
+      padding: 0 2px;
+      font-size: 13px;
+    }
+  }
+
+  .pcInlineInput {
+    flex: 1;
+    max-width: 240px;
+  }
+
+  .pcRow.is-editing {
+    background: var(--theme-fill);
+    cursor: default;
   }
 
   .pcIconBtn {
@@ -401,6 +446,30 @@ html.theme-dark {
 
   .el-dialog__body {
     padding: 8px 22px 4px;
+  }
+
+  .phoneCodeRow {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+
+    .el-input {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .codeBtn {
+      flex: none;
+      width: 112px;
+      border-color: var(--theme-primary-border);
+      color: var(--theme-primary);
+
+      &.is-disabled {
+        border-color: var(--theme-border);
+        color: var(--theme-text-3);
+      }
+    }
   }
 }
 

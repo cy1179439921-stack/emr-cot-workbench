@@ -255,7 +255,10 @@ const profileDialogVisible = ref(false)
 // 个人中心里点「登录密码」→ 打开原有的修改密码弹窗
 const openChangePassword = () => {
   profileDialogVisible.value = false
-  if (userStore.username) formData.value.userName = userStore.username
+  formData.value.account = localStorage.getItem('account') || 'admin'
+  const cachedName = localStorage.getItem('cot-profile-name')
+  const loginName = userStore.username || ''
+  formData.value.userName = cachedName || (loginName.startsWith('演示账号') ? '张慧敏' : loginName) || '张慧敏'
   formData.value.oldPassword = ''
   formData.value.newPassword = ''
   formData.value.surePassword = ''
@@ -536,6 +539,12 @@ const submitForm = async(formEl) => {
         id: localStorage.getItem('user_id'),
         oldPassword: formData.value.oldPassword,
         newPassword: formData.value.newPassword
+      }
+      // 演示环境没有改密接口，直接按成功处理，便于走完交互
+      if (localStorage.getItem('mockLogin') === 'true') {
+        ElMessage.success('密码已修改，下次登录请使用新密码')
+        changeDialogShow.value = false
+        return
       }
       const res = await changePassword(params)
       if (res.code === 10000) {
