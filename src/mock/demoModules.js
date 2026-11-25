@@ -248,6 +248,7 @@ export const BOARD_STATISTICS = {
   pendingReviewCount: 132,
   reviewingCount: 76,
   completedCount: 742,
+  totalCompletedTimes: 1586,
   rejectedCount: 38,
   totalRejectionTimes: 57,
   participantCount: 12

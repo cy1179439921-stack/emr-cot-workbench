@@ -83,18 +83,13 @@ const statisticalData = ref([
     value: 0
   },
   {
-    label: '待复核病历数',
-    key: 'pendingReviewCount',
-    value: 0
-  },
-  {
-    label: '复核中病历数',
-    key: 'reviewingCount',
-    value: 0
-  },
-  {
     label: '已完成病历数',
     key: 'completedCount',
+    value: 0
+  },
+  {
+    label: '已完成总次数',
+    key: 'totalCompletedTimes',
     value: 0
   },
   {
@@ -136,14 +131,35 @@ const getListData = async() => {
   }
 }
 
+// 后端暂未下发「已完成总次数」时，用人员统计里的「已校对次数」汇总兜底
+const fillCompletedTimesFallback = async() => {
+  try {
+    const res = await getBatchUserStatistics({ pageNum: 1, pageSize: 1000 })
+    if (res.code !== 10000) return
+    const items = res.data?.items || []
+    const sum = items.reduce((acc, it) => acc + (Number(it.totalProofreadTimes) || 0), 0)
+    const target = statisticalData.value.find(item => item.key === 'totalCompletedTimes')
+    if (target && !Number(target.value)) target.value = sum
+  } catch (e) {
+    // 兜底失败不影响其它统计项
+  }
+}
+
 const getDataStatistics = async() => {
   const res = await getBatchStatistics()
   if (res.code === 10000) {
-    const data = res.data || BOARD_STATISTICS
+    const data = res.data || {}
+    const hasApiData = Boolean(res.data)
     statisticalData.value = statisticalData.value.map(item => {
-      item.value = data[item.key] || 0
+      // 有接口数据时以接口为准（后端未下发的字段显示 0，不拿演示值混淆）；
+      // 完全没数据时才整组回落演示数据
+      const value = data[item.key] ?? (hasApiData ? 0 : BOARD_STATISTICS[item.key]) ?? 0
+      item.value = Number(value) || 0
       return item
     })
+    if (hasApiData && data.totalCompletedTimes == null) {
+      await fillCompletedTimesFallback()
+    }
   }
 }
 // 分页导航

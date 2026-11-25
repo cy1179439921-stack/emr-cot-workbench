@@ -194,16 +194,16 @@
         </div>
       </section>
 
-      <!-- 底部操作 -->
+      <!-- 底部说明 + 固定操作栏 -->
+      <p v-if="editable" class="footerTip">
+        填不完可以先「暂存」，下次进来接着填；提交后进入人工审核，通常 1-2 个工作日出结果。
+      </p>
       <footer v-if="editable" class="formFooter">
-        <el-button class="resetBtn" :disabled="saving" @click="handleReset">重置资料</el-button>
+        <el-button class="draftBtn" :disabled="saving" @click="handleSaveDraft">暂存</el-button>
         <el-button type="primary" class="submitBtn" :loading="saving" @click="handleSubmit">
           {{ status === 'REJECTED' ? '重新提交审核' : '提交审核' }}
         </el-button>
       </footer>
-      <p v-if="editable" class="footerTip">
-        提交后资料会进入人工审核，审核结果通过消息通知，通常 1-2 个工作日。
-      </p>
     </el-form>
   </div>
 </template>
@@ -228,7 +228,7 @@ import {
   createEmptyApplication,
   submitApplication,
   approveApplication,
-  resetApplication
+  saveDraft
 } from '@/utils/onboarding'
 
 const router = useRouter()
@@ -322,20 +322,11 @@ const handleSubmit = async () => {
   }
 }
 
-const handleReset = async () => {
-  try {
-    await ElMessageBox.confirm('重置后已填写的内容会清空，确认重置吗？', '重置资料', {
-      confirmButtonText: '确认重置',
-      cancelButtonText: '取消',
-      type: 'warning'
-    })
-  } catch (e) {
-    return
-  }
-  Object.assign(form, createEmptyApplication())
-  resetApplication()
-  formRef.value?.clearValidate()
-  ElMessage.success('资料已清空，可以重新填写')
+// 暂存：不校验、不改状态，仅保存已填内容
+const handleSaveDraft = () => {
+  if (saving.value) return
+  saveDraft(form)
+  ElMessage.success('已暂存，下次进入会自动带出这次填写的内容')
 }
 
 // 演示环境：模拟管理员审核通过，便于完整体验后续功能
@@ -353,8 +344,11 @@ const goHome = () => {
 .onboardingApply {
   overflow-y: auto;
   box-sizing: border-box;
+  width: 100%;
+  max-width: 880px;
   height: 100%;
-  padding: 20px 24px 40px;
+  margin: 0 auto;
+  padding: 20px 24px 0;
 }
 
 /* ===================== 页头 ===================== */
@@ -374,7 +368,7 @@ const goHome = () => {
 }
 
 .heroDesc {
-  max-width: 760px;
+  max-width: 100%;
   margin: 0;
   line-height: 26px;
   font-size: 15px;
@@ -550,10 +544,20 @@ const goHome = () => {
   margin-top: 20px;
 }
 
+/* 底部操作栏：吸附在屏幕底部，内容滚动时按钮始终可见 */
 .formFooter {
   display: flex;
+  position: sticky;
+  bottom: 0;
+  z-index: 9;
   justify-content: center;
-  padding: 6px 0 0;
+  align-items: center;
+  flex-shrink: 0;
+  margin: 12px -24px 0;
+  padding: 14px 24px;
+  border-top: 1px solid var(--theme-border);
+  background: var(--theme-card);
+  box-shadow: 0 -6px 16px rgba(31, 58, 105, 0.08);
   gap: 16px;
 }
 
@@ -563,14 +567,16 @@ const goHome = () => {
   font-size: 16px;
 }
 
-.resetBtn {
+.draftBtn {
   min-width: 120px;
   height: 44px;
+  border-color: var(--theme-primary-border);
   font-size: 15px;
+  color: var(--theme-primary);
 }
 
 .footerTip {
-  margin: 0;
+  margin: 8px 0 0;
   text-align: center;
   font-size: 13px;
   color: var(--theme-text-3);

@@ -134,6 +134,14 @@ const createApplyNo = () => {
 }
 
 // 提交申请：未通过 / 已驳回后都可以重新提交
+// 暂存：只把已填内容存到本地，不改变申请状态、不进入审核
+export const saveDraft = (form) => {
+  onboardingState.form = { ...createEmptyApplication(), ...form }
+  onboardingState.draftSavedAt = formatNow()
+  persistOnboarding()
+  return onboardingState
+}
+
 export const submitApplication = (form) => {
   onboardingState.form = { ...createEmptyApplication(), ...form }
   onboardingState.status = ONBOARDING_STATUS.PENDING
