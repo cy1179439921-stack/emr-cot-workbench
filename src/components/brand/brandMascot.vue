@@ -119,12 +119,23 @@
     <ellipse cx="124" cy="140" rx="12" ry="6.5" fill="#ff9d8a" opacity="0.26" />
     <ellipse cx="176" cy="140" rx="12" ry="6.5" fill="#ff9d8a" opacity="0.26" />
 
-    <!-- 头发：整块包住头顶，带几缕碎发刘海 -->
+    <!-- 头发：碎盖（短碎刘海，发尾参差但柔和） -->
+    <!-- 底层头型：贴合头顶，露出额头下缘 -->
     <path
-      d="M97 122c-6-44 14-72 53-72s59 28 53 72c-3-14-6-22-11-27-7 7-14 10-21 8-6-11-14-17-21-17s-15 6-21 17c-7 2-14-1-21-8-5 5-8 13-11 27z"
+      d="M99 112c-4-42 17-66 51-66s55 24 51 66c-4-12-8-20-14-25-9 5-18 6-27 4-8-7-16-10-25-8-9 2-16 8-20 16-3 4-5 8-6 13z"
       fill="url(#mcHair)" />
-    <path d="M108 76c10-14 24-21 42-21" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity="0.16" />
-    <path d="M192 80c-7-9-15-15-24-18" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.1" />
+    <!-- 碎刘海：参差发尾盖住额头，边缘有层次（压缩到眉毛以上，露出眉形） -->
+    <g transform="translate(0 52) scale(1 0.8) translate(0 -52)">
+      <path
+        d="M104 96c2-16 8-28 18-35 9-6 18-9 28-9s19 3 28 9c10 7 16 19 18 35-5-6-9-10-13-12 1 8-2 13-7 14 1-6 0-9-2-12-4 6-9 9-14 9 0-5-1-9-3-12-4 7-9 10-15 10-2-6-3-10-5-13-4 8-9 12-15 13-1-5-2-8-4-10-3 5-7 8-11 13z"
+        fill="url(#mcHair)" />
+    </g>
+    <!-- 鬓角：两侧短发收进耳朵上方 -->
+    <path d="M101 104c-4 9-4 16-1 22 5-3 7-10 6-19z" fill="url(#mcHair)" />
+    <path d="M199 104c4 9 4 16 1 22-5-3-7-10-6-19z" fill="url(#mcHair)" />
+    <!-- 发丝高光 -->
+    <path d="M114 74c8-10 19-15 33-16" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity="0.18" />
+    <path d="M186 76c-6-8-14-12-23-14" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.1" />
 
     <!-- 眉毛 -->
     <path d="M119 101c6-4 14-4 20 0" fill="none" stroke="#2b2b33" stroke-width="4.5" stroke-linecap="round" />

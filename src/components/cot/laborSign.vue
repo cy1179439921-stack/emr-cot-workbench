@@ -1,45 +1,38 @@
 <template>
   <div class="labor-sign warmTheme">
-    <!-- 顶部状态条：单独面板 -->
-    <div class="status-bar">
-      <div class="labor-status-head">
-        <div class="status-item">
-          <span class="status-label">签署状态：</span>
-          <span class="status-value" :style="styleTag[agreementDisplayStatus]">{{ agreementDisplayStatus }}</span>
+    <!-- 顶部：签署概览 + 两步流程（同一张卡片，避免两块空白卡片） -->
+    <section class="heroCard">
+      <div class="heroMain">
+        <div class="heroText">
+          <p class="heroEyebrow">签署流程 · 共 2 步</p>
+          <h1 class="page-title">劳务签署</h1>
+          <p class="page-sub">资料核对清楚，签一次就够 —— 后续的结算我们会在流程里跟进，你不用来回催。</p>
         </div>
-        <div v-if="signatureTime" class="status-item status-time">
-          <span class="status-label">签署时间：</span>
-          <span class="status-value-text">{{ signatureTime }}</span>
+        <div class="heroStatus">
+          <span class="status-pill" :style="styleTag[agreementDisplayStatus]">{{ agreementDisplayStatus }}</span>
+          <span v-if="signatureTime" class="status-time">签署时间 {{ signatureTime }}</span>
         </div>
       </div>
-    </div>
 
-    <!-- 页面标题 + 两步流程：单独面板 -->
-    <div class="panel stepper-card">
-      <div class="stepperTitleBox">
-        <h1 class="page-title">劳务签署</h1>
-        <p class="page-sub">资料核对清楚，签一次就够 —— 后续的结算我们会在流程里跟进，你不用来回催。</p>
-      </div>
-      <div class="stepper" :class="{ 'is-agreement-phase': stepStatus >= 2 }">
+      <div class="stepStrip">
         <button
           v-for="(step, index) in steps"
           :key="step.route"
           type="button"
-          class="step-card"
+          class="stepItem"
           :class="getStepState(index)"
-          @click="selectStep(step.route)"
-        >
-          <span class="step-number" :class="{ 'is-check': showCheckFor(index) }">
+          @click="selectStep(step.route)">
+          <span class="stepNo" :class="{ 'is-check': showCheckFor(index) }">
             <i v-if="showCheckFor(index)" class="iconfont icon-wancheng-11"></i>
             <template v-else>{{ String(index + 1).padStart(2, '0') }}</template>
           </span>
-          <div class="step-text">
+          <span class="stepMeta">
             <strong>{{ step.title }}</strong>
             <small>{{ step.desc }}</small>
-          </div>
+          </span>
         </button>
       </div>
-    </div>
+    </section>
 
     <!-- 初始化加载占位：请求未完成时在下方主内容区展示 loading，请求完成（成功/失败）后才展示实际内容 -->
     <div v-if="loading" class="labor-loading">
@@ -226,6 +219,31 @@
         <div class="contractHint">
           <i class="iconfont icon-tishi-yidongwenjianjia"></i>
           <span>签署前建议先完整读一遍协议，条款有疑问可以随时联系项目负责人，确认清楚再签。</span>
+        </div>
+
+        <!-- 签署须知：三列要点，避免页面下部大面积留白 -->
+        <div class="signNotes">
+          <div class="noteItem">
+            <span class="noteIcon"><i class="iconfont icon-duihao1"></i></span>
+            <div class="noteText">
+              <strong>签署后即可开始标注</strong>
+              <span>任务分配会跟随协议状态自动生效</span>
+            </div>
+          </div>
+          <div class="noteItem">
+            <span class="noteIcon"><i class="iconfont icon-duihao1"></i></span>
+            <div class="noteText">
+              <strong>结算按完成量核算</strong>
+              <span>完成并通过审核的病历才计入结算</span>
+            </div>
+          </div>
+          <div class="noteItem">
+            <span class="noteIcon"><i class="iconfont icon-duihao1"></i></span>
+            <div class="noteText">
+              <strong>有疑问先沟通</strong>
+              <span>条款确认清楚再签，避免来回修改</span>
+            </div>
+          </div>
         </div>
       </div>
     </template>
@@ -622,18 +640,18 @@ async function confirmReject() {
   flex-direction: column;
   box-sizing: border-box;
   height: 100%;
-  padding-bottom: 16px;
+  padding: 16px;
   background: var(--theme-bg);
-  gap: 16px;
+  gap: 14px;
 }
 
 .panel {
   box-sizing: border-box;
-  padding: 24px;
+  padding: 20px 22px;
   border: 1px solid var(--theme-border);
-  border-radius: var(--theme-radius);
+  border-radius: 16px;
   background: var(--theme-card);
-  box-shadow: 0 12px 30px rgba(160, 118, 68, .07);
+  box-shadow: 0 8px 22px rgba(31, 58, 105, .04);
 }
 
 .panel-header {
@@ -642,12 +660,14 @@ async function confirmReject() {
   align-items: flex-start;
   gap: 16px;
 }
+
 .form-section {
   .panel-header {
-    padding: 24px;
+    padding: 18px 22px;
     border-bottom: 1px solid var(--theme-border);
   }
 }
+
 .panel-title {
   display: flex;
   align-items: center;
@@ -666,181 +686,172 @@ async function confirmReject() {
   }
 }
 
-/* 顶部状态条 */
-.status-bar {
+/* 顶部签署概览卡 */
+.heroCard {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   flex-shrink: 0;
-  height: 58px;
-  padding: 0 24px;
-  border: 1px solid var(--theme-border);
-  border-radius: 14px;
-  background: linear-gradient(120deg, #fffdfa 0%, #fdf6ec 100%);
-}
-
-.labor-status-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
+  box-sizing: border-box;
+  padding: 20px 22px;
+  border: 1px solid var(--theme-primary-border);
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--theme-card) 0%, var(--theme-primary-soft) 100%);
+  box-shadow: 0 10px 26px rgba(31, 58, 105, .05);
   gap: 16px;
 }
 
-.status-item {
+.heroMain {
   display: flex;
-  align-items: center;
-  gap: 8px;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
 }
 
-.status-label {
-  font-size: 16px;
+.heroText {
+  min-width: 0;
+}
+
+.heroEyebrow {
+  margin: 0;
+  font-size: 12.5px;
   color: var(--theme-text-3);
-}
-
-.status-value {
-  display: inline-flex;
-  align-items: center;
-  padding: 4px 12px;
-  border: 1px solid rgba(201, 118, 47, .28);
-  border-radius: 999px;
-  background: var(--theme-primary-soft);
-  font-size: 15px;
-  color: var(--theme-primary);
-}
-
-.status-value-text {
-  font-size: 15px;
-  color: var(--theme-text-2);
-}
-
-.status-time {
-  margin-left: auto;
-}
-
-/* 标题 + 步骤条面板 */
-.stepper-card {
-  flex-shrink: 0;
-  box-sizing: border-box;
-  height: 222px;
-  margin: 0 16px;
-  padding: 24px 0;
-  background: linear-gradient(160deg, #fffdfa 0%, #fdf8f2 100%);
-}
-
-.stepperTitleBox {
-  padding: 0 24px 20px;
-  border-bottom: 1px solid var(--theme-border);
+  letter-spacing: .2px;
 }
 
 .page-title {
-  margin: 0;
+  margin: 6px 0 0;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 22px;
+  line-height: 1.25;
   color: var(--theme-text);
 }
 
 .page-sub {
+  max-width: 620px;
   margin: 8px 0 0;
+  line-height: 20px;
   font-size: 13px;
+  color: var(--theme-text-2);
+}
+
+.heroStatus {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  flex: none;
+  gap: 6px;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 13px;
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.status-time {
+  font-size: 12px;
   color: var(--theme-text-3);
 }
 
-/* 步骤条：设计稿为圆点在标题上方，标题/描述纵向居中堆叠，两步左右分布 */
-.stepper {
-  display: flex;
-  position: relative;
-  justify-content: space-between;
-  padding: 32px 10% 0;
-
-  &::before {
-    position: absolute;
-    left: 50%;
-    top: 44px;
-    z-index: 0;
-    width: 68%;
-    height: 1px;
-    background: var(--theme-border);
-    content: '';
-    transform: translate(-49.5%, 0);
-  }
-
-  &.is-agreement-phase::before {
-    background: var(--theme-primary-light);
-  }
+/* 两步流程：紧凑横排，不再拉超长连线 */
+.stepStrip {
+  display: grid;
+  padding-top: 14px;
+  border-top: 1px solid var(--theme-border);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
 }
 
-.step-card {
+.stepItem {
   display: flex;
-  position: relative;
-  z-index: 1;
-  flex-direction: column;
   align-items: center;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-  text-align: center;
-  gap: 8px;
+  padding: 12px 14px;
+  border: 1px solid var(--theme-border);
+  border-radius: 12px;
+  background: var(--theme-card);
+  cursor: default;
+  text-align: left;
+  gap: 12px;
+  transition: border-color .2s, background .2s;
+
+  &:hover:not(:disabled) {
+    border-color: var(--theme-primary-border);
+  }
+
+  &.current,
+  &.done {
+    border-color: var(--theme-primary-border);
+    background: var(--theme-card);
+  }
 
   &:disabled {
     cursor: not-allowed;
   }
-
-  &:hover:not(:disabled) {
-    opacity: .85;
-  }
 }
 
-.step-number {
+.stepNo {
   display: inline-flex;
   justify-content: center;
   align-items: center;
   flex: none;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: var(--theme-primary-soft);
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  background: var(--theme-fill);
   font-weight: 700;
-  font-size: 15px;
-  color: var(--theme-primary);
+  font-size: 13px;
+  color: var(--theme-text-3);
+
+  .stepItem.current & {
+    background: var(--theme-primary);
+    color: #fff;
+  }
+
+  .stepItem.done & {
+    background: var(--theme-success-soft);
+    color: var(--theme-success);
+  }
 
   &.is-check {
-    border-radius: 8px;
     background: var(--theme-primary);
+    color: #fff;
 
     .iconfont {
-      font-size: 15px;
+      font-size: 14px;
       color: #fff;
     }
   }
 }
 
-.step-card.done .step-number,
-.step-card.current .step-number {
-  border-radius: 50%;
-  background: var(--theme-primary);
-  color: #fff;
+/* 已完成步骤：绿底白勾，和当前步的蓝底区分开 */
+.stepItem.done .stepNo.is-check {
+  background: var(--theme-success);
 }
 
-.step-text {
+.stepMeta {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  min-width: 0;
+  gap: 3px;
+
+  strong {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--theme-text-2);
+  }
+
+  small {
+    font-size: 12px;
+    color: var(--theme-text-3);
+  }
 }
 
-.step-card strong {
-  font-size: 16px;
-  color: var(--theme-text-3);
-}
-
-.step-card.current strong,
-.step-card.done strong {
-  color: var(--theme-primary);
-}
-
-.step-card small {
-  font-size: 13px;
-  color: var(--theme-text-3);
+.stepItem.current .stepMeta strong,
+.stepItem.done .stepMeta strong {
+  color: var(--theme-text);
 }
 
 /* 资料填写 + 操作栏合并容器：作为单一连续面板 */
@@ -851,11 +862,10 @@ async function confirmReject() {
   flex: 1;
   box-sizing: border-box;
   min-height: 0;
-  margin: 0 16px;
   border: 1px solid var(--theme-border);
-  border-radius: var(--theme-radius);
+  border-radius: 16px;
   background: var(--theme-card);
-  box-shadow: 0 12px 30px rgba(160, 118, 68, .07);
+  box-shadow: 0 8px 22px rgba(31, 58, 105, .04);
 }
 
 /* 资料填写面板：仅布局，无独立卡片样式 */
@@ -865,13 +875,17 @@ async function confirmReject() {
   flex-direction: column;
   flex: 1;
   min-height: 0;
-  // padding: 24px;
-  gap: 24px;
+  padding-bottom: 18px;
+  gap: 18px;
 }
 .form-section {
   .info-section {
     box-sizing: border-box;
-    padding: 0 24px;
+    padding: 0 22px;
+  }
+
+  .info-section:first-of-type {
+    padding-top: 4px;
   }
 }
 .info-section {
@@ -895,9 +909,10 @@ async function confirmReject() {
 
 /* 信息内容区：浅暖圆角背景，贴合设计稿（设计稿透明度 0.6） */
 .info-section-body {
-  padding: 24px;
-  border-radius: 12px;
-  background: rgba(253, 246, 236, .72);
+  padding: 20px;
+  border: 1px solid var(--theme-border);
+  border-radius: 14px;
+  background: var(--theme-fill);
   &.align--center {
     display: flex;
     align-items: flex-start;
@@ -940,8 +955,8 @@ async function confirmReject() {
 
 .info-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 410px));
-  gap: 36px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px 28px;
 }
 
 .id-photos {
@@ -1021,9 +1036,9 @@ async function confirmReject() {
   background: var(--theme-fill);
   box-shadow: 0 -0.14286rem 0.71429rem 0 rgba(160, 118, 68, .06);
   .el-button {
-    height: 44px;
-    padding: 0 28px;
-    font-size: 16px;
+    height: 40px;
+    padding: 0 26px;
+    font-size: 14px;
   }
 }
 
@@ -1034,8 +1049,7 @@ async function confirmReject() {
   flex-direction: column;
   flex: 1;
   min-height: 0;
-  gap: 12px;
-  margin: 0 16px;
+  gap: 14px;
 }
 
 .contract-card {
@@ -1043,10 +1057,10 @@ async function confirmReject() {
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
-  min-height: 92px;
-  padding: 16px 20px;
+  min-height: 88px;
+  padding: 18px 20px;
   border: 1px solid var(--theme-border);
-  border-radius: 12px;
+  border-radius: 14px;
   background: var(--theme-fill);
   gap: 16px;
 }
@@ -1078,8 +1092,9 @@ async function confirmReject() {
   display: flex;
   align-items: center;
   padding: 12px 16px;
+  border: 1px solid var(--theme-primary-border);
   border-radius: 12px;
-  background: rgba(201, 118, 47, .08);
+  background: var(--theme-primary-soft);
   line-height: 20px;
   font-size: 13px;
   color: var(--theme-text-2);
@@ -1089,6 +1104,55 @@ async function confirmReject() {
     flex-shrink: 0;
     font-size: 14px;
     color: var(--theme-primary);
+  }
+}
+
+.signNotes {
+  display: grid;
+  margin-top: 2px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.noteItem {
+  display: flex;
+  align-items: flex-start;
+  padding: 14px 16px;
+  border: 1px solid var(--theme-border);
+  border-radius: 14px;
+  background: var(--theme-card);
+  gap: 10px;
+}
+
+.noteIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  background: var(--theme-success-soft);
+  font-size: 13px;
+  color: var(--theme-success);
+}
+
+.noteText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 4px;
+
+  strong {
+    font-weight: 600;
+    font-size: 13.5px;
+    color: var(--theme-text);
+  }
+
+  span {
+    line-height: 18px;
+    font-size: 12.5px;
+    color: var(--theme-text-3);
   }
 }
 

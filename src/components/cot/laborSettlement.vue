@@ -24,49 +24,76 @@
 
       <!-- 结算列表 -->
       <div v-loading="loading" class="warmCard listCard">
-        <div class="listHeader">
-          <div class="listHeaderText">
+        <div class="listHead">
+          <div class="listHeadText">
             <h2 class="warmSectionTitle">结算列表</h2>
-            <p class="listSub">共 {{ total }} 笔结算，点开任意一笔都能看到金额明细</p>
+            <p class="listSub">共 {{ total }} 笔结算 · 点开任意一笔都能看到金额明细</p>
           </div>
-          <div class="listFilter">
-            <el-select v-model="statusFilter" clearable placeholder="全部状态">
-              <el-option v-for="item in SETTLE_STATUS_OPTIONS" :key="item.value" :label="item.label" :value="item.value" />
-            </el-select>
-            <el-input v-model="keyword" placeholder="结算单编号/任务ID" clearable />
-            <el-button type="primary" @click="onSearch">查询</el-button>
+          <div class="listSummary">
+            <span class="summaryLabel">待结算金额</span>
+            <strong class="summaryValue">¥ {{ formatAmount(pendingAmount) }}</strong>
           </div>
         </div>
 
-        <CommonTable class="singleTable" :data="tableData">
-          <el-table-column prop="settlementNo" label="结算单编号" min-width="170" />
-          <el-table-column prop="allocateId" label="任务ID" min-width="200" />
-          <el-table-column prop="totalCount" label="总病历数" min-width="100" />
-          <el-table-column prop="completedCount" label="完成病历总数" min-width="110" />
-          <el-table-column label="结算金额" min-width="120">
+        <div class="listToolbar">
+          <el-select v-model="statusFilter" clearable placeholder="全部状态" class="filterSelect">
+            <el-option v-for="item in SETTLE_STATUS_OPTIONS" :key="item.value" :label="item.label" :value="item.value" />
+          </el-select>
+          <el-input v-model="keyword" class="filterInput" placeholder="搜索结算单编号 / 任务ID" clearable />
+          <el-button type="primary" class="filterBtn" @click="onSearch">查询</el-button>
+        </div>
+
+        <CommonTable class="singleTable settlementTable" :data="tableData">
+          <el-table-column label="结算单编号" min-width="170">
+            <template #default="{ row }">
+              <span class="codeCell">{{ row.settlementNo || '-' }}</span>
+            </template>
+          </el-table-column>
+          <el-table-column label="任务ID" min-width="190">
+            <template #default="{ row }">
+              <span class="mutedCell">{{ row.allocateId || '-' }}</span>
+            </template>
+          </el-table-column>
+          <el-table-column label="总病历数" min-width="96" align="center">
+            <template #default="{ row }">{{ row.totalCount ?? '-' }}</template>
+          </el-table-column>
+          <el-table-column label="已完成" min-width="90" align="center">
+            <template #default="{ row }">{{ row.completedCount ?? '-' }}</template>
+          </el-table-column>
+          <el-table-column label="结算金额" min-width="120" align="right">
             <template #default="{ row }">
               <span class="amountCell">¥ {{ formatAmount(row.beforeTaxAmount) }}</span>
             </template>
           </el-table-column>
-          <el-table-column label="结算状态" min-width="110">
+          <el-table-column label="结算状态" min-width="132">
             <template #default="{ row }">
-              <span class="statusDot" :style="{ backgroundColor: STATUS_DOT_COLOR[row.settlementStatus] }" />
-              <span class="statusText">{{ SETTLE_STATUSALL[row.settlementStatus] }}</span>
+              <span class="statusTag" :class="statusClass(row.settlementStatus)">
+                <i class="dot" />{{ SETTLE_STATUSALL[row.settlementStatus] || '-' }}
+              </span>
             </template>
           </el-table-column>
-          <el-table-column label="操作" min-width="80" fixed="right">
+          <el-table-column label="操作" min-width="150" fixed="right">
             <template #default="{ row }">
-              <el-button v-if="row.settlementStatus === 'UNSETTLED' && (!needCheckPermission || hadPermissionList.includes('发起结算申请'))" link type="primary" @click="openApplyModal(row)" >申请结算</el-button>
-              <el-button
-                v-if="['WAITING_EXPERT_CONFIRM', 'WAITING_PAYMENT', 'ARCHIVED','SETTLED'].includes(row.settlementStatus)"
-                link type="primary" @click="openDetailModal(row)">查看</el-button>
-              <template v-if="row.settlementStatus === 'WAITING_EXPERT_CONFIRM'">
-                <el-button link type="primary" @click="openAgreementModal(row)" v-if="(!needCheckPermission || hadPermissionList.includes('确认结算单'))">确认</el-button>
-                <el-button link type="danger" @click="openRejectModal(row)" v-if="(!needCheckPermission || hadPermissionList.includes('驳回结算单'))">驳回</el-button>
-              </template>
+              <div class="rowActions">
+                <el-button
+                  v-if="row.settlementStatus === 'UNSETTLED' && (!needCheckPermission || hadPermissionList.includes('发起结算申请'))"
+                  link
+                  type="primary"
+                  @click="openApplyModal(row)">申请结算</el-button>
+                <el-button
+                  v-if="['WAITING_EXPERT_CONFIRM', 'WAITING_PAYMENT', 'ARCHIVED', 'SETTLED'].includes(row.settlementStatus)"
+                  link
+                  type="primary"
+                  @click="openDetailModal(row)">查看</el-button>
+                <template v-if="row.settlementStatus === 'WAITING_EXPERT_CONFIRM'">
+                  <el-button v-if="!needCheckPermission || hadPermissionList.includes('确认结算单')" link type="primary" @click="openAgreementModal(row)">确认</el-button>
+                  <el-button v-if="!needCheckPermission || hadPermissionList.includes('驳回结算单')" link type="danger" @click="openRejectModal(row)">驳回</el-button>
+                </template>
+              </div>
             </template>
           </el-table-column>
         </CommonTable>
+
         <div class="tabel_pagination">
           <el-pagination
             v-model:current-page="currentPage"
@@ -123,7 +150,7 @@ export default { name: 'LaborSettlement' }
 </script>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import {
   getSettlementList,
@@ -146,23 +173,31 @@ const flowSteps = [
   { title: '已结清', desc: '补充打款信息并归档' }
 ]
 
-// 识别状态圆点颜色：0 待申请结算 / 1 已申请结算 / 2 待确认结算 / 3 待打款 / 4 已结算
-// 状态颜色
-const STATUS_DOT_COLOR = {
-  UNSETTLED: '#c9762f',
-  PENDING_CONFIRM: '#e0a05e',
-  WAITING_EXPERT_CONFIRM: '#b0a396',
-  WAITING_PAYMENT: '#b0a396',
-  SETTLED: '#4f9166',
-  ARCHIVED: '#4f9166',
-  REJECTED: '#c1594f'
-}
-
 // 金额千分位展示
 const formatAmount = (value) => {
   const num = Number(value || 0)
   return num.toLocaleString('zh-CN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
 }
+
+// 状态胶囊配色：待申请/待打款=暖色，流转中=蓝色，已结清=绿色，已驳回=红色
+const STATUS_TAG_CLASS = {
+  UNSETTLED: 'is-warn',
+  PENDING_CONFIRM: 'is-info',
+  WAITING_EXPERT_CONFIRM: 'is-wait',
+  WAITING_PAYMENT: 'is-warn',
+  SETTLED: 'is-done',
+  ARCHIVED: 'is-done',
+  REJECTED: 'is-danger'
+}
+const statusClass = (status) => STATUS_TAG_CLASS[status] || 'is-info'
+
+// 待结算金额：待申请 / 已申请 / 待确认 三类都还没到账，汇总展示
+const PENDING_AMOUNT_STATUS = ['UNSETTLED', 'PENDING_CONFIRM', 'WAITING_EXPERT_CONFIRM']
+const pendingAmount = computed(() =>
+  tableData.value
+    .filter((row) => PENDING_AMOUNT_STATUS.includes(row.settlementStatus))
+    .reduce((sum, row) => sum + (Number(row.beforeTaxAmount) || 0), 0)
+)
 
 // 状态筛选（数字状态码，空字符串表示全部）
 const statusFilter = ref('')
@@ -344,7 +379,7 @@ onMounted(() => {
   height: 100%;
   padding: 16px;
   background: var(--theme-bg);
-  gap: 16px;
+  gap: 14px;
 }
 
 /* ===================== 温暖开场 + 流程 ===================== */
@@ -353,7 +388,7 @@ onMounted(() => {
   justify-content: space-between;
   align-items: center;
   flex-shrink: 0;
-  padding: 24px 28px;
+  padding: 20px 22px;
   background: linear-gradient(120deg, #fffaf3 0%, #fffdfa 58%, #fdf1e3 100%);
   gap: 32px;
 }
@@ -414,7 +449,7 @@ onMounted(() => {
   align-items: flex-start;
   flex: 1;
   min-width: 0;
-  padding: 14px;
+  padding: 12px 14px;
   border: 1px solid var(--theme-border);
   border-radius: 14px;
   background: var(--theme-card);
@@ -459,65 +494,184 @@ onMounted(() => {
   flex-direction: column;
   flex: 1;
   min-height: 0;
-  padding: 20px 24px 24px;
+  padding: 20px 22px 18px;
+  gap: 14px;
 }
 
-.listHeader {
+.listHead {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   flex-shrink: 0;
-  margin-bottom: 16px;
   gap: 16px;
 }
 
-.listHeaderText {
+.listHeadText {
   min-width: 0;
 }
 
 .listSub {
   margin: 6px 0 0;
-  font-size: 12px;
+  font-size: 12.5px;
   color: var(--theme-text-3);
 }
 
-.el-table {
-  flex: 1;
+.listSummary {
+  display: flex;
+  align-items: baseline;
+  flex: none;
+  padding: 8px 14px;
+  border: 1px solid var(--theme-primary-border);
+  border-radius: 12px;
+  background: var(--theme-primary-soft);
+  gap: 8px;
 }
 
-.listFilter {
+.summaryLabel {
+  font-size: 12.5px;
+  color: var(--theme-text-2);
+}
+
+.summaryValue {
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--theme-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* 筛选行：单独一行，和标题拉开，不再挤在标题右侧 */
+.listToolbar {
   display: flex;
   align-items: center;
   flex-shrink: 0;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--theme-border);
   gap: 12px;
 
-  .el-select {
-    width: 132px;
+  .filterSelect {
+    width: 138px;
   }
 
-  .el-input {
-    width: 260px;
+  .filterInput {
+    width: 240px;
+  }
+
+  .filterBtn {
+    height: 32px;
+    padding: 0 18px;
+    border-radius: 8px;
+    font-size: 13px;
   }
 }
 
-.statusDot {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  margin-right: 8px;
-  border-radius: 50%;
-  vertical-align: middle;
+.tableMain,
+:deep(.el-table) {
+  flex: 1;
+  min-height: 0;
 }
 
-.statusText {
-  vertical-align: middle;
-  color: var(--theme-text-2);
+.settlementTable {
+  :deep(.el-table__header th.el-table__cell) {
+    height: 44px;
+    border-bottom: 1px solid var(--theme-border);
+    background: var(--theme-fill);
+    font-weight: 500;
+    font-size: 13px;
+    color: var(--theme-text-2);
+  }
+
+  :deep(.el-table__body td.el-table__cell) {
+    height: 52px;
+    border-bottom: 1px solid var(--theme-border);
+    font-size: 13.5px;
+    color: var(--theme-text-2);
+  }
+
+  :deep(.el-table__body tr:hover > td.el-table__cell) {
+    background: var(--theme-primary-soft);
+  }
+
+  :deep(.el-table__inner-wrapper::before) {
+    display: none;
+  }
+}
+
+.codeCell {
+  font-weight: 500;
+  color: var(--theme-text);
+}
+
+.mutedCell {
+  font-size: 13px;
+  color: var(--theme-text-3);
+  font-variant-numeric: tabular-nums;
 }
 
 .amountCell {
   font-weight: 600;
   font-size: 14px;
-  color: var(--theme-primary);
+  color: var(--theme-text);
+  font-variant-numeric: tabular-nums;
+}
+
+/* 状态胶囊 */
+.statusTag {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 12.5px;
+  gap: 6px;
+
+  .dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentcolor;
+  }
+
+  &.is-warn {
+    border-color: rgba(224, 138, 30, .3);
+    background: rgba(224, 138, 30, .1);
+    color: var(--theme-warning);
+  }
+
+  &.is-info {
+    border-color: var(--theme-primary-border);
+    background: var(--theme-primary-soft);
+    color: var(--theme-primary);
+  }
+
+  &.is-wait {
+    border-color: rgba(123, 97, 255, .25);
+    background: rgba(123, 97, 255, .09);
+    color: #6a56d8;
+  }
+
+  &.is-done {
+    border-color: rgba(4, 162, 115, .28);
+    background: var(--theme-success-soft);
+    color: var(--theme-success);
+  }
+
+  &.is-danger {
+    border-color: rgba(255, 78, 78, .28);
+    background: var(--theme-danger-soft);
+    color: var(--theme-danger);
+  }
+}
+
+.rowActions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  :deep(.el-button) {
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+  }
 }
 
 // .singleTable {
