@@ -361,7 +361,7 @@ if (token) {
     display: flex;
     flex-direction: column;
     flex: 1;
-    margin-left: 72px;
+    margin-left: var(--sidebar-width, 224px);
     .homeView {
       display: flex;
       flex: 1;

@@ -7,140 +7,146 @@
     >
       <img class="login-title" :src="loginTitleLogo" />
       <img class="loginText" alt="" :src="loginText">
+      <div class="loginIpCard">
+        <img class="loginIp" alt="颐邦小源" :src="brandIp">
+      </div>
       <div class="medical-login">
-        <div class="medical-login_box">
-          <!--登录 start-->
-          <div class="medical-login_form">
-            <div class="loginNav">
-              <span class="loginNavTitle">{{ isPhoneMode ? '登录/注册' : '账号密码登录' }}</span>
-              <p class="loginNavSub">{{ isPhoneMode ? '手机号验证码登录，未注册账号将自动创建' : '使用账号与密码登录工作台' }}</p>
-            </div>
-
-            <div class="loginTabs">
-              <span
-                :class="{ 'is-active': isPhoneMode }"
-                @click="switchLoginMode('phone')">
-                手机验证码登录
-              </span>
-              <span
-                :class="{ 'is-active': !isPhoneMode }"
-                @click="switchLoginMode('password')">
-                账号密码登录
-              </span>
-            </div>
-
-            <!-- 手机验证码登录 -->
-            <template v-if="isPhoneMode">
-              <el-form
-                ref="phoneFormRef"
-                :model="phoneForm"
-                :rules="phoneRules"
-                :hide-required-asterisk="true"
-                class="login-form"
-                @submit.prevent
-              >
-                <el-form-item prop="phone" class="accountInput">
-                  <el-input
-                    v-model.trim="phoneForm.phone"
-                    maxlength="11"
-                    autocomplete="off"
-                    placeholder="请输入手机号"
-                  ></el-input>
-                </el-form-item>
-                <el-form-item prop="code">
-                  <div class="codeRow">
-                    <el-input
-                      v-model.trim="phoneForm.code"
-                      maxlength="6"
-                      autocomplete="off"
-                      placeholder="请输入短信验证码"
-                      @keyup.enter="submitPhone"
-                    ></el-input>
-                    <el-button class="codeBtn" :disabled="counting" @click="sendCode">
-                      {{ counting ? countdown + 's 后重发' : '获取验证码' }}
-                    </el-button>
-                  </div>
-                </el-form-item>
-              </el-form>
-
-              <div class="agreeCheck">
-                <el-checkbox v-model="agreed" />
-                <span class="agreeText">我已阅读并同意</span>
-                <span class="agreeLink" @click="handleAgreement('agreement')">《用户协议》</span>
-                <span class="agreeText">和</span>
-                <span class="agreeLink" @click="handleAgreement('privacy')">《隐私政策》</span>
+        <div class="loginColumn">
+          <div class="medical-login_box">
+            <!--登录 start-->
+            <div class="medical-login_form">
+              <div class="loginNav">
+                <span class="loginNavTitle">{{ isPhoneMode ? '登录/注册' : '账号密码登录' }}</span>
+                <p class="loginNavSub">{{ isPhoneMode ? '手机号验证码登录，未注册账号将自动创建' : '使用账号与密码登录工作台' }}</p>
               </div>
 
-              <div
-                class="btn-login"
-                :class="{ active: phoneReady }"
-                @click="submitPhone">
-                登录/注册
+              <div class="loginTabs">
+                <span
+                  :class="{ 'is-active': isPhoneMode }"
+                  @click="switchLoginMode('phone')">
+                  手机验证码登录
+                </span>
+                <span
+                  :class="{ 'is-active': !isPhoneMode }"
+                  @click="switchLoginMode('password')">
+                  账号密码登录
+                </span>
               </div>
-              <p class="phoneDemoTip">演示环境：短信验证码固定为 123456</p>
-            </template>
 
-            <!-- 账号密码登录 -->
-            <template v-else>
-              <el-form
-                ref="ruleFormRef"
-                :model="loginForm"
-                :rules="rules"
-                :hide-required-asterisk="true"
-                class="login-form"
-                @submit.prevent
-              >
-                <el-form-item prop="account" class="accountInput">
-                  <el-input
-                    v-focus
-                    v-model.trim="loginForm.account"
-                    autocomplete="off"
-                    placeholder="请输入账号ID"
-                  ></el-input>
-                </el-form-item>
-                <el-form-item prop="password">
-                  <el-input
-                    v-model="loginForm.password"
-                    :type="showEye ? 'password' : 'text'"
-                    placeholder="请输入密码"
-                    autocomplete="off"
-                    @keyup.enter="submitForm(ruleFormRef)"
-                  ></el-input>
-                  <i
-                    :class="
-                      showEye
-                        ? 'iconfont icon-yincang'
-                        : 'iconfont icon-xianshi'
-                    "
-                    @click="showEye = !showEye"
-                  ></i>
-                </el-form-item>
-              </el-form>
-              <div class="agreement">
-                登录视为您已阅读并同意
-                <span @click="handleAgreement('agreement')">用户协议</span>
-                和
-                <span @click="handleAgreement('privacy')">隐私政策</span>
-              </div>
-              <div class="btn-login"
-                   :class="loginForm.account !== '' && loginForm.password !== '' ? 'active' : ''"
-                   @click="submitForm(ruleFormRef)">
-                登 录
-              </div>
-              <!-- 演示账号：点击可快速填入 -->
-              <div class="demoAccounts">
-                <div class="demoAccountsTitle">演示账号（点击填入）</div>
-                <div
-                  v-for="item in DEMO_ACCOUNTS"
-                  :key="item.account"
-                  class="demoAccountItem"
-                  @click="fillDemoAccount(item)"
+              <!-- 手机验证码登录 -->
+              <template v-if="isPhoneMode">
+                <el-form
+                  ref="phoneFormRef"
+                  :model="phoneForm"
+                  :rules="phoneRules"
+                  :hide-required-asterisk="true"
+                  class="login-form"
+                  @submit.prevent
                 >
-                  <span class="demoAccountName">{{ item.account }} / {{ item.password }}</span>
-                  <span class="demoAccountDesc">{{ item.desc }}</span>
+                  <el-form-item prop="phone" class="accountInput">
+                    <el-input
+                      v-model.trim="phoneForm.phone"
+                      maxlength="11"
+                      autocomplete="off"
+                      placeholder="请输入手机号"
+                    ></el-input>
+                  </el-form-item>
+                  <el-form-item prop="code">
+                    <div class="codeRow">
+                      <el-input
+                        v-model.trim="phoneForm.code"
+                        maxlength="6"
+                        autocomplete="off"
+                        placeholder="请输入短信验证码"
+                        @keyup.enter="submitPhone"
+                      ></el-input>
+                      <el-button class="codeBtn" :disabled="counting" @click="sendCode">
+                        {{ counting ? countdown + 's 后重发' : '获取验证码' }}
+                      </el-button>
+                    </div>
+                  </el-form-item>
+                </el-form>
+
+                <div class="agreeCheck">
+                  <el-checkbox v-model="agreed" />
+                  <span class="agreeText">我已阅读并同意</span>
+                  <span class="agreeLink" @click="handleAgreement('agreement')">《用户协议》</span>
+                  <span class="agreeText">和</span>
+                  <span class="agreeLink" @click="handleAgreement('privacy')">《隐私政策》</span>
                 </div>
-              </div>
-            </template>
+
+                <div
+                  class="btn-login"
+                  :class="{ active: phoneReady }"
+                  @click="submitPhone">
+                  登录/注册
+                </div>
+                <p class="phoneDemoTip">演示环境：短信验证码固定为 123456</p>
+              </template>
+
+              <!-- 账号密码登录 -->
+              <template v-else>
+                <el-form
+                  ref="ruleFormRef"
+                  :model="loginForm"
+                  :rules="rules"
+                  :hide-required-asterisk="true"
+                  class="login-form"
+                  @submit.prevent
+                >
+                  <el-form-item prop="account" class="accountInput">
+                    <el-input
+                      v-focus
+                      v-model.trim="loginForm.account"
+                      autocomplete="off"
+                      placeholder="请输入账号ID"
+                    ></el-input>
+                  </el-form-item>
+                  <el-form-item prop="password">
+                    <el-input
+                      v-model="loginForm.password"
+                      :type="showEye ? 'password' : 'text'"
+                      placeholder="请输入密码"
+                      autocomplete="off"
+                      @keyup.enter="submitForm(ruleFormRef)"
+                    ></el-input>
+                    <i
+                      :class="
+                        showEye
+                          ? 'iconfont icon-yincang'
+                          : 'iconfont icon-xianshi'
+                      "
+                      @click="showEye = !showEye"
+                    ></i>
+                  </el-form-item>
+                </el-form>
+                <div class="agreement">
+                  登录视为您已阅读并同意
+                  <span @click="handleAgreement('agreement')">用户协议</span>
+                  和
+                  <span @click="handleAgreement('privacy')">隐私政策</span>
+                </div>
+                <div class="btn-login"
+                     :class="loginForm.account !== '' && loginForm.password !== '' ? 'active' : ''"
+                     @click="submitForm(ruleFormRef)">
+                  登 录
+                </div>
+              </template>
+            </div>
+          </div>
+
+          <!-- 演示账号：放在登录框外，切换登录方式不影响卡片高度 -->
+          <div class="demoAccounts">
+            <div class="demoAccountsTitle">演示账号（点击填入）</div>
+            <div
+              v-for="item in DEMO_ACCOUNTS"
+              :key="item.account"
+              class="demoAccountItem"
+              @click="fillDemoAccount(item)"
+            >
+              <span class="demoAccountName">{{ item.account }} / {{ item.password }}</span>
+              <span class="demoAccountDesc">{{ item.desc }}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -166,7 +172,8 @@ import { useModeStore } from '@/store/modeStore'
 import { approveApplication, resetApplication } from '@/utils/onboarding'
 import authentication from '@/components/authentication/login-authentication.vue'
 import loginBgDefault from '@/assets/login-bg2.png'
-import loginTitle from '@/assets/login-title1.png'
+import brandLockup from '@/assets/brand/brand-lockup.png'
+import brandIp from '@/assets/brand/brand-ip.png'
 import loginText from '@/assets/loginText.png'
 import { setFavicon } from '@/utils/setIco'
 import PrivacyPolicy from './PrivacyPolicy.vue'
@@ -175,9 +182,9 @@ import UserAgreement from './UserAgreement.vue'
 const userStore = useUserStore()
 const modeStore = useModeStore()
 
-const systemName = ref(userStore.platInfo.systemName || '标注审阅工作台 · COT')
+const systemName = ref(userStore.platInfo.systemName || '颐邦小源医学专家平台')
 const loginBg = ref(userStore.platInfo.loginLogo || loginBgDefault)
-const loginTitleLogo = ref(userStore.platInfo.loginTitle || loginTitle)
+const loginTitleLogo = ref(userStore.platInfo.loginTitle || brandLockup)
 const loginForm = reactive({
   account: '',
   password: ''
@@ -257,7 +264,7 @@ const handleAgreement = (type) => {
 // ----------------------------------------
 
 onMounted(() => {
-  setFavicon('../static/idl.ico', systemName.value)
+  setFavicon('/static/brand-logo.png', systemName.value)
   emitter.on('showLoading', () => {})
   emitter.on('closeLoading', () => {
     loadingFlag.value = false
@@ -380,9 +387,10 @@ const handleClose = () => {
       margin-right: 141px;
       margin-bottom: 2px;
       .medical-login_box {
+        flex: none;
         box-sizing: border-box;
         width: 509px;
-        min-height: 100%;
+        height: 500px;
         padding: 34px 44px 28px 45px;
         border: 2px solid #fff;
         border-radius: 10px;
@@ -680,6 +688,72 @@ const handleClose = () => {
     height: 100%;
     padding: 0 !important;
   }
+}
+
+/* 右侧登录列：卡片 + 卡片外的演示账号 */
+.loginColumn {
+  display: flex;
+  flex-direction: column;
+  flex: none;
+  width: 509px;
+  gap: 14px;
+}
+
+/* 演示账号（登录框外） */
+.loginDiv .demoAccounts {
+  padding: 16px 20px;
+  border: 1px dashed #b9cdf7;
+  border-radius: 10px;
+  background: rgba(54, 112, 248, 0.05);
+}
+
+.loginDiv .demoAccountsTitle {
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: #7f8899;
+}
+
+.loginDiv .demoAccountItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  line-height: 22px;
+
+  &:hover {
+    background: rgba(54, 112, 248, 0.08);
+  }
+}
+
+.loginDiv .demoAccountName {
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--theme-primary);
+}
+
+.loginDiv .demoAccountDesc {
+  font-size: 14px;
+  color: #8a94a6;
+}
+
+/* 颐邦小源 IP 形象 */
+.loginIpCard {
+  overflow: hidden;
+  position: absolute;
+  left: 48px;
+  bottom: 26px;
+  width: 190px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, #dcebfd 0%, #cfe3fb 100%);
+  box-shadow: 0 16px 32px rgba(31, 58, 105, 0.12);
+}
+
+.loginIp {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .agreement {

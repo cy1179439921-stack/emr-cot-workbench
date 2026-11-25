@@ -695,6 +695,11 @@ html.theme-dark {
   }
 
   .homeMenu {
+    .brandLockup,
+    .brandMark {
+      filter: brightness(0) invert(1) opacity(0.92);
+    }
+
     .menuTitle,
     .homeFooter,
     .tobeDoneText,

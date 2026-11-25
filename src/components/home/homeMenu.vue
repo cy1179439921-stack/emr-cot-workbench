@@ -6,16 +6,11 @@
          }"
          @mouseenter="openSubMenu"
          @mouseleave="closeSubMenu">
-      <div :class="{collapseBtn:true, flexCenter:true,darkcollapseBtn:(modeStore.mode==='dark'&&route.path==='/dataBoard')}">
-        <el-icon :size="13">
-          <ArrowRightBold v-if="isCollapse" @click="handelCollapse" />
-          <ArrowLeftBold v-else @click="handelCollapse" />
-        </el-icon>
-      </div>
       <div class="menuTitle" :class="getMenuTitleClassNmae">
-        <img :src="(modeStore.mode==='dark'&&route.path==='/dataBoard')?darkMenuFoldLogo: menuFoldLogo" />
-        <img :src="(modeStore.mode==='dark'&&route.path==='/dataBoard')?darkMenuExpandLogo:menuExpandLogo" v-if="!isCollapse"/>
+        <img v-if="isCollapse" class="brandMark" alt="颐邦小源" :src="brandLogo" />
+        <img v-else class="brandLockup" alt="颐邦小源医学专家平台" :src="brandLockup" />
       </div>
+      <div v-if="!isCollapse" class="menuSectionLabel">工作区</div>
       <el-scrollbar height="100%">
         <!-- <transition :duration="{ enter: 800, leave: 100 }"> -->
         <el-menu
@@ -90,6 +85,13 @@
         </div>
         <div class="notice" v-show="isCollapse&&Number(tobeDoneStore.tobeDoneNum?.todoTotalNum)">{{`${tobeDoneStore.tobeDoneNum?.todoTotalNum>99?'99+':(tobeDoneStore.tobeDoneNum?.todoTotalNum)||0}`}}</div>
       </div> -->
+      <div class="collapseFooter" @click="handelCollapse">
+        <el-icon :size="13">
+          <ArrowLeftBold v-if="!isCollapse" />
+          <ArrowRightBold v-else />
+        </el-icon>
+        <span v-if="!isCollapse">收起侧边导航</span>
+      </div>
       <footer class="homeFooter" :class="isCollapse ? '' : 'homeFooter-expand'">
         <el-popover
           placement="right-end"
@@ -173,7 +175,7 @@ export default {
 }
 </script>
 <script setup>
-import { ref, watch, reactive, computed, nextTick } from 'vue'
+import { ref, watch, reactive, computed, nextTick, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useUserStore } from '@/store/user'
 import { ElMessage } from 'element-plus'
@@ -186,6 +188,8 @@ import cdcLogoName from '@/assets/cdclogo2.png'
 import darkLogoName from '@/assets/darkLogoName.png'
 import userDefaultImg from '@/assets/defaultHeadImg.png'
 import { useModeStore, THEME_OPTIONS } from '@/store/modeStore'
+import brandLogo from '@/assets/brand/brand-logo.png'
+import brandLockup from '@/assets/brand/brand-lockup.png'
 import ProfileCenter from '@/components/home/profileCenter.vue'
 import { useMedicalStore } from '@/store/medicalStore'
 import { setFavicon } from '@/utils/setIco'
@@ -419,8 +423,15 @@ watch(() => medicalStore.activeCurPatientDetail, (newValue) => {
     }
   })
 })
-// 未入驻时菜单只有「首页 / 入驻申请」两项，默认展开，避免只剩两个图标认不出来
-const isCollapse = ref(onboardingApproved.value)
+// 侧边栏默认展开：顶部品牌 + 工作区分组，底部可收起
+const isCollapse = ref(false)
+
+// 内容区左边距跟随侧边栏宽度
+const syncSidebarWidth = () => {
+  document.documentElement.style.setProperty('--sidebar-width', isCollapse.value ? '72px' : '224px')
+}
+watch(isCollapse, syncSidebarWidth)
+onMounted(syncSidebarWidth)
 const userOperationList = ref([
   {
     name: '个人中心',
@@ -1151,4 +1162,77 @@ const closeSubMenu = () => {
 //     }
 //   }
 // }
+
+/* ===================== 新版侧边栏（品牌头 + 工作区分组） ===================== */
+.homeMenu {
+  .menuTitle {
+    height: 68px;
+    padding: 0 18px;
+    border-bottom: 1px solid var(--theme-border);
+
+    .brandLockup {
+      width: 176px;
+      height: auto;
+    }
+
+    .brandMark {
+      width: 32px;
+      height: auto;
+    }
+  }
+
+  .menuSectionLabel {
+    padding: 16px 22px 6px;
+    font-size: 12px;
+    color: var(--theme-text-3);
+    letter-spacing: 0.5px;
+  }
+
+  :deep(.el-menu-vertical) {
+    padding: 0 10px;
+    border-right: none;
+    background: transparent;
+  }
+
+  :deep(.el-menu-item),
+  :deep(.el-sub-menu__title) {
+    height: 42px;
+    margin: 2px 0;
+    border-radius: 8px;
+    line-height: 42px;
+    font-size: 14px;
+    color: var(--theme-text-2);
+  }
+
+  :deep(.el-menu-item:hover),
+  :deep(.el-sub-menu__title:hover) {
+    background: var(--theme-fill);
+    color: var(--theme-primary);
+  }
+
+  :deep(.el-menu-item.is-active) {
+    background: var(--theme-primary-soft);
+    font-weight: 600;
+    color: var(--theme-primary);
+  }
+
+  .collapseFooter {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    margin: 6px 12px;
+    padding: 0 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--theme-text-3);
+    gap: 8px;
+    transition: all 0.2s;
+
+    &:hover {
+      background: var(--theme-fill);
+      color: var(--theme-primary);
+    }
+  }
+}
 </style>
