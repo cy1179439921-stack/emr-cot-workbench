@@ -1,6 +1,7 @@
 // ===================== 入驻审核管理：演示数据 =====================
 // 字段依据《COT 官网招募字段表》整理，用于后台审核列表与详情页演示。
 import { onboardingState, ONBOARDING_STATUS, formatFileSize } from '@/utils/onboarding'
+import { DEMO_USER } from '@/mock/demoUser'
 
 // 生成一张浅色占位证明图（data URI，避免依赖外部图片文件）
 const docImage = (title, sub) => {
@@ -138,31 +139,46 @@ export const ONBOARDING_DEMO_LIST = [
 // ===================== 列表聚合 =====================
 // 把「当前账号自己提交的申请」拼到演示数据最前面，
 // 这样专家端提交后，后台入驻审核管理可以立刻看到并审核，形成闭环。
+// 演示账号（admin）从未填过入驻表，这里用一份示例资料补位，避免详情页整页「-」
+const SELF_FALLBACK = {
+  ...ONBOARDING_DEMO_LIST[0],
+  name: DEMO_USER.userName,
+  phone: '13800136621',
+  idCardNo: DEMO_USER.idCard,
+  titleLevel: '主治医师',
+  hospitalName: '滕州市中心人民医院',
+  department: '心内科',
+  yearsOfPractice: '5-10 年',
+  education: '硕士',
+  qualificationNote: '长期从事心内科临床工作，熟悉冠心病、高血压的规范化诊疗。',
+  resume: { ...ONBOARDING_DEMO_LIST[0].resume, name: `${DEMO_USER.userName}-个人简历.pdf` }
+}
+
 const buildSelfApplication = () => {
   const f = onboardingState.form || {}
   const attachmentUrl = (file) => (file && file.url ? file.url : '')
   return {
     id: 'SELF',
     isSelf: true,
-    name: f.name || '当前账号',
-    phone: f.phone || '-',
-    titleLevel: f.titleLevel || '-',
-    hospitalName: f.hospitalName || '-',
-    department: f.departmentCategory || '-',
+    name: f.name || SELF_FALLBACK.name,
+    phone: f.phone || SELF_FALLBACK.phone,
+    titleLevel: f.titleLevel || SELF_FALLBACK.titleLevel,
+    hospitalName: f.hospitalName || SELF_FALLBACK.hospitalName,
+    department: f.departmentCategory || SELF_FALLBACK.department,
     applyStatus: onboardingState.status,
-    submittedAt: onboardingState.submittedAt || '-',
+    submittedAt: onboardingState.submittedAt || SELF_FALLBACK.submittedAt,
     reviewedAt: onboardingState.reviewedAt || '',
     rejectReason: onboardingState.rejectReason || '',
-    yearsOfPractice: f.yearsOfPractice || '-',
-    education: f.education || '-',
-    idCardNo: f.idCardNo || '-',
-    idCardFront: attachmentUrl(f.idCardFront),
-    idCardBack: attachmentUrl(f.idCardBack),
-    doctorCertificate: attachmentUrl(f.doctorCertificate),
-    titleCertificate: attachmentUrl(f.titleCertificate),
-    qualificationNote: f.qualificationNote || '',
-    qualificationAttachment: f.qualificationAttachment,
-    resume: f.resume || null
+    yearsOfPractice: f.yearsOfPractice || SELF_FALLBACK.yearsOfPractice,
+    education: f.education || SELF_FALLBACK.education,
+    idCardNo: f.idCardNo || SELF_FALLBACK.idCardNo,
+    idCardFront: attachmentUrl(f.idCardFront) || SELF_FALLBACK.idCardFront,
+    idCardBack: attachmentUrl(f.idCardBack) || SELF_FALLBACK.idCardBack,
+    doctorCertificate: attachmentUrl(f.doctorCertificate) || SELF_FALLBACK.doctorCertificate,
+    titleCertificate: attachmentUrl(f.titleCertificate) || SELF_FALLBACK.titleCertificate,
+    qualificationNote: f.qualificationNote || SELF_FALLBACK.qualificationNote,
+    qualificationAttachment: f.qualificationAttachment || SELF_FALLBACK.qualificationAttachment,
+    resume: f.resume || SELF_FALLBACK.resume
   }
 }
 

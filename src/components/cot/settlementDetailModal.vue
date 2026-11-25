@@ -173,6 +173,7 @@ import { ref, computed, onMounted, nextTick } from 'vue'
 import { ArrowLeft } from '@element-plus/icons-vue'
 import { getSettlementDetail } from '@/api/api_cot'
 import { getPagePermission } from '@/hooks/permissionHooks'
+import { withTimeout } from '@/utils/requestFallback'
 const { needCheckPermission, hadPermissionList } = getPagePermission('/laborSettlement')
 
 const props = defineProps({
@@ -244,14 +245,19 @@ function formatMoney(val) {
 }
 
 async function fetchDetail() {
-  if (!props.row?.id) return
+  const row = props.row || {}
+  // 先用列表行数据打底：接口超时或没有详情时页面也有内容，不会白屏
+  detail.value = { ...row }
+  if (!row.id) return
   loading.value = true
-  const res = await getSettlementDetail({ id: props.row.id })
-  if (res.code === 10000) {
-    // mock 模式下接口无详情数据，退回使用列表行数据，保证详情页有内容
-    detail.value = res.data || props.row || {}
+  try {
+    const res = await withTimeout(getSettlementDetail({ id: row.id }))
+    if (res && res.code === 10000 && res.data) {
+      detail.value = { ...row, ...res.data }
+    }
+  } finally {
+    loading.value = false
   }
-  loading.value = false
 }
 
 function scrollToSection(key) {

@@ -240,10 +240,11 @@
         </div>
       </div>
     </div>
-  </div>
-  <!-- 结算单导出模板（离屏渲染） -->
-  <SettlementStatement ref="statementRef" />
 
+    <!-- 结算单导出模板（离屏渲染）：放在 container 内，保证组件只有单一根节点，
+         否则路由切换时的过渡动画会因「片段根节点」而整页渲染空白 -->
+    <SettlementStatement ref="statementRef" />
+  </div>
 </template>
 
 <script setup>
@@ -257,6 +258,7 @@ import router from '@/router'
 import { useRoute } from 'vue-router'
 import { getPagePermission } from '@/hooks/permissionHooks'
 import { INVOICE_DEMO_LIST } from '@/mock/demoModules'
+import { withTimeout } from '@/utils/requestFallback'
 const route = useRoute()
 let permissionPath = ''
 if (route.path === '/invoiceManagement/archivingInvoiceDetail') {
@@ -271,6 +273,7 @@ const currentId = ref(route.query?.id || '')
 const baseInfo = ref({})
 // 单据状态映射示例（可根据后端具体枚举调整）
 const statusOption = [
+  { label: '待申请结算', value: 'UNSETTLED', dotClass: 'statusDot3' },
   { label: '待发起结算', value: 'PENDING_CONFIRM', dotClass: 'statusDot1' },
   { label: '待专家确认', value: 'WAITING_EXPERT_CONFIRM', dotClass: 'statusDot2' },
   { label: '待打款', value: 'WAITING_PAYMENT', dotClass: 'statusDot3' },
@@ -304,8 +307,9 @@ const scrollTo = (href) => {
 // 备注交互逻辑
 const handleSaveRemark = (params, done) => {
   baseInfo.value.remarkList.push({
-    time: '2026-08-12 16:00:00',
-    content: params
+    id: `R-${Date.now()}`,
+    createTime: '2026-08-12 16:00:00',
+    noteText: params
   })
   done()
 }
@@ -338,10 +342,10 @@ const applyDemoDetail = () => {
 }
 
 const getInvoiceDetailFn = () => {
-  getInvoiceDetail({ id: currentId.value })
+  withTimeout(getInvoiceDetail({ id: currentId.value }))
     .then(res => {
       if (res && res.code === 10000 && res.data) {
-        baseInfo.value = res.data
+        baseInfo.value = { ...res.data, remarkList: res.data.remarkList || [] }
         return
       }
       applyDemoDetail()

@@ -69,18 +69,59 @@
             <p class="wbGreetingTip">{{ greetingTip }}</p>
           </div>
 
-          <!-- 培训横幅 -->
-          <section class="trainBanner">
-            <div class="bannerText">
-              <span class="bannerTag"><i class="iconfont icon-xianshangxuexi"></i>标注必看</span>
-              <h1 class="bannerTitle">标注培训与操作规范</h1>
-              <p class="bannerSub">快速掌握标注要求、操作流程与质量标准</p>
-              <el-button type="primary" class="bannerBtn" @click="openTrainingPdf">立即查看</el-button>
+          <!-- 待办工作：签署劳务协议 → 完成标注 → 申请结算 -->
+          <section class="panel todoPanel">
+            <header class="todoHead">
+              <h2 class="warmSectionTitle">待办工作</h2>
+              <span class="todoHint">先签协议，再完成标注，标注完成后即可申请结算</span>
+            </header>
+
+            <div class="todoFlow">
+              <div
+                v-for="(step, index) in todoSteps"
+                :key="step.key"
+                class="todoStep"
+                :class="'is-' + step.state">
+                <span class="todoDot">
+                  <i v-if="step.state === 'done'" class="iconfont icon-duihao1" />
+                  <template v-else>{{ index + 1 }}</template>
+                </span>
+                <div class="todoBody">
+                  <div class="todoTitleRow">
+                    <span class="todoTitle">{{ step.title }}</span>
+                    <span class="todoBadge">{{ step.badge }}</span>
+                  </div>
+                  <p class="todoDesc">{{ step.desc }}</p>
+                </div>
+                <el-button v-if="step.btnText" link type="primary" class="todoBtn" @click="step.onClick">
+                  {{ step.btnText }}
+                </el-button>
+                <span v-else class="todoLock">{{ step.lockText }}</span>
+              </div>
             </div>
-            <img class="bannerImg" :src="textImg" alt="" />
+
+            <!-- 待申请结算的任务：可能有多笔，可以一起申请 -->
+            <div class="settleBox">
+              <header class="settleBoxHead">
+                <span class="settleBoxTitle">待申请结算的任务</span>
+                <span class="settleBoxMeta">
+                  {{ settleTasks.length ? `共 ${settleTasks.length} 个任务 · 合计 ¥${settleAmountText}` : '暂无待结算任务' }}
+                </span>
+              </header>
+              <ul v-if="settleTasks.length" class="settleTaskList">
+                <li v-for="task in settleTasks" :key="task.id" class="settleTaskItem">
+                  <span class="stId">{{ task.allocateId }}</span>
+                  <span class="stCount">已完成 {{ task.completedCount }} 例</span>
+                  <span class="stAmount">¥{{ ((Number(task.completedCount) || 0) * UNIT_PRICE).toFixed(2) }}</span>
+                  <span class="stStatus"><i class="dot" />待申请结算</span>
+                  <el-button link type="primary" class="stBtn" @click="goSettlement">去申请</el-button>
+                </li>
+              </ul>
+              <div v-else class="settleEmpty">当前没有待申请结算的任务，完成标注后会自动出现在这里</div>
+            </div>
           </section>
 
-          <!-- 当前任务 + 今日已完成 -->
+          <!-- 当前任务 + 培训规范（规范收窄放右侧，当前任务不再占满整行） -->
           <div class="taskRow">
             <section class="panel taskCard">
               <header class="taskHead">
@@ -113,6 +154,17 @@
               </div>
             </section>
 
+            <section class="panel trainCard">
+              <span class="bannerTag"><i class="iconfont icon-xianshangxuexi"></i>标注必看</span>
+              <h2 class="trainTitle">标注培训与操作规范</h2>
+              <p class="trainSub">先看规范再动手，能少走很多返工路。</p>
+              <div class="trainMeta">
+                <span><i class="iconfont icon-wenjian" />图文手册</span>
+                <span><i class="iconfont icon-shijian" />约 5 分钟</span>
+              </div>
+              <el-button type="primary" class="trainBtn" @click="openTrainingPdf">立即查看</el-button>
+              <img class="trainImg" :src="textImg" alt="" />
+            </section>
           </div>
 
           <!-- 历史任务 -->
@@ -372,6 +424,56 @@ const statusTabs = computed(() => STATUS_TABS.map((tab) => ({
   count: tab.key === 'ALL' ? total.value : historyList.value.filter((row) => matchStatus(row, tab.key)).length
 })))
 const filteredHistory = computed(() => historyList.value.filter((row) => matchStatus(row, activeStatus.value)))
+
+// ============ 待办工作：签署协议 → 完成标注 → 申请结算 ============
+// 演示环境统一按 35 元/例估算任务金额，真实环境由结算单给出
+const UNIT_PRICE = 35
+const settleTasks = computed(() => historyList.value.filter((row) => row.settlementStatus === 'UNSETTLED'))
+const settleAmountText = computed(() => {
+  const total = settleTasks.value.reduce((sum, row) => sum + (Number(row.completedCount) || 0) * UNIT_PRICE, 0)
+  return total.toLocaleString('zh-CN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+})
+
+const todoSteps = computed(() => {
+  const signed = isContractSigned.value
+  const annotateDone = progressTotal.value > 0 && progressDone.value >= progressTotal.value
+  const settlePending = settleTasks.value.length > 0
+  return [
+    {
+      key: 'sign',
+      title: '签署劳务协议',
+      badge: signed ? '已完成' : '当前待办',
+      state: signed ? 'done' : 'current',
+      desc: signed ? '协议已签署，可以正常领取标注任务' : '未签署协议不能领取标注任务',
+      btnText: signed ? '查看协议' : '去签署',
+      onClick: () => router.push({ name: 'laborSign' })
+    },
+    {
+      key: 'annotate',
+      title: '完成标注',
+      badge: !signed ? '待解锁' : (annotateDone ? '已完成' : '进行中'),
+      state: !signed ? 'locked' : (annotateDone ? 'done' : 'current'),
+      desc: !signed
+        ? '签署劳务协议后自动解锁'
+        : (progressTotal.value ? `当前任务已完成 ${progressDone.value}/${progressTotal.value} 例` : '暂无分配中的标注任务'),
+      btnText: signed && !annotateDone && progressTotal.value > 0 ? '继续标注' : '',
+      lockText: signed ? '-' : '未解锁',
+      onClick: goAnnotation
+    },
+    {
+      key: 'settle',
+      title: '申请结算',
+      badge: !signed ? '待解锁' : (settlePending ? `${settleTasks.value.length} 个任务待申请` : '已完成'),
+      state: !signed ? 'locked' : (settlePending ? 'current' : 'done'),
+      desc: !signed
+        ? '签署协议并完成标注后才可以申请结算'
+        : (settlePending ? '可同时申请多个任务的结算，提交后在结算中心跟进' : '当前任务的结算都已提交'),
+      btnText: settlePending && signed ? '去结算' : '',
+      lockText: settlePending ? '-' : '已完成',
+      onClick: goSettlement
+    }
+  ]
+})
 
 // ============ 个人中心 / 结算概览 ============
 const pendingStatusList = ['UNSETTLED', 'PENDING_CONFIRM', 'WAITING_EXPERT_CONFIRM']
@@ -1085,35 +1187,254 @@ onMounted(() => {
   gap: 16px;
 }
 
-/* 培训横幅 */
-.trainBanner {
-  display: flex;
-  overflow: hidden;
-  position: relative;
-  justify-content: space-between;
-  height: 168px;
-  padding: 22px 26px;
-  border-radius: 14px;
-  background: linear-gradient(110deg, var(--theme-primary-soft) 0%, var(--theme-fill) 100%);
+/* 待办工作 */
+.todoPanel {
+  border: 1px solid var(--theme-border);
+  background: var(--theme-card);
 }
 
-.bannerText {
+.todoHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.todoHint {
+  font-size: 12.5px;
+  color: var(--theme-text-3);
+}
+
+.todoFlow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.todoStep {
   display: flex;
   position: relative;
-  z-index: 1;
-  flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  padding: 14px 16px;
+  border: 1px solid var(--theme-border);
+  border-radius: 12px;
+  background: var(--theme-fill);
+  gap: 12px;
+
+  &.is-current {
+    border-color: var(--theme-primary-border);
+    background: var(--theme-primary-soft);
+  }
+
+  &.is-locked {
+    opacity: 0.72;
+  }
+}
+
+.todoDot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--theme-border);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--theme-text-2);
+
+  .is-current & {
+    background: var(--theme-primary);
+    color: #fff;
+  }
+
+  .is-done & {
+    background: var(--theme-success-soft);
+    font-size: 14px;
+    color: var(--theme-success);
+  }
+}
+
+.todoBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.todoTitleRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.todoTitle {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--theme-text);
+}
+
+.todoBadge {
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: var(--theme-border);
+  font-size: 11px;
+  color: var(--theme-text-2);
+
+  .is-current & {
+    background: var(--theme-card);
+    color: var(--theme-primary);
+  }
+
+  .is-done & {
+    background: var(--theme-success-soft);
+    color: var(--theme-success);
+  }
+}
+
+.todoDesc {
+  overflow: hidden;
+  margin: 4px 0 0;
+  text-overflow: ellipsis;
+  font-size: 12px;
+  color: var(--theme-text-3);
+  white-space: nowrap;
+}
+
+.todoBtn {
+  flex: none;
+  padding: 0;
+  font-size: 13px;
+}
+
+.todoLock {
+  flex: none;
+  font-size: 12px;
+  color: var(--theme-text-3);
+}
+
+/* 待申请结算任务列表 */
+.settleBox {
+  padding: 12px 14px;
+  border: 1px dashed var(--theme-primary-border);
+  border-radius: 12px;
+  background: var(--theme-fill);
+}
+
+.settleBoxHead {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.settleBoxTitle {
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--theme-text);
+}
+
+.settleBoxMeta {
+  font-size: 12px;
+  color: var(--theme-text-3);
+}
+
+.settleTaskList {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+}
+
+.settleTaskItem {
+  display: flex;
+  align-items: center;
+  padding: 9px 0;
+  border-top: 1px solid var(--theme-border);
+  gap: 14px;
+
+  &:first-child {
+    border-top: none;
+  }
+}
+
+.stId {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 13px;
+  color: var(--theme-text);
+  white-space: nowrap;
+}
+
+.stCount {
+  flex: none;
+  font-size: 12px;
+  color: var(--theme-text-3);
+}
+
+.stAmount {
+  flex: none;
+  width: 84px;
+  text-align: right;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--theme-primary);
+}
+
+.stStatus {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  width: 92px;
+  font-size: 12px;
+  color: var(--theme-warning);
+  gap: 5px;
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--theme-warning);
+  }
+}
+
+.stBtn {
+  flex: none;
+  padding: 0;
+  font-size: 13px;
+}
+
+.settleEmpty {
+  margin-top: 8px;
+  padding: 12px;
+  border-radius: 8px;
+  background: var(--theme-card);
+  text-align: center;
+  font-size: 12.5px;
+  color: var(--theme-text-3);
+}
+
+/* 标注培训与操作规范：收窄放右侧 */
+.trainCard {
+  position: relative;
+  overflow: hidden;
+  justify-content: flex-start;
+  border: 1px solid var(--theme-border);
+  background: linear-gradient(150deg, var(--theme-primary-soft) 0%, var(--theme-fill) 100%);
 }
 
 .bannerTag {
   display: inline-flex;
+  align-self: flex-start;
   align-items: center;
-  height: 24px;
-  padding: 0 10px;
+  height: 22px;
+  padding: 0 9px;
   border-radius: 4px;
   background: #ffab2e;
   font-weight: 600;
-  font-size: 12px;
+  font-size: 11.5px;
   color: #fff;
   gap: 4px;
 
@@ -1122,40 +1443,69 @@ onMounted(() => {
   }
 }
 
-.bannerTitle {
-  margin: 12px 0 6px;
-  font-weight: 800;
-  font-size: 26px;
+.trainTitle {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-weight: 700;
+  font-size: 17px;
   color: var(--theme-primary);
-  letter-spacing: 1px;
 }
 
-.bannerSub {
-  margin: 0 0 16px;
-  font-size: 13px;
+.trainSub {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  line-height: 19px;
+  font-size: 12.5px;
   color: var(--theme-text-2);
 }
 
-.bannerBtn {
-  height: 34px;
-  padding: 0 20px;
-  border-radius: 6px;
-  font-size: 14px;
+.trainMeta {
+  display: flex;
+  position: relative;
+  z-index: 1;
+  flex-wrap: wrap;
+  font-size: 11.5px;
+  color: var(--theme-text-3);
+  gap: 12px;
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .iconfont {
+    font-size: 12px;
+  }
 }
 
-.bannerImg {
+.trainBtn {
+  position: relative;
+  z-index: 1;
+  align-self: flex-start;
+  height: 30px;
+  margin-top: 2px;
+  padding: 0 16px;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.trainImg {
   position: absolute;
-  right: 12px;
-  bottom: -6px;
-  height: 158px;
-  opacity: 0.95;
+  right: -10px;
+  bottom: -14px;
+  height: 104px;
+  opacity: 0.32;
   pointer-events: none;
 }
 
-/* 当前任务 + 今日已完成 */
+/* 当前任务 + 培训规范并排：当前任务收窄，规范占右侧窄列 */
 .taskRow {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
+  align-items: stretch;
+  grid-template-columns: minmax(0, 1.85fr) minmax(210px, 1fr);
   gap: 16px;
 }
 
@@ -1195,7 +1545,7 @@ onMounted(() => {
 .taskBody {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 18px;
 }
 
 .taskProgress {
@@ -1244,7 +1594,8 @@ onMounted(() => {
 
 .taskStats {
   display: flex;
-  gap: 36px;
+  flex-wrap: wrap;
+  gap: 12px 26px;
 }
 
 .taskStat {
@@ -1625,11 +1976,22 @@ onMounted(() => {
   }
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 1180px) {
   .taskRow {
     grid-template-columns: minmax(0, 1fr);
   }
 
+  .todoFlow {
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  }
+
+  .trainImg {
+    height: 88px;
+    opacity: 0.25;
+  }
+}
+
+@media (max-width: 1080px) {
   .wbSide {
     flex-direction: column;
   }

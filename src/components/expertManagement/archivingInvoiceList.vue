@@ -99,11 +99,9 @@
         </div>
       </div>
     </div>
+    <!-- 结算单导出模板（离屏渲染）：放在 container 内，保持单一根节点 -->
+    <SettlementStatement ref="statementRef" />
   </div>
-
-  <!-- 结算单导出模板（离屏渲染） -->
-  <SettlementStatement ref="statementRef" />
-
 </template>
 
 <script>

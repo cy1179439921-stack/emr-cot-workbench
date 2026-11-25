@@ -159,6 +159,8 @@ import router from '@/router'
 import { getContractList, getContractDownload } from '@/api/api_expertManagement.js'
 import { getAllAgencyByCity, getAngencyAndDepartmentTreeListByRole } from '@/api/api_home'
 import { getPagePermission } from '@/hooks/permissionHooks'
+import { CONTRACT_DEMO_LIST } from '@/mock/contractDemo'
+import { withTimeout } from '@/utils/requestFallback'
 const { needCheckPermission, hadPermissionList } = getPagePermission('/expertManagement/contractManagement')
 const currentPage = ref(1)
 const limit = ref(20)
@@ -235,18 +237,33 @@ const onSubmit = () => {
 }
 
 // 获取接口数据
+// 演示环境没有后端：接口超时 / 报错 / 返回空列表时统一回落到演示数据，避免空表或长时间转圈
 const getListData = async () => {
-  // const { auditTime, submitTime, ...rest } = searchInfo.value
   const params = {
     ...searchInfo.value,
     pageNum: currentPage.value,
     pageSize: limit.value
   }
-  const res = await getContractList(params)
-  if (res.code === 10000) {
-    tableData.value = res.data?.items || []
-    total.value = res.data.total
+  const res = await withTimeout(getContractList(params))
+  if (res && res.code === 10000 && res.data?.items?.length) {
+    tableData.value = res.data.items
+    total.value = res.data.total || res.data.items.length
+    return
   }
+  tableData.value = buildDemoList()
+  total.value = tableData.value.length
+}
+
+// 演示数据按查询条件本地筛选，保证查询按钮仍然有效
+const buildDemoList = () => {
+  const { contractNo, name, phone, contractStatus: statusList } = searchInfo.value
+  return CONTRACT_DEMO_LIST.filter((item) => {
+    if (contractNo && !String(item.contractNo).includes(contractNo)) return false
+    if (name && !String(item.expertName).includes(name)) return false
+    if (phone && !String(item.expertPhone).includes(phone)) return false
+    if (statusList?.length && !statusList.includes(item.contractStatus)) return false
+    return true
+  })
 }
 
 const handleCurrentChange = (val) => {

@@ -258,6 +258,8 @@ import { getContractDetail, getContractPreview, getContractDownload, getNoteList
 import { useRoute } from 'vue-router'
 import { formatDateTime } from '@/utils/utils.js'
 import { getPagePermission } from '@/hooks/permissionHooks'
+import { getContractDemoDetail } from '@/mock/contractDemo'
+import { withTimeout } from '@/utils/requestFallback'
 const { needCheckPermission, hadPermissionList } = getPagePermission('/expertManagement/contractManagement')
 const route = useRoute()
 const currentId = ref(route.query?.id || '')
@@ -475,18 +477,28 @@ const handleDeleteRemark = (item, index) => {
 }
 // 查询备注
 const getNoteListFn = () => {
-  getNoteList({ id: currentId.value }).then(res => {
-    if (res.code === 10000) {
-      remarkList.value = res.data || []
+  withTimeout(getNoteList({ id: currentId.value })).then(res => {
+    if (res && res.code === 10000 && res.data?.length) {
+      remarkList.value = res.data
     }
   })
 }
+// 演示环境没有后端：接口超时 / 报错 / 返回空数据时回落到演示合同，避免详情页空白
+const applyDemoDetail = () => {
+  const demo = getContractDemoDetail(currentId.value)
+  infoObj.value = { ...demo }
+  remarkList.value = demo.remarkList || []
+}
 const getContractDetailFn = () => {
-  getContractDetail({ id: currentId.value }).then(res => {
-    if (res.code === 10000) {
-      infoObj.value = res.data
-    }
-  })
+  withTimeout(getContractDetail({ id: currentId.value }))
+    .then(res => {
+      if (res && res.code === 10000 && res.data) {
+        infoObj.value = res.data
+        return
+      }
+      applyDemoDetail()
+    })
+    .catch(() => applyDemoDetail())
 }
 
 onMounted(() => {

@@ -94,7 +94,8 @@ export const SETTLEMENT_LIST = [
     creator: '系统',
     accountName: DEMO_USER.userName,
     bankNo: '6222020200112345678',
-    bankBranch: '中国工商银行北京市中关村支行'
+    bankBranch: '中国工商银行北京市中关村支行',
+    bankPhone: '13800136621'
   },
   {
     id: 'ST-1002',
@@ -114,7 +115,8 @@ export const SETTLEMENT_LIST = [
     creator: '管理员',
     accountName: DEMO_USER.userName,
     bankNo: '6222020200112345678',
-    bankBranch: '中国工商银行北京市中关村支行'
+    bankBranch: '中国工商银行北京市中关村支行',
+    bankPhone: '13800136621'
   },
   {
     id: 'ST-1003',
@@ -134,7 +136,8 @@ export const SETTLEMENT_LIST = [
     creator: '管理员',
     accountName: DEMO_USER.userName,
     bankNo: '6222020200112345678',
-    bankBranch: '中国工商银行北京市中关村支行'
+    bankBranch: '中国工商银行北京市中关村支行',
+    bankPhone: '13800136621'
   },
   {
     id: 'ST-1004',
@@ -155,7 +158,8 @@ export const SETTLEMENT_LIST = [
     transferTime: '2026-10-08 14:30:00',
     accountName: DEMO_USER.userName,
     bankNo: '6222020200112345678',
-    bankBranch: '中国工商银行北京市中关村支行'
+    bankBranch: '中国工商银行北京市中关村支行',
+    bankPhone: '13800136621'
   },
   {
     id: 'ST-1005',
@@ -176,7 +180,8 @@ export const SETTLEMENT_LIST = [
     transferTime: '2026-09-20 09:15:00',
     accountName: DEMO_USER.userName,
     bankNo: '6222020200112345678',
-    bankBranch: '中国工商银行北京市中关村支行'
+    bankBranch: '中国工商银行北京市中关村支行',
+    bankPhone: '13800136621'
   },
   {
     id: 'ST-1006',
@@ -197,7 +202,8 @@ export const SETTLEMENT_LIST = [
     rejectReason: '存在 4 份病历未完成复核，请补齐后重新发起结算',
     accountName: DEMO_USER.userName,
     bankNo: '6222020200112345678',
-    bankBranch: '中国工商银行北京市中关村支行'
+    bankBranch: '中国工商银行北京市中关村支行',
+    bankPhone: '13800136621'
   },
   {
     id: 'ST-1007',
@@ -217,17 +223,38 @@ export const SETTLEMENT_LIST = [
     creator: '管理员',
     accountName: DEMO_USER.userName,
     bankNo: '6222020200112345678',
-    bankBranch: '中国工商银行北京市中关村支行'
+    bankBranch: '中国工商银行北京市中关村支行',
+    bankPhone: '13800136621'
   }
 ]
 
 // ===================== 结算单管理（后台列表） =====================
-// 由专家端结算单演示数据派生：补充医院名称与结算金额字段
+// 由专家端结算单演示数据派生：补充医院名称、结算金额与详情页字段，
+// 保证点开「查看」后单据基础信息 / 专家确认 / 打款信息都有内容
 const INVOICE_HOSPITAL = '演示医院'
-export const INVOICE_DEMO_LIST = SETTLEMENT_LIST.map((item) => ({
+
+// 专家确认状态：待确认 / 已确认 / 已驳回
+const confirmStatusOf = (status) => {
+  if (status === 'REJECTED') return { expertConfirmedStatus: 'REJECTED', expertConfirmedStatusDesc: '已驳回' }
+  if (['WAITING_PAYMENT', 'SETTLED', 'ARCHIVED'].includes(status)) {
+    return { expertConfirmedStatus: 'CONFIRMED', expertConfirmedStatusDesc: '已确认' }
+  }
+  return { expertConfirmedStatus: 'PENDING', expertConfirmedStatusDesc: '待确认' }
+}
+
+export const INVOICE_DEMO_LIST = SETTLEMENT_LIST.map((item, index) => ({
   ...item,
   hospitalName: INVOICE_HOSPITAL,
-  settlementAmount: item.beforeTaxAmount
+  settlementAmount: item.beforeTaxAmount,
+  bankPhone: '13800136621',
+  // 已结清 / 已归档才有打款流水号
+  transferNo: ['SETTLED', 'ARCHIVED'].includes(item.settlementStatus)
+    ? `2026${String(1008 + index)}${String(9300 + index * 37)}`
+    : '',
+  ...confirmStatusOf(item.settlementStatus),
+  expertRejectReason: item.settlementStatus === 'REJECTED' ? (item.rejectReason || '') : '',
+  salaryNotes: [{ id: `S-${item.id}`, createTime: item.createTime, noteText: '按 35 元/例核算，已完成病例数已与标注记录核对一致。' }],
+  remarkList: []
 }))
 
 // 已归档结算单：取已结清 / 已归档的单据

@@ -272,8 +272,9 @@ const resumeSizeText = computed(() => {
 })
 
 // 演示环境没有后端时，回落到本地演示数据 / 当前账号提交的申请
+// 取不到对应单据时用示例单兜底，避免详情页整页都是「-」
 const useDemoDetail = () => {
-  const demo = getOnboardingDetail(id)
+  const demo = getOnboardingDetail(id) || getOnboardingDetail('ONB202611200001')
   if (!demo) return
   detailData.value = { ...demo }
   applyStatus.value = demo.applyStatus
@@ -373,8 +374,10 @@ const handlePass = () => {
 // 页面加载完成后触发初始高亮逻辑
 onMounted(async () => {
   const res = await withTimeout(getAuditDetail({ id: route?.query?.fileId }))
-  if (res && res.code === 10000 && res.data) {
-    detailData.value = res.data.formData || {}
+  // 接口返回了单据但没有表单内容（只有 id / 空对象）时，同样走演示数据，避免空详情
+  const formData = res?.data?.formData
+  if (res && res.code === 10000 && formData && Object.keys(formData).length && formData.name) {
+    detailData.value = formData
     applyStatus.value = res.data.applyStatus
   } else {
     useDemoDetail()
