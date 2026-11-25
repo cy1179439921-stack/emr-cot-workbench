@@ -246,6 +246,112 @@ html.theme-dark {
   gap: 16px;
 }
 
+// ===================== 未入驻引导弹窗 =====================
+.el-dialog.onboardGuideDialog {
+  overflow: hidden;
+  padding: 0;
+  border-radius: 16px;
+
+  .el-dialog__header {
+    height: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .el-dialog__headerbtn {
+    right: 12px;
+    top: 12px;
+    z-index: 2;
+    width: 28px;
+    height: 28px;
+  }
+
+  .el-dialog__body {
+    padding: 0;
+  }
+
+  .onboardGuide {
+    padding: 30px 28px 22px;
+    text-align: center;
+  }
+
+  .guideEmblem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 16px;
+    border-radius: 18px;
+    background: var(--theme-primary-soft);
+    font-size: 26px;
+    color: var(--theme-primary);
+
+    .iconfont {
+      font-size: 26px;
+      color: var(--theme-primary);
+    }
+  }
+
+  .guideTitle {
+    margin: 0 0 10px;
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--theme-text);
+  }
+
+  .guideText {
+    max-width: 360px;
+    margin: 0 auto 16px;
+    line-height: 24px;
+    font-size: 14px;
+    color: var(--theme-text-2);
+  }
+
+  .guidePoints {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: var(--theme-fill);
+    text-align: left;
+    gap: 8px;
+  }
+
+  .guidePoint {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    color: var(--theme-text-2);
+    gap: 8px;
+
+    .iconfont {
+      font-size: 13px;
+      color: var(--theme-success);
+    }
+  }
+
+  .guideActions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 12px;
+  }
+
+  .guideGo {
+    min-width: 132px;
+    height: 40px;
+    border-radius: 8px;
+    font-size: 15px;
+  }
+
+  .guideLater {
+    font-size: 14px;
+    color: var(--theme-text-3);
+  }
+}
+
 // ===================== 头像弹层：外观风格切换 =====================
 .el-popover.photoPanel.photoPanelWithTheme {
   box-sizing: border-box;

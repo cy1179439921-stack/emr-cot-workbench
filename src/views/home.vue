@@ -1,7 +1,8 @@
 <template>
   <div :class="{home:true,darkTheme:(modeStore.mode==='dark'&&route.path==='/dataBoard')}" v-loading="loadingFlag" element-loading-text="分析中，请稍候...">
-    <homeMenu v-if="showMenu"/>
-    <div class="mainRouter" v-if="showMenu">
+    <!-- 未入驻（未通过审核）不展示侧边栏，只留首页内容 -->
+    <homeMenu v-if="showSidebar"/>
+    <div class="mainRouter" v-if="showMenu" :class="{ 'is-full': !showSidebar }">
       <!-- <homeHeader /> -->
       <div class="homeView" v-if="isPermission">
         <div class="homeView-content">
@@ -21,6 +22,34 @@
       </div>
       <noPermission v-else></noPermission>
     </div>
+
+    <!-- 未入驻引导：落地首页时提醒一次，点击去填写入驻申请 -->
+    <el-dialog
+      v-model="onboardDialogVisible"
+      class="onboardGuideDialog"
+      width="460px"
+      align-center
+      append-to-body
+      :close-on-click-modal="false"
+    >
+      <div class="onboardGuide">
+        <div class="guideEmblem">
+          <i class="iconfont icon-guanfangrenzheng"></i>
+        </div>
+        <h3 class="guideTitle">完成入驻，就能开始标注</h3>
+        <p class="guideText">
+          入驻审核通过后，就可以接取标注任务、参与劳务结算。用您的专业，为医疗 AI 贡献一份力量。
+        </p>
+        <div class="guidePoints">
+          <span class="guidePoint"><i class="iconfont icon-duihao2"></i>上传证件与简历，通常 1-2 个工作日出结果</span>
+          <span class="guidePoint"><i class="iconfont icon-duihao2"></i>填到一半可以先暂存，下次回来接着填</span>
+        </div>
+        <div class="guideActions">
+          <el-button class="guideLater" text @click="handleOnboardLater">稍后再说</el-button>
+          <el-button class="guideGo" type="primary" @click="goOnboarding">去入驻申请</el-button>
+        </div>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -34,7 +63,7 @@ export default {
 import homeMenu from '@/components/home/homeMenu.vue'
 import noPermission from '@/views/noPermission.vue'
 import { emitter } from '@/utils/bus'
-import { onMounted, ref, computed } from 'vue'
+import { onMounted, ref, computed, watch } from 'vue'
 import { useModeStore } from '@/store/modeStore'
 import { useRoute } from 'vue-router'
 import { getUserMenu } from '@/api/api_user'
@@ -59,6 +88,11 @@ const $route = computed(() => route)
 const loadingFlag = ref(false)
 const configUrlArr = ref([])
 const showMenu = ref(false)
+// 入驻审核通过后才展示侧边栏
+const onboardApproved = computed(() => onboardingState.status === ONBOARDING_STATUS.APPROVED)
+const showSidebar = computed(() => showMenu.value && onboardApproved.value)
+// 未入驻引导弹窗
+const onboardDialogVisible = ref(false)
 const routerArr = ref([])
 const isPermission = ref(true) // 是否有权限
 routerArr.value = router.options.routes[1].children.filter(
@@ -208,20 +242,38 @@ const UNVERIFIED_ALLOWED_ROUTE = ['expertWorkbench', 'onboardingAudit']
 const redirectIfNotVerified = () => {
   if (onboardingState.status === ONBOARDING_STATUS.APPROVED) return
   const currentName = router.currentRoute.value.name
-  // 「新入驻」账号（非全模块账号）每次登录都直接进入驻申请页，
-  // 全模块账号未通过时先回首页看引导
-  const isNewbie = localStorage.getItem('cot-login-role') === 'newbie'
-  // 每次登录只引导一次：登录后先落入驻申请，之后首页仍可访问
-  const landed = sessionStorage.getItem('cot-onboard-landed') === '1'
-  if (isNewbie && !landed) {
-    sessionStorage.setItem('cot-onboard-landed', '1')
-    router.push({ name: 'onboardingAudit' })
-    return
-  }
+  // 未入驻统一落在首页（不展示侧边栏），由首页引导 + 弹窗引导去填入驻申请
   if (!UNVERIFIED_ALLOWED_ROUTE.includes(currentName)) {
     router.push({ name: 'expertWorkbench' })
   }
 }
+
+// 未入驻用户落地首页时，弹一次入驻引导（每个登录会话只弹一次）
+const maybeShowOnboardGuide = () => {
+  if (onboardingState.status !== ONBOARDING_STATUS.NOT_APPLIED) return
+  if (router.currentRoute.value.name !== 'expertWorkbench') return
+  if (sessionStorage.getItem('cot-onboard-guide-shown') === '1') return
+  sessionStorage.setItem('cot-onboard-guide-shown', '1')
+  onboardDialogVisible.value = true
+}
+
+const handleOnboardLater = () => {
+  onboardDialogVisible.value = false
+}
+
+const goOnboarding = () => {
+  onboardDialogVisible.value = false
+  router.push({ name: 'onboardingAudit' })
+}
+
+// 路由落到首页即检查（登录后 toFirstRoute、刷新直达都覆盖）
+watch(
+  () => route.name,
+  (name) => {
+    if (name === 'expertWorkbench') maybeShowOnboardGuide()
+  },
+  { immediate: true }
+)
 // 加载时请求页面列表
 const init = async () => {
   if (!userStore.needCheckPermission) {
@@ -314,6 +366,11 @@ if (token) {
     flex-direction: column;
     flex: 1;
     margin-left: 72px;
+
+    // 未入驻时没有侧边栏，内容区铺满
+    &.is-full {
+      margin-left: 0;
+    }
     .homeView {
       display: flex;
       flex: 1;

@@ -179,11 +179,10 @@
       <!-- 简历 -->
       <section class="warmCard formCard">
         <header class="cardHead">
-          <h2 class="warmSectionTitle">简历</h2>
+          <h2 class="warmSectionTitle">个人简历</h2>
           <span class="warmHint">上传一份简历，审核老师能更快了解您的临床与科研经历</span>
         </header>
         <div class="uploadCell single">
-          <span class="cellLabel">个人简历</span>
           <UploadField
             v-model="form.resume"
             mode="file"

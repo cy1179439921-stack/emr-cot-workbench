@@ -179,8 +179,9 @@ const submitForm = async (formEl) => {
         resetApplication()
       }
       localStorage.setItem('cot-login-role', isFullAccount ? 'full' : 'newbie')
-      // 重置「已引导入驻」标记，保证每次登录都会先进入驻申请
+      // 重置入驻引导标记，保证每次登录首页都会提醒一次
       sessionStorage.removeItem('cot-onboard-landed')
+      sessionStorage.removeItem('cot-onboard-guide-shown')
       storeToken('mock-token-for-preview')
       localStorage.setItem('user_id', isFullAccount ? 'mock-user-id' : `mock-user-${account}`)
       localStorage.setItem('account', account || 'admin')
