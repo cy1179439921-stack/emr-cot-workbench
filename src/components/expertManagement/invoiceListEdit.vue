@@ -727,7 +727,7 @@ onMounted(() => {
                 width: 16px;
                 height: 16px;
                 margin-right: 6px;
-                color: #b0b0b0;
+                color: var(--theme-text-3);
               }
 
               &.is-active {
@@ -836,14 +836,14 @@ onMounted(() => {
                 border: 1px dashed #b0b0b0;
                 border-radius: 4px;
                 font-size: 14px;
-                color: #8c8c8c;
+                color: var(--theme-text-2);
               }
             }
 
             .orderMeta {
               margin-top: 8px;
               font-size: 16px;
-              color: #8c8c8c;
+              color: var(--theme-text-2);
             }
           }
 
@@ -951,7 +951,7 @@ onMounted(() => {
 
   .el-input__inner {
     color: var(--theme-text-2);
-    -webkit-text-fill-color: #666;
+    -webkit-text-fill-color: var(--theme-text-2);
   }
 }
 

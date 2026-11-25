@@ -545,7 +545,7 @@ onMounted(() => {
       width: 1px;
       height: 16px;
       margin: 0 12px;
-      background-color: #cbcfdc;
+      background-color: var(--theme-border);
     }
     .title {
       font-weight: 600;
@@ -602,7 +602,7 @@ onMounted(() => {
                 width: 16px;
                 height: 16px;
                 margin-right: 6px;
-                color: #b0b0b0;
+                color: var(--theme-text-3);
               }
 
               &.is-active {
@@ -691,7 +691,7 @@ onMounted(() => {
   margin-top: 16px;
   // padding: 16px 20px;
   padding-bottom: 24px;
-  border-bottom: 1px solid #ededed;
+  border-bottom: 1px solid var(--theme-border);
   border-radius: 6px;
   // background-color: var(--theme-primary-soft);
   .infoContainer {
@@ -746,7 +746,7 @@ onMounted(() => {
 
     .contractMeta {
       font-size: 14px;
-      color: #8c8c8c;
+      color: var(--theme-text-2);
     }
   }
 }
@@ -847,7 +847,7 @@ onMounted(() => {
     margin-top: 12px;
     text-align: center;
     font-size: 14px;
-    color: #8c8c8c;
+    color: var(--theme-text-2);
   }
 }
 
@@ -898,7 +898,7 @@ onMounted(() => {
   font-size: 16px;
   color: var(--theme-text-2);
   &:hover {
-    border-color: #d8d8d8;
+    border-color: var(--theme-border);
   }
   .iconfont {
     margin-right: 10px;
@@ -913,7 +913,7 @@ onMounted(() => {
   }
 }
 .statusDot1 {
-  border-color: #e4e4e4;
+  border-color: var(--theme-border);
   border-radius: 2px;
   background: var(--theme-primary-soft);
   color: var(--theme-text-2);

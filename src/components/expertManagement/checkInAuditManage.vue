@@ -468,7 +468,7 @@ onMounted(() => {
       color: #04a273;
 
       &.is-empty {
-        color: #a3abbd;
+        color: var(--theme-text-3);
       }
     }
   }

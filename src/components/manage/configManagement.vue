@@ -843,7 +843,7 @@ const handleReset = async () => {
         &.is-disabled {
           border-color: var(--theme-border);
           background: var(--theme-primary-soft);
-          color: #a3abbd;
+          color: var(--theme-text-3);
         }
       }
 
@@ -940,7 +940,7 @@ const handleReset = async () => {
   .timeEmpty {
     padding: 10px 0 14px;
     font-size: 13px;
-    color: #a3abbd;
+    color: var(--theme-text-3);
   }
   .configFooter {
     display: flex;

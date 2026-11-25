@@ -407,7 +407,7 @@ onMounted(async () => {
       width: 1px;
       height: 16px;
       margin: 0 12px;
-      background-color: #cbcfdc;
+      background-color: var(--theme-border);
     }
     .title {
       font-weight: 600;
@@ -465,7 +465,7 @@ onMounted(async () => {
                 width: 16px;
                 height: 16px;
                 margin-right: 6px;
-                color: #b0b0b0;
+                color: var(--theme-text-3);
               }
 
               &.is-active {
@@ -583,7 +583,7 @@ onMounted(async () => {
 
             .resumeTip {
               font-size: 13px;
-              color: #a3abbd;
+              color: var(--theme-text-3);
             }
           }
 
@@ -643,7 +643,7 @@ onMounted(async () => {
   display: flex;
   align-items: center;
   padding-bottom: 24px;
-  border-bottom: 1px solid #ededed;
+  border-bottom: 1px solid var(--theme-border);
   .avatarBox {
     display: flex;
     justify-content: center;
@@ -663,12 +663,12 @@ onMounted(async () => {
     margin-bottom: 5px;
     font-weight: 600;
     font-size: 22px;
-    color: #3d3d3d;
+    color: var(--theme-text);
   }
 
   .userMeta {
     font-size: 16px;
-    color: #8c8c8c;
+    color: var(--theme-text-2);
   }
 }
 
@@ -703,7 +703,7 @@ onMounted(async () => {
     margin-top: 16px;
     text-align: center;
     font-size: 16px;
-    color: #8c8c8c;
+    color: var(--theme-text-2);
   }
 }
 

@@ -1072,7 +1072,7 @@ const handleIdxCategoryChange = async (val) => {
     display: flex;
     font-weight: 600;
     font-size: 16px;
-    color: #3d3d3d;
+    color: var(--theme-text);
     svg {
       width: 22px;
       height: 22px;

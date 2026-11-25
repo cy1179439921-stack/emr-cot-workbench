@@ -262,7 +262,7 @@ init()
           align-items: center;
           font-weight: 700;
           font-size: 28px;
-          color: #3d3d3d;
+          color: var(--theme-text);
           &.err {
             color: #ff4e4e;
           }

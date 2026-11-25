@@ -409,7 +409,7 @@ onMounted(() => {
       width: 1px;
       height: 16px;
       margin: 0 12px;
-      background-color: #cbcfdc;
+      background-color: var(--theme-border);
     }
     .title {
       font-weight: 600;
@@ -466,7 +466,7 @@ onMounted(() => {
                 width: 16px;
                 height: 16px;
                 margin-right: 6px;
-                color: #b0b0b0;
+                color: var(--theme-text-3);
               }
 
               &.is-active {
@@ -543,7 +543,7 @@ onMounted(() => {
   display: flex;
   align-items: center;
   padding-bottom: 24px;
-  border-bottom: 1px solid #ededed;
+  border-bottom: 1px solid var(--theme-border);
 
   .iconBox {
     display: flex;
@@ -577,17 +577,17 @@ onMounted(() => {
       .statusTag {
         margin-left: 12px;
         padding: 2px 8px;
-        border: 1px dashed #b0b0b0;
+        border: 1px dashed var(--theme-text-3);
         border-radius: 4px;
         font-size: 14px;
-        color: #8c8c8c;
+        color: var(--theme-text-2);
       }
     }
 
     .orderMeta {
       margin-top: 8px;
       font-size: 16px;
-      color: #8c8c8c;
+      color: var(--theme-text-2);
     }
   }
 
@@ -649,7 +649,7 @@ onMounted(() => {
   margin-top: 24px;
 }
 .statusDot1 {
-  border-color: #e4e4e4;
+  border-color: var(--theme-border);
   border-radius: 2px;
   background: var(--theme-primary-soft);
   color: var(--theme-text-2);
@@ -661,7 +661,7 @@ onMounted(() => {
   color: var(--theme-primary);
 }
 .statusDot3 {
-  border-color: #e4e4e4;
+  border-color: var(--theme-border);
   border-radius: 2px;
   background: var(--theme-primary-soft);
   color: var(--theme-text-2);

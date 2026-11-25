@@ -486,7 +486,7 @@ onMounted(() => {
   gap: 16px;
   margin-bottom: 24px;
   padding: 20px 0;
-  border-bottom: 1px solid #ededed;
+  border-bottom: 1px solid var(--theme-border);
 }
 
 .bill-icon {
@@ -639,7 +639,7 @@ onMounted(() => {
   color: var(--theme-primary);
 }
 .statusDot2 {
-  border: 1px solid #e4e4e4;
+  border: 1px solid var(--theme-border);
   border-radius: 2px;
   background: var(--theme-primary-soft);
   color: var(--theme-text-2);

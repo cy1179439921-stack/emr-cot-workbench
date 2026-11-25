@@ -300,7 +300,7 @@ getAgencyDetail()
         overflow: hidden; /* 隐藏溢出内容 */
         line-height: 22px;
         font-size: 14px;
-        color: #3d3d3d;
+        color: var(--theme-text);
         .treeLabel {
           overflow: hidden; /* 隐藏溢出内容 */
           flex: 1;

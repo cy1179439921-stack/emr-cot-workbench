@@ -741,15 +741,15 @@ const closeSubMenu = () => {
       padding: 0;
       border-radius: 4px;
       line-height: 32px;
-      color: #646464;
+      color: var(--theme-text-2);
       .iconfont {
         height: 100%;
         font-size: 32px;
       }
       &.is-active {
-        background-color: rgba(54, 112, 248, 0.05);
-        font-weight: 500;
-        color: var(--theme-primary);
+        background-color: var(--theme-primary-soft);
+        font-weight: 600;
+        color: var(--theme-text);
         svg,
         svg use {
           color: var(--theme-primary);
@@ -772,8 +772,8 @@ const closeSubMenu = () => {
         }
         .gva-subMenu {
           span {
-            font-weight: 500;
-            color: var(--theme-primary);
+            font-weight: 600;
+            color: var(--theme-text);
           }
         }
       }
@@ -795,7 +795,7 @@ const closeSubMenu = () => {
         height: 32px;
         padding: 0;
         // padding-left: 16px;
-        color: #646464;
+        color: var(--theme-text-2);
       }
       .el-menu--inline {
         // width: 202px;
@@ -1172,7 +1172,8 @@ const closeSubMenu = () => {
   .menuSectionLabel {
     padding: 16px 22px 6px;
     font-size: 12px;
-    color: var(--theme-text-3);
+    font-weight: 600;
+    color: var(--theme-text-2);
     letter-spacing: 0.5px;
   }
 

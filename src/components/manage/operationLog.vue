@@ -384,9 +384,9 @@ const calendarChange = (obj) => {
             color: var(--theme-primary) !important;
           }
           &:focus {
-            border-color: #d9d9d9;
+            border-color: var(--theme-border);
             background-color: var(--theme-card);
-            color: #646464;
+            color: var(--theme-text-2);
           }
           &:nth-child(2) {
             margin-left: 14px;
@@ -450,7 +450,7 @@ const calendarChange = (obj) => {
           .cell {
             font-weight: 400;
             font-size: 14px;
-            color: #000;
+            color: var(--theme-text);
           }
         }
         .resultCodeDiv {

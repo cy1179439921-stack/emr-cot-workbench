@@ -15,7 +15,7 @@ body {
   font-size: 14px;
 
   /* text-align: center; */
-  color: #646464;
+  color: var(--theme-text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
@@ -193,7 +193,7 @@ ul {
 
           .cell {
             font-weight: 400;
-            color: #000;
+            color: var(--theme-text-2);
           }
 
           &.gutter {
@@ -269,7 +269,7 @@ ul {
   }
 
   &.emptyDefaultTable tbody :empty:not(:where(span, .iconfont, .el-switch__action))::before {
-    color: #000;
+    color: var(--theme-text-2);
     content: '-';
   }
 

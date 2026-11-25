@@ -496,7 +496,7 @@ const getRowClassName = (row, rowIndex) => {
             .el-table__header {
               tr:nth-child(1) {
                 .cell {
-                  color: #000;
+                  color: var(--theme-text);
                 }
               }
               tr:nth-child(2) {

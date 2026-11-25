@@ -1423,12 +1423,12 @@ const handleCheckedFunctionChange = (value) => {
                   .el-checkbox__label {
                     margin-left: 8px;
                     font-weight: 400;
-                    color: #646464;
+                    color: var(--theme-text-2);
                   }
                   &.is-checked {
                     .el-checkbox__label {
                       font-weight: 400;
-                      color: #646464 !important;
+                      color: var(--theme-text-2) !important;
                     }
                   }
                 }
@@ -1466,7 +1466,7 @@ const handleCheckedFunctionChange = (value) => {
                   &.is-checked {
                     .el-checkbox__label {
                       font-weight: 400;
-                      color: #646464 !important;
+                      color: var(--theme-text-2) !important;
                     }
                   }
                 }
