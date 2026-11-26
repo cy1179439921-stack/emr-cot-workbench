@@ -5,20 +5,28 @@
       v-loading="loadingFlag"
       element-loading-text="登录中，请稍候..."
     >
-      <img class="login-title" :src="loginTitleLogo" />
+      <div class="loginTitleRow">
+        <img class="login-title" :src="loginTitleLogo" />
+        <span class="platformBadge" :class="`is-${loginPlatform}`">{{ platformLabel }}</span>
+      </div>
       <img class="loginText" alt="" :src="loginText">
       <div class="medical-login">
         <div class="loginColumn">
           <div class="medical-login_box">
             <!--登录 start-->
             <div class="medical-login_form">
+              <div class="platformTabs">
+                <span :class="{ 'is-active': loginPlatform === 'expert' }" @click="switchPlatform('expert')">专家端登录</span>
+                <span :class="{ 'is-active': loginPlatform === 'admin' }" @click="switchPlatform('admin')">管理后台登录</span>
+              </div>
               <div class="loginNav">
                 <span class="loginNavTitle">{{ isPhoneMode ? '登录/注册' : '账号密码登录' }}</span>
-                <p class="loginNavSub">{{ isPhoneMode ? '手机号验证码登录，未注册账号将自动创建' : '使用账号与密码登录工作台' }}</p>
+                <p class="loginNavSub">{{ navSub }}</p>
               </div>
 
               <div class="loginTabs">
                 <span
+                  v-if="loginPlatform !== 'admin'"
                   :class="{ 'is-active': isPhoneMode }"
                   @click="switchLoginMode('phone')">
                   手机验证码登录
@@ -136,7 +144,7 @@
           <div class="demoAccounts">
             <div class="demoAccountsTitle">演示账号（点击填入）</div>
             <div
-              v-for="item in DEMO_ACCOUNTS"
+              v-for="item in visibleDemoAccounts"
               :key="item.account"
               class="demoAccountItem"
               @click="fillDemoAccount(item)"
@@ -144,7 +152,7 @@
               <span class="demoAccountName">{{ item.account }} / {{ item.password }}</span>
               <span class="demoAccountDesc">{{ item.desc }}</span>
             </div>
-            <div class="demoAccountsTip">演示环境：短信验证码固定为 123456</div>
+            <div v-if="loginPlatform !== 'admin'" class="demoAccountsTip">演示环境：短信验证码固定为 123456</div>
           </div>
         </div>
       </div>
@@ -160,7 +168,7 @@
 </template>
 
 <script setup>
-import { computed, onBeforeUnmount, onMounted, reactive, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue'
 import router from '@/router'
 import { ElMessage } from 'element-plus'
 import { emitter } from '@/utils/bus'
@@ -187,8 +195,35 @@ const loginForm = reactive({
   password: ''
 })
 
-// ===== 登录方式：手机验证码 / 账号密码 =====
-const loginMode = ref('phone')
+// ===== 平台入口：?platform=admin 为管理后台登录，默认专家端 =====
+const loginPlatform = ref(new URLSearchParams(window.location.search).get('platform') === 'admin' ? 'admin' : 'expert')
+const platformLabel = computed(() => (loginPlatform.value === 'admin' ? '管理后台' : '专家端'))
+const navSub = computed(() => {
+  if (loginPlatform.value === 'admin') return '使用账号与密码登录管理后台'
+  return isPhoneMode.value ? '手机号验证码登录，未注册账号将自动创建' : '使用账号与密码登录工作台'
+})
+watch(loginPlatform, (v) => {
+  document.title = v === 'admin' ? '颐邦小源医学专家平台管理后台' : '颐邦小源医学专家平台'
+}, { immediate: true })
+const switchPlatform = (platform) => {
+  if (loginPlatform.value === platform) return
+  loginPlatform.value = platform
+  if (platform === 'admin') {
+    // 管理后台仅账号密码登录，清掉可能填入的专家端账号
+    loginMode.value = 'password'
+    loginForm.account = ''
+    loginForm.password = ''
+  }
+  // 同步地址栏：两端入口地址不同，便于分别分享
+  const params = new URLSearchParams(window.location.search)
+  if (platform === 'admin') params.set('platform', 'admin')
+  else params.delete('platform')
+  const query = params.toString()
+  history.replaceState(null, '', `${window.location.pathname}${query ? `?${query}` : ''}`)
+}
+
+// ===== 登录方式：手机验证码 / 账号密码（管理后台入口仅账号密码） =====
+const loginMode = ref(loginPlatform.value === 'admin' ? 'password' : 'phone')
 const isPhoneMode = computed(() => loginMode.value === 'phone')
 const switchLoginMode = (mode) => { loginMode.value = mode }
 
@@ -261,7 +296,8 @@ const handleAgreement = (type) => {
 // ----------------------------------------
 
 onMounted(() => {
-  setFavicon('/static/brand-logo.png', systemName.value)
+  // setFavicon 会顺带写入标签页标题，这里按登录入口传入对应端名称
+  setFavicon('/static/brand-logo.png', loginPlatform.value === 'admin' ? '颐邦小源医学专家平台管理后台' : systemName.value)
   emitter.on('showLoading', () => {})
   emitter.on('closeLoading', () => {
     loadingFlag.value = false
@@ -278,6 +314,11 @@ const DEMO_ACCOUNTS = [
   { account: 'zhuanjia', password: '123456', role: 'expert', desc: '专家端 · 5 个模块' },
   { account: 'guest', password: '123456', role: 'newbie', desc: '每次登录都需入驻申请' }
 ]
+
+// 演示账号按登录入口过滤：管理后台只展示 admin，专家端展示 zhuanjia / guest
+const visibleDemoAccounts = computed(() =>
+  DEMO_ACCOUNTS.filter(item => (item.role === 'admin') === (loginPlatform.value === 'admin'))
+)
 
 // 点击提示条快速填入
 const fillDemoAccount = (item) => {
@@ -318,6 +359,12 @@ const submitForm = async (formEl) => {
       const lower = account.toLowerCase()
       const matched = DEMO_ACCOUNTS.find(item => item.account.toLowerCase() === lower)
       const role = matched?.role || (['admin', 'full'].includes(lower) ? 'admin' : 'newbie')
+      // 入口与账号端别不一致时直接提醒，避免登错端
+      const accountSide = role === 'admin' ? 'admin' : 'expert'
+      if (accountSide !== loginPlatform.value) {
+        ElMessage.warning(accountSide === 'admin' ? '该账号属于管理后台，请切换到「管理后台登录」' : '该账号属于专家端，请切换到「专家端登录」')
+        return
+      }
       doLogin({ account: account || 'admin', role })
     } else {
       console.log('error submit!', fields)
@@ -370,11 +417,35 @@ const handleClose = () => {
     width: 100%;
     height: 100%;
 
-    .login-title {
+    .loginTitleRow {
       position: absolute;
       left: 51px;
       top: 33px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .login-title {
       height: 40px;
+    }
+
+    /* 端别徽章：一眼看出当前是哪个平台的登录入口 */
+    .platformBadge {
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 13px;
+
+      &.is-admin {
+        background: #3670f8;
+        color: #fff;
+      }
+
+      &.is-expert {
+        background: rgba(54, 112, 248, 0.12);
+        color: #3670f8;
+      }
     }
     .loginText {
       width: 585px;
@@ -748,6 +819,34 @@ const handleClose = () => {
   border-top: 1px dashed rgba(54, 112, 248, 0.25);
   font-size: 13px;
   color: var(--theme-text-2);
+}
+
+/* 平台入口切换：专家端 / 管理后台（配色跟随登录页浅色底，不随主题变量） */
+.platformTabs {
+  display: flex;
+  margin-bottom: 16px;
+  padding: 4px;
+  border-radius: 10px;
+  background: rgba(54, 112, 248, 0.06);
+  gap: 4px;
+
+  span {
+    flex: 1;
+    padding: 9px 0;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 14px;
+    color: #5a6678;
+    cursor: pointer;
+    transition: background .2s ease, color .2s ease;
+
+    &.is-active {
+      background: #fff;
+      font-weight: 600;
+      color: #3670f8;
+      box-shadow: 0 2px 8px rgba(31, 58, 105, .08);
+    }
+  }
 }
 
 .agreement {
