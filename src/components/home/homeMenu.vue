@@ -176,6 +176,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { useUserStore } from '@/store/user'
 import { ElMessage } from 'element-plus'
 import { loginOut, changePassword } from '@/api/api_user'
+import { loginRouteByRole } from '@/utils/platform'
 import AsideComponent from '@/components/home/AsideComponent.vue'
 import projectLogo from '@/assets/ebondlogo.png'
 import projectLogoName from '@/assets/ebondlogo2.png'
@@ -532,9 +533,8 @@ const selectLi = async (value) => {
     // } else {
     const res = await loginOut({})
     if (res.code === 10000) {
-      router.push({
-        path: '/login'
-      })
+      // 按退出前的端别回对应登录页，管理后台不被送回专家端入口
+      router.push(loginRouteByRole())
     }
     // }
 

@@ -5,6 +5,7 @@ import { emitter } from '@/utils/bus'
 import router from '../router'
 // eslint-disable-next-line no-unused-vars
 import { getToken } from '@/utils/crypto'
+import { loginRouteByRole } from '@/utils/platform'
 // import { useSystemUpdateStore } from '@/store/systemUpdate'
 // import { encryptedSM4, decryptedSM4 } from '@/utils/gm.js'
 // 不显示错误信息的url
@@ -44,7 +45,8 @@ const handleTokenLost = () => {
   if (!tokenLostPrompted) {
     tokenLostPrompted = true
     closeLoading()
-    router.push({ name: 'login' })
+    // 带上端别，管理后台会话失效不被送回专家端入口
+    router.push(loginRouteByRole())
   }
 }
 let accountLostPrompted = false // 全局变量，标记是否已经提示过账号被删除的消息
@@ -55,7 +57,7 @@ const handleAccountLost = (msg) => {
       message: msg,
       type: 'error'
     })
-    router.push({ name: 'login' })
+    router.push(loginRouteByRole())
   }
 }
 let server502Prompted = false // 全局变量，标记是否已经提示过502错误

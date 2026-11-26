@@ -5,7 +5,7 @@
       v-loading="loadingFlag"
       element-loading-text="登录中，请稍候..."
     >
-      <div class="brandLockup">
+      <div v-if="loginPlatform !== 'admin'" class="brandLockup">
         <svg class="brandGlyph" viewBox="0 0 44 44" aria-hidden="true">
           <defs>
             <linearGradient id="brandGlyphGrad" x1="0" y1="0" x2="1" y2="1">
@@ -19,22 +19,71 @@
         </svg>
         <div class="brandText">
           <strong>颐邦小源</strong>
-          <span>{{ loginPlatform === 'admin' ? '医学专家平台 · 管理后台' : '医学专家平台' }}</span>
+          <span>医学专家平台</span>
         </div>
       </div>
       <img v-if="loginPlatform !== 'admin'" class="loginText" alt="" :src="loginText">
-      <div v-else class="adminIntro">
-        <p class="adminIntroEyebrow">ADMIN CONSOLE</p>
-        <h1>管理后台</h1>
-        <p class="adminIntroSub">颐邦小源医学专家平台</p>
-        <p class="adminIntroDesc">专家入驻审核、标注任务管理、劳务合同与结算单核对 —— 平台业务在这里统一闭环。</p>
-        <ul class="adminIntroList">
-          <li><span class="dot"></span>专家入驻与资质审核</li>
-          <li><span class="dot"></span>标注任务与病历池管理</li>
-          <li><span class="dot"></span>劳务合同与结算单核对</li>
-        </ul>
+      <div v-else class="adminShell">
+        <div class="adminBrand">
+          <div class="adminBrandLogo">
+            <svg class="adminBrandGlyph" viewBox="0 0 44 44" aria-hidden="true">
+              <defs>
+                <linearGradient id="brandGlyphGradAdmin" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#8fb0ff" />
+                  <stop offset="1" stop-color="#4d7cff" />
+                </linearGradient>
+              </defs>
+              <rect x="2" y="2" width="40" height="40" rx="12" fill="url(#brandGlyphGradAdmin)" />
+              <path d="M22 11.5v21M11.5 22h21" stroke="#fff" stroke-width="3.1" stroke-linecap="round" opacity="0.95" />
+              <path d="M10.5 31.4c4.2-4.2 7.3 2.2 11.5-2s7.3 2.2 11.5-2" stroke="#fff" stroke-width="2.3" stroke-linecap="round" opacity="0.72" fill="none" />
+            </svg>
+            <div class="adminBrandText">
+              <strong>颐邦小源</strong>
+              <span>医学专家平台 · 管理后台</span>
+            </div>
+          </div>
+          <h1>管理后台</h1>
+          <p class="adminBrandSub">专家入驻审核、标注任务管理、劳务合同与结算单核对 —— 平台业务在这里统一闭环。</p>
+          <ul class="adminBrandList">
+            <li><span class="dot"></span>专家入驻与资质审核</li>
+            <li><span class="dot"></span>标注任务与病历池管理</li>
+            <li><span class="dot"></span>劳务合同与结算单核对</li>
+          </ul>
+          <p class="adminBrandFoot">仅限平台管理员使用</p>
+        </div>
+        <div class="adminPanel">
+          <div class="adminPanelHead">
+            <h2>欢迎回来</h2>
+            <p>请使用管理员账号登录管理后台</p>
+          </div>
+          <el-form
+            ref="ruleFormRef"
+            :model="loginForm"
+            :rules="rules"
+            :hide-required-asterisk="true"
+            class="adminForm"
+            @submit.prevent
+          >
+            <el-form-item prop="account" label="账号 ID">
+              <el-input v-model.trim="loginForm.account" autocomplete="off" placeholder="请输入账号 ID"></el-input>
+            </el-form-item>
+            <el-form-item prop="password" label="密码">
+              <el-input v-model="loginForm.password" type="password" show-password placeholder="请输入密码" autocomplete="off" @keyup.enter="submitForm(ruleFormRef)"></el-input>
+            </el-form-item>
+          </el-form>
+          <div
+            class="adminSubmit"
+            :class="{ active: loginForm.account !== '' && loginForm.password !== '' }"
+            @click="submitForm(ruleFormRef)">
+            进入管理后台
+          </div>
+          <div class="adminDemo" @click="fillDemoAccount(DEMO_ACCOUNTS[0])">
+            <span class="adminDemoLabel">演示账号（点击填入）</span>
+            <span class="adminDemoValue">admin / 123456</span>
+          </div>
+        </div>
       </div>
-      <div class="medical-login">
+      <div v-if="loginPlatform !== 'admin'" class="medical-login">
         <div class="loginColumn">
           <div class="medical-login_box">
             <!--登录 start-->
@@ -46,7 +95,6 @@
 
               <div class="loginTabs">
                 <span
-                  v-if="loginPlatform !== 'admin'"
                   :class="{ 'is-active': isPhoneMode }"
                   @click="switchLoginMode('phone')">
                   手机验证码登录
@@ -172,7 +220,7 @@
               <span class="demoAccountName">{{ item.account }} / {{ item.password }}</span>
               <span class="demoAccountDesc">{{ item.desc }}</span>
             </div>
-            <div v-if="loginPlatform !== 'admin'" class="demoAccountsTip">演示环境：短信验证码固定为 123456</div>
+            <div class="demoAccountsTip">演示环境：短信验证码固定为 123456</div>
           </div>
         </div>
       </div>
@@ -217,10 +265,7 @@ const loginForm = reactive({
 const loginPlatform = ref(new URLSearchParams(window.location.search).get('platform') === 'admin' ? 'admin' : 'expert')
 // 专家端沿用插画背景，管理后台用深色管理风格背景（不设 inline 背景图，交给样式覆盖）
 const loginDivStyle = computed(() => (loginPlatform.value === 'admin' ? {} : { backgroundImage: `url(${loginBg.value})` }))
-const navSub = computed(() => {
-  if (loginPlatform.value === 'admin') return '使用账号与密码登录管理后台'
-  return isPhoneMode.value ? '手机号验证码登录，未注册账号将自动创建' : '使用账号与密码登录工作台'
-})
+const navSub = computed(() => (isPhoneMode.value ? '手机号验证码登录，未注册账号将自动创建' : '使用账号与密码登录工作台'))
 watch(loginPlatform, (v) => {
   document.title = v === 'admin' ? '颐邦小源医学专家平台管理后台' : '颐邦小源医学专家平台'
 }, { immediate: true })
@@ -840,55 +885,97 @@ const handleClose = () => {
   }
 }
 
-/* 管理后台左侧品牌叙事（替代专家端的插画） */
-.adminIntro {
-  width: 560px;
-  margin-left: 130px;
-  color: #fff;
+/* ===== 管理后台：独立双面板登录布局（左品牌面板 + 右登录卡） ===== */
+.adminShell {
+  display: flex;
+  align-items: stretch;
+  width: 940px;
+  margin: 0 auto;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 40px 90px rgba(23, 43, 77, 0.18);
+}
 
-  .adminIntroEyebrow {
-    margin: 0 0 14px;
-    font-size: 11.5px;
-    letter-spacing: 6px;
-    color: rgba(255, 255, 255, 0.42);
+.adminBrand {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  flex: none;
+  box-sizing: border-box;
+  width: 400px;
+  padding: 40px 38px 30px;
+  background: linear-gradient(160deg, #17233f 0%, #1e3055 55%, #14203a 100%);
+  color: #fff;
+  overflow: hidden;
+
+  &::after {
+    position: absolute;
+    right: -80px;
+    bottom: -80px;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(127, 166, 255, 0.32), transparent 70%);
+    content: '';
+  }
+
+  .adminBrandLogo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .adminBrandGlyph {
+    flex: none;
+    width: 38px;
+    height: 38px;
+  }
+
+  .adminBrandText {
+    line-height: 1.2;
+
+    strong {
+      display: block;
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: 1px;
+    }
+
+    span {
+      display: block;
+      margin-top: 3px;
+      font-size: 10.5px;
+      letter-spacing: 1px;
+      color: rgba(255, 255, 255, 0.55);
+    }
   }
 
   h1 {
-    margin: 0;
+    margin: 42px 0 0;
     font-weight: 700;
-    font-size: 34px;
-    line-height: 1.25;
-    letter-spacing: 2px;
+    font-size: 30px;
+    letter-spacing: 4px;
   }
 
-  .adminIntroSub {
-    margin: 10px 0 0;
-    font-size: 15px;
-    letter-spacing: 1px;
+  .adminBrandSub {
+    max-width: 300px;
+    margin: 14px 0 0;
+    line-height: 24px;
+    font-size: 13.5px;
     color: rgba(255, 255, 255, 0.6);
   }
 
-  .adminIntroDesc {
-    max-width: 470px;
-    margin: 20px 0 0;
-    line-height: 25px;
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.58);
-  }
-
-  .adminIntroList {
-    display: flex;
-    flex-direction: column;
-    margin: 28px 0 0;
+  .adminBrandList {
+    margin: 26px 0 0;
     padding: 0;
     list-style: none;
-    gap: 12px;
 
     li {
       display: flex;
       align-items: center;
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.78);
+      margin-top: 12px;
+      font-size: 13.5px;
+      color: rgba(255, 255, 255, 0.75);
       gap: 10px;
     }
 
@@ -898,130 +985,117 @@ const handleClose = () => {
       height: 6px;
       border-radius: 50%;
       background: #7fa6ff;
-      box-shadow: 0 0 0 4px rgba(127, 166, 255, 0.14);
+      box-shadow: 0 0 0 4px rgba(127, 166, 255, 0.15);
+    }
+  }
+
+  .adminBrandFoot {
+    margin-top: auto;
+    padding-top: 28px;
+    font-size: 11.5px;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.35);
+  }
+}
+
+.adminPanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  box-sizing: border-box;
+  padding: 40px 46px 30px;
+  background: #fff;
+
+  .adminPanelHead {
+    h2 {
+      margin: 0;
+      font-weight: 700;
+      font-size: 24px;
+      color: #1f2733;
+    }
+
+    p {
+      margin: 8px 0 0;
+      font-size: 13px;
+      color: #8a94a6;
     }
   }
 }
 
-/* ===== 管理后台：深色玻璃管理台，与专家端浅蓝插画形成明显区分 ===== */
-.loginDiv.is-admin {
-  position: relative;
-  background:
-    radial-gradient(900px 520px at 76% 10%, rgba(77, 124, 255, 0.2), transparent 62%),
-    radial-gradient(760px 520px at 8% 92%, rgba(43, 74, 139, 0.26), transparent 60%),
-    linear-gradient(135deg, #0a111f 0%, #101c33 52%, #0a1220 100%);
+.adminForm {
+  margin-top: 24px;
 
-  /* 细网格底纹，提升管理台的秩序感，边缘用遮罩淡出 */
-  &::before {
-    position: absolute;
-    z-index: 0;
-    background-image:
-      linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-    background-size: 46px 46px;
-    content: '';
-    inset: 0;
-    pointer-events: none;
-    -webkit-mask-image: radial-gradient(760px 560px at 50% 42%, #000 26%, transparent 78%);
-    mask-image: radial-gradient(760px 560px at 50% 42%, #000 26%, transparent 78%);
+  .el-form-item {
+    margin-bottom: 18px;
   }
 
-  .mainDiv {
-    z-index: 1;
-  }
-
-  /* 品牌文字反白 */
-  .brandText strong {
-    color: #fff;
-  }
-
-  .brandText span {
-    color: rgba(255, 255, 255, 0.5);
-  }
-
-  /* 登录卡：深色玻璃（关键属性用 !important 压过页面原有的深层嵌套样式） */
-  .medical-login_box {
-    border: 1px solid rgba(255, 255, 255, 0.12) !important;
-    background: rgba(23, 34, 56, 0.72) !important;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45) !important;
-    backdrop-filter: blur(18px);
-  }
-
-  .loginNavTitle {
-    color: #fff !important;
-  }
-
-  .loginNavSub {
-    color: rgba(255, 255, 255, 0.5) !important;
-  }
-
-  .loginTabs {
-    background: rgba(255, 255, 255, 0.06) !important;
-
-    span {
-      color: rgba(255, 255, 255, 0.6) !important;
-
-      &.is-active {
-        background: rgba(255, 255, 255, 0.14) !important;
-        box-shadow: none !important;
-        color: #fff !important;
-      }
-    }
+  :deep(.el-form-item__label) {
+    padding-bottom: 4px;
+    font-weight: 600;
+    line-height: 20px;
+    color: #3d4757;
   }
 
   :deep(.el-input__wrapper) {
-    border-color: rgba(255, 255, 255, 0.14) !important;
-    background-color: rgba(255, 255, 255, 0.06) !important;
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12) inset !important;
+    border-radius: 8px;
+    box-shadow: 0 0 0 1px #dfe6f2 inset;
+  }
+}
+
+.adminSubmit {
+  height: 48px;
+  margin-top: 6px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #4d7cff 0%, #3670f8 100%);
+  opacity: 0.5;
+  cursor: pointer;
+  line-height: 48px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 16px;
+  color: #fff;
+  transition: opacity .2s ease, box-shadow .2s ease;
+
+  &.active {
+    opacity: 1;
+    box-shadow: 0 10px 24px rgba(54, 112, 248, 0.3);
+  }
+}
+
+.adminDemo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding: 12px 14px;
+  border: 1px dashed #c4d4f5;
+  border-radius: 10px;
+  background: rgba(54, 112, 248, 0.05);
+  cursor: pointer;
+
+  .adminDemoLabel {
+    font-size: 12.5px;
+    color: #7f8899;
   }
 
-  :deep(.el-input__inner) {
-    color: #fff !important;
-
-    &::placeholder {
-      color: rgba(255, 255, 255, 0.36);
-    }
+  .adminDemoValue {
+    font-weight: 600;
+    font-size: 14px;
+    color: #3670f8;
   }
 
-  :deep(.el-checkbox__label) {
-    color: rgba(255, 255, 255, 0.6);
+  &:hover {
+    background: rgba(54, 112, 248, 0.08);
   }
+}
 
-  :deep(.el-checkbox__inner) {
-    border-color: rgba(255, 255, 255, 0.34);
-    background: transparent;
-  }
-
-  .agreement {
-    color: rgba(255, 255, 255, 0.55);
-
-    span {
-      color: #8fb0ff;
-    }
-  }
-
-  .btn-login {
-    background: linear-gradient(135deg, #4d7cff 0%, #7fa6ff 100%) !important;
-    box-shadow: 0 10px 26px rgba(77, 124, 255, 0.32);
-  }
-
-  /* 演示账号：深色玻璃卡，避免浅色卡在深色背景上突兀 */
-  .demoAccounts {
-    border: 1px solid rgba(255, 255, 255, 0.12) !important;
-    background: rgba(255, 255, 255, 0.05) !important;
-  }
-
-  .demoAccountsTitle {
-    color: rgba(255, 255, 255, 0.6) !important;
-  }
-
-  .demoAccountName {
-    color: #a9c2ff !important;
-  }
-
-  .demoAccountDesc {
-    color: rgba(255, 255, 255, 0.5) !important;
-  }
+/* ===== 管理后台：浅蓝灰管理台底色（双面板布局见 .adminShell） ===== */
+.loginDiv.is-admin {
+  background:
+    radial-gradient(1000px 600px at 82% 0%, rgba(77, 124, 255, 0.14), transparent 60%),
+    radial-gradient(800px 600px at 4% 100%, rgba(43, 74, 139, 0.14), transparent 58%),
+    linear-gradient(160deg, #eef2f9 0%, #e2e9f4 55%, #e8eef7 100%);
 }
 
 /* 协议预览弹窗样式 */

@@ -71,6 +71,7 @@ import router from '@/router'
 import { useMedicalStore } from '@/store/medicalStore'
 import { getToken } from '@/utils/crypto'
 import { onboardingState, ONBOARDING_STATUS } from '@/utils/onboarding'
+import { currentPlatformRole, loginRouteByRole } from '@/utils/platform'
 import _ from 'lodash'
 // import { useTobeDoneStore } from '@/store/tobeDoneStore'
 const medicalStore = useMedicalStore()
@@ -236,13 +237,9 @@ const toFirstRoute = () => {
 // 入驻审核未通过时，只允许访问「首页」与「入驻审核」
 const UNVERIFIED_ALLOWED_ROUTE = ['expertWorkbench', 'onboardingAudit']
 // 平台按使用角色拆分为两端：专家端重交互体验，管理端重业务功能
+// 端别工具统一放 utils/platform.js，登录跳转（退出/失效）也要带端别
 const EXPERT_VISIBLE_MENU = ['expertWorkbench', 'onboardingAudit', 'medicalRecordProofreading', 'laborSign', 'laborSettlement']
 const ADMIN_VISIBLE_MENU = ['dataBoard', 'proofreadingManagement', 'checkInAuditManage', 'contractManagement', 'invoiceManagement', 'manage']
-// 旧版本 'full'（全模块）统一按管理后台处理
-const currentPlatformRole = () => {
-  const role = localStorage.getItem('cot-login-role')
-  return role === 'full' ? 'admin' : role
-}
 // 专家端流程页在管理端登录下不可直达，统一回管理端首屏
 const expertOnlyRouteNames = [...EXPERT_VISIBLE_MENU]
 // 浏览器标签按端显示名称
@@ -364,8 +361,8 @@ const token = getToken()
 if (token) {
   init()
 } else {
-  // 重定向到登录界面
-  router.push({ name: 'login' })
+  // 重定向到登录界面（带上端别，管理后台失效时不被送回专家端入口）
+  router.push(loginRouteByRole())
 }
 </script>
 
