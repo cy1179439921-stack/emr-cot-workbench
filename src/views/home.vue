@@ -381,7 +381,8 @@ if (token) {
     display: flex;
     flex-direction: column;
     flex: 1;
-    margin-left: var(--sidebar-width, 224px);
+    // 侧边栏改为悬浮抽屉，不再挤占内容宽度（列表/详情保持原样）
+    min-width: 0;
     .homeView {
       display: flex;
       flex: 1;

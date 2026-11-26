@@ -1,11 +1,15 @@
 <template>
+  <!-- 悬浮触发区：鼠标移到左侧边缘即展开菜单抽屉 -->
+  <div v-show="!drawer" class="sidebarHotzone" @mouseenter="openDrawer" @mouseleave="closeDrawer">
+    <span class="sidebarHandle"><i class="iconfont icon-caidan"></i></span>
+  </div>
   <el-drawer class="homeDrawer" :class="{'is-collapse': isCollapse}" v-model="drawer" modal-class="drawer-box" :modal="false" :with-header="false" direction="ltr" :close-on-click-modal="false">
     <div :class="{
            homeMenu:true,
            darkTheme:(modeStore.mode==='dark'&&route.path==='/dataBoard'),
          }"
-         @mouseenter="openSubMenu"
-         @mouseleave="closeSubMenu">
+         @mouseenter="openDrawer"
+         @mouseleave="closeDrawer">
       <div class="menuTitle" :class="getMenuTitleClassNmae">
         <div v-if="isCollapse" class="brandArt brandArtMini" :title="platformName">颐邦<br />小源</div>
         <div v-else class="brandArt" :title="platformName">
@@ -13,7 +17,6 @@
           <span class="brandArtSub">{{ brandSub }}</span>
         </div>
       </div>
-      <div v-if="!isCollapse" class="menuSectionLabel">工作区</div>
       <el-scrollbar height="100%">
         <!-- <transition :duration="{ enter: 800, leave: 100 }"> -->
         <el-menu
@@ -171,7 +174,7 @@ export default {
 }
 </script>
 <script setup>
-import { ref, watch, reactive, computed, nextTick, onMounted } from 'vue'
+import { ref, watch, reactive, computed, nextTick, onMounted, onUnmounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useUserStore } from '@/store/user'
 import { ElMessage } from 'element-plus'
@@ -258,7 +261,7 @@ const showEye = ref(false)
 const showEye2 = ref(false)
 const showEye3 = ref(false)
 const isShow = ref(false)
-const drawer = ref(true)
+const drawer = ref(false)
 const changeDialogShow = ref(false)
 const profileDialogVisible = ref(false)
 
@@ -429,15 +432,34 @@ watch(() => medicalStore.activeCurPatientDetail, (newValue) => {
     }
   })
 })
-// 侧边栏默认展开：顶部品牌 + 工作区分组，底部可收起
+// 侧边栏改为悬浮抽屉：默认隐藏，鼠标移到左侧边缘展开，离开后自动收起
 const isCollapse = ref(false)
-
-// 内容区左边距跟随侧边栏宽度
-const syncSidebarWidth = () => {
-  document.documentElement.style.setProperty('--sidebar-width', isCollapse.value ? '72px' : '224px')
+let drawerTimer = null
+let hoverLockUntil = 0
+const openDrawer = () => {
+  // 刚点完菜单时鼠标可能还停在左侧，短暂屏蔽悬停触发，避免抽屉立刻又弹出来
+  if (Date.now() < hoverLockUntil) return
+  clearTimeout(drawerTimer)
+  isCollapse.value = false
+  drawer.value = true
 }
-watch(isCollapse, syncSidebarWidth)
-onMounted(syncSidebarWidth)
+const closeDrawer = () => {
+  clearTimeout(drawerTimer)
+  // 留一点缓冲，避免鼠标在抽屉边缘抖动时反复开合
+  drawerTimer = setTimeout(() => {
+    drawer.value = false
+  }, 220)
+}
+const closeDrawerBySelect = () => {
+  clearTimeout(drawerTimer)
+  drawer.value = false
+  hoverLockUntil = Date.now() + 800
+}
+onMounted(() => {
+  // 悬浮抽屉不再占内容宽度，清掉旧的左边距变量
+  document.documentElement.style.setProperty('--sidebar-width', '0px')
+})
+onUnmounted(() => clearTimeout(drawerTimer))
 const userOperationList = ref([
   {
     name: '个人中心',
@@ -463,6 +485,8 @@ const initPage = () => {
 
 initPage()
 const selectMenuItem = (index, _, ele, aaa) => {
+  // 抽屉式菜单：点选后立即收起，避免遮挡刚打开的内容
+  closeDrawerBySelect()
   if (index === 'leakagePrevention') {
     window.open('https://10.31.0.97:31000/portal-login', 'PortalLoginWindow')
     isCollapse.value = !isCollapse.value
@@ -492,6 +516,8 @@ const selectMenuItem = (index, _, ele, aaa) => {
 //   router.push({ name: 'doubao' })
 // }
 const selectMedicalMenuItem = (index, type) => {
+  // 抽屉式菜单：点选后立即收起
+  closeDrawerBySelect()
   switch (type) {
     case 'patientHomePage':
       medicalStore.setActiveCurPatientDetail(index)
@@ -571,14 +597,6 @@ const submitForm = async(formEl) => {
       console.log('error submit!', fields)
     }
   })
-}
-// 展开菜单
-const openSubMenu = () => {
-  isCollapse.value = false
-}
-// 收起菜单
-const closeSubMenu = () => {
-  isCollapse.value = true
 }
 // const handleQuickEntrance = () => {
 //   router.push({
@@ -1011,9 +1029,49 @@ const closeSubMenu = () => {
 .drawer-box {
   position: initial !important;
 }
+/* 左侧触发区：抽屉关闭时只露出一个小小的菜单把手 */
+.sidebarHotzone {
+  position: fixed;
+  z-index: 1999;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 16px;
+  cursor: pointer;
+
+  .sidebarHandle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 20px;
+    height: 58px;
+    border: 1px solid var(--theme-border);
+    border-left: none;
+    border-radius: 0 10px 10px 0;
+    background: var(--theme-card);
+    box-shadow: 2px 0 10px rgba(31, 58, 105, 0.1);
+    transform: translateY(-50%);
+    transition: left .18s ease, color .18s ease, background .18s ease, border-color .18s ease;
+    color: var(--theme-text-2);
+    font-size: 14px;
+  }
+
+  &:hover .sidebarHandle {
+    left: 4px;
+    border-color: var(--theme-primary);
+    background: var(--theme-primary);
+    color: #fff;
+  }
+}
+
 .homeDrawer {
   width: 224px !important;
-  box-shadow: 4px 0 16px 0 rgba(0, 0, 0, 0.12);
+  border-radius: 0 14px 14px 0;
+  box-shadow: 6px 0 28px rgba(15, 26, 48, 0.16);
+  overflow: hidden;
   .el-scrollbar__wrap {
     .el-scrollbar__view {
       overflow-x: hidden;
@@ -1215,14 +1273,6 @@ const closeSubMenu = () => {
         -webkit-text-fill-color: transparent;
       }
     }
-  }
-
-  .menuSectionLabel {
-    padding: 16px 22px 6px;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--theme-text-2);
-    letter-spacing: 0.5px;
   }
 
   :deep(.el-menu-vertical) {
