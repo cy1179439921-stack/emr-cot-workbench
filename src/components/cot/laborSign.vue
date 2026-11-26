@@ -6,7 +6,7 @@
         <div class="heroText">
           <p class="heroEyebrow">签署流程 · 共 2 步</p>
           <h1 class="page-title">劳务签署</h1>
-          <p class="page-sub">资料核对清楚，签一次就够 —— 后续的结算我们会在流程里跟进，你不用来回催。</p>
+          <p class="page-sub">资料核对清楚，签一次就够 —— 后续的结算我们会在劳务结算中跟进</p>
         </div>
         <div class="heroStatus">
           <span class="status-pill" :style="styleTag[agreementDisplayStatus]">{{ agreementDisplayStatus }}</span>
@@ -220,34 +220,6 @@
         <div class="contractHint">
           <i class="iconfont icon-tishi-yidongwenjianjia"></i>
           <span>签署前建议先完整读一遍协议，条款有疑问可以随时联系项目负责人，确认清楚再签。</span>
-        </div>
-
-        <!-- 签署之后：三件会自动发生的事，先讲清楚，签得安心 -->
-        <div class="afterSign">
-          <h3 class="blockTitle">签署之后，这三件事会自动发生</h3>
-          <div class="signNotes">
-            <div class="noteItem">
-              <span class="noteIcon"><i class="iconfont icon-duihao1"></i></span>
-              <div class="noteText">
-                <strong>签署后即可开始标注</strong>
-                <span>任务分配会跟随协议状态自动生效</span>
-              </div>
-            </div>
-            <div class="noteItem">
-              <span class="noteIcon"><i class="iconfont icon-duihao1"></i></span>
-              <div class="noteText">
-                <strong>结算按完成量核算</strong>
-                <span>完成并通过审核的病历才计入结算</span>
-              </div>
-            </div>
-            <div class="noteItem">
-              <span class="noteIcon"><i class="iconfont icon-duihao1"></i></span>
-              <div class="noteText">
-                <strong>有疑问先沟通</strong>
-                <span>条款确认清楚再签，避免来回修改</span>
-              </div>
-            </div>
-          </div>
         </div>
 
         <!-- 常见疑问：把用户最担心的问题提前答了 -->
@@ -1177,64 +1149,12 @@ async function confirmReject() {
   }
 }
 
-/* 签署之后：叙事区块（标题 + 三件自动发生的事） */
-.afterSign {
-  margin-top: 4px;
-}
-
+/* 区块小标题（常见疑问等） */
 .blockTitle {
   margin: 0 0 10px;
   font-weight: 700;
   font-size: 15px;
   color: var(--theme-text);
-}
-
-.signNotes {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.noteItem {
-  display: flex;
-  align-items: flex-start;
-  padding: 14px 16px;
-  border: 1px solid var(--theme-border);
-  border-radius: 14px;
-  background: var(--theme-card);
-  gap: 10px;
-}
-
-.noteIcon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: none;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: var(--theme-success-soft);
-  font-size: 14px;
-  color: var(--theme-success);
-}
-
-.noteText {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  gap: 4px;
-
-  strong {
-    font-weight: 600;
-    font-size: 14px;
-    color: var(--theme-text);
-  }
-
-  span {
-    line-height: 19px;
-    font-size: 12.5px;
-    color: var(--theme-text-2);
-  }
 }
 
 /* 常见疑问：把用户最担心的问题提前答了 */

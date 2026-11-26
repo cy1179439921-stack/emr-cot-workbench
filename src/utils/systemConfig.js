@@ -14,6 +14,10 @@ export const PROOFREAD_STEPS = [
 export const DEFAULT_AUTO_SAVE_RANGES = PROOFREAD_STEPS.map(() => ({ min: 30, max: 40 }))
 // 每日校对上限默认值
 export const DEFAULT_DAILY_LIMIT = 50
+// 标注次数默认值与取值范围（每次标注的病历份数）
+export const DEFAULT_ANNOTATE_TIMES = 10
+export const ANNOTATE_TIMES_MIN = 1
+export const ANNOTATE_TIMES_MAX = 100
 // 自动保存时间取值范围（秒）
 export const AUTO_SAVE_MIN = 1
 export const AUTO_SAVE_MAX = 3600
@@ -84,6 +88,7 @@ const normalizeAnnotateTime = (value) => {
 const cloneDefaults = () => ({
   autoSaveRanges: DEFAULT_AUTO_SAVE_RANGES.map((item) => ({ ...item })),
   dailyProofreadLimit: DEFAULT_DAILY_LIMIT,
+  annotateTimes: DEFAULT_ANNOTATE_TIMES,
   adEnabled: DEFAULT_AD_ENABLED,
   ads: createEmptyAdSlots(),
   annotateTimeEnabled: DEFAULT_ANNOTATE_TIME_ENABLED,
@@ -122,6 +127,13 @@ const normalizeLimit = (value) => {
   return limit
 }
 
+// 标注次数：只接受 1-100 的正整数
+const normalizeAnnotateTimes = (value) => {
+  const times = Number(value)
+  if (!Number.isInteger(times) || times < ANNOTATE_TIMES_MIN || times > ANNOTATE_TIMES_MAX) return null
+  return times
+}
+
 // 读取配置：缺失或损坏时回落到默认值
 export function getSystemConfig() {
   const config = cloneDefaults()
@@ -137,6 +149,8 @@ export function getSystemConfig() {
     }
     const limit = normalizeLimit(saved.dailyProofreadLimit)
     if (limit !== null) config.dailyProofreadLimit = limit
+    const annotateTimes = normalizeAnnotateTimes(saved.annotateTimes)
+    if (annotateTimes !== null) config.annotateTimes = annotateTimes
     if (typeof saved.adEnabled === 'boolean') config.adEnabled = saved.adEnabled
     if (Array.isArray(saved.ads)) config.ads = normalizeAds(saved.ads)
     if (typeof saved.annotateTimeEnabled === 'boolean') config.annotateTimeEnabled = saved.annotateTimeEnabled

@@ -84,6 +84,38 @@
       <section class="configCard">
         <header class="cardHead">
           <div class="cardHeadMain">
+            <h3 class="cardTitle">标注次数</h3>
+            <p class="cardDesc">设置专家单次标注可完成的病历份数，用于控制每次派发的标注量。</p>
+          </div>
+        </header>
+        <div class="stepList single">
+          <div class="stepRow">
+            <div class="stepInfo">
+              <span class="stepName">单次标注份数</span>
+            </div>
+            <div class="stepRange">
+              <el-input-number
+                v-model="formData.annotateTimes"
+                class="limitInput"
+                :min="ANNOTATE_TIMES_MIN"
+                :max="ANNOTATE_TIMES_MAX"
+                :precision="0"
+                :controls="false"
+                placeholder="请填写内容"
+              />
+              <span class="rangeUnit">份 / 次</span>
+            </div>
+          </div>
+        </div>
+        <div class="cardTip">
+          <el-icon class="tipIcon"><InfoFilled /></el-icon>
+          <span>请填写 {{ ANNOTATE_TIMES_MIN }}-{{ ANNOTATE_TIMES_MAX }} 的正整数。</span>
+        </div>
+      </section>
+
+      <section class="configCard">
+        <header class="cardHead">
+          <div class="cardHeadMain">
             <h3 class="cardTitle">广告配置</h3>
             <p class="cardDesc">
               控制校对详情页右上角广告位是否展示。每条广告由一张图片和一个跳转链接组成，展示时从中随机取一条；最多可添加 {{ AD_SLOT_COUNT }} 条，至少保留 1 条。
@@ -251,6 +283,9 @@ import {
   DAILY_LIMIT_MAX,
   DEFAULT_AUTO_SAVE_RANGES,
   DEFAULT_DAILY_LIMIT,
+  DEFAULT_ANNOTATE_TIMES,
+  ANNOTATE_TIMES_MIN,
+  ANNOTATE_TIMES_MAX,
   DEFAULT_AD_ENABLED,
   AD_IMAGE_MAX_MB,
   AD_IMAGE_MAX_SIDE,
@@ -276,6 +311,7 @@ const uploadingIndex = ref(-1)
 const applyDefault = () => {
   formData.autoSaveRanges = DEFAULT_AUTO_SAVE_RANGES.map((item) => ({ ...item }))
   formData.dailyProofreadLimit = DEFAULT_DAILY_LIMIT
+  formData.annotateTimes = DEFAULT_ANNOTATE_TIMES
   formData.adEnabled = DEFAULT_AD_ENABLED
   formData.ads = createEmptyAdSlots()
   formData.annotateTimeEnabled = DEFAULT_ANNOTATE_TIME_ENABLED
@@ -495,6 +531,15 @@ const validateForm = () => {
     ElMessage.error(`每日校对上限需为 ${DAILY_LIMIT_MIN}-${DAILY_LIMIT_MAX} 的正整数`)
     return false
   }
+  const annotateTimes = formData.annotateTimes
+  if (annotateTimes === null || annotateTimes === undefined) {
+    ElMessage.error('请填写标注次数')
+    return false
+  }
+  if (!Number.isInteger(annotateTimes) || annotateTimes < ANNOTATE_TIMES_MIN || annotateTimes > ANNOTATE_TIMES_MAX) {
+    ElMessage.error(`标注次数需为 ${ANNOTATE_TIMES_MIN}-${ANNOTATE_TIMES_MAX} 的正整数`)
+    return false
+  }
   if (!validateAds()) return false
   return validateAnnotateTime()
 }
@@ -505,6 +550,7 @@ const persistConfig = () => {
     saveSystemConfig({
       autoSaveRanges: formData.autoSaveRanges.map((item) => ({ min: item.min, max: item.max })),
       dailyProofreadLimit: formData.dailyProofreadLimit,
+      annotateTimes: formData.annotateTimes,
       ...buildAdPayload(),
       ...buildAnnotateTimePayload()
     })
@@ -524,7 +570,7 @@ const handleSave = () => {
 const handleReset = async () => {
   try {
     await ElMessageBox.confirm(
-      '恢复默认后，自动保存时间将重置为 30-40s，每日校对上限重置为默认值，广告配置清空为 1 条，标注时间范围恢复为工作日 17:00-21:00，是否继续？',
+      '恢复默认后，自动保存时间将重置为 30-40s，每日校对上限与标注次数重置为默认值，广告配置清空为 1 条，标注时间范围恢复为工作日 17:00-21:00，是否继续？',
       '恢复默认',
       {
         confirmButtonText: '恢复默认',
