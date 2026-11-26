@@ -11,6 +11,7 @@
         <div class="heroStatus">
           <span class="status-pill" :style="styleTag[agreementDisplayStatus]">{{ agreementDisplayStatus }}</span>
           <span v-if="signatureTime" class="status-time">签署时间 {{ signatureTime }}</span>
+          <span class="heroNext"><i class="iconfont icon-tishi-yidongwenjianjia"></i>{{ heroNextText }}</span>
         </div>
       </div>
 
@@ -190,7 +191,7 @@
         </div>
         <div class="contract-card">
           <div class="contract-file">
-            <img :src="pdfImg" alt="PDF" class="pdf-icon" />
+            <span class="pdfBadge"><img :src="pdfImg" alt="PDF" class="pdf-icon" /></span>
             <div class="contract-info">
               <strong>{{ record.contractFile || '智脉COT专家劳务协议.pdf' }}</strong>
               <span>{{ contractStatusText }}</span>
@@ -208,7 +209,7 @@
             </template>
             <template v-else>
               <el-button class="btn-sign" @click="openSign" v-if="!needCheckPermission || hadPermissionList.includes('提交')">
-                <i class="iconfont icon-qianshu"></i>签署
+                <i class="iconfont icon-qianshu"></i>签署协议
               </el-button>
               <el-button class="btn-reject" @click="rejectVisible = true" v-if="!needCheckPermission || hadPermissionList.includes('驳回签署')">
                 <i class="iconfont icon-bohui"></i>驳回
@@ -221,27 +222,49 @@
           <span>签署前建议先完整读一遍协议，条款有疑问可以随时联系项目负责人，确认清楚再签。</span>
         </div>
 
-        <!-- 签署须知：三列要点，避免页面下部大面积留白 -->
-        <div class="signNotes">
-          <div class="noteItem">
-            <span class="noteIcon"><i class="iconfont icon-duihao1"></i></span>
-            <div class="noteText">
-              <strong>签署后即可开始标注</strong>
-              <span>任务分配会跟随协议状态自动生效</span>
+        <!-- 签署之后：三件会自动发生的事，先讲清楚，签得安心 -->
+        <div class="afterSign">
+          <h3 class="blockTitle">签署之后，这三件事会自动发生</h3>
+          <div class="signNotes">
+            <div class="noteItem">
+              <span class="noteIcon"><i class="iconfont icon-duihao1"></i></span>
+              <div class="noteText">
+                <strong>签署后即可开始标注</strong>
+                <span>任务分配会跟随协议状态自动生效</span>
+              </div>
+            </div>
+            <div class="noteItem">
+              <span class="noteIcon"><i class="iconfont icon-duihao1"></i></span>
+              <div class="noteText">
+                <strong>结算按完成量核算</strong>
+                <span>完成并通过审核的病历才计入结算</span>
+              </div>
+            </div>
+            <div class="noteItem">
+              <span class="noteIcon"><i class="iconfont icon-duihao1"></i></span>
+              <div class="noteText">
+                <strong>有疑问先沟通</strong>
+                <span>条款确认清楚再签，避免来回修改</span>
+              </div>
             </div>
           </div>
-          <div class="noteItem">
-            <span class="noteIcon"><i class="iconfont icon-duihao1"></i></span>
-            <div class="noteText">
-              <strong>结算按完成量核算</strong>
-              <span>完成并通过审核的病历才计入结算</span>
+        </div>
+
+        <!-- 常见疑问：把用户最担心的问题提前答了 -->
+        <div class="faqBlock">
+          <h3 class="blockTitle">还有疑问？这几条可能帮到你</h3>
+          <div class="faqGrid">
+            <div class="faqItem">
+              <strong><i class="iconfont icon-tishi-yidongwenjianjia"></i>结算怎么算？</strong>
+              <span>按完成并通过审核的病历数量核算，明细在「劳务结算」页随时可查。</span>
             </div>
-          </div>
-          <div class="noteItem">
-            <span class="noteIcon"><i class="iconfont icon-duihao1"></i></span>
-            <div class="noteText">
-              <strong>有疑问先沟通</strong>
-              <span>条款确认清楚再签，避免来回修改</span>
+            <div class="faqItem">
+              <strong><i class="iconfont icon-tishi-yidongwenjianjia"></i>我的信息安全吗？</strong>
+              <span>证件与银行卡信息仅用于劳务签署与报酬打款，加密保存、不对外提供。</span>
+            </div>
+            <div class="faqItem">
+              <strong><i class="iconfont icon-tishi-yidongwenjianjia"></i>签完之后还能改吗？</strong>
+              <span>协议内容如需调整，联系项目负责人即可处理，不影响已完成的工作。</span>
             </div>
           </div>
         </div>
@@ -423,6 +446,13 @@ const isAgreementSigned = computed(() => contractStatus.value === CONTRACT_STATU
 
 // 协议是否被驳回
 const isContractRejected = computed(() => contractStatus.value === CONTRACT_STATUS.REJECTED)
+
+// 右上角行动指引：不只报状态，还告诉用户现在该做什么
+const heroNextText = computed(() => {
+  if (isAgreementSigned.value) return '签署已完成，随时可以回看协议'
+  if (isContractRejected.value) return '资料核对后可重新提交，不影响已完成工作'
+  return '现在只差一步：阅读并签署下方协议'
+})
 
 // 协议面板状态文案
 const contractStatusText = computed(() => {
@@ -756,6 +786,28 @@ async function confirmReject() {
   color: var(--theme-text-3);
 }
 
+/* 行动指引：不只报状态，还告诉用户现在该做什么 */
+.heroNext {
+  display: inline-flex;
+  align-items: center;
+  max-width: 320px;
+  margin-top: 2px;
+  padding: 6px 12px;
+  border-radius: 10px;
+  background: var(--theme-success-soft);
+  line-height: 18px;
+  font-size: 12.5px;
+  color: var(--theme-text-2);
+  text-align: right;
+  gap: 6px;
+
+  .iconfont {
+    flex-shrink: 0;
+    font-size: 13px;
+    color: var(--theme-success);
+  }
+}
+
 /* 两步流程：紧凑横排，不再拉超长连线 */
 .stepStrip {
   display: grid;
@@ -1057,8 +1109,8 @@ async function confirmReject() {
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
-  min-height: 88px;
-  padding: 18px 20px;
+  min-height: 100px;
+  padding: 20px 24px;
   border: 1px solid var(--theme-border);
   border-radius: 14px;
   background: var(--theme-fill);
@@ -1068,7 +1120,25 @@ async function confirmReject() {
 .contract-file {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
+}
+
+/* PDF 文件圆底徽标：让文件像 C 端钱包里的一张卡，而不是一行附件 */
+.pdfBadge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: none;
+  width: 54px;
+  height: 54px;
+  border: 1px solid var(--theme-border);
+  border-radius: 14px;
+  background: var(--theme-card);
+
+  .pdf-icon {
+    width: 26px;
+    height: auto;
+  }
 }
 
 .contract-info {
@@ -1077,13 +1147,13 @@ async function confirmReject() {
   gap: 6px;
 
   strong {
-    font-weight: 500;
-    font-size: 16px;
+    font-weight: 600;
+    font-size: 16.5px;
     color: var(--theme-text);
   }
 
   span {
-    font-size: 14px;
+    font-size: 13px;
     color: var(--theme-text-3);
   }
 }
@@ -1107,9 +1177,20 @@ async function confirmReject() {
   }
 }
 
+/* 签署之后：叙事区块（标题 + 三件自动发生的事） */
+.afterSign {
+  margin-top: 4px;
+}
+
+.blockTitle {
+  margin: 0 0 10px;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--theme-text);
+}
+
 .signNotes {
   display: grid;
-  margin-top: 2px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
 }
@@ -1129,11 +1210,11 @@ async function confirmReject() {
   justify-content: center;
   align-items: center;
   flex: none;
-  width: 24px;
-  height: 24px;
-  border-radius: 8px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
   background: var(--theme-success-soft);
-  font-size: 13px;
+  font-size: 14px;
   color: var(--theme-success);
 }
 
@@ -1145,51 +1226,108 @@ async function confirmReject() {
 
   strong {
     font-weight: 600;
-    font-size: 13.5px;
+    font-size: 14px;
     color: var(--theme-text);
   }
 
   span {
-    line-height: 18px;
+    line-height: 19px;
     font-size: 12.5px;
-    color: var(--theme-text-3);
+    color: var(--theme-text-2);
+  }
+}
+
+/* 常见疑问：把用户最担心的问题提前答了 */
+.faqBlock {
+  margin-top: 14px;
+}
+
+.faqGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.faqItem {
+  display: flex;
+  flex-direction: column;
+  padding: 14px 16px;
+  border: 1px solid var(--theme-border);
+  border-radius: 14px;
+  background: var(--theme-card);
+  gap: 6px;
+
+  strong {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 13.5px;
+    color: var(--theme-text);
+    gap: 6px;
+
+    .iconfont {
+      flex-shrink: 0;
+      font-size: 14px;
+      color: var(--theme-primary);
+    }
+  }
+
+  span {
+    line-height: 19px;
+    font-size: 12.5px;
+    color: var(--theme-text-2);
   }
 }
 
 .contract-actions {
   display: flex;
   flex: none;
-  gap: 10px;
+  gap: 12px;
 
   .el-button {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 122px;
-    height: 40px;
-    border-radius: 40px;
+    height: 44px;
+    border-radius: 12px;
     cursor: pointer;
+    font-weight: 500;
     font-size: 15px;
     .iconfont {
       margin-right: 8px;
-      font-size: 15px;
+      font-size: 16px;
     }
 
-    &.btn-sign {
-      border-color: var(--theme-primary);
-      background: var(--theme-card);
-      color: var(--theme-primary);
+    /* 页面唯一的强视觉：签署/查看主按钮 */
+    &.btn-sign,
+    &.view {
+      width: 150px;
+      border: none;
+      background: linear-gradient(135deg, var(--theme-primary) 0%, var(--theme-primary-light) 100%);
+      color: #fff;
+      box-shadow: var(--theme-primary-shadow);
+
+      &:hover,
+      &:focus {
+        border: none;
+        background: linear-gradient(135deg, var(--theme-primary) 0%, var(--theme-primary-light) 100%);
+        color: #fff;
+        opacity: .92;
+      }
     }
 
     &.btn-reject {
-      border-color: var(--theme-danger);
+      padding: 0 18px;
+      border-color: var(--theme-border);
       background: var(--theme-card);
-      color: var(--theme-danger);
-    }
-    &.view {
-      border-color: var(--theme-primary);
-      background: var(--theme-card);
-      color: var(--theme-primary);
+      color: var(--theme-text-2);
+
+      &:hover,
+      &:focus {
+        border-color: var(--theme-danger);
+        background: var(--theme-card);
+        color: var(--theme-danger);
+      }
     }
   }
 }
