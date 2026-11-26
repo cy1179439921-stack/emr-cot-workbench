@@ -26,7 +26,8 @@
       <div v-else class="adminBrandArt">
         <p class="adminBrandArtEyebrow">ADMIN CONSOLE</p>
         <h1 class="adminBrandArtMain">颐邦小源</h1>
-        <p class="adminBrandArtSub">医学专家平台管理后台</p>
+        <p class="adminBrandArtSub">医学专家平台</p>
+        <p class="adminBrandArtStrong">管理后台</p>
       </div>
       <div class="medical-login">
         <div class="loginColumn">
@@ -459,29 +460,29 @@ const handleClose = () => {
       margin-left: 130px;
     }
 
-    /* 管理后台：左侧品牌艺术字（淡蓝背景上用深蓝渐变，保持专业与存在感） */
+    /* 管理后台：左侧品牌艺术字（黑体大字 + 蓝色系，突出"管理后台"） */
     .adminBrandArt {
-      width: 620px;
+      width: 640px;
       margin-left: 130px;
+      font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
       user-select: none;
 
       .adminBrandArtEyebrow {
-        margin: 0 0 16px;
+        margin: 0 0 18px;
         font-weight: 600;
-        font-size: 12px;
-        letter-spacing: 8px;
-        color: #7c8ba3;
+        font-size: 13px;
+        letter-spacing: 9px;
+        color: #7e90ad;
       }
 
       .adminBrandArtMain {
         margin: 0;
-        font-family: 'STKaiti', 'KaiTi', 'Songti SC', 'PingFang SC', 'Microsoft YaHei', serif;
-        font-weight: 700;
-        font-size: 58px;
-        line-height: 1.16;
-        letter-spacing: 8px;
-        color: #16233f;
-        background: linear-gradient(100deg, #16233f 0%, #2b4a8b 45%, #4d7cff 100%);
+        font-weight: 800;
+        font-size: 74px;
+        line-height: 1.08;
+        letter-spacing: 6px;
+        color: #22406e;
+        background: linear-gradient(100deg, #1d3661 0%, #3f6ed6 55%, #5f93ff 100%);
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -489,12 +490,19 @@ const handleClose = () => {
 
       .adminBrandArtSub {
         margin: 12px 0 0;
-        font-family: 'STKaiti', 'KaiTi', 'Songti SC', 'PingFang SC', 'Microsoft YaHei', serif;
         font-weight: 600;
-        font-size: 27px;
-        letter-spacing: 6px;
-        color: #2b4a8b;
-        background: linear-gradient(100deg, #2b4a8b 0%, #4d7cff 100%);
+        font-size: 34px;
+        letter-spacing: 9px;
+        color: #3f6ed6;
+      }
+
+      .adminBrandArtStrong {
+        margin: 18px 0 0;
+        font-weight: 800;
+        font-size: 50px;
+        letter-spacing: 12px;
+        color: #2f5fc4;
+        background: linear-gradient(100deg, #2f5fc4 0%, #5f93ff 100%);
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
