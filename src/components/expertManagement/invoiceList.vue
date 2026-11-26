@@ -491,15 +491,29 @@ onMounted(() => {
     justify-content: space-between;
     align-items: center;
 
-    .batchActions {
+    /* 覆盖列表公共样式里给表头第二个 div 的「新增按钮」样式（width:120px/主色底），否则按钮组会被压缩、挤出 */
+    div:nth-child(2).batchActions {
       display: flex;
       align-items: center;
+      width: auto;
+      height: auto;
+      border-radius: 0;
+      background: transparent;
+      flex: none;
+      white-space: nowrap;
       gap: 10px;
     }
 
+    /* Element 相邻按钮默认 12px 外边距，与 gap 叠加会把按钮挤出容器 */
+    .batchActions .el-button + .el-button {
+      margin-left: 0;
+    }
+
     .batchHint {
+      flex: none;
       font-size: 12.5px;
       color: var(--theme-text-3);
+      white-space: nowrap;
     }
 
     /* 勾选后才高亮，未勾选置灰 */
