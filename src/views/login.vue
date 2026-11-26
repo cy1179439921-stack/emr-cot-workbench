@@ -5,47 +5,40 @@
       v-loading="loadingFlag"
       element-loading-text="登录中，请稍候..."
     >
-      <div class="loginTitleRow">
-        <img class="login-title" :src="loginTitleLogo" />
-        <span class="platformBadge" :class="`is-${loginPlatform}`">{{ platformLabel }}</span>
+      <div class="brandLockup">
+        <svg class="brandGlyph" viewBox="0 0 44 44" aria-hidden="true">
+          <defs>
+            <linearGradient id="brandGlyphGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#7fa6ff" />
+              <stop offset="1" stop-color="#3670f8" />
+            </linearGradient>
+          </defs>
+          <rect x="2" y="2" width="40" height="40" rx="12" fill="url(#brandGlyphGrad)" />
+          <path d="M22 11.5v21M11.5 22h21" stroke="#fff" stroke-width="3.1" stroke-linecap="round" opacity="0.95" />
+          <path d="M10.5 31.4c4.2-4.2 7.3 2.2 11.5-2s7.3 2.2 11.5-2" stroke="#fff" stroke-width="2.3" stroke-linecap="round" opacity="0.72" fill="none" />
+        </svg>
+        <div class="brandText">
+          <strong>颐邦小源</strong>
+          <span>{{ loginPlatform === 'admin' ? '医学专家平台 · 管理后台' : '医学专家平台' }}</span>
+        </div>
       </div>
       <img v-if="loginPlatform !== 'admin'" class="loginText" alt="" :src="loginText">
       <div v-else class="adminIntro">
-        <p class="adminIntroEyebrow">MEDICAL EXPERT PLATFORM · ADMIN</p>
-        <h1>颐邦小源<br />医学专家平台管理后台</h1>
+        <p class="adminIntroEyebrow">ADMIN CONSOLE</p>
+        <h1>管理后台</h1>
+        <p class="adminIntroSub">颐邦小源医学专家平台</p>
         <p class="adminIntroDesc">专家入驻审核、标注任务管理、劳务合同与结算单核对 —— 平台业务在这里统一闭环。</p>
-        <div class="adminIntroPoints">
-          <span>数据统计</span>
-          <span>入驻审核</span>
-          <span>合同与结算</span>
-        </div>
+        <ul class="adminIntroList">
+          <li><span class="dot"></span>专家入驻与资质审核</li>
+          <li><span class="dot"></span>标注任务与病历池管理</li>
+          <li><span class="dot"></span>劳务合同与结算单核对</li>
+        </ul>
       </div>
       <div class="medical-login">
         <div class="loginColumn">
-          <div class="platformSwitch">
-            <button
-              type="button"
-              class="platformOption"
-              :class="{ 'is-active': loginPlatform === 'expert' }"
-              @click="switchPlatform('expert')"
-            >
-              <strong>专家端</strong>
-              <span>标注 · 签署 · 结算</span>
-            </button>
-            <button
-              type="button"
-              class="platformOption"
-              :class="{ 'is-active': loginPlatform === 'admin' }"
-              @click="switchPlatform('admin')"
-            >
-              <strong>管理后台</strong>
-              <span>审核 · 合同 · 系统</span>
-            </button>
-          </div>
           <div class="medical-login_box">
             <!--登录 start-->
             <div class="medical-login_form">
-              <div v-if="loginPlatform === 'admin'" class="adminCardHead">管理后台 · 业务控制台</div>
               <div class="loginNav">
                 <span class="loginNavTitle">{{ isPhoneMode ? '登录/注册' : '账号密码登录' }}</span>
                 <p class="loginNavSub">{{ navSub }}</p>
@@ -205,7 +198,6 @@ import { useModeStore } from '@/store/modeStore'
 import { approveApplication, resetApplication } from '@/utils/onboarding'
 import authentication from '@/components/authentication/login-authentication.vue'
 import loginBgDefault from '@/assets/login-bg2.png'
-import brandLockup from '@/assets/brand/brand-lockup.png'
 import loginText from '@/assets/loginText.png'
 import { setFavicon } from '@/utils/setIco'
 import PrivacyPolicy from './PrivacyPolicy.vue'
@@ -216,7 +208,6 @@ const modeStore = useModeStore()
 
 const systemName = ref(userStore.platInfo.systemName || '颐邦小源医学专家平台')
 const loginBg = ref(userStore.platInfo.loginLogo || loginBgDefault)
-const loginTitleLogo = ref(userStore.platInfo.loginTitle || brandLockup)
 const loginForm = reactive({
   account: '',
   password: ''
@@ -224,7 +215,6 @@ const loginForm = reactive({
 
 // ===== 平台入口：?platform=admin 为管理后台登录，默认专家端 =====
 const loginPlatform = ref(new URLSearchParams(window.location.search).get('platform') === 'admin' ? 'admin' : 'expert')
-const platformLabel = computed(() => (loginPlatform.value === 'admin' ? '管理后台' : '专家端'))
 // 专家端沿用插画背景，管理后台用深色管理风格背景（不设 inline 背景图，交给样式覆盖）
 const loginDivStyle = computed(() => (loginPlatform.value === 'admin' ? {} : { backgroundImage: `url(${loginBg.value})` }))
 const navSub = computed(() => {
@@ -234,22 +224,7 @@ const navSub = computed(() => {
 watch(loginPlatform, (v) => {
   document.title = v === 'admin' ? '颐邦小源医学专家平台管理后台' : '颐邦小源医学专家平台'
 }, { immediate: true })
-const switchPlatform = (platform) => {
-  if (loginPlatform.value === platform) return
-  loginPlatform.value = platform
-  if (platform === 'admin') {
-    // 管理后台仅账号密码登录，清掉可能填入的专家端账号
-    loginMode.value = 'password'
-    loginForm.account = ''
-    loginForm.password = ''
-  }
-  // 同步地址栏：两端入口地址不同，便于分别分享
-  const params = new URLSearchParams(window.location.search)
-  if (platform === 'admin') params.set('platform', 'admin')
-  else params.delete('platform')
-  const query = params.toString()
-  history.replaceState(null, '', `${window.location.pathname}${query ? `?${query}` : ''}`)
-}
+// 两端入口仅通过地址区分（?platform=admin），登录页不提供切换
 
 // ===== 登录方式：手机验证码 / 账号密码（管理后台入口仅账号密码） =====
 const loginMode = ref(loginPlatform.value === 'admin' ? 'password' : 'phone')
@@ -391,7 +366,7 @@ const submitForm = async (formEl) => {
       // 入口与账号端别不一致时直接提醒，避免登错端
       const accountSide = role === 'admin' ? 'admin' : 'expert'
       if (accountSide !== loginPlatform.value) {
-        ElMessage.warning(accountSide === 'admin' ? '该账号属于管理后台，请切换到「管理后台」入口' : '该账号属于专家端，请切换到「专家端」入口')
+        ElMessage.warning(accountSide === 'admin' ? '该账号属于管理后台，请通过管理后台地址登录' : '该账号属于专家端，请通过专家端地址登录')
         return
       }
       doLogin({ account: account || 'admin', role })
@@ -446,7 +421,8 @@ const handleClose = () => {
     width: 100%;
     height: 100%;
 
-    .loginTitleRow {
+    /* 左上角品牌：矢量图形 + 文字，不依赖位图 */
+    .brandLockup {
       position: absolute;
       left: 51px;
       top: 33px;
@@ -455,25 +431,29 @@ const handleClose = () => {
       gap: 12px;
     }
 
-    .login-title {
+    .brandGlyph {
+      flex: none;
+      width: 40px;
       height: 40px;
     }
 
-    /* 端别徽章：一眼看出当前是哪个平台的登录入口 */
-    .platformBadge {
-      padding: 4px 12px;
-      border-radius: 999px;
-      font-weight: 600;
-      font-size: 13px;
+    .brandText {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
 
-      &.is-admin {
-        background: #3670f8;
-        color: #fff;
+      strong {
+        font-weight: 700;
+        font-size: 18px;
+        letter-spacing: 1px;
+        color: #1f2733;
       }
 
-      &.is-expert {
-        background: rgba(54, 112, 248, 0.12);
-        color: #3670f8;
+      span {
+        margin-top: 2px;
+        font-size: 10.5px;
+        letter-spacing: 1.5px;
+        color: #7f8899;
       }
     }
     .loginText {
@@ -850,46 +830,7 @@ const handleClose = () => {
   color: var(--theme-text-2);
 }
 
-/* 平台入口切换：卡片外两枚大 tab，专家端 / 管理后台（登录页配色固定浅色系） */
-.platformSwitch {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-
-  .platformOption {
-    display: flex;
-    flex-direction: column;
-    padding: 12px 16px;
-    border: 1px solid rgba(255, 255, 255, 0.55);
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.55);
-    text-align: left;
-    cursor: pointer;
-    transition: background .2s ease, border-color .2s ease, box-shadow .2s ease;
-
-    strong {
-      font-weight: 700;
-      font-size: 15px;
-      color: #2b3648;
-    }
-
-    span {
-      margin-top: 3px;
-      font-size: 12px;
-      color: #7f8899;
-    }
-
-    &.is-active {
-      border-color: #3670f8;
-      background: #fff;
-      box-shadow: 0 6px 18px rgba(31, 58, 105, 0.12);
-
-      strong {
-        color: #3670f8;
-      }
-    }
-  }
-}
+/* 两端入口仅通过地址区分，登录页不提供切换卡 */
 
 .agreement {
   margin-top: 29px;
@@ -899,123 +840,187 @@ const handleClose = () => {
   }
 }
 
-/* 管理后台左侧文案区（替代专家端的插画） */
+/* 管理后台左侧品牌叙事（替代专家端的插画） */
 .adminIntro {
-  width: 585px;
+  width: 560px;
   margin-left: 130px;
   color: #fff;
 
   .adminIntroEyebrow {
-    margin: 0 0 16px;
-    font-size: 12px;
-    letter-spacing: 5px;
-    color: rgba(255, 255, 255, 0.45);
+    margin: 0 0 14px;
+    font-size: 11.5px;
+    letter-spacing: 6px;
+    color: rgba(255, 255, 255, 0.42);
   }
 
   h1 {
     margin: 0;
     font-weight: 700;
-    font-size: 32px;
-    line-height: 1.34;
-    letter-spacing: 0.5px;
+    font-size: 34px;
+    line-height: 1.25;
+    letter-spacing: 2px;
+  }
+
+  .adminIntroSub {
+    margin: 10px 0 0;
+    font-size: 15px;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.6);
   }
 
   .adminIntroDesc {
-    max-width: 520px;
-    margin: 18px 0 0;
-    line-height: 26px;
-    font-size: 15px;
-    color: rgba(255, 255, 255, 0.7);
+    max-width: 470px;
+    margin: 20px 0 0;
+    line-height: 25px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.58);
   }
 
-  .adminIntroPoints {
+  .adminIntroList {
     display: flex;
-    margin-top: 26px;
-    gap: 10px;
+    flex-direction: column;
+    margin: 28px 0 0;
+    padding: 0;
+    list-style: none;
+    gap: 12px;
 
-    span {
-      padding: 8px 16px;
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      border-radius: 999px;
-      font-size: 13px;
-      color: rgba(255, 255, 255, 0.8);
+    li {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.78);
+      gap: 10px;
+    }
+
+    .dot {
+      flex: none;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #7fa6ff;
+      box-shadow: 0 0 0 4px rgba(127, 166, 255, 0.14);
     }
   }
 }
 
-/* 管理后台卡片顶部深色标识条 */
-.adminCardHead {
-  margin: -34px -44px 22px -45px;
-  padding: 13px 45px;
-  border-radius: 8px 8px 0 0;
-  background: linear-gradient(90deg, #1c2f57 0%, #2b4a8b 100%);
-  font-weight: 600;
-  font-size: 13px;
-  letter-spacing: 3px;
-  color: #fff;
-}
-
-/* ===== 管理后台登录入口：深色管理风格，与专家端明显区分 ===== */
+/* ===== 管理后台：深色玻璃管理台，与专家端浅蓝插画形成明显区分 ===== */
 .loginDiv.is-admin {
-  background: linear-gradient(135deg, #0f1930 0%, #1b2c4f 55%, #0d1626 100%);
+  position: relative;
+  background:
+    radial-gradient(900px 520px at 76% 10%, rgba(77, 124, 255, 0.2), transparent 62%),
+    radial-gradient(760px 520px at 8% 92%, rgba(43, 74, 139, 0.26), transparent 60%),
+    linear-gradient(135deg, #0a111f 0%, #101c33 52%, #0a1220 100%);
 
-  .login-title {
-    filter: brightness(0) invert(1);
+  /* 细网格底纹，提升管理台的秩序感，边缘用遮罩淡出 */
+  &::before {
+    position: absolute;
+    z-index: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 46px 46px;
+    content: '';
+    inset: 0;
+    pointer-events: none;
+    -webkit-mask-image: radial-gradient(760px 560px at 50% 42%, #000 26%, transparent 78%);
+    mask-image: radial-gradient(760px 560px at 50% 42%, #000 26%, transparent 78%);
   }
 
-  .platformBadge.is-admin {
-    background: #fff;
-    color: #1c2f57;
+  .mainDiv {
+    z-index: 1;
   }
 
-  .platformSwitch .platformOption {
-    border-color: rgba(255, 255, 255, 0.16);
-    background: rgba(255, 255, 255, 0.07);
+  /* 品牌文字反白 */
+  .brandText strong {
+    color: #fff;
+  }
 
-    strong {
-      color: rgba(255, 255, 255, 0.86);
-    }
+  .brandText span {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  /* 登录卡：深色玻璃（关键属性用 !important 压过页面原有的深层嵌套样式） */
+  .medical-login_box {
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    background: rgba(23, 34, 56, 0.72) !important;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45) !important;
+    backdrop-filter: blur(18px);
+  }
+
+  .loginNavTitle {
+    color: #fff !important;
+  }
+
+  .loginNavSub {
+    color: rgba(255, 255, 255, 0.5) !important;
+  }
+
+  .loginTabs {
+    background: rgba(255, 255, 255, 0.06) !important;
 
     span {
-      color: rgba(255, 255, 255, 0.45);
-    }
+      color: rgba(255, 255, 255, 0.6) !important;
 
-    &.is-active {
-      border-color: #9db8ff;
-      background: rgba(255, 255, 255, 0.16);
-      box-shadow: 0 8px 22px rgba(4, 10, 24, 0.35);
-
-      strong {
-        color: #fff;
+      &.is-active {
+        background: rgba(255, 255, 255, 0.14) !important;
+        box-shadow: none !important;
+        color: #fff !important;
       }
     }
   }
 
-  .medical-login_box {
-    border-color: rgba(255, 255, 255, 0.24);
-    background: #fff;
-    box-shadow: 0 24px 60px rgba(4, 10, 24, 0.45);
+  :deep(.el-input__wrapper) {
+    border-color: rgba(255, 255, 255, 0.14) !important;
+    background-color: rgba(255, 255, 255, 0.06) !important;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12) inset !important;
+  }
+
+  :deep(.el-input__inner) {
+    color: #fff !important;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.36);
+    }
+  }
+
+  :deep(.el-checkbox__label) {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  :deep(.el-checkbox__inner) {
+    border-color: rgba(255, 255, 255, 0.34);
+    background: transparent;
+  }
+
+  .agreement {
+    color: rgba(255, 255, 255, 0.55);
+
+    span {
+      color: #8fb0ff;
+    }
   }
 
   .btn-login {
-    background: linear-gradient(135deg, #2b4a8b 0%, #1c2f57 100%) !important;
+    background: linear-gradient(135deg, #4d7cff 0%, #7fa6ff 100%) !important;
+    box-shadow: 0 10px 26px rgba(77, 124, 255, 0.32);
   }
 
+  /* 演示账号：深色玻璃卡，避免浅色卡在深色背景上突兀 */
   .demoAccounts {
-    border-color: rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
   }
 
   .demoAccountsTitle {
-    color: rgba(255, 255, 255, 0.68);
+    color: rgba(255, 255, 255, 0.6) !important;
   }
 
   .demoAccountName {
-    color: #a9c2ff;
+    color: #a9c2ff !important;
   }
 
   .demoAccountDesc {
-    color: rgba(255, 255, 255, 0.55);
+    color: rgba(255, 255, 255, 0.5) !important;
   }
 }
 
