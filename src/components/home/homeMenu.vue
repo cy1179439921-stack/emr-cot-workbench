@@ -96,8 +96,8 @@
           ref="myPopover"
         >
           <div class="panelDiv">
-            <!-- 外观风格：明亮 / 暖色 / 深色（管理后台不提供切换） -->
-            <div v-if="showThemeSwitch" class="themeBlock">
+            <!-- 外观风格：明亮 / 暖色 / 深色（两端都提供） -->
+            <div class="themeBlock">
               <div class="themeBlockTitle">外观风格</div>
               <div class="themeOptions">
                 <span
@@ -203,8 +203,6 @@ const platformRole = (() => {
 const brandMain = '颐邦小源'
 const brandSub = computed(() => (platformRole === 'admin' ? '医学专家平台管理后台' : '医学专家平台'))
 const platformName = computed(() => `颐邦小源${brandSub.value}`)
-// 管理后台重业务，不提供外观风格切换；专家端保留
-const showThemeSwitch = computed(() => platformRole !== 'admin')
 // 入驻审核未通过时，只展示「首页」与「入驻审核」两个入口
 const UNVERIFIED_VISIBLE_MENU = ['expertWorkbench', 'onboardingAudit']
 const onboardingApproved = computed(() => onboardingState.status === ONBOARDING_STATUS.APPROVED)

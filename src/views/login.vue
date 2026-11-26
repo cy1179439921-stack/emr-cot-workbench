@@ -25,33 +25,15 @@
       <img v-if="loginPlatform !== 'admin'" class="loginText" alt="" :src="loginText">
       <div class="medical-login">
         <div class="loginColumn">
-          <div class="medical-login_box" :class="{ 'is-adminCard': loginPlatform === 'admin' }">
+          <div class="medical-login_box">
             <!--登录 start-->
             <div class="medical-login_form">
-              <!-- 管理后台：卡头深蓝标识，与专家端区分 -->
-              <div v-if="loginPlatform === 'admin'" class="adminCardHead">
-                <svg class="adminCardGlyph" viewBox="0 0 44 44" aria-hidden="true">
-                  <defs>
-                    <linearGradient id="brandGlyphGradCard" x1="0" y1="0" x2="1" y2="1">
-                      <stop offset="0" stop-color="#8fb0ff" />
-                      <stop offset="1" stop-color="#4d7cff" />
-                    </linearGradient>
-                  </defs>
-                  <rect x="2" y="2" width="40" height="40" rx="12" fill="url(#brandGlyphGradCard)" />
-                  <path d="M22 11.5v21M11.5 22h21" stroke="#fff" stroke-width="3.1" stroke-linecap="round" opacity="0.95" />
-                  <path d="M10.5 31.4c4.2-4.2 7.3 2.2 11.5-2s7.3 2.2 11.5-2" stroke="#fff" stroke-width="2.3" stroke-linecap="round" opacity="0.72" fill="none" />
-                </svg>
-                <div class="adminCardHeadText">
-                  <strong>管理后台</strong>
-                  <span>颐邦小源医学专家平台</span>
-                </div>
-              </div>
               <div class="loginNav">
-                <span class="loginNavTitle">{{ loginPlatform === 'admin' ? '账号密码登录' : (isPhoneMode ? '登录/注册' : '账号密码登录') }}</span>
+                <span class="loginNavTitle">{{ isPhoneMode ? (loginPlatform === 'admin' ? '登录' : '登录/注册') : '账号密码登录' }}</span>
                 <p class="loginNavSub">{{ loginPlatform === 'admin' ? '请使用管理员账号登录管理后台' : navSub }}</p>
               </div>
 
-              <div v-if="loginPlatform !== 'admin'" class="loginTabs">
+              <div class="loginTabs">
                 <span
                   :class="{ 'is-active': isPhoneMode }"
                   @click="switchLoginMode('phone')">
@@ -64,53 +46,8 @@
                 </span>
               </div>
 
-              <!-- 管理后台：仅账号密码登录 -->
-              <template v-if="loginPlatform === 'admin'">
-                <el-form
-                  ref="ruleFormRef"
-                  :model="loginForm"
-                  :rules="rules"
-                  :hide-required-asterisk="true"
-                  class="login-form"
-                  @submit.prevent
-                >
-                  <el-form-item prop="account" class="accountInput">
-                    <el-input
-                      v-model.trim="loginForm.account"
-                      autocomplete="off"
-                      placeholder="请输入账号ID"
-                    ></el-input>
-                  </el-form-item>
-                  <el-form-item prop="password">
-                    <el-input
-                      v-model="loginForm.password"
-                      :type="showEye ? 'password' : 'text'"
-                      placeholder="请输入密码"
-                      autocomplete="off"
-                      @keyup.enter="submitForm(ruleFormRef)"
-                    ></el-input>
-                    <i
-                      :class="showEye ? 'iconfont icon-yincang' : 'iconfont icon-xianshi'"
-                      @click="showEye = !showEye"
-                    ></i>
-                  </el-form-item>
-                </el-form>
-                <div class="agreement">
-                  登录视为您已阅读并同意
-                  <span @click="handleAgreement('agreement')">用户协议</span>
-                  和
-                  <span @click="handleAgreement('privacy')">隐私政策</span>
-                </div>
-                <div
-                  class="btn-login"
-                  :class="loginForm.account !== '' && loginForm.password !== '' ? 'active' : ''"
-                  @click="submitForm(ruleFormRef)">
-                  进入管理后台
-                </div>
-              </template>
-
               <!-- 手机验证码登录 -->
-              <template v-else-if="isPhoneMode">
+              <template v-if="isPhoneMode">
                 <el-form
                   ref="phoneFormRef"
                   :model="phoneForm"
@@ -155,7 +92,7 @@
                   class="btn-login"
                   :class="{ active: phoneReady }"
                   @click="submitPhone">
-                  登录/注册
+                  {{ loginPlatform === 'admin' ? '登 录' : '登录/注册' }}
                 </div>
                 <p class="phoneDemoTip">演示环境：短信验证码固定为 123456</p>
               </template>
@@ -205,7 +142,7 @@
                 <div class="btn-login"
                      :class="loginForm.account !== '' && loginForm.password !== '' ? 'active' : ''"
                      @click="submitForm(ruleFormRef)">
-                  {{ loginPlatform === 'admin' ? '进入管理后台' : '登 录' }}
+                  登 录
                 </div>
               </template>
             </div>
@@ -223,7 +160,7 @@
               <span class="demoAccountName">{{ item.account }} / {{ item.password }}</span>
               <span class="demoAccountDesc">{{ item.desc }}</span>
             </div>
-            <div v-if="loginPlatform !== 'admin'" class="demoAccountsTip">演示环境：短信验证码固定为 123456</div>
+            <div class="demoAccountsTip">演示环境：短信验证码固定为 123456</div>
           </div>
         </div>
       </div>
@@ -278,7 +215,7 @@ watch(loginPlatform, (v) => {
 // 两端入口仅通过地址区分（?platform=admin），登录页不提供切换
 
 // ===== 登录方式：手机验证码 / 账号密码（管理后台入口仅账号密码） =====
-const loginMode = ref(loginPlatform.value === 'admin' ? 'password' : 'phone')
+const loginMode = ref('phone')
 const isPhoneMode = computed(() => loginMode.value === 'phone')
 const switchLoginMode = (mode) => { loginMode.value = mode }
 
@@ -443,7 +380,12 @@ const submitPhone = async () => {
       return
     }
     const phone = phoneForm.phone
-    doLogin({ account: phone, role: 'newbie', displayName: `${phone.slice(0, 3)}****${phone.slice(-4)}` })
+    // 管理后台入口用手机验证码登录时进入管理员角色，专家端仍走未入驻流程
+    doLogin({
+      account: phone,
+      role: loginPlatform.value === 'admin' ? 'admin' : 'newbie',
+      displayName: `${phone.slice(0, 3)}****${phone.slice(-4)}`
+    })
   })
 }
 
@@ -892,52 +834,7 @@ const handleClose = () => {
   }
 }
 
-/* 管理后台登录卡：与专家端同尺寸同位置，仅靠卡头与配色区分 */
-.adminCardHead {
-  display: flex;
-  align-items: center;
-  margin: -34px -44px 20px -45px;
-  padding: 14px 45px;
-  border-radius: 8px 8px 0 0;
-  background: linear-gradient(100deg, #1c2f57 0%, #2b4a8b 100%);
-  gap: 10px;
-}
-
-.adminCardGlyph {
-  flex: none;
-  width: 30px;
-  height: 30px;
-}
-
-.adminCardHeadText {
-  strong {
-    display: block;
-    font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 1px;
-    color: #fff;
-  }
-
-  span {
-    display: block;
-    margin-top: 2px;
-    font-size: 10.5px;
-    letter-spacing: 0.5px;
-    color: rgba(255, 255, 255, 0.6);
-  }
-}
-
-/* 管理后台卡片：纯白 + 深色投影（默认半透明白卡在浅蓝灰底上会发灰） */
-.medical-login_box.is-adminCard {
-  border-color: rgba(255, 255, 255, 0.9) !important;
-  background: #fff !important;
-  box-shadow: 0 24px 60px rgba(23, 43, 77, 0.18) !important;
-}
-
-.loginDiv.is-admin .btn-login {
-  background: linear-gradient(135deg, #2b4a8b 0%, #1c2f57 100%) !important;
-}
-
+/* 管理后台登录卡与专家端保持完全一致，仅背景图与标题文案不同（见 loginDivStyle / loginNavTitle） */
 /* ===== 管理后台：淡蓝专业管理台背景图（图在 loginDivStyle 里按端切换） ===== */
 .loginDiv.is-admin {
   background-color: #eef4fb;
