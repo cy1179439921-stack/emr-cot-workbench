@@ -7,10 +7,10 @@
          @mouseenter="openSubMenu"
          @mouseleave="closeSubMenu">
       <div class="menuTitle" :class="getMenuTitleClassNmae">
-        <div v-if="isCollapse" class="brandArt brandArtMini" title="颐邦小源医学专家平台">颐邦<br />小源</div>
-        <div v-else class="brandArt" title="颐邦小源医学专家平台">
-          <span class="brandArtMain">颐邦小源</span>
-          <span class="brandArtSub">医学专家平台</span>
+        <div v-if="isCollapse" class="brandArt brandArtMini" :title="platformName">颐邦<br />小源</div>
+        <div v-else class="brandArt" :title="platformName">
+          <span class="brandArtMain">{{ brandMain }}</span>
+          <span class="brandArtSub">{{ brandSub }}</span>
         </div>
       </div>
       <div v-if="!isCollapse" class="menuSectionLabel">工作区</div>
@@ -97,8 +97,8 @@
           ref="myPopover"
         >
           <div class="panelDiv">
-            <!-- 外观风格：明亮 / 暖色 / 深色 -->
-            <div class="themeBlock">
+            <!-- 外观风格：明亮 / 暖色 / 深色（管理后台不提供切换） -->
+            <div v-if="showThemeSwitch" class="themeBlock">
               <div class="themeBlockTitle">外观风格</div>
               <div class="themeOptions">
                 <span
@@ -194,6 +194,17 @@ const medicalStore = useMedicalStore()
 // console.log('我是导航栏')
 const modeStore = useModeStore()
 const list = ref([])
+// 平台拆分为两端：管理后台与专家端共用一套壳，品牌副标题与外观风格入口按角色区分
+// 旧版本 'full'（全模块）统一按管理后台处理
+const platformRole = (() => {
+  const role = localStorage.getItem('cot-login-role')
+  return role === 'full' ? 'admin' : role
+})()
+const brandMain = '颐邦小源'
+const brandSub = computed(() => (platformRole === 'admin' ? '医学专家平台管理后台' : '医学专家平台'))
+const platformName = computed(() => `颐邦小源${brandSub.value}`)
+// 管理后台重业务，不提供外观风格切换；专家端保留
+const showThemeSwitch = computed(() => platformRole !== 'admin')
 // 入驻审核未通过时，只展示「首页」与「入驻审核」两个入口
 const UNVERIFIED_VISIBLE_MENU = ['expertWorkbench', 'onboardingAudit']
 const onboardingApproved = computed(() => onboardingState.status === ONBOARDING_STATUS.APPROVED)

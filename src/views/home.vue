@@ -235,8 +235,18 @@ const toFirstRoute = () => {
 }
 // 入驻审核未通过时，只允许访问「首页」与「入驻审核」
 const UNVERIFIED_ALLOWED_ROUTE = ['expertWorkbench', 'onboardingAudit']
-// 专家演示账号（zhuanjia）：已入驻，但一级菜单只保留这 5 项
+// 平台按使用角色拆分为两端：专家端重交互体验，管理端重业务功能
 const EXPERT_VISIBLE_MENU = ['expertWorkbench', 'onboardingAudit', 'medicalRecordProofreading', 'laborSign', 'laborSettlement']
+const ADMIN_VISIBLE_MENU = ['dataBoard', 'proofreadingManagement', 'checkInAuditManage', 'contractManagement', 'invoiceManagement', 'manage']
+// 旧版本 'full'（全模块）统一按管理后台处理
+const currentPlatformRole = () => {
+  const role = localStorage.getItem('cot-login-role')
+  return role === 'full' ? 'admin' : role
+}
+// 专家端流程页在管理端登录下不可直达，统一回管理端首屏
+const expertOnlyRouteNames = [...EXPERT_VISIBLE_MENU]
+// 浏览器标签按端显示名称
+document.title = currentPlatformRole() === 'admin' ? '颐邦小源医学专家平台管理后台' : '颐邦小源医学专家平台'
 const redirectIfNotVerified = () => {
   if (onboardingState.status === ONBOARDING_STATUS.APPROVED) return
   const currentName = router.currentRoute.value.name
@@ -275,9 +285,16 @@ watch(
 // 加载时请求页面列表
 const init = async () => {
   if (!userStore.needCheckPermission) {
-    // 专家角色在菜单数据源头裁剪，主菜单与独立菜单组都会一起收敛
-    if (localStorage.getItem('cot-login-role') === 'expert') {
+    // 按角色在菜单数据源头裁剪，主菜单与独立菜单组一起收敛
+    const role = currentPlatformRole()
+    if (role === 'expert') {
       routerArr.value = routerArr.value.filter(item => EXPERT_VISIBLE_MENU.includes(item.name))
+    } else if (role === 'admin') {
+      routerArr.value = routerArr.value.filter(item => ADMIN_VISIBLE_MENU.includes(item.name))
+      // 管理端不承载专家流程页，直达时回管理端首屏
+      if (expertOnlyRouteNames.includes(router.currentRoute.value.name)) {
+        router.push({ path: '/dataBoard' })
+      }
     }
     showMenu.value = true
     if (router.currentRoute.value.name === 'home') {

@@ -269,12 +269,13 @@ onMounted(() => {
 })
 
 // ===== 演示账号 =====
-// admin：全模块可用（入驻状态直接置为已通过）
-// zhuanjia：专家演示账号，已入驻，但仅展示 5 个专家相关一级菜单
-// guest：每次登录都回到「未入驻」，必须先填入驻申请
+// 平台按使用角色拆分为两端：
+// admin：管理后台（数据统计/标注管理/入驻审核管理/劳务合同管理/结算单管理/系统管理）
+// zhuanjia：专家端（首页/入驻申请/COT标注/劳务签署/劳务结算），已入驻
+// guest：每次登录都回到「未入驻」，必须先填入驻申请（属于专家端流程）
 const DEMO_ACCOUNTS = [
-  { account: 'admin', password: '123456', role: 'full', desc: '全部模块可用' },
-  { account: 'zhuanjia', password: '123456', role: 'expert', desc: '专家账号 · 仅 5 个模块' },
+  { account: 'admin', password: '123456', role: 'admin', desc: '管理后台 · 业务与审核' },
+  { account: 'zhuanjia', password: '123456', role: 'expert', desc: '专家端 · 5 个模块' },
   { account: 'guest', password: '123456', role: 'newbie', desc: '每次登录都需入驻申请' }
 ]
 
@@ -287,7 +288,7 @@ const fillDemoAccount = (item) => {
 // ===== Mock 登录：绕过后端直接预览 =====
 const doLogin = ({ account, role = 'newbie', displayName }) => {
   loadingFlag.value = true
-  // full / expert 都视为已入驻，只有 newbie 每次回到未提交
+  // admin / expert 都视为已入驻，只有 newbie 每次回到未提交
   if (role === 'newbie') {
     resetApplication()
   } else {
@@ -298,10 +299,10 @@ const doLogin = ({ account, role = 'newbie', displayName }) => {
   sessionStorage.removeItem('cot-onboard-landed')
   sessionStorage.removeItem('cot-onboard-guide-shown')
   storeToken('mock-token-for-preview')
-  localStorage.setItem('user_id', role === 'full' ? 'mock-user-id' : `mock-user-${account}`)
+  localStorage.setItem('user_id', role === 'admin' ? 'mock-user-id' : `mock-user-${account}`)
   localStorage.setItem('account', account)
   localStorage.setItem('mockLogin', 'true')
-  const defaultName = role === 'full' ? '演示账号 · 全模块' : role === 'expert' ? '张慧敏' : `${account}（待入驻）`
+  const defaultName = role === 'admin' ? '演示账号 · 管理后台' : role === 'expert' ? '张慧敏' : `${account}（待入驻）`
   userStore.setUsername(displayName || defaultName)
   userStore.needCheckPermission = false
   // 沿用用户上次选择的外观风格
@@ -316,7 +317,7 @@ const submitForm = async (formEl) => {
       const account = String(loginForm.account || '').trim()
       const lower = account.toLowerCase()
       const matched = DEMO_ACCOUNTS.find(item => item.account.toLowerCase() === lower)
-      const role = matched?.role || (['admin', 'full'].includes(lower) ? 'full' : 'newbie')
+      const role = matched?.role || (['admin', 'full'].includes(lower) ? 'admin' : 'newbie')
       doLogin({ account: account || 'admin', role })
     } else {
       console.log('error submit!', fields)
