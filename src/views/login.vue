@@ -249,6 +249,7 @@ import { useModeStore } from '@/store/modeStore'
 import { approveApplication, resetApplication } from '@/utils/onboarding'
 import authentication from '@/components/authentication/login-authentication.vue'
 import loginBgDefault from '@/assets/login-bg2.png'
+import adminLoginBg from '@/assets/admin-login-bg.jpg'
 import loginText from '@/assets/loginText.png'
 import { setFavicon } from '@/utils/setIco'
 import PrivacyPolicy from './PrivacyPolicy.vue'
@@ -266,8 +267,10 @@ const loginForm = reactive({
 
 // ===== 平台入口：?platform=admin 为管理后台登录，默认专家端 =====
 const loginPlatform = ref(new URLSearchParams(window.location.search).get('platform') === 'admin' ? 'admin' : 'expert')
-// 专家端沿用插画背景，管理后台用深色管理风格背景（不设 inline 背景图，交给样式覆盖）
-const loginDivStyle = computed(() => (loginPlatform.value === 'admin' ? {} : { backgroundImage: `url(${loginBg.value})` }))
+// 专家端沿用插画背景，管理后台用专门的淡蓝管理台背景图
+const loginDivStyle = computed(() => ({
+  backgroundImage: `url(${loginPlatform.value === 'admin' ? adminLoginBg : loginBg.value})`
+}))
 const navSub = computed(() => (isPhoneMode.value ? '手机号验证码登录，未注册账号将自动创建' : '使用账号与密码登录工作台'))
 watch(loginPlatform, (v) => {
   document.title = v === 'admin' ? '颐邦小源医学专家平台管理后台' : '颐邦小源医学专家平台'
@@ -935,12 +938,12 @@ const handleClose = () => {
   background: linear-gradient(135deg, #2b4a8b 0%, #1c2f57 100%) !important;
 }
 
-/* ===== 管理后台：浅蓝灰管理台底色（双面板布局见 .adminShell） ===== */
+/* ===== 管理后台：淡蓝专业管理台背景图（图在 loginDivStyle 里按端切换） ===== */
 .loginDiv.is-admin {
-  background:
-    radial-gradient(1000px 600px at 82% 0%, rgba(77, 124, 255, 0.14), transparent 60%),
-    radial-gradient(800px 600px at 4% 100%, rgba(43, 74, 139, 0.14), transparent 58%),
-    linear-gradient(160deg, #eef2f9 0%, #e2e9f4 55%, #e8eef7 100%);
+  background-color: #eef4fb;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /* 协议预览弹窗样式 */

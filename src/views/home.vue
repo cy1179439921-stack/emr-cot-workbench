@@ -361,8 +361,13 @@ const token = getToken()
 if (token) {
   init()
 } else {
-  // 重定向到登录界面（带上端别，管理后台失效时不被送回专家端入口）
-  router.push(loginRouteByRole())
+  // 未登录：优先按地址上的 platform 参数决定入口（分享链接直达时也能进对应端），其次按上次角色
+  const platformFromUrl = new URLSearchParams(window.location.search).get('platform')
+  if (platformFromUrl === 'admin') {
+    router.push({ name: 'login', query: { platform: 'admin' }})
+  } else {
+    router.push(loginRouteByRole())
+  }
 }
 </script>
 
@@ -381,7 +386,8 @@ if (token) {
     display: flex;
     flex-direction: column;
     flex: 1;
-    // 侧边栏改为悬浮抽屉，不再挤占内容宽度（列表/详情保持原样）
+    // 侧栏收起为 72px 图标条（悬浮），内容预留该宽度；展开时抽屉覆盖内容，不挤压布局
+    margin-left: 72px;
     min-width: 0;
     .homeView {
       display: flex;

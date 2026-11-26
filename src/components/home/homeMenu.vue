@@ -1,8 +1,4 @@
 <template>
-  <!-- 悬浮触发区：鼠标移到左侧边缘即展开菜单抽屉 -->
-  <div v-show="!drawer" class="sidebarHotzone" @mouseenter="openDrawer" @mouseleave="closeDrawer">
-    <span class="sidebarHandle"><i class="iconfont icon-caidan"></i></span>
-  </div>
   <el-drawer class="homeDrawer" :class="{'is-collapse': isCollapse}" v-model="drawer" modal-class="drawer-box" :modal="false" :with-header="false" direction="ltr" :close-on-click-modal="false">
     <div :class="{
            homeMenu:true,
@@ -174,7 +170,7 @@ export default {
 }
 </script>
 <script setup>
-import { ref, watch, reactive, computed, nextTick, onMounted, onUnmounted } from 'vue'
+import { ref, watch, reactive, computed, nextTick, onUnmounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useUserStore } from '@/store/user'
 import { ElMessage } from 'element-plus'
@@ -261,7 +257,6 @@ const showEye = ref(false)
 const showEye2 = ref(false)
 const showEye3 = ref(false)
 const isShow = ref(false)
-const drawer = ref(false)
 const changeDialogShow = ref(false)
 const profileDialogVisible = ref(false)
 
@@ -432,33 +427,25 @@ watch(() => medicalStore.activeCurPatientDetail, (newValue) => {
     }
   })
 })
-// 侧边栏改为悬浮抽屉：默认隐藏，鼠标移到左侧边缘展开，离开后自动收起
-const isCollapse = ref(false)
+// 侧边栏：常驻图标条（72px），鼠标悬停展开，离开收回图标态（悬浮覆盖，不挤压内容）
+const isCollapse = ref(true)
+const drawer = ref(true)
 let drawerTimer = null
-let hoverLockUntil = 0
 const openDrawer = () => {
-  // 刚点完菜单时鼠标可能还停在左侧，短暂屏蔽悬停触发，避免抽屉立刻又弹出来
-  if (Date.now() < hoverLockUntil) return
   clearTimeout(drawerTimer)
   isCollapse.value = false
-  drawer.value = true
 }
 const closeDrawer = () => {
   clearTimeout(drawerTimer)
   // 留一点缓冲，避免鼠标在抽屉边缘抖动时反复开合
   drawerTimer = setTimeout(() => {
-    drawer.value = false
-  }, 220)
+    isCollapse.value = true
+  }, 200)
 }
 const closeDrawerBySelect = () => {
   clearTimeout(drawerTimer)
-  drawer.value = false
-  hoverLockUntil = Date.now() + 800
+  isCollapse.value = true
 }
-onMounted(() => {
-  // 悬浮抽屉不再占内容宽度，清掉旧的左边距变量
-  document.documentElement.style.setProperty('--sidebar-width', '0px')
-})
 onUnmounted(() => clearTimeout(drawerTimer))
 const userOperationList = ref([
   {
@@ -1029,44 +1016,6 @@ const submitForm = async(formEl) => {
 .drawer-box {
   position: initial !important;
 }
-/* 左侧触发区：抽屉关闭时只露出一个小小的菜单把手 */
-.sidebarHotzone {
-  position: fixed;
-  z-index: 1999;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 16px;
-  cursor: pointer;
-
-  .sidebarHandle {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 20px;
-    height: 58px;
-    border: 1px solid var(--theme-border);
-    border-left: none;
-    border-radius: 0 10px 10px 0;
-    background: var(--theme-card);
-    box-shadow: 2px 0 10px rgba(31, 58, 105, 0.1);
-    transform: translateY(-50%);
-    transition: left .18s ease, color .18s ease, background .18s ease, border-color .18s ease;
-    color: var(--theme-text-2);
-    font-size: 14px;
-  }
-
-  &:hover .sidebarHandle {
-    left: 4px;
-    border-color: var(--theme-primary);
-    background: var(--theme-primary);
-    color: #fff;
-  }
-}
-
 .homeDrawer {
   width: 224px !important;
   border-radius: 0 14px 14px 0;
@@ -1083,7 +1032,8 @@ const submitForm = async(formEl) => {
   }
   &.is-collapse {
     width: 72px !important;
-    box-shadow: none;
+    // 图标条常驻，保留轻阴影与内容区分开
+    box-shadow: 4px 0 18px rgba(15, 26, 48, 0.1);
   }
   .gva-subMenu {
     display: flex;
