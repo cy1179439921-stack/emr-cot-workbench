@@ -57,35 +57,20 @@ export function getAnnotateTimeState(config, date = new Date()) {
 export const ANNOTATE_STATUS_TEXT = {
   free: '全天可标注',
   open: '正在开放',
-  before: '未到时间',
-  after: '今日已结束',
+  before: '不在时段',
+  after: '不在时段',
   closed: '今日不开放'
 }
 
-// 非开放时段的友好提醒（文案按「未到 / 已结束 / 今日休息」三种情况区分）
+// 非开放时段的友好提醒：统一说「不在标注时段内」，不区分没到点 / 已过点
 export function showAnnotateTimeTip(state) {
   const tip = state || getAnnotateTimeState()
-  const ranges = formatRanges(tip.ranges)
-  const tips = {
-    before: {
-      title: '先歇一会儿，标注还没开始',
-      html: `今天（${tip.dayLabel}）的标注时段是 <b>${ranges}</b>，现在还差一点时间。<br>到点再进来就好，任务和进度都替你留着。`
-    },
-    after: {
-      title: '今天的标注时段已经结束了',
-      html: `今天（${tip.dayLabel}）的标注时段 <b>${ranges}</b> 已经结束啦。<br>连着标注眼睛容易累，早点休息，明天再来继续。`
-    },
-    closed: {
-      title: '今天标注也休息一天',
-      html: `今天是非工作日，标注暂不开放。<br>开放时段：<b>${tip.weekText}</b>，到点再来就好。`
-    }
-  }
-  const content = tips[tip.status] || {
-    title: '现在不在标注时段内',
-    html: `可标注时段：<b>${tip.weekText}</b>，请在开放时间内操作。`
-  }
+  const isClosed = tip.status === 'closed'
+  const html = isClosed
+    ? `今天（${tip.dayLabel}）标注暂不开放。<br>开放时段：<b>${tip.weekText}</b>。<br>请在标注时间内操作，到点再来就好。`
+    : `今天（${tip.dayLabel}）的标注时段是 <b>${tip.todayText}</b>。<br>请在标注时间内操作，到点再进来就好，任务和进度都替你留着。`
 
-  return ElMessageBox.alert(content.html, content.title, {
+  return ElMessageBox.alert(html, '现在不在标注时段内', {
     dangerouslyUseHTMLString: true,
     confirmButtonText: '我知道了',
     customClass: 'annotateTimeTip',
