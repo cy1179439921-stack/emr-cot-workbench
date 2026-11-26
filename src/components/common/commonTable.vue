@@ -1,5 +1,5 @@
 <template>
-  <el-table class="commonTable" :class="{darkModeCommonTable:modeStore.mode==='dark' && $route.name === 'dataBoard'}" ref="tableRef" @sort-change="(...args)=>emit('sortChange',...args)">
+  <el-table class="commonTable" :class="{darkModeCommonTable:modeStore.mode==='dark' && $route.name === 'dataBoard'}" ref="tableRef" @sort-change="(...args)=>emit('sortChange',...args)" @selection-change="(...args)=>emit('selection-change',...args)">
     <template #empty>
       <div class="empty">
         <img v-if="!loadingStatus" class="emptyImg" :src="(modeStore.mode==='dark' && $route.name === 'dataBoard') ? darkEmptyImg : emptyImg" alt="" />
@@ -22,7 +22,7 @@ import { echartsToPx } from '@/utils/utils'
 const modeStore = useModeStore()
 const tableRef = ref(null)
 const loadingStatus = ref(true)
-const emit = defineEmits(['sortChange'])
+const emit = defineEmits(['sortChange', 'selection-change'])
 onMounted(() => {
   emitter.on('showLoading', () => {
     loadingStatus.value = true
@@ -35,6 +35,9 @@ onMounted(() => {
 const toggleRowSelection = (row, selected) => {
   tableRef.value?.toggleRowSelection(row, selected)
 }
+const clearSelection = () => {
+  tableRef.value?.clearSelection()
+}
 const { data } = toRefs(reactive(useAttrs()))
 
 const hanldeFlex = computed(() => {
@@ -45,7 +48,7 @@ const styleMinHeight = computed(() => {
   return data.value?.length > 0 ? 'auto' : echartsToPx(246) + 'px'
 })
 
-defineExpose({ tableRef, loadingStatus, toggleRowSelection })
+defineExpose({ tableRef, loadingStatus, toggleRowSelection, clearSelection })
 </script>
 <style lang="scss" scoped>
 .commonTable {

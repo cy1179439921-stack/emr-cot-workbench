@@ -263,10 +263,10 @@ const currentId = ref(route.query?.id || '')
 const baseInfo = ref({})
 // 单据状态映射示例（可根据后端具体枚举调整）
 const statusOption = [
-  { label: '待申请结算', value: 'UNSETTLED', dotClass: 'statusDot3' },
+  { label: '待申请', value: 'UNSETTLED', dotClass: 'statusDot3' },
   { label: '待发起结算', value: 'PENDING_CONFIRM', dotClass: 'statusDot1' },
   { label: '待专家确认', value: 'WAITING_EXPERT_CONFIRM', dotClass: 'statusDot2' },
-  { label: '待打款', value: 'WAITING_PAYMENT', dotClass: 'statusDot3' },
+  { label: '打款中', value: 'WAITING_PAYMENT', dotClass: 'statusDot3' },
   { label: '已结清', value: 'SETTLED', dotClass: 'statusDot4' },
   { label: '已驳回', value: 'REJECTED', dotClass: 'statusDot5' },
   { label: '已归档', value: 'ARCHIVED', dotClass: 'statusDot6' }

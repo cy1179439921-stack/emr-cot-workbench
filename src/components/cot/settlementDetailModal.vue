@@ -131,7 +131,7 @@
           </div>
         </section>
 
-        <!-- 打款信息：待申请结算 / 已申请结算 / 待确认结算 / 待打款 阶段不展示 -->
+        <!-- 打款信息：待申请 / 申请中 / 待确认 / 打款中 阶段不展示 -->
         <section v-if="showPaymentInfo" id="payment" class="detail-card">
           <div class="card-header">
             <span class="section-title">打款信息</span>
@@ -191,7 +191,7 @@ const detail = ref({})
 const contentRef = ref(null)
 const activeMenu = ref('basic')
 
-// 待申请 / 已申请 / 待确认结算 / 待打款 这四个阶段还没有打款动作，不展示打款信息
+// 待申请 / 已申请 / 待确认 / 打款中 这四个阶段还没有打款动作，不展示打款信息
 const NO_PAYMENT_STATUSES = ['UNSETTLED', 'PENDING_CONFIRM', 'WAITING_EXPERT_CONFIRM', 'WAITING_PAYMENT']
 
 const currentStatus = computed(() => detail.value.settlementStatus || props.row?.settlementStatus || '')
@@ -213,10 +213,10 @@ const menuList = computed(() => {
 
 // 单据状态选项配置
 const statusOption = [
-  { label: '已申请结算', value: 'PENDING_CONFIRM', dotClass: 'statusDot1' },
-  { label: '待确认结算', value: 'WAITING_EXPERT_CONFIRM', dotClass: 'statusDot2' },
-  { label: '待打款', value: 'WAITING_PAYMENT', dotClass: 'statusDot2' },
-  { label: '待申请结算', value: 'UNSETTLED', dotClass: 'statusDot3' },
+  { label: '申请中', value: 'PENDING_CONFIRM', dotClass: 'statusDot1' },
+  { label: '待确认', value: 'WAITING_EXPERT_CONFIRM', dotClass: 'statusDot2' },
+  { label: '打款中', value: 'WAITING_PAYMENT', dotClass: 'statusDot2' },
+  { label: '待申请', value: 'UNSETTLED', dotClass: 'statusDot3' },
   { label: '已结清', value: 'SETTLED', dotClass: 'statusDot4' },
   { label: '已结清', value: 'ARCHIVED', dotClass: 'statusDot4' },
   { label: '已驳回', value: 'REJECTED', dotClass: 'statusDot5' }

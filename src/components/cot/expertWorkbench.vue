@@ -384,7 +384,7 @@ const STATUS_TABS = [
   { key: 'UNSETTLED', label: '待申请' },
   { key: 'PENDING_CONFIRM', label: '已申请' },
   { key: 'WAITING_EXPERT_CONFIRM', label: '待确认' },
-  { key: 'WAITING_PAYMENT', label: '待打款' },
+  { key: 'WAITING_PAYMENT', label: '打款中' },
   { key: 'SETTLED', label: '已结清' },
   { key: 'REJECTED', label: '已驳回' }
 ]
@@ -440,7 +440,7 @@ const todoList = computed(() => [
     label: '任务待结算',
     desc: settleTasks.value.length
       ? `已完成任务可申请结算，合计约 ¥${settleAmountText.value}，支持一次申请多个`
-      : '暂无待申请结算的任务',
+      : '暂无待申请的任务',
     action: '去结算',
     primary: false,
     onClick: goSettlement

@@ -324,7 +324,7 @@ const submitting = ref(false)
 const downloading = ref(false)
 const statementRef = ref(null)
 
-// 判断是否为待打款状态
+// 判断是否为打款中状态
 const isWaitingPayment = computed(() => baseInfo.value?.settlementStatus === 'WAITING_PAYMENT')
 // 判断是否为已结清状态
 const isBaseDisabled = computed(() => baseInfo.value?.settlementStatus === 'SETTLED' || baseInfo.value?.settlementStatus === 'WAITING_EXPERT_CONFIRM')
@@ -333,7 +333,7 @@ const isBaseDisabled = computed(() => baseInfo.value?.settlementStatus === 'SETT
 const statusOption = [
   { label: '待发起结算', value: 'PENDING_CONFIRM', dotClass: 'statusDot1' },
   { label: '待专家确认', value: 'WAITING_EXPERT_CONFIRM', dotClass: 'statusDot2' },
-  { label: '待打款', value: 'WAITING_PAYMENT', dotClass: 'statusDot3' },
+  { label: '打款中', value: 'WAITING_PAYMENT', dotClass: 'statusDot3' },
   { label: '已结清', value: 'SETTLED', dotClass: 'statusDot4' },
   { label: '已驳回', value: 'REJECTED', dotClass: 'statusDot5' }
 ]

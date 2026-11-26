@@ -75,20 +75,22 @@
           <el-table-column label="操作" min-width="150" fixed="right">
             <template #default="{ row }">
               <div class="rowActions">
+                <el-button link type="primary" @click="openDetailModal(row)">查看</el-button>
                 <el-button
                   v-if="row.settlementStatus === 'UNSETTLED' && (!needCheckPermission || hadPermissionList.includes('发起结算申请'))"
                   link
                   type="primary"
                   @click="openApplyModal(row)">申请结算</el-button>
                 <el-button
-                  v-if="['WAITING_EXPERT_CONFIRM', 'WAITING_PAYMENT', 'ARCHIVED', 'SETTLED'].includes(row.settlementStatus)"
+                  v-if="row.settlementStatus === 'WAITING_EXPERT_CONFIRM' && (!needCheckPermission || hadPermissionList.includes('确认结算单'))"
                   link
                   type="primary"
-                  @click="openDetailModal(row)">查看</el-button>
-                <template v-if="row.settlementStatus === 'WAITING_EXPERT_CONFIRM'">
-                  <el-button v-if="!needCheckPermission || hadPermissionList.includes('确认结算单')" link type="primary" @click="openAgreementModal(row)">确认</el-button>
-                  <el-button v-if="!needCheckPermission || hadPermissionList.includes('驳回结算单')" link type="danger" @click="openRejectModal(row)">驳回</el-button>
-                </template>
+                  @click="openAgreementModal(row)">通过</el-button>
+                <el-button
+                  v-if="row.settlementStatus === 'WAITING_EXPERT_CONFIRM' && (!needCheckPermission || hadPermissionList.includes('驳回结算单'))"
+                  link
+                  type="danger"
+                  @click="openRejectModal(row)">驳回</el-button>
               </div>
             </template>
           </el-table-column>
@@ -168,8 +170,8 @@ const { needCheckPermission, hadPermissionList } = getPagePermission('/laborSett
 // 结算流程步骤说明（静态展示，前两步高亮）
 const flowSteps = [
   { title: '专家发起结算', desc: '提交任务结算申请' },
-  { title: '待确认结算', desc: '专家确认任务和金额' },
-  { title: '待打款', desc: '财务处理打款' },
+  { title: '待确认', desc: '专家确认任务和金额' },
+  { title: '打款中', desc: '财务处理打款' },
   { title: '已结清', desc: '补充打款信息并归档' }
 ]
 
@@ -179,7 +181,7 @@ const formatAmount = (value) => {
   return num.toLocaleString('zh-CN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
 }
 
-// 状态胶囊配色：待申请/待打款=暖色，流转中=蓝色，已结清=绿色，已驳回=红色
+// 状态胶囊配色：待申请/打款中=暖色，流转中=蓝色，已结清=绿色，已驳回=红色
 const STATUS_TAG_CLASS = {
   UNSETTLED: 'is-warn',
   PENDING_CONFIRM: 'is-info',

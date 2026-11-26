@@ -154,7 +154,7 @@ const data = reactive({
 
 const statusText = computed(() => data.settlementStatusDesc || SETTLE_STATUSALL[data.settlementStatus] || data.settlementStatus || '--')
 
-// 状态色：待打款/已结清绿、待申请黄、已驳回红、其余蓝
+// 状态色：打款中/已结清绿、待申请黄、已驳回红、其余蓝
 const statusClass = computed(() => {
   const s = data.settlementStatus
   if (['SETTLED', 'ARCHIVED', 'WAITING_PAYMENT'].includes(s)) return 'is-success'

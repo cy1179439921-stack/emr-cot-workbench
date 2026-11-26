@@ -18,7 +18,7 @@ export const WORKBENCH_PROGRESS = {
   }
 }
 
-// 历史任务：覆盖待申请结算 / 待确认结算 / 待打款 / 已结清 / 已归档 / 已驳回
+// 历史任务：覆盖待申请 / 待确认 / 打款中 / 已结清 / 已归档 / 已驳回
 export const WORKBENCH_HISTORY = [
   { id: 'HS-1001', allocateId: '10293847561029380001', totalCount: 20, completedCount: 20, settlementStatus: 'UNSETTLED', transferTime: '' },
   { id: 'HS-1002', allocateId: '10293847561029380002', totalCount: 15, completedCount: 15, settlementStatus: 'WAITING_EXPERT_CONFIRM', transferTime: '' },
@@ -75,7 +75,7 @@ export const LABOR_SIGN_RECORD = {
 }
 
 // ===================== 劳务结算 =====================
-// 覆盖：待申请结算 / 已申请结算 / 待确认结算 / 待打款 / 已结清 / 已归档 / 已驳回
+// 覆盖：待申请 / 申请中 / 待确认 / 打款中 / 已结清 / 已归档 / 已驳回
 export const SETTLEMENT_LIST = [
   {
     id: 'ST-1001',
@@ -84,7 +84,7 @@ export const SETTLEMENT_LIST = [
     totalCount: 20,
     completedCount: 20,
     settlementStatus: 'UNSETTLED',
-    settlementStatusDesc: '待申请结算',
+    settlementStatusDesc: '待申请',
     annotationCount: 20,
     unitPrice: 35,
     beforeTaxAmount: 700,
@@ -105,7 +105,7 @@ export const SETTLEMENT_LIST = [
     totalCount: 15,
     completedCount: 15,
     settlementStatus: 'WAITING_EXPERT_CONFIRM',
-    settlementStatusDesc: '待确认结算',
+    settlementStatusDesc: '待确认',
     annotationCount: 15,
     unitPrice: 35,
     beforeTaxAmount: 525,
@@ -126,7 +126,7 @@ export const SETTLEMENT_LIST = [
     totalCount: 12,
     completedCount: 12,
     settlementStatus: 'WAITING_PAYMENT',
-    settlementStatusDesc: '待打款',
+    settlementStatusDesc: '打款中',
     annotationCount: 12,
     unitPrice: 35,
     beforeTaxAmount: 420,
@@ -169,7 +169,7 @@ export const SETTLEMENT_LIST = [
     totalCount: 8,
     completedCount: 8,
     settlementStatus: 'ARCHIVED',
-    settlementStatusDesc: '已归档',
+    settlementStatusDesc: '已结清',
     annotationCount: 8,
     unitPrice: 35,
     beforeTaxAmount: 280,
@@ -213,7 +213,7 @@ export const SETTLEMENT_LIST = [
     totalCount: 12,
     completedCount: 12,
     settlementStatus: 'PENDING_CONFIRM',
-    settlementStatusDesc: '已申请结算',
+    settlementStatusDesc: '申请中',
     annotationCount: 12,
     unitPrice: 35,
     beforeTaxAmount: 420,

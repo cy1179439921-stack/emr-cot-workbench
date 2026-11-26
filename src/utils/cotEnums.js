@@ -44,21 +44,21 @@ export function getExpertTaskStatusLabel(value) {
 }
 
 // ===================== 劳务结算状态（专家工作台 / 劳务结算共用） =====================
-// 劳务结算状态：0 待申请结算 / 1 已申请结算 / 2 待确认结算 / 3 待打款 / 4 已结算
+// 结算单状态：待申请 → 申请中 → 待确认 → 打款中 → 已结清（归档仍显示已结清）；异常分支：已驳回
 export const SETTLE_STATUS = {
-  UNSETTLED: '待申请结算',
-  PENDING_CONFIRM: '已申请结算',
-  WAITING_EXPERT_CONFIRM: '待确认结算',
-  WAITING_PAYMENT: '待打款',
+  UNSETTLED: '待申请',
+  PENDING_CONFIRM: '申请中',
+  WAITING_EXPERT_CONFIRM: '待确认',
+  WAITING_PAYMENT: '打款中',
   SETTLED: '已结清',
   REJECTED: '已驳回'
 }
 
 export const SETTLE_STATUSALL = {
-  UNSETTLED: '待申请结算',
-  PENDING_CONFIRM: '已申请结算',
-  WAITING_EXPERT_CONFIRM: '待确认结算',
-  WAITING_PAYMENT: '待打款',
+  UNSETTLED: '待申请',
+  PENDING_CONFIRM: '申请中',
+  WAITING_EXPERT_CONFIRM: '待确认',
+  WAITING_PAYMENT: '打款中',
   SETTLED: '已结清',
   ARCHIVED: '已结清',
   REJECTED: '已驳回'
