@@ -27,11 +27,7 @@
         <div class="listHead">
           <div class="listHeadText">
             <h2 class="warmSectionTitle">结算列表</h2>
-            <p class="listSub">共 {{ total }} 笔结算 · 点开任意一笔都能看到金额明细</p>
-          </div>
-          <div class="listSummary">
-            <span class="summaryLabel">待结算金额</span>
-            <strong class="summaryValue">¥ {{ formatAmount(pendingAmount) }}</strong>
+            <p class="listSub">共 {{ total }} 笔结算 · 点开任意一笔都能查看结算进度</p>
           </div>
         </div>
 
@@ -59,11 +55,6 @@
           </el-table-column>
           <el-table-column label="已完成" min-width="90" align="center">
             <template #default="{ row }">{{ row.completedCount ?? '-' }}</template>
-          </el-table-column>
-          <el-table-column label="结算金额" min-width="120" align="right">
-            <template #default="{ row }">
-              <span class="amountCell">¥ {{ formatAmount(row.beforeTaxAmount) }}</span>
-            </template>
           </el-table-column>
           <el-table-column label="结算状态" min-width="132">
             <template #default="{ row }">
@@ -152,7 +143,7 @@ export default { name: 'LaborSettlement' }
 </script>
 
 <script setup>
-import { computed, ref, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import {
   getSettlementList,
@@ -175,12 +166,6 @@ const flowSteps = [
   { title: '已结清', desc: '补充打款信息并归档' }
 ]
 
-// 金额千分位展示
-const formatAmount = (value) => {
-  const num = Number(value || 0)
-  return num.toLocaleString('zh-CN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
-}
-
 // 状态胶囊配色：待申请/打款中=暖色，流转中=蓝色，已结清=绿色，已驳回=红色
 const STATUS_TAG_CLASS = {
   UNSETTLED: 'is-warn',
@@ -192,14 +177,6 @@ const STATUS_TAG_CLASS = {
   REJECTED: 'is-danger'
 }
 const statusClass = (status) => STATUS_TAG_CLASS[status] || 'is-info'
-
-// 待结算金额：待申请 / 已申请 / 待确认 三类都还没到账，汇总展示
-const PENDING_AMOUNT_STATUS = ['UNSETTLED', 'PENDING_CONFIRM', 'WAITING_EXPERT_CONFIRM']
-const pendingAmount = computed(() =>
-  tableData.value
-    .filter((row) => PENDING_AMOUNT_STATUS.includes(row.settlementStatus))
-    .reduce((sum, row) => sum + (Number(row.beforeTaxAmount) || 0), 0)
-)
 
 // 状态筛选（数字状态码，空字符串表示全部）
 const statusFilter = ref('')
@@ -518,29 +495,6 @@ onMounted(() => {
   color: var(--theme-text-3);
 }
 
-.listSummary {
-  display: flex;
-  align-items: baseline;
-  flex: none;
-  padding: 8px 14px;
-  border: 1px solid var(--theme-primary-border);
-  border-radius: 12px;
-  background: var(--theme-primary-soft);
-  gap: 8px;
-}
-
-.summaryLabel {
-  font-size: 12.5px;
-  color: var(--theme-text-2);
-}
-
-.summaryValue {
-  font-weight: 700;
-  font-size: 18px;
-  color: var(--theme-primary);
-  font-variant-numeric: tabular-nums;
-}
-
 /* 筛选行：单独一行，和标题拉开，不再挤在标题右侧 */
 .listToolbar {
   display: flex;
@@ -606,13 +560,6 @@ onMounted(() => {
 .mutedCell {
   font-size: 13px;
   color: var(--theme-text-3);
-  font-variant-numeric: tabular-nums;
-}
-
-.amountCell {
-  font-weight: 600;
-  font-size: 14px;
-  color: var(--theme-text);
   font-variant-numeric: tabular-nums;
 }
 

@@ -1869,3 +1869,28 @@ input[type="number"] {
     }
   }
 }
+/* 非标注时段提醒弹窗：文案里时段高亮，读起来更轻松 */
+.annotateTimeTip {
+  border-radius: 14px;
+
+  .el-message-box__title {
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--theme-text);
+  }
+
+  .el-message-box__message {
+    line-height: 24px;
+    font-size: 14px;
+    color: var(--theme-text-2);
+
+    b {
+      font-weight: 700;
+      color: var(--theme-primary);
+    }
+  }
+
+  .el-message-box__btns .el-button {
+    border-radius: 8px;
+  }
+}

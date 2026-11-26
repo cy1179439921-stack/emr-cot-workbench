@@ -90,9 +90,9 @@
                 </div>
               </template>
             </el-table-column>
-            <el-table-column prop="settlementAmount" label="结算金额" :min-width="echartsToPx(120)">
+            <el-table-column label="税前合计总额" :min-width="echartsToPx(140)">
               <template #default="scope">
-                <span class="amountCell">¥ {{ formatAmount(scope.row.settlementAmount) }}</span>
+                <span class="amountCell">¥ {{ beforeTaxTotal(scope.row) }}</span>
               </template>
             </el-table-column>
             <el-table-column prop="createTime" label="生成时间" :min-width="echartsToPx(150)"></el-table-column>
@@ -260,6 +260,8 @@ const formatAmount = (val) => {
   if (!Number.isFinite(num)) return '0.00'
   return num.toLocaleString('zh-CN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
 }
+// 税前合计总额：优先取税前金额，兼容只有结算金额的旧数据
+const beforeTaxTotal = (row) => formatAmount(row?.beforeTaxAmount ?? row?.settlementAmount)
 
 // 重置查询条件
 const resetParams = () => {

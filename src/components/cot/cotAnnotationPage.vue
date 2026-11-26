@@ -121,6 +121,7 @@ import dayjs from 'dayjs'
 import router from '@/router'
 import { loadPendingRecords } from '@/api/api_cot.js'
 import { getPagePermission } from '@/hooks/permissionHooks'
+import { ensureAnnotateTime } from '@/utils/annotateTime'
 import {
   DEMO_TASKS,
   COT_RECORD_STATUS_OPTIONS,
@@ -277,6 +278,8 @@ function handleSizeChange() {
 
 // 跳转至标注页
 async function onStartAnnotation() {
+  // 不在可标注时段内时先提醒，避免进去后发现无法操作
+  if (!ensureAnnotateTime()) return
   try {
     const data = await loadPendingRecords()
     if (data.code === 10000 && data.data?.recordId && data.data?.userAllocateId) {

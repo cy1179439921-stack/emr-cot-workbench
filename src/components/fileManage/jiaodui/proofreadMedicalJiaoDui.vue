@@ -38,7 +38,7 @@
             <span class="status" :class="'status' + info.proofreadStatus">{{getStatus(info.proofreadStatus)}}</span>
             <span v-if="info.proofreadStatus === 8 && info.rejectReason" class="reject-reason">（不通过原因：{{ info.rejectReason }}）</span>
           </div>
-          <div class="item annotateCount" v-if="isRecordView">
+          <div class="item annotateCount" v-if="showAnnotateMeta">
             <span class="title">标注次数：</span>
             <span class="value">{{ annotateCount }} / 4</span>
           </div>
@@ -46,7 +46,7 @@
         <screenShot></screenShot>
       </header>
       <!-- 标注版本切换：最多 4 个版本，每个版本记录标注人与完成时间 -->
-      <div class="versionStrip" v-if="isRecordView && annotateVersions.length">
+      <div class="versionStrip" v-if="showAnnotateMeta && annotateVersions.length">
         <span class="versionLabel">标注版本：</span>
         <div class="versionTabs">
           <button
@@ -376,6 +376,7 @@ import { useUserStore } from '@/store/user'
 import { watermarkText as buildWatermarkText } from '@/mock/demoUser'
 import adBanner from '@/assets/ad-cot-banner.svg'
 import { getSystemConfig, pickVisibleAd } from '@/utils/systemConfig'
+import { currentPlatformRole } from '@/utils/platform'
 
 // 悬浮广告位：展示与否、图片与跳转链接均来自「系统管理-配置管理-广告配置」
 const AD_LINK = 'https://ebond-cot.ebondhm.com/'
@@ -404,6 +405,9 @@ const isDemoView = computed(() => {
   return false
 })
 const isRecordView = computed(() => Boolean(routeRecordId.value || recordIdStore.value))
+// 标注次数与标注版本：专家端标注详情不再展示，仅管理后台审核时保留参考
+const isAdminPlatform = computed(() => currentPlatformRole() === 'admin')
+const showAnnotateMeta = computed(() => isRecordView.value && isAdminPlatform.value)
 // 只读模式：从「标注管理」进入只允许查看，不提供「开始校对」；COT标注 / 我的工作台进入可标注
 const isReadonlyView = computed(() => route.query.readonly === '1')
 // 水印文案：当前登录用户姓名 + 脱敏身份证号

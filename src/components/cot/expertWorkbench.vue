@@ -67,6 +67,16 @@
         <p class="wbGreetingTip">{{ greetingTip }}</p>
       </div>
 
+      <!-- 可标注时段：一眼看清今天什么时候能标注 -->
+      <div class="annotateBar" :class="'is-' + annotateTime.status">
+        <span class="atbIcon"><i class="iconfont icon-shijian" /></span>
+        <div class="atbBody">
+          <p class="atbTitle">今日可标注时段<b>{{ annotateTime.todayText }}</b></p>
+          <p class="atbSub">{{ annotateTime.weekText }}</p>
+        </div>
+        <span class="atbTag">{{ ANNOTATE_STATUS_TEXT[annotateTime.status] }}</span>
+      </div>
+
       <div class="wbLayout">
         <div class="wbMain">
           <!-- 待办工作：按清单展示，每项后面跟对应的操作入口 -->
@@ -279,7 +289,7 @@ export default { name: 'ExpertWorkbench' }
 </script>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { ElMessage } from 'element-plus'
 import { useRouter } from 'vue-router'
 import { getExpertProgress, getExpertHistoryTasks } from '@/api/api_cot'
@@ -294,6 +304,7 @@ import textImg from '@/assets/textImg.png'
 import { WORKBENCH_PROGRESS, WORKBENCH_HISTORY, WORKBENCH_IN_PROGRESS } from '@/mock/demoModules'
 import { onboardingState, ONBOARDING_STATUS, ONBOARDING_STATUS_TEXT } from '@/utils/onboarding'
 import { getGreeting, getGreetingTip } from '@/utils/greeting'
+import { getAnnotateTimeState, ANNOTATE_STATUS_TEXT, ensureAnnotateTime } from '@/utils/annotateTime'
 
 const router = useRouter()
 const userStore = useUserStore()
@@ -304,6 +315,11 @@ const onboardingStatus = computed(() => onboardingState.status)
 // 问候语按当前时段切换（首页横幅上方 / 未入驻引导页顶部共用）
 const greeting = computed(() => getGreeting())
 const greetingTip = computed(() => getGreetingTip())
+
+// 今日可标注时段：每 30 秒刷新一次，跨过时段边界时状态自动切换
+const nowTick = ref(Date.now())
+const annotateTime = computed(() => getAnnotateTimeState(null, new Date(nowTick.value)))
+let annotateClock = null
 
 const displayName = computed(() => {
   const name = userStore.username || ''
@@ -572,6 +588,8 @@ function goRecord(row, annotate) {
 }
 
 async function goAnnotation() {
+  // 不在可标注时段内时，先友好提醒再拦住，避免白跑一趟
+  if (!ensureAnnotateTime()) return
   const target = WORKBENCH_IN_PROGRESS
   if (target) {
     goRecord(target, true)
@@ -604,6 +622,13 @@ onMounted(() => {
   if (!onboardApproved.value) return
   fetchProgress()
   fetchHistory()
+  annotateClock = setInterval(() => {
+    nowTick.value = Date.now()
+  }, 30000)
+})
+
+onUnmounted(() => {
+  if (annotateClock) clearInterval(annotateClock)
 })
 </script>
 
@@ -1163,6 +1188,87 @@ onMounted(() => {
   margin: 6px 0 0;
   font-size: 13px;
   color: var(--theme-text-3);
+}
+
+/* 今日可标注时段：轻量一条，不抢待办的视觉重量 */
+.annotateBar {
+  display: flex;
+  align-items: center;
+  margin: 0 0 16px;
+  padding: 12px 16px;
+  border: 1px solid var(--theme-border);
+  border-radius: 14px;
+  background: var(--theme-card);
+  gap: 12px;
+}
+
+.atbIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: var(--theme-primary-soft);
+  font-size: 15px;
+  color: var(--theme-primary);
+}
+
+.atbBody {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  gap: 3px;
+}
+
+.atbTitle {
+  margin: 0;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--theme-text);
+
+  b {
+    margin-left: 8px;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--theme-primary);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.atbSub {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--theme-text-3);
+}
+
+.atbTag {
+  flex: none;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--theme-fill);
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--theme-text-2);
+}
+
+.annotateBar.is-open .atbIcon {
+  background: var(--theme-success-soft);
+  color: var(--theme-success);
+}
+
+.annotateBar.is-open .atbTag {
+  background: var(--theme-success-soft);
+  color: var(--theme-success);
+}
+
+.annotateBar.is-before .atbTag,
+.annotateBar.is-after .atbTag,
+.annotateBar.is-closed .atbTag {
+  background: var(--theme-warning-soft, var(--theme-fill));
+  color: var(--theme-warning, var(--theme-text-2));
 }
 
 .wbLayout {
