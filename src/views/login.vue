@@ -23,6 +23,11 @@
         </div>
       </div>
       <img v-if="loginPlatform !== 'admin'" class="loginText" alt="" :src="loginText">
+      <div v-else class="adminBrandArt">
+        <p class="adminBrandArtEyebrow">ADMIN CONSOLE</p>
+        <h1 class="adminBrandArtMain">颐邦小源</h1>
+        <p class="adminBrandArtSub">医学专家平台管理后台</p>
+      </div>
       <div class="medical-login">
         <div class="loginColumn">
           <div class="medical-login_box">
@@ -452,6 +457,48 @@ const handleClose = () => {
     .loginText {
       width: 585px;
       margin-left: 130px;
+    }
+
+    /* 管理后台：左侧品牌艺术字（淡蓝背景上用深蓝渐变，保持专业与存在感） */
+    .adminBrandArt {
+      width: 620px;
+      margin-left: 130px;
+      user-select: none;
+
+      .adminBrandArtEyebrow {
+        margin: 0 0 16px;
+        font-weight: 600;
+        font-size: 12px;
+        letter-spacing: 8px;
+        color: #7c8ba3;
+      }
+
+      .adminBrandArtMain {
+        margin: 0;
+        font-family: 'STKaiti', 'KaiTi', 'Songti SC', 'PingFang SC', 'Microsoft YaHei', serif;
+        font-weight: 700;
+        font-size: 58px;
+        line-height: 1.16;
+        letter-spacing: 8px;
+        color: #16233f;
+        background: linear-gradient(100deg, #16233f 0%, #2b4a8b 45%, #4d7cff 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .adminBrandArtSub {
+        margin: 12px 0 0;
+        font-family: 'STKaiti', 'KaiTi', 'Songti SC', 'PingFang SC', 'Microsoft YaHei', serif;
+        font-weight: 600;
+        font-size: 27px;
+        letter-spacing: 6px;
+        color: #2b4a8b;
+        background: linear-gradient(100deg, #2b4a8b 0%, #4d7cff 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
     }
     .medical-login {
       display: flex;
