@@ -155,7 +155,7 @@ const routes = [
       {
         name: 'checkInAuditManage',
         path: '/expertManagement/checkInAuditManage',
-        title: '入驻审核管理',
+        title: '入驻专家管理',
         type: 0,
         icon: 'icon-ruzhuguanli',
         component: () => import('../components/expertManagement/checkInAuditManage.vue')
@@ -163,7 +163,7 @@ const routes = [
       {
         name: 'checkInAuditManageDetail',
         path: '/expertManagement/checkInAuditManageDetail',
-        title: '入驻审核管理',
+        title: '入驻专家管理',
         type: 1,
         meta: {
           activeName: 'checkInAuditManage' // 切换此路由时，左侧导航高亮

@@ -70,7 +70,7 @@
 
       <div class="list-section">
         <header class="table-header">
-          <div>资质列表</div>
+          <div>专家列表</div>
         </header>
         <div class="tableMain">
           <commonTable class="singleTable btnsLastCell" :data="tableData">
@@ -100,16 +100,17 @@
             </el-table-column>
             <el-table-column prop="submittedAt" label="提交时间" :min-width="echartsToPx(150)"></el-table-column>
             <el-table-column prop="reviewedAt" label="审核时间" :min-width="echartsToPx(150)"></el-table-column>
-            <el-table-column label="操作" fixed="right" :min-width="echartsToPx(102)">
+            <el-table-column label="操作" fixed="right" :min-width="echartsToPx(300)">
               <template #default="scope">
-                <el-button type="primary" link @click="resetRow(scope.row)" v-if="isReset">重置</el-button>
-                <el-button type="primary" link @click="viewRow(scope.row)">查看</el-button>
+                <el-button type="primary" link @click="openResetPwd(scope.row)">重置密码</el-button>
+                <el-button type="primary" link @click="openEditAccount(scope.row)">编辑账户</el-button>
+                <el-button type="primary" link @click="viewRow(scope.row)">查看申请单</el-button>
                 <el-button
                   type="primary"
                   v-if="scope.row.applyStatus==='PENDING'&&(!needCheckPermission || hadPermissionList.includes('审核申请'))"
                   link
-                  @click="handlePass(scope.row)">通过</el-button>
-                <el-button type="danger" v-if="scope.row.applyStatus==='PENDING'&&(!needCheckPermission || hadPermissionList.includes('审核申请'))" link @click="openRejectDialog(scope.row)">驳回</el-button>
+                  @click="handlePass(scope.row)">通过申请</el-button>
+                <el-button type="danger" v-if="scope.row.applyStatus==='PENDING'&&(!needCheckPermission || hadPermissionList.includes('审核申请'))" link @click="openRejectDialog(scope.row)">驳回申请</el-button>
               </template>
             </el-table-column>
           </commonTable>
@@ -162,6 +163,77 @@
         </span>
       </template>
     </el-dialog>
+
+    <!-- 重置密码确认弹窗 -->
+    <el-dialog
+      title="重置密码"
+      v-model="resetDialogVisible"
+      :width="pxToRem(600)"
+      class="resetPwdDialog"
+      :close-on-click-modal="false"
+    >
+      <div class="resetPwdBody">
+        <i class="iconfont icon-tishi-yidongwenjianjia"></i>
+        <span>确认重置账号【{{ resetTarget.account }}】的密码吗？重置后将恢复为初始密码。</span>
+      </div>
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="resetDialogVisible = false">取 消</el-button>
+          <el-button type="primary" @click="confirmResetPwd">确 定</el-button>
+        </span>
+      </template>
+    </el-dialog>
+
+    <!-- 编辑账户弹窗：只维护账户基础信息，不含「科室负责人」 -->
+    <el-dialog
+      title="编辑"
+      v-model="editDialogVisible"
+      :width="pxToRem(700)"
+      class="editAccountDialog"
+      :close-on-click-modal="false"
+    >
+      <el-form ref="editFormRef" :model="editForm" :rules="editRules" label-width="130px" class="editAccountForm">
+        <el-form-item label="姓名" prop="name">
+          <el-input v-model.trim="editForm.name" maxlength="30" show-word-limit placeholder="请输入姓名" />
+        </el-form-item>
+        <el-form-item label="账号ID" prop="account">
+          <el-input v-model.trim="editForm.account" maxlength="30" show-word-limit placeholder="请输入账号ID" />
+        </el-form-item>
+        <el-form-item label="手机号" prop="phone">
+          <el-input v-model="editForm.phone" disabled placeholder="手机号不可修改" />
+        </el-form-item>
+        <el-form-item label="医院名称" prop="hospitalName">
+          <el-select v-model="editForm.hospitalName" filterable placeholder="请选择医院" class="fullWidth">
+            <el-option v-for="item in hospitalOptions" :key="item.value" :label="item.label" :value="item.value" />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="科室类别-名称" prop="department">
+          <el-cascader
+            v-model="editForm.department"
+            :options="deptTree"
+            :props="deptProps"
+            placeholder="请选择科室"
+            clearable
+            class="fullWidth"
+            style="width: 100%"
+          />
+        </el-form-item>
+        <el-form-item label="角色" prop="roles">
+          <el-select v-model="editForm.roles" multiple placeholder="请选择角色" class="fullWidth">
+            <el-option v-for="item in roleOptions" :key="item.value" :label="item.label" :value="item.value" />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="状态">
+          <el-switch v-model="editForm.enabled" inline-prompt active-text="启用" inactive-text="停用" />
+        </el-form-item>
+      </el-form>
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="editDialogVisible = false">取 消</el-button>
+          <el-button type="primary" @click="confirmEditAccount">确 定</el-button>
+        </span>
+      </template>
+    </el-dialog>
   </div>
 
 </template>
@@ -173,7 +245,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, onMounted, reactive } from 'vue'
+import { ref, onMounted, reactive, computed } from 'vue'
 import commonMultipleSelect from '@/components/common/commonMultipleSelect.vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { echartsToPx } from '@/utils/utils.js'
@@ -184,7 +256,6 @@ import { getOnboardingList } from '@/mock/onboardingDemo'
 import { approveApplication, rejectApplication } from '@/utils/onboarding'
 import { withTimeout } from '@/utils/requestFallback'
 const { needCheckPermission, hadPermissionList } = getPagePermission('/expertManagement/checkInAuditManage')
-const isReset = ref(localStorage.getItem('reset'))
 const currentPage = ref(1)
 
 const limit = ref(20)
@@ -204,6 +275,8 @@ const total = ref(0)
 const tableData = ref([])
 // 演示环境的审核结果：无后端时就地更新列表状态
 const localReviewed = reactive({})
+// 演示环境的编辑结果：无后端时把账户信息的修改保留在列表里
+const localEdited = reactive({})
 
 const nowText = () => {
   const d = new Date()
@@ -213,6 +286,7 @@ const nowText = () => {
 
 // 状态映射配置（可根据后端具体枚举改写）
 const statusOption = [
+  { label: '未提交审核', value: 'NOT_SUBMITTED', dotClass: 'statusDot0' },
   { label: '待审核', value: 'PENDING', dotClass: 'statusDot1' },
   { label: '已通过', value: 'APPROVED', dotClass: 'statusDot2' },
   { label: '已驳回', value: 'REJECTED', dotClass: 'statusDot3' }
@@ -236,8 +310,22 @@ const titleLevelArr = [
   }
 ]
 
-const getStatusConfig = (status) => statusOption.find(item => item.value === status)
+// 未提交（历史值 NOT_APPLIED）统一按「未提交审核」展示
+const getStatusConfig = (status) => statusOption.find(item => item.value === (status === 'NOT_APPLIED' ? 'NOT_SUBMITTED' : status))
 const hospitalList = ref([])
+const hospitalOptions = computed(() => {
+  const map = new Map()
+  const push = (label) => {
+    const text = String(label || '').trim()
+    if (text) map.set(text, { label: text, value: text })
+  }
+  ;(hospitalList.value || []).forEach((item) => {
+    if (typeof item === 'string') push(item)
+    else push(item?.name || item?.hospitalName || item?.label)
+  })
+  tableData.value.forEach((row) => push(row.hospitalName))
+  return [...map.values()]
+})
 const getHospitalListFn = () => {
   getHospitalList().then(res => {
     if (res.code === 10000) {
@@ -246,6 +334,102 @@ const getHospitalListFn = () => {
   })
 }
 const departmentOptions = ref([])
+// 演示环境：接口无数据时用内置科室树兜底，保证编辑弹窗可选
+const FALLBACK_DEPARTMENTS = [
+  {
+    name: '内科系统',
+    id: 'internal',
+    children: [
+      { name: '心血管内科', id: 'cardiology' },
+      { name: '肾内科', id: 'nephrology' },
+      { name: '消化内科', id: 'gastroenterology' }
+    ]
+  },
+  {
+    name: '外科系统',
+    id: 'surgery',
+    children: [
+      { name: '骨科', id: 'orthopedics' },
+      { name: '普外科', id: 'general-surgery' }
+    ]
+  },
+  {
+    name: '急诊医学科',
+    id: 'emergency',
+    children: [
+      { name: '急诊科', id: 'emergency-room' }
+    ]
+  }
+]
+// 演示数据里的科室可能不在内置树中（如「心内科」），补齐后级联才能回填
+const extraDepts = ref([])
+const deptTree = computed(() => {
+  const base = departmentOptions.value?.length ? departmentOptions.value : FALLBACK_DEPARTMENTS
+  const tree = base.map((first) => ({
+    ...first,
+    children: [...(first.children || [])]
+  }))
+  const addDept = (parent, name) => {
+    let node = tree.find((item) => item.name === parent)
+    if (!node) {
+      node = { name: parent, id: `extra-${parent}`, children: [] }
+      tree.push(node)
+    }
+    if (!node.children.some((child) => child.name === name)) {
+      node.children.push({ name, id: `extra-${parent}-${name}` })
+    }
+  }
+  // 列表里出现过的科室先并入树，保证打开弹窗时级联能立刻回填
+  tableData.value.forEach((row) => {
+    const name = row.department
+    if (!name) return
+    const exists = tree.some((node) => node.name === name || (node.children || []).some((child) => child.name === name))
+    if (!exists) addDept(DEPT_CATEGORY_HINT[name] || '临床科室', name)
+  })
+  extraDepts.value.forEach(({ parent, name }) => addDept(parent, name))
+  return tree
+})
+// 科室级联：值与文案都用科室名，回填时按名称匹配路径
+const deptProps = { label: 'name', value: 'name', children: 'children', expandTrigger: 'hover' }
+// 按科室名找到级联路径，如 ['内科系统', '心血管内科']
+const findDeptPath = (name) => {
+  if (!name) return []
+  let matched = []
+  deptTree.value.forEach((first) => {
+    if (first.name === name) matched = [first.name]
+    ;(first.children || []).forEach((second) => {
+      if (second.name === name) matched = [first.name, second.name]
+    })
+  })
+  return matched
+}
+// 科室名不在树里时，按名称猜一个类别，保证能级联回填
+const DEPT_CATEGORY_HINT = {
+  心内科: '内科系统',
+  心血管内科: '内科系统',
+  肾内科: '内科系统',
+  消化内科: '内科系统',
+  呼吸内科: '内科系统',
+  神经内科: '内科系统',
+  内分泌科: '内科系统',
+  骨科: '外科系统',
+  普外科: '外科系统',
+  神经外科: '外科系统',
+  泌尿外科: '外科系统',
+  急诊科: '急诊医学科'
+}
+// 返回可回填的级联路径；不在树中时登记到 extraDepts 再返回
+const ensureDeptPath = (name) => {
+  const matched = findDeptPath(name)
+  if (matched.length || !name) return matched
+  const parent = DEPT_CATEGORY_HINT[name] || '临床科室'
+  extraDepts.value = [...extraDepts.value, { parent, name }]
+  return [parent, name]
+}
+const roleOptions = [
+  { label: '专家端', value: 'expert' },
+  { label: '管理后台', value: 'admin' }
+]
 const getSectionListInCascadeFn = () => {
   getSectionListInCascade().then(res => {
     if (res.code === 10000) {
@@ -296,7 +480,7 @@ const getListData = async () => {
       .filter(item => !searchInfo.value.name || String(item.name).includes(searchInfo.value.name))
       .filter(item => !searchInfo.value.phone || String(item.phone).includes(searchInfo.value.phone))
       .filter(item => !searchInfo.value.applyStatusList?.length || searchInfo.value.applyStatusList.includes(item.applyStatus))
-      .map(item => (localReviewed[item.id] ? { ...item, ...localReviewed[item.id] } : item))
+      .map(item => ({ ...item, ...(localReviewed[item.id] || {}), ...(localEdited[item.id] || {}) }))
     total.value = tableData.value.length
   }
 }
@@ -387,13 +571,77 @@ const confirmReject = () => {
     }
   })
 }
-const resetRow = (row) => {
-  resetAccount({ phone: row.phone }).then(res => {
-    if (res.code === 10000) {
-      ElMessage.warning('账号已重置为初始密码')
-      getListData()
+// 重置密码：二次确认后恢复为初始密码
+const resetDialogVisible = ref(false)
+const resetTarget = ref({ account: '', phone: '' })
+const openResetPwd = (row) => {
+  resetTarget.value = {
+    account: row.account || row.accountId || row.phone || '-',
+    phone: row.phone || ''
+  }
+  resetDialogVisible.value = true
+}
+const confirmResetPwd = async () => {
+  const { account, phone } = resetTarget.value
+  // 接口不可用时按演示环境处理，保证操作闭环可见
+  try {
+    await withTimeout(resetAccount({ phone }))
+  } catch (e) {}
+  resetDialogVisible.value = false
+  ElMessage.success(`账号【${account}】的密码已重置为初始密码`)
+}
+
+// 编辑账户：只维护账户基础信息（不含科室负责人）
+const editDialogVisible = ref(false)
+const editFormRef = ref(null)
+const editingRow = ref(null)
+const editForm = reactive({
+  name: '',
+  account: '',
+  phone: '',
+  hospitalName: '',
+  department: [],
+  roles: ['expert'],
+  enabled: true
+})
+const editRules = {
+  name: [{ required: true, message: '请填写姓名', trigger: 'blur' }],
+  account: [{ required: true, message: '请填写账号ID', trigger: 'blur' }],
+  hospitalName: [{ required: true, message: '请选择医院名称', trigger: 'change' }],
+  department: [{ required: true, type: 'array', message: '请选择科室类别-名称', trigger: 'change' }],
+  roles: [{ required: true, type: 'array', message: '请选择角色', trigger: 'change' }]
+}
+const openEditAccount = (row) => {
+  editingRow.value = row
+  editForm.name = row.name || ''
+  editForm.account = row.account || row.accountId || row.phone || ''
+  editForm.phone = row.phone || ''
+  editForm.hospitalName = row.hospitalName || ''
+  editForm.department = ensureDeptPath(row.department)
+  editForm.roles = row.roles?.length ? [...row.roles] : ['expert']
+  editForm.enabled = row.enabled !== false
+  editDialogVisible.value = true
+  editFormRef.value?.clearValidate?.()
+}
+const confirmEditAccount = () => {
+  editFormRef.value.validate().then((valid) => {
+    if (!valid) return
+    const row = editingRow.value
+    const department = editForm.department[editForm.department.length - 1] || ''
+    if (row) {
+      localEdited[row.id] = {
+        name: editForm.name,
+        account: editForm.account,
+        hospitalName: editForm.hospitalName,
+        department,
+        roles: [...editForm.roles],
+        enabled: editForm.enabled
+      }
     }
-  })
+    editDialogVisible.value = false
+    ElMessage.success('账户信息已保存')
+    getListData()
+  }).catch(() => {})
 }
 onMounted(() => {
   getListData()
@@ -459,7 +707,8 @@ onMounted(() => {
       border-radius: 50%;
     }
 
-    .statusDot1 { background: #b6b7b9; }
+    .statusDot0 { background: #b6b7b9; }
+    .statusDot1 { background: #f59f0c; }
     .statusDot2 { background: #04a273; }
     .statusDot3 { background: #ff4e4e; }
 
@@ -507,6 +756,34 @@ onMounted(() => {
   .el-form--label-top .el-form-item__label {
     margin: 14px 0 !important;
     color: #ff3a3a !important;
+  }
+}
+
+/* 重置密码二次确认 */
+.resetPwdDialog {
+  .resetPwdBody {
+    display: block;
+    line-height: 24px;
+    font-size: 14px;
+    color: var(--theme-text-2);
+
+    .iconfont {
+      margin-right: 8px;
+      font-size: 17px;
+      color: #f59f0c;
+    }
+  }
+}
+
+/* 编辑账户弹窗 */
+.editAccountDialog {
+  .editAccountForm {
+    padding-right: 12px;
+
+    .el-cascader,
+    .el-select {
+      width: 100% !important;
+    }
   }
 }
 </style>

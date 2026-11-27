@@ -4,14 +4,14 @@
     <header class="pageHeader">
       <commonGoBack :upperLevel="true">
         <div class="line"></div>
-        <div class="title">入驻审核管理</div>
+        <div class="title">入驻专家管理</div>
       </commonGoBack>
     </header>
 
     <div class="mainContent">
       <!-- 左侧锚点菜单 -->
       <div class="leftContainer">
-        <div class="menuTitle">入驻审核单</div>
+        <div class="menuTitle">入驻申请单</div>
         <!-- 核心修改：绑定 containerRef，监听 @click 与 @change -->
         <el-anchor
           v-if="containerRef"

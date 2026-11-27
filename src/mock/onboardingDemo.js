@@ -133,6 +133,29 @@ export const ONBOARDING_DEMO_LIST = [
     qualificationNote: '产科高危妊娠管理，年手术量 300 余台。',
     qualificationAttachment: null,
     resume: resumeFile('孙浩-个人简历.pdf', 358 * 1024)
+  },
+  {
+    // 已注册账号但还没提交资质：列表展示「未提交审核」，用于演示该状态
+    id: 'ONB202611250006',
+    name: '刘畅',
+    phone: '13300133006',
+    titleLevel: '主治医师',
+    hospitalName: '枣庄市中医医院',
+    department: '针灸科',
+    applyStatus: 'NOT_SUBMITTED',
+    submittedAt: '',
+    reviewedAt: '',
+    rejectReason: '',
+    yearsOfPractice: '5-10 年',
+    education: '硕士',
+    idCardNo: '370402199003125519',
+    idCardFront: null,
+    idCardBack: null,
+    doctorCertificate: null,
+    titleCertificate: null,
+    qualificationNote: '',
+    qualificationAttachment: null,
+    resume: null
   }
 ]
 
