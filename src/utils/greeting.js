@@ -11,9 +11,9 @@ export const getGreeting = (date = new Date()) => {
 
 export const getGreetingTip = (date = new Date()) => {
   const hour = date.getHours()
-  if (hour >= 22 || hour < 6) return '忙碌一天，记得早点休息'
-  if (hour < 10) return '新的一天，慢慢来就好'
-  if (hour < 14) return '记得按时吃饭，别空着肚子干活'
-  if (hour < 17) return '坐久了就起来活动一下'
-  return '今天辛苦了，注意休息'
+  if (hour >= 22 || hour < 6) return '忙碌一天，记得早点休息~'
+  if (hour < 10) return '愿今天的工作从容顺畅~'
+  if (hour < 14) return '记得好好吃饭，给身体充充电~'
+  if (hour < 17) return '忙碌间隙，不妨起身稍作休息~'
+  return '忙碌一天，别让自己太过劳累~'
 }
